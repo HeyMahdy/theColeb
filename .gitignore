@@ -136,4 +136,4 @@ dist
 .pnp.*
 
 # Ignore Firebase service account file
-src/config/authforcoleb-firebase-adminsdk-fbsvc-32e450ddce.json
+src/config/authforcoleb-firebase-adminsdk-fbsvc-32e450ddce.jsonsecrets/firebase-service-account.json
