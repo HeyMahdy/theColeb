@@ -1,0 +1,196 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+  output   = "../generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id                   Int                  @id @default(autoincrement())
+  email                String               @unique @db.VarChar(255)
+  password             String               @db.VarChar(255)
+  basicInfo            BasicInfo?
+  technicalProfile     TechnicalProfile?
+  createdAt            DateTime             @default(now())
+  bioSummary           BioSummary?
+  showcase             Showcase?
+  projects             Project[]
+  hackathons           Hackathon[]
+  collaboration        Collaboration?
+  visuals              Visuals?
+  posts                Post[]
+  postLists            PostList[]
+  incomingConnections  IncomingConnection[] @relation("ReceivedConnections")
+  outgoingConnections  OutgoingConnection[] @relation("SentConnections")
+  connectionsInitiated Connection[]         @relation("ConnectionInitiator")
+  connectionsReceived  Connection[]         @relation("ConnectionReceiver")
+  // OTP Verification fields
+  isEmailVerified      Boolean              @default(false)
+  otp                  String?              @db.VarChar(6)
+  otpExpiry            DateTime?
+
+  @@map("users")
+}
+
+model BasicInfo {
+  id             Int     @id @default(autoincrement())
+  user           User    @relation(fields: [userId], references: [id])
+  userId         Int     @unique
+  fullName       String? @db.VarChar(100)
+  Institute      String? @db.VarChar(100)
+  degree         String? @db.VarChar(100)
+  major          String? @db.VarChar(100)
+  graduationYear Int?
+  phone          String? @db.VarChar(20)
+  location       String?
+
+  @@map("basic_info")
+}
+
+model TechnicalProfile {
+  id                Int     @id @default(autoincrement())
+  user              User    @relation(fields: [userId], references: [id])
+  userId            Int     @unique
+  skills            String? @db.VarChar(255)
+  experienceLevel   String? @db.VarChar(50)
+  yearsOfExperience Int?
+  projectInterests  String?
+  availability      String? @db.VarChar(50)
+
+  @@map("technical_profile")
+}
+
+model BioSummary {
+  id       Int     @id @default(autoincrement())
+  user     User    @relation(fields: [userId], references: [id])
+  userId   Int     @unique
+  shortBio String? @db.VarChar(500)
+  tagline  String? @db.VarChar(255)
+
+  @@map("bio_summary")
+}
+
+model Showcase {
+  id        Int     @id @default(autoincrement())
+  user      User    @relation(fields: [userId], references: [id])
+  userId    Int     @unique
+  github    String? @db.VarChar(100)
+  portfolio String? @db.VarChar(255)
+  linkedin  String? @db.VarChar(100)
+
+  @@map("showcase")
+}
+
+model Project {
+  id          Int     @id @default(autoincrement())
+  user        User    @relation(fields: [userId], references: [id])
+  userId      Int
+  name        String  @db.VarChar(100)
+  description String?
+  techUsed    String?
+  link        String? @db.VarChar(255)
+
+  @@map("projects")
+}
+
+model Hackathon {
+  id     Int     @id @default(autoincrement())
+  user   User    @relation(fields: [userId], references: [id])
+  userId Int
+  name   String  @db.VarChar(100)
+  award  String? @db.VarChar(100)
+
+  @@map("hackathons")
+}
+
+model Collaboration {
+  id                  Int      @id @default(autoincrement())
+  user                User     @relation(fields: [userId], references: [id])
+  userId              Int      @unique
+  lookingForTeam      Boolean?
+  openToCollaboration Boolean?
+  ideaInterests       String?
+
+  @@map("collaboration")
+}
+
+model Visuals {
+  id             Int     @id @default(autoincrement())
+  user           User    @relation(fields: [userId], references: [id])
+  userId         Int     @unique
+  profilePicture String? @db.VarChar(255)
+  coverImage     String? @db.VarChar(255)
+
+  @@map("visuals")
+}
+
+model Post {
+  id          Int              @id @default(autoincrement())
+  user        User             @relation(fields: [userId], references: [id])
+  userId      Int
+  title       String           @db.VarChar(255)
+  type        String           @db.VarChar(50)
+  description String?
+  tags        String?          @db.VarChar(255)
+  category    String?          @db.VarChar(100)
+  postLists   PostList[]
+  interested  InterestedList[]
+
+  @@map("post")
+}
+
+model PostList {
+  id     Int  @id @default(autoincrement())
+  post   Post @relation(fields: [postId], references: [id])
+  postId Int
+  user   User @relation(fields: [userId], references: [id])
+  userId Int
+
+  @@map("post_list")
+}
+
+model InterestedList {
+  id     Int  @id @default(autoincrement())
+  post   Post @relation(fields: [postId], references: [id])
+  postId Int
+
+  @@map("interested_list")
+}
+
+model IncomingConnection {
+  id          Int      @id @default(autoincrement())
+  sender      User     @relation("ReceivedConnections", fields: [senderId], references: [id])
+  senderId    Int
+  requestedAt DateTime @default(now())
+
+  @@map("incoming_connection")
+}
+
+model OutgoingConnection {
+  id          Int      @id @default(autoincrement())
+  receiver    User     @relation("SentConnections", fields: [receiverId], references: [id])
+  receiverId  Int
+  requestedAt DateTime @default(now())
+
+  @@map("outgoing_connection")
+}
+
+model Connection {
+  id           Int      @id @default(autoincrement())
+  user         User     @relation("ConnectionInitiator", fields: [userId], references: [id])
+  userId       Int
+  connection   User     @relation("ConnectionReceiver", fields: [connectionId], references: [id])
+  connectionId Int
+  connectedAt  DateTime @default(now())
+
+  @@map("connections")
+}

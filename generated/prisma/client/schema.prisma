@@ -1,0 +1,190 @@
+generator client {
+  provider        = "prisma-client-js"
+  output          = "../generated/prisma/client"
+  previewFeatures = ["relationJoins"]
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id                   Int                  @id @default(autoincrement())
+  email                String               @unique @db.VarChar(255)
+  password             String               @db.VarChar(255)
+  createdAt            DateTime             @default(now())
+  isEmailVerified      Boolean              @default(false)
+  otp                  String?              @db.VarChar(6)
+  otpExpiry            DateTime?
+  basicInfo            BasicInfo?
+  bioSummary           BioSummary?
+  collaboration        Collaboration?
+  connectionsReceived  Connection[]         @relation("ConnectionReceiver")
+  connectionsInitiated Connection[]         @relation("ConnectionInitiator")
+  hackathons           Hackathon[]
+  incomingConnections  IncomingConnection[] @relation("ReceivedConnections")
+  outgoingConnections  OutgoingConnection[] @relation("SentConnections")
+  posts                Post[]
+  postLists            PostList[]
+  projects             Project[]
+  showcase             Showcase?
+  technicalProfile     TechnicalProfile?
+  visuals              Visuals?
+
+  @@map("users")
+}
+
+model BasicInfo {
+  id             Int     @id @default(autoincrement())
+  userId         Int     @unique
+  fullName       String? @db.VarChar(100)
+  Institute      String? @db.VarChar(100)
+  degree         String? @db.VarChar(100)
+  major          String? @db.VarChar(100)
+  graduationYear Int?
+  phone          String? @db.VarChar(20)
+  location       String?
+  user           User    @relation(fields: [userId], references: [id])
+
+  @@map("basic_info")
+}
+
+model TechnicalProfile {
+  id                Int     @id @default(autoincrement())
+  userId            Int     @unique
+  skills            String? @db.VarChar(255)
+  experienceLevel   String? @db.VarChar(50)
+  yearsOfExperience Int?
+  projectInterests  String?
+  availability      String? @db.VarChar(50)
+  user              User    @relation(fields: [userId], references: [id])
+
+  @@map("technical_profile")
+}
+
+model BioSummary {
+  id       Int     @id @default(autoincrement())
+  userId   Int     @unique
+  shortBio String? @db.VarChar(500)
+  tagline  String? @db.VarChar(255)
+  user     User    @relation(fields: [userId], references: [id])
+
+  @@map("bio_summary")
+}
+
+model Showcase {
+  id        Int     @id @default(autoincrement())
+  userId    Int     @unique
+  github    String? @db.VarChar(100)
+  portfolio String? @db.VarChar(255)
+  linkedin  String? @db.VarChar(100)
+  user      User    @relation(fields: [userId], references: [id])
+
+  @@map("showcase")
+}
+
+model Project {
+  id          Int     @id @default(autoincrement())
+  userId      Int
+  name        String  @db.VarChar(100)
+  description String?
+  techUsed    String?
+  link        String? @db.VarChar(255)
+  user        User    @relation(fields: [userId], references: [id])
+
+  @@map("projects")
+}
+
+model Hackathon {
+  id     Int     @id @default(autoincrement())
+  userId Int
+  name   String  @db.VarChar(100)
+  award  String? @db.VarChar(100)
+  user   User    @relation(fields: [userId], references: [id])
+
+  @@map("hackathons")
+}
+
+model Collaboration {
+  id                  Int      @id @default(autoincrement())
+  userId              Int      @unique
+  lookingForTeam      Boolean?
+  openToCollaboration Boolean?
+  ideaInterests       String?
+  user                User     @relation(fields: [userId], references: [id])
+
+  @@map("collaboration")
+}
+
+model Visuals {
+  id             Int     @id @default(autoincrement())
+  userId         Int     @unique
+  profilePicture String? @db.VarChar(255)
+  coverImage     String? @db.VarChar(255)
+  user           User    @relation(fields: [userId], references: [id])
+
+  @@map("visuals")
+}
+
+model Post {
+  id          Int              @id @default(autoincrement())
+  userId      Int
+  title       String           @db.VarChar(255)
+  type        String           @db.VarChar(50)
+  description String?
+  tags        String?          @db.VarChar(255)
+  category    String?          @db.VarChar(100)
+  interested  InterestedList[]
+  user        User             @relation(fields: [userId], references: [id])
+  postLists   PostList[]
+
+  @@map("post")
+}
+
+model PostList {
+  id     Int  @id @default(autoincrement())
+  postId Int
+  userId Int
+  post   Post @relation(fields: [postId], references: [id])
+  user   User @relation(fields: [userId], references: [id])
+
+  @@map("post_list")
+}
+
+model InterestedList {
+  id     Int  @id @default(autoincrement())
+  postId Int
+  post   Post @relation(fields: [postId], references: [id])
+
+  @@map("interested_list")
+}
+
+model IncomingConnection {
+  id          Int      @id @default(autoincrement())
+  senderId    Int
+  requestedAt DateTime @default(now())
+  sender      User     @relation("ReceivedConnections", fields: [senderId], references: [id])
+
+  @@map("incoming_connection")
+}
+
+model OutgoingConnection {
+  id          Int      @id @default(autoincrement())
+  receiverId  Int
+  requestedAt DateTime @default(now())
+  receiver    User     @relation("SentConnections", fields: [receiverId], references: [id])
+
+  @@map("outgoing_connection")
+}
+
+model Connection {
+  id           Int      @id @default(autoincrement())
+  userId       Int
+  connectionId Int
+  connectedAt  DateTime @default(now())
+  connection   User     @relation("ConnectionReceiver", fields: [connectionId], references: [id])
+  user         User     @relation("ConnectionInitiator", fields: [userId], references: [id])
+
+  @@map("connections")
+}
