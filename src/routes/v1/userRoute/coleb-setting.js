@@ -1,28 +1,27 @@
 import { Router } from 'express';
+import verifyToken from '../../../middlewares/authenticateToken.js';
+import {
+    getUserColeb,
+    createUserColeb,
+    updateUserColeb,
+    deleteUserColeb
+} from '../../../controllers/v1/collaborationController.js';
+
 const router = Router();
 
-// GET: Get collaboration preferences
-router.get('/:user_id', (req, res) => {
-  const { user_id } = req.params;
-  res.json({ message: `Get collaboration preferences for user ${user_id}` });
-});
+// All routes are protected and require authentication
+router.use(verifyToken);
 
-// POST: Create collaboration settings (user_id expected in body or query)
-router.post('/', (req, res) => {
-  const { user_id } = req.body; // or req.query if passed via query
-  res.json({ message: `Create collaboration settings for user ${user_id}` });
-});
+// Get collaboration settings for the authenticated user
+router.get('/', getUserColeb);
 
-// PUT: Update collaboration settings
-router.put('/u/:user_id', (req, res) => {
-  const { user_id } = req.params;
-  res.json({ message: `Update collaboration settings for user ${user_id}` });
-});
+// Create collaboration settings for the authenticated user
+router.post('/', createUserColeb);
 
-// DELETE: Delete collaboration settings
-router.delete('/u/:user_id', (req, res) => {
-  const { user_id } = req.params;
-  res.json({ message: `Delete collaboration settings for user ${user_id}` });
-});
+// Update collaboration settings for the authenticated user
+router.put('/', updateUserColeb);
+
+// Delete collaboration settings for the authenticated user
+router.delete('/', deleteUserColeb);
 
 export default router;
