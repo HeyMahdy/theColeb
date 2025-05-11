@@ -1,28 +1,27 @@
 import { Router } from 'express';
+import verifyToken from '../../../middlewares/authenticateToken.js';
+import {
+    getUserProjects,
+    createUserProject,
+    updateUserProject,
+    deleteUserProject
+} from '../../../controllers/v1/projectsController.js';
+
 const router = Router();
 
-// GET: List projects for a specific showcase
-router.get('/:sc_id', (req, res) => {
-  const { sc_id } = req.params;
-  res.json({ message: `List projects for showcase ${sc_id}` });
-});
+// All routes are protected and require authentication
+router.use(verifyToken);
 
-// POST: Add new project to a specific showcase (sc_id in body or query)
-router.post('/', (req, res) => {
-  const { sc_id } = req.body;
-  res.json({ message: `Add new project to showcase ${sc_id}` });
-});
+// Get all projects for the authenticated user
+router.get('/', getUserProjects);
 
-// PUT: Update a specific project
-router.put('/p/:project_id', (req, res) => {
-  const { project_id } = req.params;
-  res.json({ message: `Update project ${project_id}` });
-});
+// Create a new project
+router.post('/', createUserProject);
 
-// DELETE: Delete a specific project
-router.delete('/p/:project_id', (req, res) => {
-  const { project_id } = req.params;
-  res.json({ message: `Delete project ${project_id}` });
-});
+// Update a project
+router.put('/:projectId', updateUserProject);
+
+// Delete a project
+router.delete('/:projectId', deleteUserProject);
 
 export default router;

@@ -1,38 +1,163 @@
-const { PrismaClient } = require('@prisma/client');
+import { PrismaClient, Prisma } from '../../../generated/prisma/client/index.js';
 const prisma = new PrismaClient();
 
-exports.getUserProjects = async (req, res) => {
+export const getUserProjects = async (req, res) => {
     try {
-        // TODO: Implement user projects retrieval logic
-        res.status(200).json({ projects: [] });
+        const userId = req.user.userId; // From JWT token
+
+        const projects = await prisma.project.findMany({
+            where: { userId }
+        });
+
+        return res.status(200).json({
+            projects
+        });
     } catch (error) {
-        res.status(500).json({ error: 'Failed to retrieve user projects' });
+        console.error('Get projects error:', error);
+        return res.status(500).json({
+            message: 'An error occurred while fetching projects'
+        });
     }
 };
 
-exports.createUserProject = async (req, res) => {
+export const createUserProject = async (req, res) => {
     try {
-        // TODO: Implement user project creation logic
-        res.status(201).json({ message: 'User project created successfully' });
+        const userId = req.user.userId; // From JWT token
+        const { name, description, techUsed, link } = req.body;
+
+        // Validate input
+        if (!name) {
+            return res.status(400).json({
+                message: 'Project name is required',
+            });
+        }
+
+        const project = await prisma.project.create({
+            data: {
+                userId,
+                name,
+                description,
+                techUsed,
+                link
+            }
+        });
+
+        return res.status(201).json({
+            message: 'Project created successfully',
+            project
+        });
     } catch (error) {
-        res.status(500).json({ error: 'Failed to create user project' });
+        if (error instanceof Prisma.PrismaClientKnownRequestError) {
+            return res.status(500).json({
+                message: 'Database error occurred'
+            });
+        }
+        console.error('Create project error:', error);
+        return res.status(500).json({
+            message: 'An error occurred while creating project'
+        });
     }
 };
 
-exports.updateUserProject = async (req, res) => {
+export const updateUserProject = async (req, res) => {
     try {
-        // TODO: Implement user project update logic
-        res.status(200).json({ message: 'User project updated successfully' });
+        const userId = req.user.userId; // From JWT token
+        const projectId = parseInt(req.params.projectId);
+        const { name, description, techUsed, link } = req.body;
+
+        // Validate input
+        if (!name && !description && !techUsed && !link) {
+            return res.status(400).json({
+                message: 'At least one field must be provided to update the project',
+            });
+        }
+
+        // First check if project exists and belongs to user
+        const existingProject = await prisma.project.findFirst({
+            where: {
+                id: projectId,
+                userId: userId
+            }
+        });
+
+        if (!existingProject) {
+            return res.status(404).json({
+                message: 'Project not found or does not belong to user'
+            });
+        }
+
+        const project = await prisma.project.update({
+            where: { id: projectId },
+            data: {
+                name,
+                description,
+                techUsed,
+                link
+            }
+        });
+
+        return res.status(200).json({
+            message: 'Project updated successfully',
+            project
+        });
     } catch (error) {
-        res.status(500).json({ error: 'Failed to update user project' });
+        if (error instanceof Prisma.PrismaClientKnownRequestError) {
+            if (error.code === 'P2025') {
+                return res.status(404).json({
+                    message: 'Project not found'
+                });
+            }
+            return res.status(500).json({
+                message: 'Database error occurred'
+            });
+        }
+        console.error('Update project error:', error);
+        return res.status(500).json({
+            message: 'An error occurred while updating project'
+        });
     }
 };
 
-exports.deleteUserProject = async (req, res) => {
+export const deleteUserProject = async (req, res) => {
     try {
-        // TODO: Implement user project deletion logic
-        res.status(200).json({ message: 'User project deleted successfully' });
+        const userId = req.user.userId; // From JWT token
+        const projectId = parseInt(req.params.projectId);
+
+        // First check if project exists and belongs to user
+        const existingProject = await prisma.project.findFirst({
+            where: {
+                id: projectId,
+                userId: userId
+            }
+        });
+
+        if (!existingProject) {
+            return res.status(404).json({
+                message: 'Project not found or does not belong to user'
+            });
+        }
+
+        await prisma.project.delete({
+            where: { id: projectId }
+        });
+
+        return res.status(200).json({
+            message: 'Project deleted successfully'
+        });
     } catch (error) {
-        res.status(500).json({ error: 'Failed to delete user project' });
+        if (error instanceof Prisma.PrismaClientKnownRequestError) {
+            if (error.code === 'P2025') {
+                return res.status(404).json({
+                    message: 'Project not found'
+                });
+            }
+            return res.status(500).json({
+                message: 'Database error occurred'
+            });
+        }
+        console.error('Delete project error:', error);
+        return res.status(500).json({
+            message: 'An error occurred while deleting project'
+        });
     }
 };
