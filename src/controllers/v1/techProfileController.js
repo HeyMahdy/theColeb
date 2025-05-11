@@ -4,35 +4,35 @@ const prisma = new PrismaClient();
 export const createTechProfile = async (req, res) => {
     try {
         const userId = req.user.userId; // From JWT token
-        const { 
-            techStack,
-            experience,
+        const {
             skills,
-            certifications,
-            languages,
-            frameworks,
-            databases,
-            tools
+            experienceLevel,
+            yearsOfExperience,
+            projectInterests,
+            availability
         } = req.body;
 
-        // Validate input
-        if (!techStack && !experience && !skills) {
+        // Basic validation: at least one field required
+        if (
+            !skills &&
+            !experienceLevel &&
+            !yearsOfExperience &&
+            !projectInterests &&
+            !availability
+        ) {
             return res.status(400).json({
-                message: 'At least one field (techStack, experience, or skills) is required',
+                message: 'At least one field must be provided to create a technical profile',
             });
         }
 
         const techProfile = await prisma.technicalProfile.create({
             data: {
                 userId,
-                techStack,
-                experience,
                 skills,
-                certifications,
-                languages,
-                frameworks,
-                databases,
-                tools
+                experienceLevel,
+                yearsOfExperience,
+                projectInterests,
+                availability
             }
         });
 
@@ -57,6 +57,7 @@ export const createTechProfile = async (req, res) => {
         });
     }
 };
+
 
 export const getTechProfile = async (req, res) => {
     try {
@@ -86,35 +87,35 @@ export const getTechProfile = async (req, res) => {
 export const updateTechProfile = async (req, res) => {
     try {
         const userId = req.user.userId; // From JWT token
-        const { 
-            techStack,
-            experience,
+        const {
             skills,
-            certifications,
-            languages,
-            frameworks,
-            databases,
-            tools
+            experienceLevel,
+            yearsOfExperience,
+            projectInterests,
+            availability
         } = req.body;
 
-        // Validate input
-        if (!techStack && !experience && !skills) {
+        // Ensure at least one field is being updated
+        if (
+            !skills &&
+            !experienceLevel &&
+            !yearsOfExperience &&
+            !projectInterests &&
+            !availability
+        ) {
             return res.status(400).json({
-                message: 'At least one field (techStack, experience, or skills) is required',
+                message: 'At least one field must be provided to update the technical profile',
             });
         }
 
         const techProfile = await prisma.technicalProfile.update({
             where: { userId },
             data: {
-                techStack,
-                experience,
                 skills,
-                certifications,
-                languages,
-                frameworks,
-                databases,
-                tools
+                experienceLevel,
+                yearsOfExperience,
+                projectInterests,
+                availability
             }
         });
 
@@ -139,6 +140,7 @@ export const updateTechProfile = async (req, res) => {
         });
     }
 };
+
 
 export const deleteTechProfile = async (req, res) => {
     try {
