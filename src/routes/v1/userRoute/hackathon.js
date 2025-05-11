@@ -25,4 +25,4 @@ router.delete('/u/:user_id', (req, res) => {
   res.json({ message: `Delete collaboration settings for user ${user_id}` });
 });
 
-export default router;
+export default router

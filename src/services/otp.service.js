@@ -20,6 +20,9 @@ class OTPService {
         otpExpiry: expiryTime,
       },
     });
+
+      console.log("OTP saved for user:", userId);  
+
   }
 
   static async verifyotp(userId, otp) {

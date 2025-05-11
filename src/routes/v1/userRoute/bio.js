@@ -15,9 +15,9 @@ router.post('/', bioController.createUserBio);
 router.get('/', bioController.getUserBio);
 
 // Update bio
-router.put('/', bioController.updateUserBio);
+router.put('/',bioController.updateUserBio);
 
 // Delete bio
-router.delete('/', bioController.deleteUserBio);
+router.delete('/',bioController.deleteUserBio);
 
 export default router;
