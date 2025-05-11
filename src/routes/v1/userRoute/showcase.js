@@ -1,28 +1,27 @@
 import { Router } from 'express';
+import verifyToken from '../../../middlewares/authenticateToken.js';
+import {
+    getUserShowcase,
+    createUserShowcase,
+    updateUserShowcase,
+    deleteUserShowcase
+} from '../../../controllers/v1/showcaseController.js';
+
 const router = Router();
 
-// GET: Get GitHub/portfolio/LinkedIn links for a user
-router.get('/:user_id', (req, res) => {
-  const { user_id } = req.params;
-  res.json({ message: `Get GitHub/portfolio/LinkedIn for user ${user_id}` });
-});
+// All routes are protected and require authentication
+router.use(verifyToken);
 
-// POST: Create showcase for a user (user_id expected in body)
-router.post('/', (req, res) => {
-  const { user_id } = req.body;
-  res.json({ message: `Create showcase for user ${user_id}` });
-});
+// Get showcase for the authenticated user
+router.get('/', getUserShowcase);
 
-// PUT: Update showcase for a user
-router.put('/s/:user_id', (req, res) => {
-  const { user_id } = req.params;
-  res.json({ message: `Update showcase for user ${user_id}` });
-});
+// Create showcase for the authenticated user
+router.post('/', createUserShowcase);
 
-// DELETE: Delete showcase for a user
-router.delete('/s/:user_id', (req, res) => {
-  const { user_id } = req.params;
-  res.json({ message: `Delete showcase for user ${user_id}` });
-});
+// Update showcase for the authenticated user
+router.put('/', updateUserShowcase);
+
+// Delete showcase for the authenticated user
+router.delete('/', deleteUserShowcase);
 
 export default router;
