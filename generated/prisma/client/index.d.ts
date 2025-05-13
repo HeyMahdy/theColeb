@@ -44,11 +44,6 @@ export type Showcase = $Result.DefaultSelection<Prisma.$ShowcasePayload>
  */
 export type Project = $Result.DefaultSelection<Prisma.$ProjectPayload>
 /**
- * Model Hackathon
- * 
- */
-export type Hackathon = $Result.DefaultSelection<Prisma.$HackathonPayload>
-/**
  * Model Collaboration
  * 
  */
@@ -273,16 +268,6 @@ export class PrismaClient<
     * ```
     */
   get project(): Prisma.ProjectDelegate<ExtArgs, ClientOptions>;
-
-  /**
-   * `prisma.hackathon`: Exposes CRUD operations for the **Hackathon** model.
-    * Example usage:
-    * ```ts
-    * // Fetch zero or more Hackathons
-    * const hackathons = await prisma.hackathon.findMany()
-    * ```
-    */
-  get hackathon(): Prisma.HackathonDelegate<ExtArgs, ClientOptions>;
 
   /**
    * `prisma.collaboration`: Exposes CRUD operations for the **Collaboration** model.
@@ -809,7 +794,6 @@ export namespace Prisma {
     BioSummary: 'BioSummary',
     Showcase: 'Showcase',
     Project: 'Project',
-    Hackathon: 'Hackathon',
     Collaboration: 'Collaboration',
     Visuals: 'Visuals',
     Post: 'Post',
@@ -836,7 +820,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "user" | "basicInfo" | "technicalProfile" | "bioSummary" | "showcase" | "project" | "hackathon" | "collaboration" | "visuals" | "post" | "postList" | "interestedList" | "incomingConnection" | "outgoingConnection" | "connection"
+      modelProps: "user" | "basicInfo" | "technicalProfile" | "bioSummary" | "showcase" | "project" | "collaboration" | "visuals" | "post" | "postList" | "interestedList" | "incomingConnection" | "outgoingConnection" | "connection"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -1281,80 +1265,6 @@ export namespace Prisma {
           count: {
             args: Prisma.ProjectCountArgs<ExtArgs>
             result: $Utils.Optional<ProjectCountAggregateOutputType> | number
-          }
-        }
-      }
-      Hackathon: {
-        payload: Prisma.$HackathonPayload<ExtArgs>
-        fields: Prisma.HackathonFieldRefs
-        operations: {
-          findUnique: {
-            args: Prisma.HackathonFindUniqueArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$HackathonPayload> | null
-          }
-          findUniqueOrThrow: {
-            args: Prisma.HackathonFindUniqueOrThrowArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$HackathonPayload>
-          }
-          findFirst: {
-            args: Prisma.HackathonFindFirstArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$HackathonPayload> | null
-          }
-          findFirstOrThrow: {
-            args: Prisma.HackathonFindFirstOrThrowArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$HackathonPayload>
-          }
-          findMany: {
-            args: Prisma.HackathonFindManyArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$HackathonPayload>[]
-          }
-          create: {
-            args: Prisma.HackathonCreateArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$HackathonPayload>
-          }
-          createMany: {
-            args: Prisma.HackathonCreateManyArgs<ExtArgs>
-            result: BatchPayload
-          }
-          createManyAndReturn: {
-            args: Prisma.HackathonCreateManyAndReturnArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$HackathonPayload>[]
-          }
-          delete: {
-            args: Prisma.HackathonDeleteArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$HackathonPayload>
-          }
-          update: {
-            args: Prisma.HackathonUpdateArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$HackathonPayload>
-          }
-          deleteMany: {
-            args: Prisma.HackathonDeleteManyArgs<ExtArgs>
-            result: BatchPayload
-          }
-          updateMany: {
-            args: Prisma.HackathonUpdateManyArgs<ExtArgs>
-            result: BatchPayload
-          }
-          updateManyAndReturn: {
-            args: Prisma.HackathonUpdateManyAndReturnArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$HackathonPayload>[]
-          }
-          upsert: {
-            args: Prisma.HackathonUpsertArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$HackathonPayload>
-          }
-          aggregate: {
-            args: Prisma.HackathonAggregateArgs<ExtArgs>
-            result: $Utils.Optional<AggregateHackathon>
-          }
-          groupBy: {
-            args: Prisma.HackathonGroupByArgs<ExtArgs>
-            result: $Utils.Optional<HackathonGroupByOutputType>[]
-          }
-          count: {
-            args: Prisma.HackathonCountArgs<ExtArgs>
-            result: $Utils.Optional<HackathonCountAggregateOutputType> | number
           }
         }
       }
@@ -2040,7 +1950,6 @@ export namespace Prisma {
     bioSummary?: BioSummaryOmit
     showcase?: ShowcaseOmit
     project?: ProjectOmit
-    hackathon?: HackathonOmit
     collaboration?: CollaborationOmit
     visuals?: VisualsOmit
     post?: PostOmit
@@ -2145,7 +2054,6 @@ export namespace Prisma {
   export type UserCountOutputType = {
     connectionsReceived: number
     connectionsInitiated: number
-    hackathons: number
     incomingConnections: number
     outgoingConnections: number
     posts: number
@@ -2156,7 +2064,6 @@ export namespace Prisma {
   export type UserCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     connectionsReceived?: boolean | UserCountOutputTypeCountConnectionsReceivedArgs
     connectionsInitiated?: boolean | UserCountOutputTypeCountConnectionsInitiatedArgs
-    hackathons?: boolean | UserCountOutputTypeCountHackathonsArgs
     incomingConnections?: boolean | UserCountOutputTypeCountIncomingConnectionsArgs
     outgoingConnections?: boolean | UserCountOutputTypeCountOutgoingConnectionsArgs
     posts?: boolean | UserCountOutputTypeCountPostsArgs
@@ -2187,13 +2094,6 @@ export namespace Prisma {
    */
   export type UserCountOutputTypeCountConnectionsInitiatedArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: ConnectionWhereInput
-  }
-
-  /**
-   * UserCountOutputType without action
-   */
-  export type UserCountOutputTypeCountHackathonsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: HackathonWhereInput
   }
 
   /**
@@ -2495,7 +2395,6 @@ export namespace Prisma {
     collaboration?: boolean | User$collaborationArgs<ExtArgs>
     connectionsReceived?: boolean | User$connectionsReceivedArgs<ExtArgs>
     connectionsInitiated?: boolean | User$connectionsInitiatedArgs<ExtArgs>
-    hackathons?: boolean | User$hackathonsArgs<ExtArgs>
     incomingConnections?: boolean | User$incomingConnectionsArgs<ExtArgs>
     outgoingConnections?: boolean | User$outgoingConnectionsArgs<ExtArgs>
     posts?: boolean | User$postsArgs<ExtArgs>
@@ -2544,7 +2443,6 @@ export namespace Prisma {
     collaboration?: boolean | User$collaborationArgs<ExtArgs>
     connectionsReceived?: boolean | User$connectionsReceivedArgs<ExtArgs>
     connectionsInitiated?: boolean | User$connectionsInitiatedArgs<ExtArgs>
-    hackathons?: boolean | User$hackathonsArgs<ExtArgs>
     incomingConnections?: boolean | User$incomingConnectionsArgs<ExtArgs>
     outgoingConnections?: boolean | User$outgoingConnectionsArgs<ExtArgs>
     posts?: boolean | User$postsArgs<ExtArgs>
@@ -2566,7 +2464,6 @@ export namespace Prisma {
       collaboration: Prisma.$CollaborationPayload<ExtArgs> | null
       connectionsReceived: Prisma.$ConnectionPayload<ExtArgs>[]
       connectionsInitiated: Prisma.$ConnectionPayload<ExtArgs>[]
-      hackathons: Prisma.$HackathonPayload<ExtArgs>[]
       incomingConnections: Prisma.$IncomingConnectionPayload<ExtArgs>[]
       outgoingConnections: Prisma.$OutgoingConnectionPayload<ExtArgs>[]
       posts: Prisma.$PostPayload<ExtArgs>[]
@@ -2983,7 +2880,6 @@ export namespace Prisma {
     collaboration<T extends User$collaborationArgs<ExtArgs> = {}>(args?: Subset<T, User$collaborationArgs<ExtArgs>>): Prisma__CollaborationClient<$Result.GetResult<Prisma.$CollaborationPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     connectionsReceived<T extends User$connectionsReceivedArgs<ExtArgs> = {}>(args?: Subset<T, User$connectionsReceivedArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ConnectionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     connectionsInitiated<T extends User$connectionsInitiatedArgs<ExtArgs> = {}>(args?: Subset<T, User$connectionsInitiatedArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ConnectionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-    hackathons<T extends User$hackathonsArgs<ExtArgs> = {}>(args?: Subset<T, User$hackathonsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$HackathonPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     incomingConnections<T extends User$incomingConnectionsArgs<ExtArgs> = {}>(args?: Subset<T, User$incomingConnectionsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$IncomingConnectionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     outgoingConnections<T extends User$outgoingConnectionsArgs<ExtArgs> = {}>(args?: Subset<T, User$outgoingConnectionsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$OutgoingConnectionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     posts<T extends User$postsArgs<ExtArgs> = {}>(args?: Subset<T, User$postsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PostPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
@@ -3527,30 +3423,6 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: ConnectionScalarFieldEnum | ConnectionScalarFieldEnum[]
-  }
-
-  /**
-   * User.hackathons
-   */
-  export type User$hackathonsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Hackathon
-     */
-    select?: HackathonSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Hackathon
-     */
-    omit?: HackathonOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: HackathonInclude<ExtArgs> | null
-    where?: HackathonWhereInput
-    orderBy?: HackathonOrderByWithRelationInput | HackathonOrderByWithRelationInput[]
-    cursor?: HackathonWhereUniqueInput
-    take?: number
-    skip?: number
-    distinct?: HackathonScalarFieldEnum | HackathonScalarFieldEnum[]
   }
 
   /**
@@ -4937,7 +4809,6 @@ export namespace Prisma {
   export type TechnicalProfileMinAggregateOutputType = {
     id: number | null
     userId: number | null
-    skills: string | null
     experienceLevel: string | null
     yearsOfExperience: number | null
     projectInterests: string | null
@@ -4947,7 +4818,6 @@ export namespace Prisma {
   export type TechnicalProfileMaxAggregateOutputType = {
     id: number | null
     userId: number | null
-    skills: string | null
     experienceLevel: string | null
     yearsOfExperience: number | null
     projectInterests: string | null
@@ -4981,7 +4851,6 @@ export namespace Prisma {
   export type TechnicalProfileMinAggregateInputType = {
     id?: true
     userId?: true
-    skills?: true
     experienceLevel?: true
     yearsOfExperience?: true
     projectInterests?: true
@@ -4991,7 +4860,6 @@ export namespace Prisma {
   export type TechnicalProfileMaxAggregateInputType = {
     id?: true
     userId?: true
-    skills?: true
     experienceLevel?: true
     yearsOfExperience?: true
     projectInterests?: true
@@ -5098,7 +4966,7 @@ export namespace Prisma {
   export type TechnicalProfileGroupByOutputType = {
     id: number
     userId: number
-    skills: string | null
+    skills: string[]
     experienceLevel: string | null
     yearsOfExperience: number | null
     projectInterests: string | null
@@ -5186,7 +5054,7 @@ export namespace Prisma {
     scalars: $Extensions.GetPayloadResult<{
       id: number
       userId: number
-      skills: string | null
+      skills: string[]
       experienceLevel: string | null
       yearsOfExperience: number | null
       projectInterests: string | null
@@ -5617,7 +5485,7 @@ export namespace Prisma {
   interface TechnicalProfileFieldRefs {
     readonly id: FieldRef<"TechnicalProfile", 'Int'>
     readonly userId: FieldRef<"TechnicalProfile", 'Int'>
-    readonly skills: FieldRef<"TechnicalProfile", 'String'>
+    readonly skills: FieldRef<"TechnicalProfile", 'String[]'>
     readonly experienceLevel: FieldRef<"TechnicalProfile", 'String'>
     readonly yearsOfExperience: FieldRef<"TechnicalProfile", 'Int'>
     readonly projectInterests: FieldRef<"TechnicalProfile", 'String'>
@@ -9357,1098 +9225,6 @@ export namespace Prisma {
      * Choose, which related nodes to fetch as well
      */
     include?: ProjectInclude<ExtArgs> | null
-  }
-
-
-  /**
-   * Model Hackathon
-   */
-
-  export type AggregateHackathon = {
-    _count: HackathonCountAggregateOutputType | null
-    _avg: HackathonAvgAggregateOutputType | null
-    _sum: HackathonSumAggregateOutputType | null
-    _min: HackathonMinAggregateOutputType | null
-    _max: HackathonMaxAggregateOutputType | null
-  }
-
-  export type HackathonAvgAggregateOutputType = {
-    id: number | null
-    userId: number | null
-  }
-
-  export type HackathonSumAggregateOutputType = {
-    id: number | null
-    userId: number | null
-  }
-
-  export type HackathonMinAggregateOutputType = {
-    id: number | null
-    userId: number | null
-    name: string | null
-    award: string | null
-  }
-
-  export type HackathonMaxAggregateOutputType = {
-    id: number | null
-    userId: number | null
-    name: string | null
-    award: string | null
-  }
-
-  export type HackathonCountAggregateOutputType = {
-    id: number
-    userId: number
-    name: number
-    award: number
-    _all: number
-  }
-
-
-  export type HackathonAvgAggregateInputType = {
-    id?: true
-    userId?: true
-  }
-
-  export type HackathonSumAggregateInputType = {
-    id?: true
-    userId?: true
-  }
-
-  export type HackathonMinAggregateInputType = {
-    id?: true
-    userId?: true
-    name?: true
-    award?: true
-  }
-
-  export type HackathonMaxAggregateInputType = {
-    id?: true
-    userId?: true
-    name?: true
-    award?: true
-  }
-
-  export type HackathonCountAggregateInputType = {
-    id?: true
-    userId?: true
-    name?: true
-    award?: true
-    _all?: true
-  }
-
-  export type HackathonAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Filter which Hackathon to aggregate.
-     */
-    where?: HackathonWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of Hackathons to fetch.
-     */
-    orderBy?: HackathonOrderByWithRelationInput | HackathonOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the start position
-     */
-    cursor?: HackathonWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` Hackathons from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` Hackathons.
-     */
-    skip?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Count returned Hackathons
-    **/
-    _count?: true | HackathonCountAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to average
-    **/
-    _avg?: HackathonAvgAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to sum
-    **/
-    _sum?: HackathonSumAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to find the minimum value
-    **/
-    _min?: HackathonMinAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to find the maximum value
-    **/
-    _max?: HackathonMaxAggregateInputType
-  }
-
-  export type GetHackathonAggregateType<T extends HackathonAggregateArgs> = {
-        [P in keyof T & keyof AggregateHackathon]: P extends '_count' | 'count'
-      ? T[P] extends true
-        ? number
-        : GetScalarType<T[P], AggregateHackathon[P]>
-      : GetScalarType<T[P], AggregateHackathon[P]>
-  }
-
-
-
-
-  export type HackathonGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: HackathonWhereInput
-    orderBy?: HackathonOrderByWithAggregationInput | HackathonOrderByWithAggregationInput[]
-    by: HackathonScalarFieldEnum[] | HackathonScalarFieldEnum
-    having?: HackathonScalarWhereWithAggregatesInput
-    take?: number
-    skip?: number
-    _count?: HackathonCountAggregateInputType | true
-    _avg?: HackathonAvgAggregateInputType
-    _sum?: HackathonSumAggregateInputType
-    _min?: HackathonMinAggregateInputType
-    _max?: HackathonMaxAggregateInputType
-  }
-
-  export type HackathonGroupByOutputType = {
-    id: number
-    userId: number
-    name: string
-    award: string | null
-    _count: HackathonCountAggregateOutputType | null
-    _avg: HackathonAvgAggregateOutputType | null
-    _sum: HackathonSumAggregateOutputType | null
-    _min: HackathonMinAggregateOutputType | null
-    _max: HackathonMaxAggregateOutputType | null
-  }
-
-  type GetHackathonGroupByPayload<T extends HackathonGroupByArgs> = Prisma.PrismaPromise<
-    Array<
-      PickEnumerable<HackathonGroupByOutputType, T['by']> &
-        {
-          [P in ((keyof T) & (keyof HackathonGroupByOutputType))]: P extends '_count'
-            ? T[P] extends boolean
-              ? number
-              : GetScalarType<T[P], HackathonGroupByOutputType[P]>
-            : GetScalarType<T[P], HackathonGroupByOutputType[P]>
-        }
-      >
-    >
-
-
-  export type HackathonSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    id?: boolean
-    userId?: boolean
-    name?: boolean
-    award?: boolean
-    user?: boolean | UserDefaultArgs<ExtArgs>
-  }, ExtArgs["result"]["hackathon"]>
-
-  export type HackathonSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    id?: boolean
-    userId?: boolean
-    name?: boolean
-    award?: boolean
-    user?: boolean | UserDefaultArgs<ExtArgs>
-  }, ExtArgs["result"]["hackathon"]>
-
-  export type HackathonSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    id?: boolean
-    userId?: boolean
-    name?: boolean
-    award?: boolean
-    user?: boolean | UserDefaultArgs<ExtArgs>
-  }, ExtArgs["result"]["hackathon"]>
-
-  export type HackathonSelectScalar = {
-    id?: boolean
-    userId?: boolean
-    name?: boolean
-    award?: boolean
-  }
-
-  export type HackathonOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "userId" | "name" | "award", ExtArgs["result"]["hackathon"]>
-  export type HackathonInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    user?: boolean | UserDefaultArgs<ExtArgs>
-  }
-  export type HackathonIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    user?: boolean | UserDefaultArgs<ExtArgs>
-  }
-  export type HackathonIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    user?: boolean | UserDefaultArgs<ExtArgs>
-  }
-
-  export type $HackathonPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    name: "Hackathon"
-    objects: {
-      user: Prisma.$UserPayload<ExtArgs>
-    }
-    scalars: $Extensions.GetPayloadResult<{
-      id: number
-      userId: number
-      name: string
-      award: string | null
-    }, ExtArgs["result"]["hackathon"]>
-    composites: {}
-  }
-
-  type HackathonGetPayload<S extends boolean | null | undefined | HackathonDefaultArgs> = $Result.GetResult<Prisma.$HackathonPayload, S>
-
-  type HackathonCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
-    Omit<HackathonFindManyArgs, 'select' | 'include' | 'distinct' | 'omit' | 'relationLoadStrategy'> & {
-      select?: HackathonCountAggregateInputType | true
-    }
-
-  export interface HackathonDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
-    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Hackathon'], meta: { name: 'Hackathon' } }
-    /**
-     * Find zero or one Hackathon that matches the filter.
-     * @param {HackathonFindUniqueArgs} args - Arguments to find a Hackathon
-     * @example
-     * // Get one Hackathon
-     * const hackathon = await prisma.hackathon.findUnique({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findUnique<T extends HackathonFindUniqueArgs>(args: SelectSubset<T, HackathonFindUniqueArgs<ExtArgs>>): Prisma__HackathonClient<$Result.GetResult<Prisma.$HackathonPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Find one Hackathon that matches the filter or throw an error with `error.code='P2025'`
-     * if no matches were found.
-     * @param {HackathonFindUniqueOrThrowArgs} args - Arguments to find a Hackathon
-     * @example
-     * // Get one Hackathon
-     * const hackathon = await prisma.hackathon.findUniqueOrThrow({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findUniqueOrThrow<T extends HackathonFindUniqueOrThrowArgs>(args: SelectSubset<T, HackathonFindUniqueOrThrowArgs<ExtArgs>>): Prisma__HackathonClient<$Result.GetResult<Prisma.$HackathonPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Find the first Hackathon that matches the filter.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {HackathonFindFirstArgs} args - Arguments to find a Hackathon
-     * @example
-     * // Get one Hackathon
-     * const hackathon = await prisma.hackathon.findFirst({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findFirst<T extends HackathonFindFirstArgs>(args?: SelectSubset<T, HackathonFindFirstArgs<ExtArgs>>): Prisma__HackathonClient<$Result.GetResult<Prisma.$HackathonPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Find the first Hackathon that matches the filter or
-     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {HackathonFindFirstOrThrowArgs} args - Arguments to find a Hackathon
-     * @example
-     * // Get one Hackathon
-     * const hackathon = await prisma.hackathon.findFirstOrThrow({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findFirstOrThrow<T extends HackathonFindFirstOrThrowArgs>(args?: SelectSubset<T, HackathonFindFirstOrThrowArgs<ExtArgs>>): Prisma__HackathonClient<$Result.GetResult<Prisma.$HackathonPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Find zero or more Hackathons that matches the filter.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {HackathonFindManyArgs} args - Arguments to filter and select certain fields only.
-     * @example
-     * // Get all Hackathons
-     * const hackathons = await prisma.hackathon.findMany()
-     * 
-     * // Get first 10 Hackathons
-     * const hackathons = await prisma.hackathon.findMany({ take: 10 })
-     * 
-     * // Only select the `id`
-     * const hackathonWithIdOnly = await prisma.hackathon.findMany({ select: { id: true } })
-     * 
-     */
-    findMany<T extends HackathonFindManyArgs>(args?: SelectSubset<T, HackathonFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$HackathonPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
-
-    /**
-     * Create a Hackathon.
-     * @param {HackathonCreateArgs} args - Arguments to create a Hackathon.
-     * @example
-     * // Create one Hackathon
-     * const Hackathon = await prisma.hackathon.create({
-     *   data: {
-     *     // ... data to create a Hackathon
-     *   }
-     * })
-     * 
-     */
-    create<T extends HackathonCreateArgs>(args: SelectSubset<T, HackathonCreateArgs<ExtArgs>>): Prisma__HackathonClient<$Result.GetResult<Prisma.$HackathonPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Create many Hackathons.
-     * @param {HackathonCreateManyArgs} args - Arguments to create many Hackathons.
-     * @example
-     * // Create many Hackathons
-     * const hackathon = await prisma.hackathon.createMany({
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     *     
-     */
-    createMany<T extends HackathonCreateManyArgs>(args?: SelectSubset<T, HackathonCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
-
-    /**
-     * Create many Hackathons and returns the data saved in the database.
-     * @param {HackathonCreateManyAndReturnArgs} args - Arguments to create many Hackathons.
-     * @example
-     * // Create many Hackathons
-     * const hackathon = await prisma.hackathon.createManyAndReturn({
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     * 
-     * // Create many Hackathons and only return the `id`
-     * const hackathonWithIdOnly = await prisma.hackathon.createManyAndReturn({
-     *   select: { id: true },
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * 
-     */
-    createManyAndReturn<T extends HackathonCreateManyAndReturnArgs>(args?: SelectSubset<T, HackathonCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$HackathonPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
-
-    /**
-     * Delete a Hackathon.
-     * @param {HackathonDeleteArgs} args - Arguments to delete one Hackathon.
-     * @example
-     * // Delete one Hackathon
-     * const Hackathon = await prisma.hackathon.delete({
-     *   where: {
-     *     // ... filter to delete one Hackathon
-     *   }
-     * })
-     * 
-     */
-    delete<T extends HackathonDeleteArgs>(args: SelectSubset<T, HackathonDeleteArgs<ExtArgs>>): Prisma__HackathonClient<$Result.GetResult<Prisma.$HackathonPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Update one Hackathon.
-     * @param {HackathonUpdateArgs} args - Arguments to update one Hackathon.
-     * @example
-     * // Update one Hackathon
-     * const hackathon = await prisma.hackathon.update({
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: {
-     *     // ... provide data here
-     *   }
-     * })
-     * 
-     */
-    update<T extends HackathonUpdateArgs>(args: SelectSubset<T, HackathonUpdateArgs<ExtArgs>>): Prisma__HackathonClient<$Result.GetResult<Prisma.$HackathonPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Delete zero or more Hackathons.
-     * @param {HackathonDeleteManyArgs} args - Arguments to filter Hackathons to delete.
-     * @example
-     * // Delete a few Hackathons
-     * const { count } = await prisma.hackathon.deleteMany({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     * 
-     */
-    deleteMany<T extends HackathonDeleteManyArgs>(args?: SelectSubset<T, HackathonDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
-
-    /**
-     * Update zero or more Hackathons.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {HackathonUpdateManyArgs} args - Arguments to update one or more rows.
-     * @example
-     * // Update many Hackathons
-     * const hackathon = await prisma.hackathon.updateMany({
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: {
-     *     // ... provide data here
-     *   }
-     * })
-     * 
-     */
-    updateMany<T extends HackathonUpdateManyArgs>(args: SelectSubset<T, HackathonUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
-
-    /**
-     * Update zero or more Hackathons and returns the data updated in the database.
-     * @param {HackathonUpdateManyAndReturnArgs} args - Arguments to update many Hackathons.
-     * @example
-     * // Update many Hackathons
-     * const hackathon = await prisma.hackathon.updateManyAndReturn({
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     * 
-     * // Update zero or more Hackathons and only return the `id`
-     * const hackathonWithIdOnly = await prisma.hackathon.updateManyAndReturn({
-     *   select: { id: true },
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * 
-     */
-    updateManyAndReturn<T extends HackathonUpdateManyAndReturnArgs>(args: SelectSubset<T, HackathonUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$HackathonPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
-
-    /**
-     * Create or update one Hackathon.
-     * @param {HackathonUpsertArgs} args - Arguments to update or create a Hackathon.
-     * @example
-     * // Update or create a Hackathon
-     * const hackathon = await prisma.hackathon.upsert({
-     *   create: {
-     *     // ... data to create a Hackathon
-     *   },
-     *   update: {
-     *     // ... in case it already exists, update
-     *   },
-     *   where: {
-     *     // ... the filter for the Hackathon we want to update
-     *   }
-     * })
-     */
-    upsert<T extends HackathonUpsertArgs>(args: SelectSubset<T, HackathonUpsertArgs<ExtArgs>>): Prisma__HackathonClient<$Result.GetResult<Prisma.$HackathonPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-
-    /**
-     * Count the number of Hackathons.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {HackathonCountArgs} args - Arguments to filter Hackathons to count.
-     * @example
-     * // Count the number of Hackathons
-     * const count = await prisma.hackathon.count({
-     *   where: {
-     *     // ... the filter for the Hackathons we want to count
-     *   }
-     * })
-    **/
-    count<T extends HackathonCountArgs>(
-      args?: Subset<T, HackathonCountArgs>,
-    ): Prisma.PrismaPromise<
-      T extends $Utils.Record<'select', any>
-        ? T['select'] extends true
-          ? number
-          : GetScalarType<T['select'], HackathonCountAggregateOutputType>
-        : number
-    >
-
-    /**
-     * Allows you to perform aggregations operations on a Hackathon.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {HackathonAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
-     * @example
-     * // Ordered by age ascending
-     * // Where email contains prisma.io
-     * // Limited to the 10 users
-     * const aggregations = await prisma.user.aggregate({
-     *   _avg: {
-     *     age: true,
-     *   },
-     *   where: {
-     *     email: {
-     *       contains: "prisma.io",
-     *     },
-     *   },
-     *   orderBy: {
-     *     age: "asc",
-     *   },
-     *   take: 10,
-     * })
-    **/
-    aggregate<T extends HackathonAggregateArgs>(args: Subset<T, HackathonAggregateArgs>): Prisma.PrismaPromise<GetHackathonAggregateType<T>>
-
-    /**
-     * Group by Hackathon.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {HackathonGroupByArgs} args - Group by arguments.
-     * @example
-     * // Group by city, order by createdAt, get count
-     * const result = await prisma.user.groupBy({
-     *   by: ['city', 'createdAt'],
-     *   orderBy: {
-     *     createdAt: true
-     *   },
-     *   _count: {
-     *     _all: true
-     *   },
-     * })
-     * 
-    **/
-    groupBy<
-      T extends HackathonGroupByArgs,
-      HasSelectOrTake extends Or<
-        Extends<'skip', Keys<T>>,
-        Extends<'take', Keys<T>>
-      >,
-      OrderByArg extends True extends HasSelectOrTake
-        ? { orderBy: HackathonGroupByArgs['orderBy'] }
-        : { orderBy?: HackathonGroupByArgs['orderBy'] },
-      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
-      ByFields extends MaybeTupleToUnion<T['by']>,
-      ByValid extends Has<ByFields, OrderFields>,
-      HavingFields extends GetHavingFields<T['having']>,
-      HavingValid extends Has<ByFields, HavingFields>,
-      ByEmpty extends T['by'] extends never[] ? True : False,
-      InputErrors extends ByEmpty extends True
-      ? `Error: "by" must not be empty.`
-      : HavingValid extends False
-      ? {
-          [P in HavingFields]: P extends ByFields
-            ? never
-            : P extends string
-            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
-            : [
-                Error,
-                'Field ',
-                P,
-                ` in "having" needs to be provided in "by"`,
-              ]
-        }[HavingFields]
-      : 'take' extends Keys<T>
-      ? 'orderBy' extends Keys<T>
-        ? ByValid extends True
-          ? {}
-          : {
-              [P in OrderFields]: P extends ByFields
-                ? never
-                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-            }[OrderFields]
-        : 'Error: If you provide "take", you also need to provide "orderBy"'
-      : 'skip' extends Keys<T>
-      ? 'orderBy' extends Keys<T>
-        ? ByValid extends True
-          ? {}
-          : {
-              [P in OrderFields]: P extends ByFields
-                ? never
-                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-            }[OrderFields]
-        : 'Error: If you provide "skip", you also need to provide "orderBy"'
-      : ByValid extends True
-      ? {}
-      : {
-          [P in OrderFields]: P extends ByFields
-            ? never
-            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-        }[OrderFields]
-    >(args: SubsetIntersection<T, HackathonGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetHackathonGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
-  /**
-   * Fields of the Hackathon model
-   */
-  readonly fields: HackathonFieldRefs;
-  }
-
-  /**
-   * The delegate class that acts as a "Promise-like" for Hackathon.
-   * Why is this prefixed with `Prisma__`?
-   * Because we want to prevent naming conflicts as mentioned in
-   * https://github.com/prisma/prisma-client-js/issues/707
-   */
-  export interface Prisma__HackathonClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
-    readonly [Symbol.toStringTag]: "PrismaPromise"
-    user<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
-    /**
-     * Attaches callbacks for the resolution and/or rejection of the Promise.
-     * @param onfulfilled The callback to execute when the Promise is resolved.
-     * @param onrejected The callback to execute when the Promise is rejected.
-     * @returns A Promise for the completion of which ever callback is executed.
-     */
-    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
-    /**
-     * Attaches a callback for only the rejection of the Promise.
-     * @param onrejected The callback to execute when the Promise is rejected.
-     * @returns A Promise for the completion of the callback.
-     */
-    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
-    /**
-     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
-     * resolved value cannot be modified from the callback.
-     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
-     * @returns A Promise for the completion of the callback.
-     */
-    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
-  }
-
-
-
-
-  /**
-   * Fields of the Hackathon model
-   */
-  interface HackathonFieldRefs {
-    readonly id: FieldRef<"Hackathon", 'Int'>
-    readonly userId: FieldRef<"Hackathon", 'Int'>
-    readonly name: FieldRef<"Hackathon", 'String'>
-    readonly award: FieldRef<"Hackathon", 'String'>
-  }
-    
-
-  // Custom InputTypes
-  /**
-   * Hackathon findUnique
-   */
-  export type HackathonFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Hackathon
-     */
-    select?: HackathonSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Hackathon
-     */
-    omit?: HackathonOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: HackathonInclude<ExtArgs> | null
-    /**
-     * Filter, which Hackathon to fetch.
-     */
-    where: HackathonWhereUniqueInput
-    relationLoadStrategy?: RelationLoadStrategy
-  }
-
-  /**
-   * Hackathon findUniqueOrThrow
-   */
-  export type HackathonFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Hackathon
-     */
-    select?: HackathonSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Hackathon
-     */
-    omit?: HackathonOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: HackathonInclude<ExtArgs> | null
-    /**
-     * Filter, which Hackathon to fetch.
-     */
-    where: HackathonWhereUniqueInput
-    relationLoadStrategy?: RelationLoadStrategy
-  }
-
-  /**
-   * Hackathon findFirst
-   */
-  export type HackathonFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Hackathon
-     */
-    select?: HackathonSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Hackathon
-     */
-    omit?: HackathonOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: HackathonInclude<ExtArgs> | null
-    /**
-     * Filter, which Hackathon to fetch.
-     */
-    where?: HackathonWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of Hackathons to fetch.
-     */
-    orderBy?: HackathonOrderByWithRelationInput | HackathonOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the position for searching for Hackathons.
-     */
-    cursor?: HackathonWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` Hackathons from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` Hackathons.
-     */
-    skip?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
-     * 
-     * Filter by unique combinations of Hackathons.
-     */
-    distinct?: HackathonScalarFieldEnum | HackathonScalarFieldEnum[]
-    relationLoadStrategy?: RelationLoadStrategy
-  }
-
-  /**
-   * Hackathon findFirstOrThrow
-   */
-  export type HackathonFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Hackathon
-     */
-    select?: HackathonSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Hackathon
-     */
-    omit?: HackathonOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: HackathonInclude<ExtArgs> | null
-    /**
-     * Filter, which Hackathon to fetch.
-     */
-    where?: HackathonWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of Hackathons to fetch.
-     */
-    orderBy?: HackathonOrderByWithRelationInput | HackathonOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the position for searching for Hackathons.
-     */
-    cursor?: HackathonWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` Hackathons from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` Hackathons.
-     */
-    skip?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
-     * 
-     * Filter by unique combinations of Hackathons.
-     */
-    distinct?: HackathonScalarFieldEnum | HackathonScalarFieldEnum[]
-    relationLoadStrategy?: RelationLoadStrategy
-  }
-
-  /**
-   * Hackathon findMany
-   */
-  export type HackathonFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Hackathon
-     */
-    select?: HackathonSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Hackathon
-     */
-    omit?: HackathonOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: HackathonInclude<ExtArgs> | null
-    /**
-     * Filter, which Hackathons to fetch.
-     */
-    where?: HackathonWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of Hackathons to fetch.
-     */
-    orderBy?: HackathonOrderByWithRelationInput | HackathonOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the position for listing Hackathons.
-     */
-    cursor?: HackathonWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` Hackathons from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` Hackathons.
-     */
-    skip?: number
-    distinct?: HackathonScalarFieldEnum | HackathonScalarFieldEnum[]
-    relationLoadStrategy?: RelationLoadStrategy
-  }
-
-  /**
-   * Hackathon create
-   */
-  export type HackathonCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Hackathon
-     */
-    select?: HackathonSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Hackathon
-     */
-    omit?: HackathonOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: HackathonInclude<ExtArgs> | null
-    /**
-     * The data needed to create a Hackathon.
-     */
-    data: XOR<HackathonCreateInput, HackathonUncheckedCreateInput>
-    relationLoadStrategy?: RelationLoadStrategy
-  }
-
-  /**
-   * Hackathon createMany
-   */
-  export type HackathonCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * The data used to create many Hackathons.
-     */
-    data: HackathonCreateManyInput | HackathonCreateManyInput[]
-    skipDuplicates?: boolean
-  }
-
-  /**
-   * Hackathon createManyAndReturn
-   */
-  export type HackathonCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Hackathon
-     */
-    select?: HackathonSelectCreateManyAndReturn<ExtArgs> | null
-    /**
-     * Omit specific fields from the Hackathon
-     */
-    omit?: HackathonOmit<ExtArgs> | null
-    /**
-     * The data used to create many Hackathons.
-     */
-    data: HackathonCreateManyInput | HackathonCreateManyInput[]
-    skipDuplicates?: boolean
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: HackathonIncludeCreateManyAndReturn<ExtArgs> | null
-  }
-
-  /**
-   * Hackathon update
-   */
-  export type HackathonUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Hackathon
-     */
-    select?: HackathonSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Hackathon
-     */
-    omit?: HackathonOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: HackathonInclude<ExtArgs> | null
-    /**
-     * The data needed to update a Hackathon.
-     */
-    data: XOR<HackathonUpdateInput, HackathonUncheckedUpdateInput>
-    /**
-     * Choose, which Hackathon to update.
-     */
-    where: HackathonWhereUniqueInput
-    relationLoadStrategy?: RelationLoadStrategy
-  }
-
-  /**
-   * Hackathon updateMany
-   */
-  export type HackathonUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * The data used to update Hackathons.
-     */
-    data: XOR<HackathonUpdateManyMutationInput, HackathonUncheckedUpdateManyInput>
-    /**
-     * Filter which Hackathons to update
-     */
-    where?: HackathonWhereInput
-    /**
-     * Limit how many Hackathons to update.
-     */
-    limit?: number
-  }
-
-  /**
-   * Hackathon updateManyAndReturn
-   */
-  export type HackathonUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Hackathon
-     */
-    select?: HackathonSelectUpdateManyAndReturn<ExtArgs> | null
-    /**
-     * Omit specific fields from the Hackathon
-     */
-    omit?: HackathonOmit<ExtArgs> | null
-    /**
-     * The data used to update Hackathons.
-     */
-    data: XOR<HackathonUpdateManyMutationInput, HackathonUncheckedUpdateManyInput>
-    /**
-     * Filter which Hackathons to update
-     */
-    where?: HackathonWhereInput
-    /**
-     * Limit how many Hackathons to update.
-     */
-    limit?: number
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: HackathonIncludeUpdateManyAndReturn<ExtArgs> | null
-  }
-
-  /**
-   * Hackathon upsert
-   */
-  export type HackathonUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Hackathon
-     */
-    select?: HackathonSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Hackathon
-     */
-    omit?: HackathonOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: HackathonInclude<ExtArgs> | null
-    /**
-     * The filter to search for the Hackathon to update in case it exists.
-     */
-    where: HackathonWhereUniqueInput
-    /**
-     * In case the Hackathon found by the `where` argument doesn't exist, create a new Hackathon with this data.
-     */
-    create: XOR<HackathonCreateInput, HackathonUncheckedCreateInput>
-    /**
-     * In case the Hackathon was found with the provided `where` argument, update it with this data.
-     */
-    update: XOR<HackathonUpdateInput, HackathonUncheckedUpdateInput>
-    relationLoadStrategy?: RelationLoadStrategy
-  }
-
-  /**
-   * Hackathon delete
-   */
-  export type HackathonDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Hackathon
-     */
-    select?: HackathonSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Hackathon
-     */
-    omit?: HackathonOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: HackathonInclude<ExtArgs> | null
-    /**
-     * Filter which Hackathon to delete.
-     */
-    where: HackathonWhereUniqueInput
-    relationLoadStrategy?: RelationLoadStrategy
-  }
-
-  /**
-   * Hackathon deleteMany
-   */
-  export type HackathonDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Filter which Hackathons to delete
-     */
-    where?: HackathonWhereInput
-    /**
-     * Limit how many Hackathons to delete.
-     */
-    limit?: number
-  }
-
-  /**
-   * Hackathon without action
-   */
-  export type HackathonDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Hackathon
-     */
-    select?: HackathonSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Hackathon
-     */
-    omit?: HackathonOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: HackathonInclude<ExtArgs> | null
   }
 
 
@@ -19353,16 +18129,6 @@ export namespace Prisma {
   export type ProjectScalarFieldEnum = (typeof ProjectScalarFieldEnum)[keyof typeof ProjectScalarFieldEnum]
 
 
-  export const HackathonScalarFieldEnum: {
-    id: 'id',
-    userId: 'userId',
-    name: 'name',
-    award: 'award'
-  };
-
-  export type HackathonScalarFieldEnum = (typeof HackathonScalarFieldEnum)[keyof typeof HackathonScalarFieldEnum]
-
-
   export const CollaborationScalarFieldEnum: {
     id: 'id',
     userId: 'userId',
@@ -19553,7 +18319,6 @@ export namespace Prisma {
     collaboration?: XOR<CollaborationNullableScalarRelationFilter, CollaborationWhereInput> | null
     connectionsReceived?: ConnectionListRelationFilter
     connectionsInitiated?: ConnectionListRelationFilter
-    hackathons?: HackathonListRelationFilter
     incomingConnections?: IncomingConnectionListRelationFilter
     outgoingConnections?: OutgoingConnectionListRelationFilter
     posts?: PostListRelationFilter
@@ -19577,7 +18342,6 @@ export namespace Prisma {
     collaboration?: CollaborationOrderByWithRelationInput
     connectionsReceived?: ConnectionOrderByRelationAggregateInput
     connectionsInitiated?: ConnectionOrderByRelationAggregateInput
-    hackathons?: HackathonOrderByRelationAggregateInput
     incomingConnections?: IncomingConnectionOrderByRelationAggregateInput
     outgoingConnections?: OutgoingConnectionOrderByRelationAggregateInput
     posts?: PostOrderByRelationAggregateInput
@@ -19604,7 +18368,6 @@ export namespace Prisma {
     collaboration?: XOR<CollaborationNullableScalarRelationFilter, CollaborationWhereInput> | null
     connectionsReceived?: ConnectionListRelationFilter
     connectionsInitiated?: ConnectionListRelationFilter
-    hackathons?: HackathonListRelationFilter
     incomingConnections?: IncomingConnectionListRelationFilter
     outgoingConnections?: OutgoingConnectionListRelationFilter
     posts?: PostListRelationFilter
@@ -19726,7 +18489,7 @@ export namespace Prisma {
     NOT?: TechnicalProfileWhereInput | TechnicalProfileWhereInput[]
     id?: IntFilter<"TechnicalProfile"> | number
     userId?: IntFilter<"TechnicalProfile"> | number
-    skills?: StringNullableFilter<"TechnicalProfile"> | string | null
+    skills?: StringNullableListFilter<"TechnicalProfile">
     experienceLevel?: StringNullableFilter<"TechnicalProfile"> | string | null
     yearsOfExperience?: IntNullableFilter<"TechnicalProfile"> | number | null
     projectInterests?: StringNullableFilter<"TechnicalProfile"> | string | null
@@ -19737,7 +18500,7 @@ export namespace Prisma {
   export type TechnicalProfileOrderByWithRelationInput = {
     id?: SortOrder
     userId?: SortOrder
-    skills?: SortOrderInput | SortOrder
+    skills?: SortOrder
     experienceLevel?: SortOrderInput | SortOrder
     yearsOfExperience?: SortOrderInput | SortOrder
     projectInterests?: SortOrderInput | SortOrder
@@ -19751,7 +18514,7 @@ export namespace Prisma {
     AND?: TechnicalProfileWhereInput | TechnicalProfileWhereInput[]
     OR?: TechnicalProfileWhereInput[]
     NOT?: TechnicalProfileWhereInput | TechnicalProfileWhereInput[]
-    skills?: StringNullableFilter<"TechnicalProfile"> | string | null
+    skills?: StringNullableListFilter<"TechnicalProfile">
     experienceLevel?: StringNullableFilter<"TechnicalProfile"> | string | null
     yearsOfExperience?: IntNullableFilter<"TechnicalProfile"> | number | null
     projectInterests?: StringNullableFilter<"TechnicalProfile"> | string | null
@@ -19762,7 +18525,7 @@ export namespace Prisma {
   export type TechnicalProfileOrderByWithAggregationInput = {
     id?: SortOrder
     userId?: SortOrder
-    skills?: SortOrderInput | SortOrder
+    skills?: SortOrder
     experienceLevel?: SortOrderInput | SortOrder
     yearsOfExperience?: SortOrderInput | SortOrder
     projectInterests?: SortOrderInput | SortOrder
@@ -19780,7 +18543,7 @@ export namespace Prisma {
     NOT?: TechnicalProfileScalarWhereWithAggregatesInput | TechnicalProfileScalarWhereWithAggregatesInput[]
     id?: IntWithAggregatesFilter<"TechnicalProfile"> | number
     userId?: IntWithAggregatesFilter<"TechnicalProfile"> | number
-    skills?: StringNullableWithAggregatesFilter<"TechnicalProfile"> | string | null
+    skills?: StringNullableListFilter<"TechnicalProfile">
     experienceLevel?: StringNullableWithAggregatesFilter<"TechnicalProfile"> | string | null
     yearsOfExperience?: IntNullableWithAggregatesFilter<"TechnicalProfile"> | number | null
     projectInterests?: StringNullableWithAggregatesFilter<"TechnicalProfile"> | string | null
@@ -19956,58 +18719,6 @@ export namespace Prisma {
     description?: StringNullableWithAggregatesFilter<"Project"> | string | null
     techUsed?: StringNullableWithAggregatesFilter<"Project"> | string | null
     link?: StringNullableWithAggregatesFilter<"Project"> | string | null
-  }
-
-  export type HackathonWhereInput = {
-    AND?: HackathonWhereInput | HackathonWhereInput[]
-    OR?: HackathonWhereInput[]
-    NOT?: HackathonWhereInput | HackathonWhereInput[]
-    id?: IntFilter<"Hackathon"> | number
-    userId?: IntFilter<"Hackathon"> | number
-    name?: StringFilter<"Hackathon"> | string
-    award?: StringNullableFilter<"Hackathon"> | string | null
-    user?: XOR<UserScalarRelationFilter, UserWhereInput>
-  }
-
-  export type HackathonOrderByWithRelationInput = {
-    id?: SortOrder
-    userId?: SortOrder
-    name?: SortOrder
-    award?: SortOrderInput | SortOrder
-    user?: UserOrderByWithRelationInput
-  }
-
-  export type HackathonWhereUniqueInput = Prisma.AtLeast<{
-    id?: number
-    AND?: HackathonWhereInput | HackathonWhereInput[]
-    OR?: HackathonWhereInput[]
-    NOT?: HackathonWhereInput | HackathonWhereInput[]
-    userId?: IntFilter<"Hackathon"> | number
-    name?: StringFilter<"Hackathon"> | string
-    award?: StringNullableFilter<"Hackathon"> | string | null
-    user?: XOR<UserScalarRelationFilter, UserWhereInput>
-  }, "id">
-
-  export type HackathonOrderByWithAggregationInput = {
-    id?: SortOrder
-    userId?: SortOrder
-    name?: SortOrder
-    award?: SortOrderInput | SortOrder
-    _count?: HackathonCountOrderByAggregateInput
-    _avg?: HackathonAvgOrderByAggregateInput
-    _max?: HackathonMaxOrderByAggregateInput
-    _min?: HackathonMinOrderByAggregateInput
-    _sum?: HackathonSumOrderByAggregateInput
-  }
-
-  export type HackathonScalarWhereWithAggregatesInput = {
-    AND?: HackathonScalarWhereWithAggregatesInput | HackathonScalarWhereWithAggregatesInput[]
-    OR?: HackathonScalarWhereWithAggregatesInput[]
-    NOT?: HackathonScalarWhereWithAggregatesInput | HackathonScalarWhereWithAggregatesInput[]
-    id?: IntWithAggregatesFilter<"Hackathon"> | number
-    userId?: IntWithAggregatesFilter<"Hackathon"> | number
-    name?: StringWithAggregatesFilter<"Hackathon"> | string
-    award?: StringNullableWithAggregatesFilter<"Hackathon"> | string | null
   }
 
   export type CollaborationWhereInput = {
@@ -20445,7 +19156,6 @@ export namespace Prisma {
     collaboration?: CollaborationCreateNestedOneWithoutUserInput
     connectionsReceived?: ConnectionCreateNestedManyWithoutConnectionInput
     connectionsInitiated?: ConnectionCreateNestedManyWithoutUserInput
-    hackathons?: HackathonCreateNestedManyWithoutUserInput
     incomingConnections?: IncomingConnectionCreateNestedManyWithoutSenderInput
     outgoingConnections?: OutgoingConnectionCreateNestedManyWithoutReceiverInput
     posts?: PostCreateNestedManyWithoutUserInput
@@ -20469,7 +19179,6 @@ export namespace Prisma {
     collaboration?: CollaborationUncheckedCreateNestedOneWithoutUserInput
     connectionsReceived?: ConnectionUncheckedCreateNestedManyWithoutConnectionInput
     connectionsInitiated?: ConnectionUncheckedCreateNestedManyWithoutUserInput
-    hackathons?: HackathonUncheckedCreateNestedManyWithoutUserInput
     incomingConnections?: IncomingConnectionUncheckedCreateNestedManyWithoutSenderInput
     outgoingConnections?: OutgoingConnectionUncheckedCreateNestedManyWithoutReceiverInput
     posts?: PostUncheckedCreateNestedManyWithoutUserInput
@@ -20492,7 +19201,6 @@ export namespace Prisma {
     collaboration?: CollaborationUpdateOneWithoutUserNestedInput
     connectionsReceived?: ConnectionUpdateManyWithoutConnectionNestedInput
     connectionsInitiated?: ConnectionUpdateManyWithoutUserNestedInput
-    hackathons?: HackathonUpdateManyWithoutUserNestedInput
     incomingConnections?: IncomingConnectionUpdateManyWithoutSenderNestedInput
     outgoingConnections?: OutgoingConnectionUpdateManyWithoutReceiverNestedInput
     posts?: PostUpdateManyWithoutUserNestedInput
@@ -20516,7 +19224,6 @@ export namespace Prisma {
     collaboration?: CollaborationUncheckedUpdateOneWithoutUserNestedInput
     connectionsReceived?: ConnectionUncheckedUpdateManyWithoutConnectionNestedInput
     connectionsInitiated?: ConnectionUncheckedUpdateManyWithoutUserNestedInput
-    hackathons?: HackathonUncheckedUpdateManyWithoutUserNestedInput
     incomingConnections?: IncomingConnectionUncheckedUpdateManyWithoutSenderNestedInput
     outgoingConnections?: OutgoingConnectionUncheckedUpdateManyWithoutReceiverNestedInput
     posts?: PostUncheckedUpdateManyWithoutUserNestedInput
@@ -20637,7 +19344,7 @@ export namespace Prisma {
   }
 
   export type TechnicalProfileCreateInput = {
-    skills?: string | null
+    skills?: TechnicalProfileCreateskillsInput | string[]
     experienceLevel?: string | null
     yearsOfExperience?: number | null
     projectInterests?: string | null
@@ -20648,7 +19355,7 @@ export namespace Prisma {
   export type TechnicalProfileUncheckedCreateInput = {
     id?: number
     userId: number
-    skills?: string | null
+    skills?: TechnicalProfileCreateskillsInput | string[]
     experienceLevel?: string | null
     yearsOfExperience?: number | null
     projectInterests?: string | null
@@ -20656,7 +19363,7 @@ export namespace Prisma {
   }
 
   export type TechnicalProfileUpdateInput = {
-    skills?: NullableStringFieldUpdateOperationsInput | string | null
+    skills?: TechnicalProfileUpdateskillsInput | string[]
     experienceLevel?: NullableStringFieldUpdateOperationsInput | string | null
     yearsOfExperience?: NullableIntFieldUpdateOperationsInput | number | null
     projectInterests?: NullableStringFieldUpdateOperationsInput | string | null
@@ -20667,7 +19374,7 @@ export namespace Prisma {
   export type TechnicalProfileUncheckedUpdateInput = {
     id?: IntFieldUpdateOperationsInput | number
     userId?: IntFieldUpdateOperationsInput | number
-    skills?: NullableStringFieldUpdateOperationsInput | string | null
+    skills?: TechnicalProfileUpdateskillsInput | string[]
     experienceLevel?: NullableStringFieldUpdateOperationsInput | string | null
     yearsOfExperience?: NullableIntFieldUpdateOperationsInput | number | null
     projectInterests?: NullableStringFieldUpdateOperationsInput | string | null
@@ -20677,7 +19384,7 @@ export namespace Prisma {
   export type TechnicalProfileCreateManyInput = {
     id?: number
     userId: number
-    skills?: string | null
+    skills?: TechnicalProfileCreateskillsInput | string[]
     experienceLevel?: string | null
     yearsOfExperience?: number | null
     projectInterests?: string | null
@@ -20685,7 +19392,7 @@ export namespace Prisma {
   }
 
   export type TechnicalProfileUpdateManyMutationInput = {
-    skills?: NullableStringFieldUpdateOperationsInput | string | null
+    skills?: TechnicalProfileUpdateskillsInput | string[]
     experienceLevel?: NullableStringFieldUpdateOperationsInput | string | null
     yearsOfExperience?: NullableIntFieldUpdateOperationsInput | number | null
     projectInterests?: NullableStringFieldUpdateOperationsInput | string | null
@@ -20695,7 +19402,7 @@ export namespace Prisma {
   export type TechnicalProfileUncheckedUpdateManyInput = {
     id?: IntFieldUpdateOperationsInput | number
     userId?: IntFieldUpdateOperationsInput | number
-    skills?: NullableStringFieldUpdateOperationsInput | string | null
+    skills?: TechnicalProfileUpdateskillsInput | string[]
     experienceLevel?: NullableStringFieldUpdateOperationsInput | string | null
     yearsOfExperience?: NullableIntFieldUpdateOperationsInput | number | null
     projectInterests?: NullableStringFieldUpdateOperationsInput | string | null
@@ -20856,51 +19563,6 @@ export namespace Prisma {
     description?: NullableStringFieldUpdateOperationsInput | string | null
     techUsed?: NullableStringFieldUpdateOperationsInput | string | null
     link?: NullableStringFieldUpdateOperationsInput | string | null
-  }
-
-  export type HackathonCreateInput = {
-    name: string
-    award?: string | null
-    user: UserCreateNestedOneWithoutHackathonsInput
-  }
-
-  export type HackathonUncheckedCreateInput = {
-    id?: number
-    userId: number
-    name: string
-    award?: string | null
-  }
-
-  export type HackathonUpdateInput = {
-    name?: StringFieldUpdateOperationsInput | string
-    award?: NullableStringFieldUpdateOperationsInput | string | null
-    user?: UserUpdateOneRequiredWithoutHackathonsNestedInput
-  }
-
-  export type HackathonUncheckedUpdateInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    userId?: IntFieldUpdateOperationsInput | number
-    name?: StringFieldUpdateOperationsInput | string
-    award?: NullableStringFieldUpdateOperationsInput | string | null
-  }
-
-  export type HackathonCreateManyInput = {
-    id?: number
-    userId: number
-    name: string
-    award?: string | null
-  }
-
-  export type HackathonUpdateManyMutationInput = {
-    name?: StringFieldUpdateOperationsInput | string
-    award?: NullableStringFieldUpdateOperationsInput | string | null
-  }
-
-  export type HackathonUncheckedUpdateManyInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    userId?: IntFieldUpdateOperationsInput | number
-    name?: StringFieldUpdateOperationsInput | string
-    award?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type CollaborationCreateInput = {
@@ -21353,12 +20015,6 @@ export namespace Prisma {
     none?: ConnectionWhereInput
   }
 
-  export type HackathonListRelationFilter = {
-    every?: HackathonWhereInput
-    some?: HackathonWhereInput
-    none?: HackathonWhereInput
-  }
-
   export type IncomingConnectionListRelationFilter = {
     every?: IncomingConnectionWhereInput
     some?: IncomingConnectionWhereInput
@@ -21410,10 +20066,6 @@ export namespace Prisma {
   }
 
   export type ConnectionOrderByRelationAggregateInput = {
-    _count?: SortOrder
-  }
-
-  export type HackathonOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
@@ -21643,6 +20295,14 @@ export namespace Prisma {
     _max?: NestedIntNullableFilter<$PrismaModel>
   }
 
+  export type StringNullableListFilter<$PrismaModel = never> = {
+    equals?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    has?: string | StringFieldRefInput<$PrismaModel> | null
+    hasEvery?: string[] | ListStringFieldRefInput<$PrismaModel>
+    hasSome?: string[] | ListStringFieldRefInput<$PrismaModel>
+    isEmpty?: boolean
+  }
+
   export type TechnicalProfileCountOrderByAggregateInput = {
     id?: SortOrder
     userId?: SortOrder
@@ -21662,7 +20322,6 @@ export namespace Prisma {
   export type TechnicalProfileMaxOrderByAggregateInput = {
     id?: SortOrder
     userId?: SortOrder
-    skills?: SortOrder
     experienceLevel?: SortOrder
     yearsOfExperience?: SortOrder
     projectInterests?: SortOrder
@@ -21672,7 +20331,6 @@ export namespace Prisma {
   export type TechnicalProfileMinOrderByAggregateInput = {
     id?: SortOrder
     userId?: SortOrder
-    skills?: SortOrder
     experienceLevel?: SortOrder
     yearsOfExperience?: SortOrder
     projectInterests?: SortOrder
@@ -21783,37 +20441,6 @@ export namespace Prisma {
   }
 
   export type ProjectSumOrderByAggregateInput = {
-    id?: SortOrder
-    userId?: SortOrder
-  }
-
-  export type HackathonCountOrderByAggregateInput = {
-    id?: SortOrder
-    userId?: SortOrder
-    name?: SortOrder
-    award?: SortOrder
-  }
-
-  export type HackathonAvgOrderByAggregateInput = {
-    id?: SortOrder
-    userId?: SortOrder
-  }
-
-  export type HackathonMaxOrderByAggregateInput = {
-    id?: SortOrder
-    userId?: SortOrder
-    name?: SortOrder
-    award?: SortOrder
-  }
-
-  export type HackathonMinOrderByAggregateInput = {
-    id?: SortOrder
-    userId?: SortOrder
-    name?: SortOrder
-    award?: SortOrder
-  }
-
-  export type HackathonSumOrderByAggregateInput = {
     id?: SortOrder
     userId?: SortOrder
   }
@@ -22127,13 +20754,6 @@ export namespace Prisma {
     connect?: ConnectionWhereUniqueInput | ConnectionWhereUniqueInput[]
   }
 
-  export type HackathonCreateNestedManyWithoutUserInput = {
-    create?: XOR<HackathonCreateWithoutUserInput, HackathonUncheckedCreateWithoutUserInput> | HackathonCreateWithoutUserInput[] | HackathonUncheckedCreateWithoutUserInput[]
-    connectOrCreate?: HackathonCreateOrConnectWithoutUserInput | HackathonCreateOrConnectWithoutUserInput[]
-    createMany?: HackathonCreateManyUserInputEnvelope
-    connect?: HackathonWhereUniqueInput | HackathonWhereUniqueInput[]
-  }
-
   export type IncomingConnectionCreateNestedManyWithoutSenderInput = {
     create?: XOR<IncomingConnectionCreateWithoutSenderInput, IncomingConnectionUncheckedCreateWithoutSenderInput> | IncomingConnectionCreateWithoutSenderInput[] | IncomingConnectionUncheckedCreateWithoutSenderInput[]
     connectOrCreate?: IncomingConnectionCreateOrConnectWithoutSenderInput | IncomingConnectionCreateOrConnectWithoutSenderInput[]
@@ -22217,13 +20837,6 @@ export namespace Prisma {
     connectOrCreate?: ConnectionCreateOrConnectWithoutUserInput | ConnectionCreateOrConnectWithoutUserInput[]
     createMany?: ConnectionCreateManyUserInputEnvelope
     connect?: ConnectionWhereUniqueInput | ConnectionWhereUniqueInput[]
-  }
-
-  export type HackathonUncheckedCreateNestedManyWithoutUserInput = {
-    create?: XOR<HackathonCreateWithoutUserInput, HackathonUncheckedCreateWithoutUserInput> | HackathonCreateWithoutUserInput[] | HackathonUncheckedCreateWithoutUserInput[]
-    connectOrCreate?: HackathonCreateOrConnectWithoutUserInput | HackathonCreateOrConnectWithoutUserInput[]
-    createMany?: HackathonCreateManyUserInputEnvelope
-    connect?: HackathonWhereUniqueInput | HackathonWhereUniqueInput[]
   }
 
   export type IncomingConnectionUncheckedCreateNestedManyWithoutSenderInput = {
@@ -22355,20 +20968,6 @@ export namespace Prisma {
     update?: ConnectionUpdateWithWhereUniqueWithoutUserInput | ConnectionUpdateWithWhereUniqueWithoutUserInput[]
     updateMany?: ConnectionUpdateManyWithWhereWithoutUserInput | ConnectionUpdateManyWithWhereWithoutUserInput[]
     deleteMany?: ConnectionScalarWhereInput | ConnectionScalarWhereInput[]
-  }
-
-  export type HackathonUpdateManyWithoutUserNestedInput = {
-    create?: XOR<HackathonCreateWithoutUserInput, HackathonUncheckedCreateWithoutUserInput> | HackathonCreateWithoutUserInput[] | HackathonUncheckedCreateWithoutUserInput[]
-    connectOrCreate?: HackathonCreateOrConnectWithoutUserInput | HackathonCreateOrConnectWithoutUserInput[]
-    upsert?: HackathonUpsertWithWhereUniqueWithoutUserInput | HackathonUpsertWithWhereUniqueWithoutUserInput[]
-    createMany?: HackathonCreateManyUserInputEnvelope
-    set?: HackathonWhereUniqueInput | HackathonWhereUniqueInput[]
-    disconnect?: HackathonWhereUniqueInput | HackathonWhereUniqueInput[]
-    delete?: HackathonWhereUniqueInput | HackathonWhereUniqueInput[]
-    connect?: HackathonWhereUniqueInput | HackathonWhereUniqueInput[]
-    update?: HackathonUpdateWithWhereUniqueWithoutUserInput | HackathonUpdateWithWhereUniqueWithoutUserInput[]
-    updateMany?: HackathonUpdateManyWithWhereWithoutUserInput | HackathonUpdateManyWithWhereWithoutUserInput[]
-    deleteMany?: HackathonScalarWhereInput | HackathonScalarWhereInput[]
   }
 
   export type IncomingConnectionUpdateManyWithoutSenderNestedInput = {
@@ -22537,20 +21136,6 @@ export namespace Prisma {
     deleteMany?: ConnectionScalarWhereInput | ConnectionScalarWhereInput[]
   }
 
-  export type HackathonUncheckedUpdateManyWithoutUserNestedInput = {
-    create?: XOR<HackathonCreateWithoutUserInput, HackathonUncheckedCreateWithoutUserInput> | HackathonCreateWithoutUserInput[] | HackathonUncheckedCreateWithoutUserInput[]
-    connectOrCreate?: HackathonCreateOrConnectWithoutUserInput | HackathonCreateOrConnectWithoutUserInput[]
-    upsert?: HackathonUpsertWithWhereUniqueWithoutUserInput | HackathonUpsertWithWhereUniqueWithoutUserInput[]
-    createMany?: HackathonCreateManyUserInputEnvelope
-    set?: HackathonWhereUniqueInput | HackathonWhereUniqueInput[]
-    disconnect?: HackathonWhereUniqueInput | HackathonWhereUniqueInput[]
-    delete?: HackathonWhereUniqueInput | HackathonWhereUniqueInput[]
-    connect?: HackathonWhereUniqueInput | HackathonWhereUniqueInput[]
-    update?: HackathonUpdateWithWhereUniqueWithoutUserInput | HackathonUpdateWithWhereUniqueWithoutUserInput[]
-    updateMany?: HackathonUpdateManyWithWhereWithoutUserInput | HackathonUpdateManyWithWhereWithoutUserInput[]
-    deleteMany?: HackathonScalarWhereInput | HackathonScalarWhereInput[]
-  }
-
   export type IncomingConnectionUncheckedUpdateManyWithoutSenderNestedInput = {
     create?: XOR<IncomingConnectionCreateWithoutSenderInput, IncomingConnectionUncheckedCreateWithoutSenderInput> | IncomingConnectionCreateWithoutSenderInput[] | IncomingConnectionUncheckedCreateWithoutSenderInput[]
     connectOrCreate?: IncomingConnectionCreateOrConnectWithoutSenderInput | IncomingConnectionCreateOrConnectWithoutSenderInput[]
@@ -22673,10 +21258,19 @@ export namespace Prisma {
     update?: XOR<XOR<UserUpdateToOneWithWhereWithoutBasicInfoInput, UserUpdateWithoutBasicInfoInput>, UserUncheckedUpdateWithoutBasicInfoInput>
   }
 
+  export type TechnicalProfileCreateskillsInput = {
+    set: string[]
+  }
+
   export type UserCreateNestedOneWithoutTechnicalProfileInput = {
     create?: XOR<UserCreateWithoutTechnicalProfileInput, UserUncheckedCreateWithoutTechnicalProfileInput>
     connectOrCreate?: UserCreateOrConnectWithoutTechnicalProfileInput
     connect?: UserWhereUniqueInput
+  }
+
+  export type TechnicalProfileUpdateskillsInput = {
+    set?: string[]
+    push?: string | string[]
   }
 
   export type UserUpdateOneRequiredWithoutTechnicalProfileNestedInput = {
@@ -22727,20 +21321,6 @@ export namespace Prisma {
     upsert?: UserUpsertWithoutProjectsInput
     connect?: UserWhereUniqueInput
     update?: XOR<XOR<UserUpdateToOneWithWhereWithoutProjectsInput, UserUpdateWithoutProjectsInput>, UserUncheckedUpdateWithoutProjectsInput>
-  }
-
-  export type UserCreateNestedOneWithoutHackathonsInput = {
-    create?: XOR<UserCreateWithoutHackathonsInput, UserUncheckedCreateWithoutHackathonsInput>
-    connectOrCreate?: UserCreateOrConnectWithoutHackathonsInput
-    connect?: UserWhereUniqueInput
-  }
-
-  export type UserUpdateOneRequiredWithoutHackathonsNestedInput = {
-    create?: XOR<UserCreateWithoutHackathonsInput, UserUncheckedCreateWithoutHackathonsInput>
-    connectOrCreate?: UserCreateOrConnectWithoutHackathonsInput
-    upsert?: UserUpsertWithoutHackathonsInput
-    connect?: UserWhereUniqueInput
-    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutHackathonsInput, UserUpdateWithoutHackathonsInput>, UserUncheckedUpdateWithoutHackathonsInput>
   }
 
   export type UserCreateNestedOneWithoutCollaborationInput = {
@@ -23287,27 +21867,6 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
-  export type HackathonCreateWithoutUserInput = {
-    name: string
-    award?: string | null
-  }
-
-  export type HackathonUncheckedCreateWithoutUserInput = {
-    id?: number
-    name: string
-    award?: string | null
-  }
-
-  export type HackathonCreateOrConnectWithoutUserInput = {
-    where: HackathonWhereUniqueInput
-    create: XOR<HackathonCreateWithoutUserInput, HackathonUncheckedCreateWithoutUserInput>
-  }
-
-  export type HackathonCreateManyUserInputEnvelope = {
-    data: HackathonCreateManyUserInput | HackathonCreateManyUserInput[]
-    skipDuplicates?: boolean
-  }
-
   export type IncomingConnectionCreateWithoutSenderInput = {
     requestedAt?: Date | string
   }
@@ -23440,7 +21999,7 @@ export namespace Prisma {
   }
 
   export type TechnicalProfileCreateWithoutUserInput = {
-    skills?: string | null
+    skills?: TechnicalProfileCreateskillsInput | string[]
     experienceLevel?: string | null
     yearsOfExperience?: number | null
     projectInterests?: string | null
@@ -23449,7 +22008,7 @@ export namespace Prisma {
 
   export type TechnicalProfileUncheckedCreateWithoutUserInput = {
     id?: number
-    skills?: string | null
+    skills?: TechnicalProfileCreateskillsInput | string[]
     experienceLevel?: string | null
     yearsOfExperience?: number | null
     projectInterests?: string | null
@@ -23595,32 +22154,6 @@ export namespace Prisma {
   export type ConnectionUpdateManyWithWhereWithoutUserInput = {
     where: ConnectionScalarWhereInput
     data: XOR<ConnectionUpdateManyMutationInput, ConnectionUncheckedUpdateManyWithoutUserInput>
-  }
-
-  export type HackathonUpsertWithWhereUniqueWithoutUserInput = {
-    where: HackathonWhereUniqueInput
-    update: XOR<HackathonUpdateWithoutUserInput, HackathonUncheckedUpdateWithoutUserInput>
-    create: XOR<HackathonCreateWithoutUserInput, HackathonUncheckedCreateWithoutUserInput>
-  }
-
-  export type HackathonUpdateWithWhereUniqueWithoutUserInput = {
-    where: HackathonWhereUniqueInput
-    data: XOR<HackathonUpdateWithoutUserInput, HackathonUncheckedUpdateWithoutUserInput>
-  }
-
-  export type HackathonUpdateManyWithWhereWithoutUserInput = {
-    where: HackathonScalarWhereInput
-    data: XOR<HackathonUpdateManyMutationInput, HackathonUncheckedUpdateManyWithoutUserInput>
-  }
-
-  export type HackathonScalarWhereInput = {
-    AND?: HackathonScalarWhereInput | HackathonScalarWhereInput[]
-    OR?: HackathonScalarWhereInput[]
-    NOT?: HackathonScalarWhereInput | HackathonScalarWhereInput[]
-    id?: IntFilter<"Hackathon"> | number
-    userId?: IntFilter<"Hackathon"> | number
-    name?: StringFilter<"Hackathon"> | string
-    award?: StringNullableFilter<"Hackathon"> | string | null
   }
 
   export type IncomingConnectionUpsertWithWhereUniqueWithoutSenderInput = {
@@ -23791,7 +22324,7 @@ export namespace Prisma {
   }
 
   export type TechnicalProfileUpdateWithoutUserInput = {
-    skills?: NullableStringFieldUpdateOperationsInput | string | null
+    skills?: TechnicalProfileUpdateskillsInput | string[]
     experienceLevel?: NullableStringFieldUpdateOperationsInput | string | null
     yearsOfExperience?: NullableIntFieldUpdateOperationsInput | number | null
     projectInterests?: NullableStringFieldUpdateOperationsInput | string | null
@@ -23800,7 +22333,7 @@ export namespace Prisma {
 
   export type TechnicalProfileUncheckedUpdateWithoutUserInput = {
     id?: IntFieldUpdateOperationsInput | number
-    skills?: NullableStringFieldUpdateOperationsInput | string | null
+    skills?: TechnicalProfileUpdateskillsInput | string[]
     experienceLevel?: NullableStringFieldUpdateOperationsInput | string | null
     yearsOfExperience?: NullableIntFieldUpdateOperationsInput | number | null
     projectInterests?: NullableStringFieldUpdateOperationsInput | string | null
@@ -23840,7 +22373,6 @@ export namespace Prisma {
     collaboration?: CollaborationCreateNestedOneWithoutUserInput
     connectionsReceived?: ConnectionCreateNestedManyWithoutConnectionInput
     connectionsInitiated?: ConnectionCreateNestedManyWithoutUserInput
-    hackathons?: HackathonCreateNestedManyWithoutUserInput
     incomingConnections?: IncomingConnectionCreateNestedManyWithoutSenderInput
     outgoingConnections?: OutgoingConnectionCreateNestedManyWithoutReceiverInput
     posts?: PostCreateNestedManyWithoutUserInput
@@ -23863,7 +22395,6 @@ export namespace Prisma {
     collaboration?: CollaborationUncheckedCreateNestedOneWithoutUserInput
     connectionsReceived?: ConnectionUncheckedCreateNestedManyWithoutConnectionInput
     connectionsInitiated?: ConnectionUncheckedCreateNestedManyWithoutUserInput
-    hackathons?: HackathonUncheckedCreateNestedManyWithoutUserInput
     incomingConnections?: IncomingConnectionUncheckedCreateNestedManyWithoutSenderInput
     outgoingConnections?: OutgoingConnectionUncheckedCreateNestedManyWithoutReceiverInput
     posts?: PostUncheckedCreateNestedManyWithoutUserInput
@@ -23901,7 +22432,6 @@ export namespace Prisma {
     collaboration?: CollaborationUpdateOneWithoutUserNestedInput
     connectionsReceived?: ConnectionUpdateManyWithoutConnectionNestedInput
     connectionsInitiated?: ConnectionUpdateManyWithoutUserNestedInput
-    hackathons?: HackathonUpdateManyWithoutUserNestedInput
     incomingConnections?: IncomingConnectionUpdateManyWithoutSenderNestedInput
     outgoingConnections?: OutgoingConnectionUpdateManyWithoutReceiverNestedInput
     posts?: PostUpdateManyWithoutUserNestedInput
@@ -23924,7 +22454,6 @@ export namespace Prisma {
     collaboration?: CollaborationUncheckedUpdateOneWithoutUserNestedInput
     connectionsReceived?: ConnectionUncheckedUpdateManyWithoutConnectionNestedInput
     connectionsInitiated?: ConnectionUncheckedUpdateManyWithoutUserNestedInput
-    hackathons?: HackathonUncheckedUpdateManyWithoutUserNestedInput
     incomingConnections?: IncomingConnectionUncheckedUpdateManyWithoutSenderNestedInput
     outgoingConnections?: OutgoingConnectionUncheckedUpdateManyWithoutReceiverNestedInput
     posts?: PostUncheckedUpdateManyWithoutUserNestedInput
@@ -23947,7 +22476,6 @@ export namespace Prisma {
     collaboration?: CollaborationCreateNestedOneWithoutUserInput
     connectionsReceived?: ConnectionCreateNestedManyWithoutConnectionInput
     connectionsInitiated?: ConnectionCreateNestedManyWithoutUserInput
-    hackathons?: HackathonCreateNestedManyWithoutUserInput
     incomingConnections?: IncomingConnectionCreateNestedManyWithoutSenderInput
     outgoingConnections?: OutgoingConnectionCreateNestedManyWithoutReceiverInput
     posts?: PostCreateNestedManyWithoutUserInput
@@ -23970,7 +22498,6 @@ export namespace Prisma {
     collaboration?: CollaborationUncheckedCreateNestedOneWithoutUserInput
     connectionsReceived?: ConnectionUncheckedCreateNestedManyWithoutConnectionInput
     connectionsInitiated?: ConnectionUncheckedCreateNestedManyWithoutUserInput
-    hackathons?: HackathonUncheckedCreateNestedManyWithoutUserInput
     incomingConnections?: IncomingConnectionUncheckedCreateNestedManyWithoutSenderInput
     outgoingConnections?: OutgoingConnectionUncheckedCreateNestedManyWithoutReceiverInput
     posts?: PostUncheckedCreateNestedManyWithoutUserInput
@@ -24008,7 +22535,6 @@ export namespace Prisma {
     collaboration?: CollaborationUpdateOneWithoutUserNestedInput
     connectionsReceived?: ConnectionUpdateManyWithoutConnectionNestedInput
     connectionsInitiated?: ConnectionUpdateManyWithoutUserNestedInput
-    hackathons?: HackathonUpdateManyWithoutUserNestedInput
     incomingConnections?: IncomingConnectionUpdateManyWithoutSenderNestedInput
     outgoingConnections?: OutgoingConnectionUpdateManyWithoutReceiverNestedInput
     posts?: PostUpdateManyWithoutUserNestedInput
@@ -24031,7 +22557,6 @@ export namespace Prisma {
     collaboration?: CollaborationUncheckedUpdateOneWithoutUserNestedInput
     connectionsReceived?: ConnectionUncheckedUpdateManyWithoutConnectionNestedInput
     connectionsInitiated?: ConnectionUncheckedUpdateManyWithoutUserNestedInput
-    hackathons?: HackathonUncheckedUpdateManyWithoutUserNestedInput
     incomingConnections?: IncomingConnectionUncheckedUpdateManyWithoutSenderNestedInput
     outgoingConnections?: OutgoingConnectionUncheckedUpdateManyWithoutReceiverNestedInput
     posts?: PostUncheckedUpdateManyWithoutUserNestedInput
@@ -24052,7 +22577,6 @@ export namespace Prisma {
     collaboration?: CollaborationCreateNestedOneWithoutUserInput
     connectionsReceived?: ConnectionCreateNestedManyWithoutConnectionInput
     connectionsInitiated?: ConnectionCreateNestedManyWithoutUserInput
-    hackathons?: HackathonCreateNestedManyWithoutUserInput
     incomingConnections?: IncomingConnectionCreateNestedManyWithoutSenderInput
     outgoingConnections?: OutgoingConnectionCreateNestedManyWithoutReceiverInput
     posts?: PostCreateNestedManyWithoutUserInput
@@ -24075,7 +22599,6 @@ export namespace Prisma {
     collaboration?: CollaborationUncheckedCreateNestedOneWithoutUserInput
     connectionsReceived?: ConnectionUncheckedCreateNestedManyWithoutConnectionInput
     connectionsInitiated?: ConnectionUncheckedCreateNestedManyWithoutUserInput
-    hackathons?: HackathonUncheckedCreateNestedManyWithoutUserInput
     incomingConnections?: IncomingConnectionUncheckedCreateNestedManyWithoutSenderInput
     outgoingConnections?: OutgoingConnectionUncheckedCreateNestedManyWithoutReceiverInput
     posts?: PostUncheckedCreateNestedManyWithoutUserInput
@@ -24113,7 +22636,6 @@ export namespace Prisma {
     collaboration?: CollaborationUpdateOneWithoutUserNestedInput
     connectionsReceived?: ConnectionUpdateManyWithoutConnectionNestedInput
     connectionsInitiated?: ConnectionUpdateManyWithoutUserNestedInput
-    hackathons?: HackathonUpdateManyWithoutUserNestedInput
     incomingConnections?: IncomingConnectionUpdateManyWithoutSenderNestedInput
     outgoingConnections?: OutgoingConnectionUpdateManyWithoutReceiverNestedInput
     posts?: PostUpdateManyWithoutUserNestedInput
@@ -24136,7 +22658,6 @@ export namespace Prisma {
     collaboration?: CollaborationUncheckedUpdateOneWithoutUserNestedInput
     connectionsReceived?: ConnectionUncheckedUpdateManyWithoutConnectionNestedInput
     connectionsInitiated?: ConnectionUncheckedUpdateManyWithoutUserNestedInput
-    hackathons?: HackathonUncheckedUpdateManyWithoutUserNestedInput
     incomingConnections?: IncomingConnectionUncheckedUpdateManyWithoutSenderNestedInput
     outgoingConnections?: OutgoingConnectionUncheckedUpdateManyWithoutReceiverNestedInput
     posts?: PostUncheckedUpdateManyWithoutUserNestedInput
@@ -24159,7 +22680,6 @@ export namespace Prisma {
     collaboration?: CollaborationCreateNestedOneWithoutUserInput
     connectionsReceived?: ConnectionCreateNestedManyWithoutConnectionInput
     connectionsInitiated?: ConnectionCreateNestedManyWithoutUserInput
-    hackathons?: HackathonCreateNestedManyWithoutUserInput
     incomingConnections?: IncomingConnectionCreateNestedManyWithoutSenderInput
     outgoingConnections?: OutgoingConnectionCreateNestedManyWithoutReceiverInput
     posts?: PostCreateNestedManyWithoutUserInput
@@ -24182,7 +22702,6 @@ export namespace Prisma {
     collaboration?: CollaborationUncheckedCreateNestedOneWithoutUserInput
     connectionsReceived?: ConnectionUncheckedCreateNestedManyWithoutConnectionInput
     connectionsInitiated?: ConnectionUncheckedCreateNestedManyWithoutUserInput
-    hackathons?: HackathonUncheckedCreateNestedManyWithoutUserInput
     incomingConnections?: IncomingConnectionUncheckedCreateNestedManyWithoutSenderInput
     outgoingConnections?: OutgoingConnectionUncheckedCreateNestedManyWithoutReceiverInput
     posts?: PostUncheckedCreateNestedManyWithoutUserInput
@@ -24220,7 +22739,6 @@ export namespace Prisma {
     collaboration?: CollaborationUpdateOneWithoutUserNestedInput
     connectionsReceived?: ConnectionUpdateManyWithoutConnectionNestedInput
     connectionsInitiated?: ConnectionUpdateManyWithoutUserNestedInput
-    hackathons?: HackathonUpdateManyWithoutUserNestedInput
     incomingConnections?: IncomingConnectionUpdateManyWithoutSenderNestedInput
     outgoingConnections?: OutgoingConnectionUpdateManyWithoutReceiverNestedInput
     posts?: PostUpdateManyWithoutUserNestedInput
@@ -24243,7 +22761,6 @@ export namespace Prisma {
     collaboration?: CollaborationUncheckedUpdateOneWithoutUserNestedInput
     connectionsReceived?: ConnectionUncheckedUpdateManyWithoutConnectionNestedInput
     connectionsInitiated?: ConnectionUncheckedUpdateManyWithoutUserNestedInput
-    hackathons?: HackathonUncheckedUpdateManyWithoutUserNestedInput
     incomingConnections?: IncomingConnectionUncheckedUpdateManyWithoutSenderNestedInput
     outgoingConnections?: OutgoingConnectionUncheckedUpdateManyWithoutReceiverNestedInput
     posts?: PostUncheckedUpdateManyWithoutUserNestedInput
@@ -24265,7 +22782,6 @@ export namespace Prisma {
     collaboration?: CollaborationCreateNestedOneWithoutUserInput
     connectionsReceived?: ConnectionCreateNestedManyWithoutConnectionInput
     connectionsInitiated?: ConnectionCreateNestedManyWithoutUserInput
-    hackathons?: HackathonCreateNestedManyWithoutUserInput
     incomingConnections?: IncomingConnectionCreateNestedManyWithoutSenderInput
     outgoingConnections?: OutgoingConnectionCreateNestedManyWithoutReceiverInput
     posts?: PostCreateNestedManyWithoutUserInput
@@ -24288,7 +22804,6 @@ export namespace Prisma {
     collaboration?: CollaborationUncheckedCreateNestedOneWithoutUserInput
     connectionsReceived?: ConnectionUncheckedCreateNestedManyWithoutConnectionInput
     connectionsInitiated?: ConnectionUncheckedCreateNestedManyWithoutUserInput
-    hackathons?: HackathonUncheckedCreateNestedManyWithoutUserInput
     incomingConnections?: IncomingConnectionUncheckedCreateNestedManyWithoutSenderInput
     outgoingConnections?: OutgoingConnectionUncheckedCreateNestedManyWithoutReceiverInput
     posts?: PostUncheckedCreateNestedManyWithoutUserInput
@@ -24326,7 +22841,6 @@ export namespace Prisma {
     collaboration?: CollaborationUpdateOneWithoutUserNestedInput
     connectionsReceived?: ConnectionUpdateManyWithoutConnectionNestedInput
     connectionsInitiated?: ConnectionUpdateManyWithoutUserNestedInput
-    hackathons?: HackathonUpdateManyWithoutUserNestedInput
     incomingConnections?: IncomingConnectionUpdateManyWithoutSenderNestedInput
     outgoingConnections?: OutgoingConnectionUpdateManyWithoutReceiverNestedInput
     posts?: PostUpdateManyWithoutUserNestedInput
@@ -24349,117 +22863,10 @@ export namespace Prisma {
     collaboration?: CollaborationUncheckedUpdateOneWithoutUserNestedInput
     connectionsReceived?: ConnectionUncheckedUpdateManyWithoutConnectionNestedInput
     connectionsInitiated?: ConnectionUncheckedUpdateManyWithoutUserNestedInput
-    hackathons?: HackathonUncheckedUpdateManyWithoutUserNestedInput
     incomingConnections?: IncomingConnectionUncheckedUpdateManyWithoutSenderNestedInput
     outgoingConnections?: OutgoingConnectionUncheckedUpdateManyWithoutReceiverNestedInput
     posts?: PostUncheckedUpdateManyWithoutUserNestedInput
     postLists?: PostListUncheckedUpdateManyWithoutUserNestedInput
-    showcase?: ShowcaseUncheckedUpdateOneWithoutUserNestedInput
-    technicalProfile?: TechnicalProfileUncheckedUpdateOneWithoutUserNestedInput
-    visuals?: VisualsUncheckedUpdateOneWithoutUserNestedInput
-  }
-
-  export type UserCreateWithoutHackathonsInput = {
-    email: string
-    password: string
-    createdAt?: Date | string
-    isEmailVerified?: boolean
-    otp?: string | null
-    otpExpiry?: Date | string | null
-    basicInfo?: BasicInfoCreateNestedOneWithoutUserInput
-    bioSummary?: BioSummaryCreateNestedOneWithoutUserInput
-    collaboration?: CollaborationCreateNestedOneWithoutUserInput
-    connectionsReceived?: ConnectionCreateNestedManyWithoutConnectionInput
-    connectionsInitiated?: ConnectionCreateNestedManyWithoutUserInput
-    incomingConnections?: IncomingConnectionCreateNestedManyWithoutSenderInput
-    outgoingConnections?: OutgoingConnectionCreateNestedManyWithoutReceiverInput
-    posts?: PostCreateNestedManyWithoutUserInput
-    postLists?: PostListCreateNestedManyWithoutUserInput
-    projects?: ProjectCreateNestedManyWithoutUserInput
-    showcase?: ShowcaseCreateNestedOneWithoutUserInput
-    technicalProfile?: TechnicalProfileCreateNestedOneWithoutUserInput
-    visuals?: VisualsCreateNestedOneWithoutUserInput
-  }
-
-  export type UserUncheckedCreateWithoutHackathonsInput = {
-    id?: number
-    email: string
-    password: string
-    createdAt?: Date | string
-    isEmailVerified?: boolean
-    otp?: string | null
-    otpExpiry?: Date | string | null
-    basicInfo?: BasicInfoUncheckedCreateNestedOneWithoutUserInput
-    bioSummary?: BioSummaryUncheckedCreateNestedOneWithoutUserInput
-    collaboration?: CollaborationUncheckedCreateNestedOneWithoutUserInput
-    connectionsReceived?: ConnectionUncheckedCreateNestedManyWithoutConnectionInput
-    connectionsInitiated?: ConnectionUncheckedCreateNestedManyWithoutUserInput
-    incomingConnections?: IncomingConnectionUncheckedCreateNestedManyWithoutSenderInput
-    outgoingConnections?: OutgoingConnectionUncheckedCreateNestedManyWithoutReceiverInput
-    posts?: PostUncheckedCreateNestedManyWithoutUserInput
-    postLists?: PostListUncheckedCreateNestedManyWithoutUserInput
-    projects?: ProjectUncheckedCreateNestedManyWithoutUserInput
-    showcase?: ShowcaseUncheckedCreateNestedOneWithoutUserInput
-    technicalProfile?: TechnicalProfileUncheckedCreateNestedOneWithoutUserInput
-    visuals?: VisualsUncheckedCreateNestedOneWithoutUserInput
-  }
-
-  export type UserCreateOrConnectWithoutHackathonsInput = {
-    where: UserWhereUniqueInput
-    create: XOR<UserCreateWithoutHackathonsInput, UserUncheckedCreateWithoutHackathonsInput>
-  }
-
-  export type UserUpsertWithoutHackathonsInput = {
-    update: XOR<UserUpdateWithoutHackathonsInput, UserUncheckedUpdateWithoutHackathonsInput>
-    create: XOR<UserCreateWithoutHackathonsInput, UserUncheckedCreateWithoutHackathonsInput>
-    where?: UserWhereInput
-  }
-
-  export type UserUpdateToOneWithWhereWithoutHackathonsInput = {
-    where?: UserWhereInput
-    data: XOR<UserUpdateWithoutHackathonsInput, UserUncheckedUpdateWithoutHackathonsInput>
-  }
-
-  export type UserUpdateWithoutHackathonsInput = {
-    email?: StringFieldUpdateOperationsInput | string
-    password?: StringFieldUpdateOperationsInput | string
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    isEmailVerified?: BoolFieldUpdateOperationsInput | boolean
-    otp?: NullableStringFieldUpdateOperationsInput | string | null
-    otpExpiry?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    basicInfo?: BasicInfoUpdateOneWithoutUserNestedInput
-    bioSummary?: BioSummaryUpdateOneWithoutUserNestedInput
-    collaboration?: CollaborationUpdateOneWithoutUserNestedInput
-    connectionsReceived?: ConnectionUpdateManyWithoutConnectionNestedInput
-    connectionsInitiated?: ConnectionUpdateManyWithoutUserNestedInput
-    incomingConnections?: IncomingConnectionUpdateManyWithoutSenderNestedInput
-    outgoingConnections?: OutgoingConnectionUpdateManyWithoutReceiverNestedInput
-    posts?: PostUpdateManyWithoutUserNestedInput
-    postLists?: PostListUpdateManyWithoutUserNestedInput
-    projects?: ProjectUpdateManyWithoutUserNestedInput
-    showcase?: ShowcaseUpdateOneWithoutUserNestedInput
-    technicalProfile?: TechnicalProfileUpdateOneWithoutUserNestedInput
-    visuals?: VisualsUpdateOneWithoutUserNestedInput
-  }
-
-  export type UserUncheckedUpdateWithoutHackathonsInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    email?: StringFieldUpdateOperationsInput | string
-    password?: StringFieldUpdateOperationsInput | string
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    isEmailVerified?: BoolFieldUpdateOperationsInput | boolean
-    otp?: NullableStringFieldUpdateOperationsInput | string | null
-    otpExpiry?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    basicInfo?: BasicInfoUncheckedUpdateOneWithoutUserNestedInput
-    bioSummary?: BioSummaryUncheckedUpdateOneWithoutUserNestedInput
-    collaboration?: CollaborationUncheckedUpdateOneWithoutUserNestedInput
-    connectionsReceived?: ConnectionUncheckedUpdateManyWithoutConnectionNestedInput
-    connectionsInitiated?: ConnectionUncheckedUpdateManyWithoutUserNestedInput
-    incomingConnections?: IncomingConnectionUncheckedUpdateManyWithoutSenderNestedInput
-    outgoingConnections?: OutgoingConnectionUncheckedUpdateManyWithoutReceiverNestedInput
-    posts?: PostUncheckedUpdateManyWithoutUserNestedInput
-    postLists?: PostListUncheckedUpdateManyWithoutUserNestedInput
-    projects?: ProjectUncheckedUpdateManyWithoutUserNestedInput
     showcase?: ShowcaseUncheckedUpdateOneWithoutUserNestedInput
     technicalProfile?: TechnicalProfileUncheckedUpdateOneWithoutUserNestedInput
     visuals?: VisualsUncheckedUpdateOneWithoutUserNestedInput
@@ -24476,7 +22883,6 @@ export namespace Prisma {
     bioSummary?: BioSummaryCreateNestedOneWithoutUserInput
     connectionsReceived?: ConnectionCreateNestedManyWithoutConnectionInput
     connectionsInitiated?: ConnectionCreateNestedManyWithoutUserInput
-    hackathons?: HackathonCreateNestedManyWithoutUserInput
     incomingConnections?: IncomingConnectionCreateNestedManyWithoutSenderInput
     outgoingConnections?: OutgoingConnectionCreateNestedManyWithoutReceiverInput
     posts?: PostCreateNestedManyWithoutUserInput
@@ -24499,7 +22905,6 @@ export namespace Prisma {
     bioSummary?: BioSummaryUncheckedCreateNestedOneWithoutUserInput
     connectionsReceived?: ConnectionUncheckedCreateNestedManyWithoutConnectionInput
     connectionsInitiated?: ConnectionUncheckedCreateNestedManyWithoutUserInput
-    hackathons?: HackathonUncheckedCreateNestedManyWithoutUserInput
     incomingConnections?: IncomingConnectionUncheckedCreateNestedManyWithoutSenderInput
     outgoingConnections?: OutgoingConnectionUncheckedCreateNestedManyWithoutReceiverInput
     posts?: PostUncheckedCreateNestedManyWithoutUserInput
@@ -24537,7 +22942,6 @@ export namespace Prisma {
     bioSummary?: BioSummaryUpdateOneWithoutUserNestedInput
     connectionsReceived?: ConnectionUpdateManyWithoutConnectionNestedInput
     connectionsInitiated?: ConnectionUpdateManyWithoutUserNestedInput
-    hackathons?: HackathonUpdateManyWithoutUserNestedInput
     incomingConnections?: IncomingConnectionUpdateManyWithoutSenderNestedInput
     outgoingConnections?: OutgoingConnectionUpdateManyWithoutReceiverNestedInput
     posts?: PostUpdateManyWithoutUserNestedInput
@@ -24560,7 +22964,6 @@ export namespace Prisma {
     bioSummary?: BioSummaryUncheckedUpdateOneWithoutUserNestedInput
     connectionsReceived?: ConnectionUncheckedUpdateManyWithoutConnectionNestedInput
     connectionsInitiated?: ConnectionUncheckedUpdateManyWithoutUserNestedInput
-    hackathons?: HackathonUncheckedUpdateManyWithoutUserNestedInput
     incomingConnections?: IncomingConnectionUncheckedUpdateManyWithoutSenderNestedInput
     outgoingConnections?: OutgoingConnectionUncheckedUpdateManyWithoutReceiverNestedInput
     posts?: PostUncheckedUpdateManyWithoutUserNestedInput
@@ -24583,7 +22986,6 @@ export namespace Prisma {
     collaboration?: CollaborationCreateNestedOneWithoutUserInput
     connectionsReceived?: ConnectionCreateNestedManyWithoutConnectionInput
     connectionsInitiated?: ConnectionCreateNestedManyWithoutUserInput
-    hackathons?: HackathonCreateNestedManyWithoutUserInput
     incomingConnections?: IncomingConnectionCreateNestedManyWithoutSenderInput
     outgoingConnections?: OutgoingConnectionCreateNestedManyWithoutReceiverInput
     posts?: PostCreateNestedManyWithoutUserInput
@@ -24606,7 +23008,6 @@ export namespace Prisma {
     collaboration?: CollaborationUncheckedCreateNestedOneWithoutUserInput
     connectionsReceived?: ConnectionUncheckedCreateNestedManyWithoutConnectionInput
     connectionsInitiated?: ConnectionUncheckedCreateNestedManyWithoutUserInput
-    hackathons?: HackathonUncheckedCreateNestedManyWithoutUserInput
     incomingConnections?: IncomingConnectionUncheckedCreateNestedManyWithoutSenderInput
     outgoingConnections?: OutgoingConnectionUncheckedCreateNestedManyWithoutReceiverInput
     posts?: PostUncheckedCreateNestedManyWithoutUserInput
@@ -24644,7 +23045,6 @@ export namespace Prisma {
     collaboration?: CollaborationUpdateOneWithoutUserNestedInput
     connectionsReceived?: ConnectionUpdateManyWithoutConnectionNestedInput
     connectionsInitiated?: ConnectionUpdateManyWithoutUserNestedInput
-    hackathons?: HackathonUpdateManyWithoutUserNestedInput
     incomingConnections?: IncomingConnectionUpdateManyWithoutSenderNestedInput
     outgoingConnections?: OutgoingConnectionUpdateManyWithoutReceiverNestedInput
     posts?: PostUpdateManyWithoutUserNestedInput
@@ -24667,7 +23067,6 @@ export namespace Prisma {
     collaboration?: CollaborationUncheckedUpdateOneWithoutUserNestedInput
     connectionsReceived?: ConnectionUncheckedUpdateManyWithoutConnectionNestedInput
     connectionsInitiated?: ConnectionUncheckedUpdateManyWithoutUserNestedInput
-    hackathons?: HackathonUncheckedUpdateManyWithoutUserNestedInput
     incomingConnections?: IncomingConnectionUncheckedUpdateManyWithoutSenderNestedInput
     outgoingConnections?: OutgoingConnectionUncheckedUpdateManyWithoutReceiverNestedInput
     posts?: PostUncheckedUpdateManyWithoutUserNestedInput
@@ -24707,7 +23106,6 @@ export namespace Prisma {
     collaboration?: CollaborationCreateNestedOneWithoutUserInput
     connectionsReceived?: ConnectionCreateNestedManyWithoutConnectionInput
     connectionsInitiated?: ConnectionCreateNestedManyWithoutUserInput
-    hackathons?: HackathonCreateNestedManyWithoutUserInput
     incomingConnections?: IncomingConnectionCreateNestedManyWithoutSenderInput
     outgoingConnections?: OutgoingConnectionCreateNestedManyWithoutReceiverInput
     postLists?: PostListCreateNestedManyWithoutUserInput
@@ -24730,7 +23128,6 @@ export namespace Prisma {
     collaboration?: CollaborationUncheckedCreateNestedOneWithoutUserInput
     connectionsReceived?: ConnectionUncheckedCreateNestedManyWithoutConnectionInput
     connectionsInitiated?: ConnectionUncheckedCreateNestedManyWithoutUserInput
-    hackathons?: HackathonUncheckedCreateNestedManyWithoutUserInput
     incomingConnections?: IncomingConnectionUncheckedCreateNestedManyWithoutSenderInput
     outgoingConnections?: OutgoingConnectionUncheckedCreateNestedManyWithoutReceiverInput
     postLists?: PostListUncheckedCreateNestedManyWithoutUserInput
@@ -24811,7 +23208,6 @@ export namespace Prisma {
     collaboration?: CollaborationUpdateOneWithoutUserNestedInput
     connectionsReceived?: ConnectionUpdateManyWithoutConnectionNestedInput
     connectionsInitiated?: ConnectionUpdateManyWithoutUserNestedInput
-    hackathons?: HackathonUpdateManyWithoutUserNestedInput
     incomingConnections?: IncomingConnectionUpdateManyWithoutSenderNestedInput
     outgoingConnections?: OutgoingConnectionUpdateManyWithoutReceiverNestedInput
     postLists?: PostListUpdateManyWithoutUserNestedInput
@@ -24834,7 +23230,6 @@ export namespace Prisma {
     collaboration?: CollaborationUncheckedUpdateOneWithoutUserNestedInput
     connectionsReceived?: ConnectionUncheckedUpdateManyWithoutConnectionNestedInput
     connectionsInitiated?: ConnectionUncheckedUpdateManyWithoutUserNestedInput
-    hackathons?: HackathonUncheckedUpdateManyWithoutUserNestedInput
     incomingConnections?: IncomingConnectionUncheckedUpdateManyWithoutSenderNestedInput
     outgoingConnections?: OutgoingConnectionUncheckedUpdateManyWithoutReceiverNestedInput
     postLists?: PostListUncheckedUpdateManyWithoutUserNestedInput
@@ -24898,7 +23293,6 @@ export namespace Prisma {
     collaboration?: CollaborationCreateNestedOneWithoutUserInput
     connectionsReceived?: ConnectionCreateNestedManyWithoutConnectionInput
     connectionsInitiated?: ConnectionCreateNestedManyWithoutUserInput
-    hackathons?: HackathonCreateNestedManyWithoutUserInput
     incomingConnections?: IncomingConnectionCreateNestedManyWithoutSenderInput
     outgoingConnections?: OutgoingConnectionCreateNestedManyWithoutReceiverInput
     posts?: PostCreateNestedManyWithoutUserInput
@@ -24921,7 +23315,6 @@ export namespace Prisma {
     collaboration?: CollaborationUncheckedCreateNestedOneWithoutUserInput
     connectionsReceived?: ConnectionUncheckedCreateNestedManyWithoutConnectionInput
     connectionsInitiated?: ConnectionUncheckedCreateNestedManyWithoutUserInput
-    hackathons?: HackathonUncheckedCreateNestedManyWithoutUserInput
     incomingConnections?: IncomingConnectionUncheckedCreateNestedManyWithoutSenderInput
     outgoingConnections?: OutgoingConnectionUncheckedCreateNestedManyWithoutReceiverInput
     posts?: PostUncheckedCreateNestedManyWithoutUserInput
@@ -24991,7 +23384,6 @@ export namespace Prisma {
     collaboration?: CollaborationUpdateOneWithoutUserNestedInput
     connectionsReceived?: ConnectionUpdateManyWithoutConnectionNestedInput
     connectionsInitiated?: ConnectionUpdateManyWithoutUserNestedInput
-    hackathons?: HackathonUpdateManyWithoutUserNestedInput
     incomingConnections?: IncomingConnectionUpdateManyWithoutSenderNestedInput
     outgoingConnections?: OutgoingConnectionUpdateManyWithoutReceiverNestedInput
     posts?: PostUpdateManyWithoutUserNestedInput
@@ -25014,7 +23406,6 @@ export namespace Prisma {
     collaboration?: CollaborationUncheckedUpdateOneWithoutUserNestedInput
     connectionsReceived?: ConnectionUncheckedUpdateManyWithoutConnectionNestedInput
     connectionsInitiated?: ConnectionUncheckedUpdateManyWithoutUserNestedInput
-    hackathons?: HackathonUncheckedUpdateManyWithoutUserNestedInput
     incomingConnections?: IncomingConnectionUncheckedUpdateManyWithoutSenderNestedInput
     outgoingConnections?: OutgoingConnectionUncheckedUpdateManyWithoutReceiverNestedInput
     posts?: PostUncheckedUpdateManyWithoutUserNestedInput
@@ -25094,7 +23485,6 @@ export namespace Prisma {
     collaboration?: CollaborationCreateNestedOneWithoutUserInput
     connectionsReceived?: ConnectionCreateNestedManyWithoutConnectionInput
     connectionsInitiated?: ConnectionCreateNestedManyWithoutUserInput
-    hackathons?: HackathonCreateNestedManyWithoutUserInput
     outgoingConnections?: OutgoingConnectionCreateNestedManyWithoutReceiverInput
     posts?: PostCreateNestedManyWithoutUserInput
     postLists?: PostListCreateNestedManyWithoutUserInput
@@ -25117,7 +23507,6 @@ export namespace Prisma {
     collaboration?: CollaborationUncheckedCreateNestedOneWithoutUserInput
     connectionsReceived?: ConnectionUncheckedCreateNestedManyWithoutConnectionInput
     connectionsInitiated?: ConnectionUncheckedCreateNestedManyWithoutUserInput
-    hackathons?: HackathonUncheckedCreateNestedManyWithoutUserInput
     outgoingConnections?: OutgoingConnectionUncheckedCreateNestedManyWithoutReceiverInput
     posts?: PostUncheckedCreateNestedManyWithoutUserInput
     postLists?: PostListUncheckedCreateNestedManyWithoutUserInput
@@ -25155,7 +23544,6 @@ export namespace Prisma {
     collaboration?: CollaborationUpdateOneWithoutUserNestedInput
     connectionsReceived?: ConnectionUpdateManyWithoutConnectionNestedInput
     connectionsInitiated?: ConnectionUpdateManyWithoutUserNestedInput
-    hackathons?: HackathonUpdateManyWithoutUserNestedInput
     outgoingConnections?: OutgoingConnectionUpdateManyWithoutReceiverNestedInput
     posts?: PostUpdateManyWithoutUserNestedInput
     postLists?: PostListUpdateManyWithoutUserNestedInput
@@ -25178,7 +23566,6 @@ export namespace Prisma {
     collaboration?: CollaborationUncheckedUpdateOneWithoutUserNestedInput
     connectionsReceived?: ConnectionUncheckedUpdateManyWithoutConnectionNestedInput
     connectionsInitiated?: ConnectionUncheckedUpdateManyWithoutUserNestedInput
-    hackathons?: HackathonUncheckedUpdateManyWithoutUserNestedInput
     outgoingConnections?: OutgoingConnectionUncheckedUpdateManyWithoutReceiverNestedInput
     posts?: PostUncheckedUpdateManyWithoutUserNestedInput
     postLists?: PostListUncheckedUpdateManyWithoutUserNestedInput
@@ -25200,7 +23587,6 @@ export namespace Prisma {
     collaboration?: CollaborationCreateNestedOneWithoutUserInput
     connectionsReceived?: ConnectionCreateNestedManyWithoutConnectionInput
     connectionsInitiated?: ConnectionCreateNestedManyWithoutUserInput
-    hackathons?: HackathonCreateNestedManyWithoutUserInput
     incomingConnections?: IncomingConnectionCreateNestedManyWithoutSenderInput
     posts?: PostCreateNestedManyWithoutUserInput
     postLists?: PostListCreateNestedManyWithoutUserInput
@@ -25223,7 +23609,6 @@ export namespace Prisma {
     collaboration?: CollaborationUncheckedCreateNestedOneWithoutUserInput
     connectionsReceived?: ConnectionUncheckedCreateNestedManyWithoutConnectionInput
     connectionsInitiated?: ConnectionUncheckedCreateNestedManyWithoutUserInput
-    hackathons?: HackathonUncheckedCreateNestedManyWithoutUserInput
     incomingConnections?: IncomingConnectionUncheckedCreateNestedManyWithoutSenderInput
     posts?: PostUncheckedCreateNestedManyWithoutUserInput
     postLists?: PostListUncheckedCreateNestedManyWithoutUserInput
@@ -25261,7 +23646,6 @@ export namespace Prisma {
     collaboration?: CollaborationUpdateOneWithoutUserNestedInput
     connectionsReceived?: ConnectionUpdateManyWithoutConnectionNestedInput
     connectionsInitiated?: ConnectionUpdateManyWithoutUserNestedInput
-    hackathons?: HackathonUpdateManyWithoutUserNestedInput
     incomingConnections?: IncomingConnectionUpdateManyWithoutSenderNestedInput
     posts?: PostUpdateManyWithoutUserNestedInput
     postLists?: PostListUpdateManyWithoutUserNestedInput
@@ -25284,7 +23668,6 @@ export namespace Prisma {
     collaboration?: CollaborationUncheckedUpdateOneWithoutUserNestedInput
     connectionsReceived?: ConnectionUncheckedUpdateManyWithoutConnectionNestedInput
     connectionsInitiated?: ConnectionUncheckedUpdateManyWithoutUserNestedInput
-    hackathons?: HackathonUncheckedUpdateManyWithoutUserNestedInput
     incomingConnections?: IncomingConnectionUncheckedUpdateManyWithoutSenderNestedInput
     posts?: PostUncheckedUpdateManyWithoutUserNestedInput
     postLists?: PostListUncheckedUpdateManyWithoutUserNestedInput
@@ -25305,7 +23688,6 @@ export namespace Prisma {
     bioSummary?: BioSummaryCreateNestedOneWithoutUserInput
     collaboration?: CollaborationCreateNestedOneWithoutUserInput
     connectionsInitiated?: ConnectionCreateNestedManyWithoutUserInput
-    hackathons?: HackathonCreateNestedManyWithoutUserInput
     incomingConnections?: IncomingConnectionCreateNestedManyWithoutSenderInput
     outgoingConnections?: OutgoingConnectionCreateNestedManyWithoutReceiverInput
     posts?: PostCreateNestedManyWithoutUserInput
@@ -25328,7 +23710,6 @@ export namespace Prisma {
     bioSummary?: BioSummaryUncheckedCreateNestedOneWithoutUserInput
     collaboration?: CollaborationUncheckedCreateNestedOneWithoutUserInput
     connectionsInitiated?: ConnectionUncheckedCreateNestedManyWithoutUserInput
-    hackathons?: HackathonUncheckedCreateNestedManyWithoutUserInput
     incomingConnections?: IncomingConnectionUncheckedCreateNestedManyWithoutSenderInput
     outgoingConnections?: OutgoingConnectionUncheckedCreateNestedManyWithoutReceiverInput
     posts?: PostUncheckedCreateNestedManyWithoutUserInput
@@ -25355,7 +23736,6 @@ export namespace Prisma {
     bioSummary?: BioSummaryCreateNestedOneWithoutUserInput
     collaboration?: CollaborationCreateNestedOneWithoutUserInput
     connectionsReceived?: ConnectionCreateNestedManyWithoutConnectionInput
-    hackathons?: HackathonCreateNestedManyWithoutUserInput
     incomingConnections?: IncomingConnectionCreateNestedManyWithoutSenderInput
     outgoingConnections?: OutgoingConnectionCreateNestedManyWithoutReceiverInput
     posts?: PostCreateNestedManyWithoutUserInput
@@ -25378,7 +23758,6 @@ export namespace Prisma {
     bioSummary?: BioSummaryUncheckedCreateNestedOneWithoutUserInput
     collaboration?: CollaborationUncheckedCreateNestedOneWithoutUserInput
     connectionsReceived?: ConnectionUncheckedCreateNestedManyWithoutConnectionInput
-    hackathons?: HackathonUncheckedCreateNestedManyWithoutUserInput
     incomingConnections?: IncomingConnectionUncheckedCreateNestedManyWithoutSenderInput
     outgoingConnections?: OutgoingConnectionUncheckedCreateNestedManyWithoutReceiverInput
     posts?: PostUncheckedCreateNestedManyWithoutUserInput
@@ -25416,7 +23795,6 @@ export namespace Prisma {
     bioSummary?: BioSummaryUpdateOneWithoutUserNestedInput
     collaboration?: CollaborationUpdateOneWithoutUserNestedInput
     connectionsInitiated?: ConnectionUpdateManyWithoutUserNestedInput
-    hackathons?: HackathonUpdateManyWithoutUserNestedInput
     incomingConnections?: IncomingConnectionUpdateManyWithoutSenderNestedInput
     outgoingConnections?: OutgoingConnectionUpdateManyWithoutReceiverNestedInput
     posts?: PostUpdateManyWithoutUserNestedInput
@@ -25439,7 +23817,6 @@ export namespace Prisma {
     bioSummary?: BioSummaryUncheckedUpdateOneWithoutUserNestedInput
     collaboration?: CollaborationUncheckedUpdateOneWithoutUserNestedInput
     connectionsInitiated?: ConnectionUncheckedUpdateManyWithoutUserNestedInput
-    hackathons?: HackathonUncheckedUpdateManyWithoutUserNestedInput
     incomingConnections?: IncomingConnectionUncheckedUpdateManyWithoutSenderNestedInput
     outgoingConnections?: OutgoingConnectionUncheckedUpdateManyWithoutReceiverNestedInput
     posts?: PostUncheckedUpdateManyWithoutUserNestedInput
@@ -25472,7 +23849,6 @@ export namespace Prisma {
     bioSummary?: BioSummaryUpdateOneWithoutUserNestedInput
     collaboration?: CollaborationUpdateOneWithoutUserNestedInput
     connectionsReceived?: ConnectionUpdateManyWithoutConnectionNestedInput
-    hackathons?: HackathonUpdateManyWithoutUserNestedInput
     incomingConnections?: IncomingConnectionUpdateManyWithoutSenderNestedInput
     outgoingConnections?: OutgoingConnectionUpdateManyWithoutReceiverNestedInput
     posts?: PostUpdateManyWithoutUserNestedInput
@@ -25495,7 +23871,6 @@ export namespace Prisma {
     bioSummary?: BioSummaryUncheckedUpdateOneWithoutUserNestedInput
     collaboration?: CollaborationUncheckedUpdateOneWithoutUserNestedInput
     connectionsReceived?: ConnectionUncheckedUpdateManyWithoutConnectionNestedInput
-    hackathons?: HackathonUncheckedUpdateManyWithoutUserNestedInput
     incomingConnections?: IncomingConnectionUncheckedUpdateManyWithoutSenderNestedInput
     outgoingConnections?: OutgoingConnectionUncheckedUpdateManyWithoutReceiverNestedInput
     posts?: PostUncheckedUpdateManyWithoutUserNestedInput
@@ -25516,12 +23891,6 @@ export namespace Prisma {
     id?: number
     connectionId: number
     connectedAt?: Date | string
-  }
-
-  export type HackathonCreateManyUserInput = {
-    id?: number
-    name: string
-    award?: string | null
   }
 
   export type IncomingConnectionCreateManySenderInput = {
@@ -25588,23 +23957,6 @@ export namespace Prisma {
     id?: IntFieldUpdateOperationsInput | number
     connectionId?: IntFieldUpdateOperationsInput | number
     connectedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
-  export type HackathonUpdateWithoutUserInput = {
-    name?: StringFieldUpdateOperationsInput | string
-    award?: NullableStringFieldUpdateOperationsInput | string | null
-  }
-
-  export type HackathonUncheckedUpdateWithoutUserInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    name?: StringFieldUpdateOperationsInput | string
-    award?: NullableStringFieldUpdateOperationsInput | string | null
-  }
-
-  export type HackathonUncheckedUpdateManyWithoutUserInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    name?: StringFieldUpdateOperationsInput | string
-    award?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type IncomingConnectionUpdateWithoutSenderInput = {

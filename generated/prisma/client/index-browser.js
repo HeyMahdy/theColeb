@@ -181,13 +181,6 @@ exports.Prisma.ProjectScalarFieldEnum = {
   link: 'link'
 };
 
-exports.Prisma.HackathonScalarFieldEnum = {
-  id: 'id',
-  userId: 'userId',
-  name: 'name',
-  award: 'award'
-};
-
 exports.Prisma.CollaborationScalarFieldEnum = {
   id: 'id',
   userId: 'userId',
@@ -266,7 +259,6 @@ exports.Prisma.ModelName = {
   BioSummary: 'BioSummary',
   Showcase: 'Showcase',
   Project: 'Project',
-  Hackathon: 'Hackathon',
   Collaboration: 'Collaboration',
   Visuals: 'Visuals',
   Post: 'Post',

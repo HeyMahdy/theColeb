@@ -22,7 +22,6 @@ model User {
   collaboration        Collaboration?
   connectionsReceived  Connection[]         @relation("ConnectionReceiver")
   connectionsInitiated Connection[]         @relation("ConnectionInitiator")
-  hackathons           Hackathon[]
   incomingConnections  IncomingConnection[] @relation("ReceivedConnections")
   outgoingConnections  OutgoingConnection[] @relation("SentConnections")
   posts                Post[]
@@ -51,14 +50,14 @@ model BasicInfo {
 }
 
 model TechnicalProfile {
-  id                Int     @id @default(autoincrement())
-  userId            Int     @unique
-  skills            String? @db.VarChar(255)
-  experienceLevel   String? @db.VarChar(50)
+  id                Int      @id @default(autoincrement())
+  userId            Int      @unique
+  skills            String[]
+  experienceLevel   String?  @db.VarChar(50)
   yearsOfExperience Int?
   projectInterests  String?
-  availability      String? @db.VarChar(50)
-  user              User    @relation(fields: [userId], references: [id])
+  availability      String?  @db.VarChar(50)
+  user              User     @relation(fields: [userId], references: [id])
 
   @@map("technical_profile")
 }
@@ -94,16 +93,6 @@ model Project {
   user        User    @relation(fields: [userId], references: [id])
 
   @@map("projects")
-}
-
-model Hackathon {
-  id     Int     @id @default(autoincrement())
-  userId Int
-  name   String  @db.VarChar(100)
-  award  String? @db.VarChar(100)
-  user   User    @relation(fields: [userId], references: [id])
-
-  @@map("hackathons")
 }
 
 model Collaboration {

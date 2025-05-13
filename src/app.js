@@ -5,13 +5,13 @@ import bioRouter from './routes/v1/userRoute/bio.js';
 import techRouter from './routes/v1/userRoute/tech-profile.js';
 import showcaseRouter from './routes/v1/userRoute/showcase.js';
 import projectRouter from './routes/v1/userRoute/projects.js';
-import hackathonRouter from './routes/v1/userRoute/hackathon.js';
 import collabRouter from './routes/v1/userRoute/coleb-setting.js'; // note: maybe rename to collab-setting.js
 import visualsRouter from './routes/v1/userRoute/visuals.js';
 import postRouter from './routes/v1/postRoute/post.js';
 import connectionRouter from './routes/v1/connectionRoute/connect.js';
 import authRouter from './routes/auth.routes.js'; // Import the auth route
-
+import infoRouter from './routes/v1/userRoute/info.js'; // Import the basic info route
+import filterRoute from './routes/v1/postfeed/feed.js'
 
 
 const app = express();
@@ -22,12 +22,13 @@ app.use('/collab/v1/bio', bioRouter);
 app.use('/collab/v1/tech', techRouter);
 app.use('/collab/v1/showcase', showcaseRouter);
 app.use('/collab/v1/project', projectRouter);
-app.use('/collab/v1/hackathon', hackathonRouter);
 app.use('/collab/v1/collab', collabRouter);
 app.use('/collab/v1/visuals', visualsRouter);
 app.use('/collab/v1/posts', postRouter);
 app.use('/collab/v1/connections', connectionRouter);
 app.use('/collab/v1/auth', authRouter); // Add the auth route
+app.use('/collab/v1/info', infoRouter); // Add the basic info route
+app.use('/collab/v1/filter', filterRoute); 
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
