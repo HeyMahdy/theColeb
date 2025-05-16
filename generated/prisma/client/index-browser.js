@@ -220,19 +220,21 @@ exports.Prisma.InterestedListScalarFieldEnum = {
 exports.Prisma.IncomingConnectionScalarFieldEnum = {
   id: 'id',
   senderId: 'senderId',
+  receiverId: 'receiverId',
   requestedAt: 'requestedAt'
 };
 
 exports.Prisma.OutgoingConnectionScalarFieldEnum = {
   id: 'id',
   receiverId: 'receiverId',
+  senderId: 'senderId',
   requestedAt: 'requestedAt'
 };
 
 exports.Prisma.ConnectionScalarFieldEnum = {
   id: 'id',
-  userId: 'userId',
-  connectionId: 'connectionId',
+  participantAId: 'participantAId',
+  participantBId: 'participantBId',
   connectedAt: 'connectedAt'
 };
 

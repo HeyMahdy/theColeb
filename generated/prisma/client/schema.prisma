@@ -10,26 +10,28 @@ datasource db {
 }
 
 model User {
-  id                   Int                  @id @default(autoincrement())
-  email                String               @unique @db.VarChar(255)
-  password             String               @db.VarChar(255)
-  createdAt            DateTime             @default(now())
-  isEmailVerified      Boolean              @default(false)
-  otp                  String?              @db.VarChar(6)
-  otpExpiry            DateTime?
-  basicInfo            BasicInfo?
-  bioSummary           BioSummary?
-  collaboration        Collaboration?
-  connectionsReceived  Connection[]         @relation("ConnectionReceiver")
-  connectionsInitiated Connection[]         @relation("ConnectionInitiator")
-  incomingConnections  IncomingConnection[] @relation("ReceivedConnections")
-  outgoingConnections  OutgoingConnection[] @relation("SentConnections")
-  posts                Post[]
-  postLists            PostList[]
-  projects             Project[]
-  showcase             Showcase?
-  technicalProfile     TechnicalProfile?
-  visuals              Visuals?
+  id                         Int                  @id @default(autoincrement())
+  email                      String               @unique @db.VarChar(255)
+  password                   String               @db.VarChar(255)
+  createdAt                  DateTime             @default(now())
+  isEmailVerified            Boolean              @default(false)
+  otp                        String?              @db.VarChar(6)
+  otpExpiry                  DateTime?
+  basicInfo                  BasicInfo?
+  bioSummary                 BioSummary?
+  collaboration              Collaboration?
+  ParticipantA               Connection[]         @relation("ConnectionParticipantA") // userId side
+  ParticipantB               Connection[]         @relation("ConnectionParticipantB") //
+  sentIncomingConnections    IncomingConnection[] @relation("SentIncomingConnections")
+  incomingConnections        IncomingConnection[] @relation("ReceivedConnections")
+  outgoingConnections        OutgoingConnection[] @relation("SentConnections")
+  ReceiveoutgoingConnections OutgoingConnection[] @relation("ReceiveoutgoingConnections")
+  posts                      Post[]
+  postLists                  PostList[]
+  projects                   Project[]
+  showcase                   Showcase?
+  technicalProfile           TechnicalProfile?
+  visuals                    Visuals?
 
   @@map("users")
 }
@@ -55,7 +57,7 @@ model TechnicalProfile {
   skills            String[]
   experienceLevel   String?  @db.VarChar(50)
   yearsOfExperience Int?
-  projectInterests  String?
+  projectInterests  String[] @db.Text
   availability      String?  @db.VarChar(50)
   user              User     @relation(fields: [userId], references: [id])
 
@@ -152,28 +154,36 @@ model InterestedList {
 model IncomingConnection {
   id          Int      @id @default(autoincrement())
   senderId    Int
+  receiverId  Int
   requestedAt DateTime @default(now())
-  sender      User     @relation("ReceivedConnections", fields: [senderId], references: [id])
+  receiver    User     @relation("ReceivedConnections", fields: [receiverId], references: [id])
+  sender      User     @relation("SentIncomingConnections", fields: [senderId], references: [id])
 
+  @@unique([senderId, receiverId])
   @@map("incoming_connection")
 }
 
 model OutgoingConnection {
   id          Int      @id @default(autoincrement())
   receiverId  Int
+  senderId    Int
   requestedAt DateTime @default(now())
-  receiver    User     @relation("SentConnections", fields: [receiverId], references: [id])
+  receiver    User     @relation("SentConnections", fields: [senderId], references: [id])
+  sender      User     @relation("ReceiveoutgoingConnections", fields: [receiverId], references: [id])
 
+  @@unique([senderId, receiverId])
   @@map("outgoing_connection")
 }
 
 model Connection {
-  id           Int      @id @default(autoincrement())
-  userId       Int
-  connectionId Int
-  connectedAt  DateTime @default(now())
-  connection   User     @relation("ConnectionReceiver", fields: [connectionId], references: [id])
-  user         User     @relation("ConnectionInitiator", fields: [userId], references: [id])
+  id             Int      @id @default(autoincrement())
+  participantAId Int
+  participantBId Int
+  connectedAt    DateTime @default(now())
 
+  participantA User @relation("ConnectionParticipantA", fields: [participantAId], references: [id])
+  participantB User @relation("ConnectionParticipantB", fields: [participantBId], references: [id])
+
+  @@unique([participantAId, participantBId])
   @@map("connections")
 }

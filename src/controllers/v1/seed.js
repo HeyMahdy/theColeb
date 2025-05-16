@@ -50,7 +50,7 @@ async function createUser(index) {
           skills: getRandomSkills(),
           experienceLevel: getRandomExperience(),
           yearsOfExperience: Math.floor(Math.random() * 10) + 1,
-          projectInterests: ['Web Development', 'Mobile Development', 'AI/ML', 'DevOps', 'Cloud Computing'][Math.floor(Math.random() * 5)],
+          projectInterests: ['Web Development', 'Mobile Development', 'AI/ML', 'DevOps', 'Cloud Computing'].sort(() => 0.5 - Math.random()).slice(0, Math.floor(Math.random() * 3) + 1),
           availability: getRandomAvailability()
         }
       },
@@ -176,19 +176,27 @@ async function main() {
       const numOutgoing = Math.floor(Math.random() * 3) + 1;
 
       for (let i = 0; i < numIncoming; i++) {
-        await prisma.incomingConnection.create({
-          data: {
-            senderId: users[Math.floor(Math.random() * users.length)].id
-          }
-        });
+        const randomSender = users[Math.floor(Math.random() * users.length)];
+        if (randomSender.id !== user.id) {
+          await prisma.incomingConnection.create({
+            data: {
+              senderId: randomSender.id,
+              receiverId: user.id
+            }
+          });
+        }
       }
 
       for (let i = 0; i < numOutgoing; i++) {
-        await prisma.outgoingConnection.create({
-          data: {
-            receiverId: users[Math.floor(Math.random() * users.length)].id
-          }
-        });
+        const randomReceiver = users[Math.floor(Math.random() * users.length)];
+        if (randomReceiver.id !== user.id) {
+          await prisma.outgoingConnection.create({
+            data: {
+              senderId: user.id,
+              receiverId: randomReceiver.id
+            }
+          });
+        }
       }
     }
 

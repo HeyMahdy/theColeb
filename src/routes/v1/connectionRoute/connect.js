@@ -1,39 +1,36 @@
-
-
 import { Router } from 'express';
+import verifyToken from '../../../middlewares/authenticateToken.js';
+import { 
+    sendRquest, 
+    getRequestList, 
+    getSendRequestList, 
+    acceptReq,
+    deleteConnection,
+    rejectReq
+} from '../../../controllers/v1/ReqConnnection.js';
+
 const router = Router();
 
+// All routes are protected and require authentication
+router.use(verifyToken);
+
 // POST: Send a connection request
-router.post('/request', (req, res) => {
-  res.json({ message: 'Send a connection request' });
-});
+router.post('/request', sendRquest);
 
 // GET: List incoming connection requests
-router.get('/incoming/:user_id', (req, res) => {
-  const { user_id } = req.params;
-  res.json({ message: `List incoming connection requests for user ${user_id}` });
-});
+router.get('/incoming', getRequestList);
 
-// GET: List outgoing connection requests
-router.get('/outgoing/:user_id', (req, res) => {
-  const { user_id } = req.params;
-  res.json({ message: `List outgoing connection requests for user ${user_id}` });
-});
+// GET: List outgoing/sent connection requests
+router.get('/outgoing', getSendRequestList);
 
 // POST: Accept a connection request
-router.post('/accept', (req, res) => {
-  res.json({ message: 'Accept a connection request' });
-});
-
-// POST: Decline a connection request
-router.post('/decline', (req, res) => {
-  res.json({ message: 'Decline a connection request' });
-});
+router.post('/accept', acceptReq);
 
 // DELETE: Remove a connection
-router.delete('/:connection_id', (req, res) => {
-  const { connection_id } = req.params;
-  res.json({ message: `Remove connection ${connection_id}` });
-});
+router.post('/decline',deleteConnection);
+
+// DELETE: Remove a connection
+router.post('/reject',rejectReq)
+
 
 export default router;

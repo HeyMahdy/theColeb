@@ -12,7 +12,7 @@ import connectionRouter from './routes/v1/connectionRoute/connect.js';
 import authRouter from './routes/auth.routes.js'; // Import the auth route
 import infoRouter from './routes/v1/userRoute/info.js'; // Import the basic info route
 import filterRoute from './routes/v1/postfeed/feed.js'
-
+import reqConnect from './routes/v1/connectionRoute/connect.js'
 
 const app = express();
 app.use(json());
@@ -29,6 +29,7 @@ app.use('/collab/v1/connections', connectionRouter);
 app.use('/collab/v1/auth', authRouter); // Add the auth route
 app.use('/collab/v1/info', infoRouter); // Add the basic info route
 app.use('/collab/v1/filter', filterRoute); 
+app.use('/collab/v1/connect', reqConnect); 
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
