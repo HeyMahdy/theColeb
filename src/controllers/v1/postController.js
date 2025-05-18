@@ -13,6 +13,7 @@ export const createPost = async (req, res) => {
 
         const post = await prisma.post.create({
             data: {
+                userId,
                 title,
                 content,
                 type,
@@ -21,81 +22,46 @@ export const createPost = async (req, res) => {
 
         res.status(201).json({ message: 'Post created successfully', post });
     } catch (error) {
-        console.error('Error creating post:', error);
-        res.status(500).json({ error: 'Failed to create post' });
-    }
-};
-
-export const getPosts = async (req, res) => {
-    try {
-        const { userId } = req.query;
-        const where = userId ? { userId: parseInt(userId) } : {};
-
-        const posts = await prisma.post.findMany({
-            where,
-            include: {
-                user: {
-                    select: {
-                        id: true,
-                        name: true,
-                        email: true,
-                    },
-                },
-            },
-            orderBy: {
-                createdAt: 'desc',
-            },
-        });
-
-        res.status(200).json({ posts });
-    } catch (error) {
-        console.error('Error retrieving posts:', error);
-        res.status(500).json({ error: 'Failed to retrieve posts' });
-    }
-};
-
-export const getPostById = async (req, res) => {
-    try {
-        const { id } = req.params;
-        const post = await prisma.post.findUnique({
-            where: { id: parseInt(id) },
-            include: {
-                user: {
-                    select: {
-                        id: true,
-                        name: true,
-                        email: true,
-                    },
-                },
-            },
-        });
-
-        if (!post) {
-            return res.status(404).json({ error: 'Post not found' });
+            if (error instanceof Prisma.PrismaClientKnownRequestError) {
+                console.error('Database error:', error);
+                return res.status(500).json({
+                    success: false,
+                    message: 'Database error occurred',
+                    error: error.message
+                });
+            }
+    
+            return res.status(500).json({
+                success: false,
+                message: 'An error occurred while filtering profiles',
+                error: error.message
+            });
         }
-
-        res.status(200).json({ post });
-    } catch (error) {
-        console.error('Error retrieving post:', error);
-        res.status(500).json({ error: 'Failed to retrieve post' });
-    }
 };
+
+
 
 export const updatePost = async (req, res) => {
     try {
+        const userId = req.user.userId;
         const { id } = req.params;
-        const { title, content } = req.body;
+        const { title, content, type } = req.body;
 
-        if (!title && !content  ) {
-            return res.status(400).json({ error: 'At least one field (title or content) is required for update' });
+        if (!title && !content && !type) {
+            return res.status(400).json({ error: 'At least one field (title, content, or type) is required for update' });
         }
 
         const existingPost = await prisma.post.findUnique({
-            where: { id: parseInt(id) },
+            where: { id: parseInt(id)},
         });
 
         if (!existingPost) {
             return res.status(404).json({ error: 'Post not found' });
+        }
+
+        // Check if the user owns the post
+        if (existingPost.userId !== userId) {
+            return res.status(403).json({ error: 'You are not authorized to update this post' });
         }
 
         const updatedPost = await prisma.post.update({
@@ -103,13 +69,26 @@ export const updatePost = async (req, res) => {
             data: {
                 ...(title && { title }),
                 ...(content && { content }),
+                ...(type && { type }),
             },
         });
 
         res.status(200).json({ message: 'Post updated successfully', post: updatedPost });
     } catch (error) {
-        console.error('Error updating post:', error);
-        res.status(500).json({ error: 'Failed to update post' });
+        if (error instanceof Prisma.PrismaClientKnownRequestError) {
+            console.error('Database error:', error);
+            return res.status(500).json({
+                success: false,
+                message: 'Database error occurred',
+                error: error.message
+            });
+        }
+
+        return res.status(500).json({
+            success: false,
+            message: 'An error occurred while updating the post',
+            error: error.message
+        });
     }
 };
 

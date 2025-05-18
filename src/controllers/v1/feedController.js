@@ -138,3 +138,57 @@ export const profileFilter = async (req, res) => {
 };
 
 
+export const getPosts = async (req, res) => {
+    try {
+        const userId = req.user.userId;
+        const {type,page,limit} = req.query
+
+        const skip = (parseInt(page) - 1) * parseInt(limit);
+
+
+        const posts = await prisma.post.findMany({
+            skip,
+            take: parseInt(limit),
+            where : {
+                type : type
+            },
+            select : {
+                title : true,
+                description : true,
+                type : true
+            }
+            
+        });
+
+        res.status(200).json({ posts });
+    } catch (error) {
+        console.error('Error retrieving posts:', error);
+        res.status(500).json({ error: 'Failed to retrieve posts' });
+    }
+};
+
+export const getPostById = async (req, res) => {
+    try {
+        const { id } = req.params;
+       const posts = await prisma.post.findUnique({
+            where : {
+                type : type
+            },
+            select : {
+                title : true,
+                description : true,
+                type : true
+            }
+            
+        });
+
+        if (!post) {
+            return res.status(404).json({ error: 'Post not found' });
+        }
+
+        res.status(200).json({ post });
+    } catch (error) {
+        console.error('Error retrieving post:', error);
+        res.status(500).json({ error: 'Failed to retrieve post' });
+    }
+};
