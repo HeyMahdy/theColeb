@@ -1,31 +1,24 @@
 import { Router } from 'express';
+import { createPost, getPosts, getPostById, updatePost, deletePost } from '../../../controllers/v1/postController.js';
 
-
+import verifyToken  from '../../../middlewares/authenticateToken.js';
 
 const router = Router();
 
-// GET: List hackathons for a specific showcase
-router.get('/:sc_id', (req, res) => {
-  const { sc_id } = req.params;
-  res.json({ message: `List hackathons for showcase ${sc_id}` });
-});
+router.use(verifyToken);
+// Create a new post
+router.post('/', createPost);
 
-// POST: Add hackathon to a showcase (sc_id expected in body)
-router.post('/', (req, res) => {
-  const { sc_id } = req.body;
-  res.json({ message: `Add hackathon to showcase ${sc_id}` });
-});
+// Get all posts with pagination and type filter
+router.get('/',  getPosts);
 
-// PUT: Update a specific hackathon
-router.put('/po/:hack_id', (req, res) => {
-  const { hack_id } = req.params;
-  res.json({ message: `Update hackathon ${hack_id}` });
-});
+// Get a specific post by ID
+router.get('/:id',  getPostById);
 
-// DELETE: Delete a specific hackathon
-router.delete('/po/:hack_id', (req, res) => {
-  const { hack_id } = req.params;
-  res.json({ message: `Delete hackathon ${hack_id}` });
-});
+// Update a post
+router.put('/:id',  updatePost);
+
+// Delete a post
+router.delete('/:id',  deletePost);
 
 export default router;
