@@ -27,7 +27,6 @@ model User {
   outgoingConnections        OutgoingConnection[] @relation("SentConnections")
   ReceiveoutgoingConnections OutgoingConnection[] @relation("ReceiveoutgoingConnections")
   posts                      Post[]
-  postLists                  PostList[]
   projects                   Project[]
   showcase                   Showcase?
   technicalProfile           TechnicalProfile?
@@ -122,25 +121,16 @@ model Post {
   id          Int              @id @default(autoincrement())
   userId      Int
   title       String           @db.VarChar(255)
-  type        String           @db.VarChar(50)
+  type        PostType         @default(COFOUNDER_NEEDED)
   description String?
-  tags        String?          @db.VarChar(255)
-  category    String?          @db.VarChar(100)
+  // Relations
   interested  InterestedList[]
   user        User             @relation(fields: [userId], references: [id])
-  postLists   PostList[]
+
+  // Timestamps
+  createdAt DateTime @default(now())
 
   @@map("post")
-}
-
-model PostList {
-  id     Int  @id @default(autoincrement())
-  postId Int
-  userId Int
-  post   Post @relation(fields: [postId], references: [id])
-  user   User @relation(fields: [userId], references: [id])
-
-  @@map("post_list")
 }
 
 model InterestedList {
@@ -186,4 +176,11 @@ model Connection {
 
   @@unique([participantAId, participantBId])
   @@map("connections")
+}
+
+enum PostType {
+  IDEA
+  MVP
+  COFOUNDER_NEEDED
+  OTHER
 }

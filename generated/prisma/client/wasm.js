@@ -202,14 +202,7 @@ exports.Prisma.PostScalarFieldEnum = {
   title: 'title',
   type: 'type',
   description: 'description',
-  tags: 'tags',
-  category: 'category'
-};
-
-exports.Prisma.PostListScalarFieldEnum = {
-  id: 'id',
-  postId: 'postId',
-  userId: 'userId'
+  createdAt: 'createdAt'
 };
 
 exports.Prisma.InterestedListScalarFieldEnum = {
@@ -252,7 +245,12 @@ exports.Prisma.NullsOrder = {
   first: 'first',
   last: 'last'
 };
-
+exports.PostType = exports.$Enums.PostType = {
+  IDEA: 'IDEA',
+  MVP: 'MVP',
+  COFOUNDER_NEEDED: 'COFOUNDER_NEEDED',
+  OTHER: 'OTHER'
+};
 
 exports.Prisma.ModelName = {
   User: 'User',
@@ -264,7 +262,6 @@ exports.Prisma.ModelName = {
   Collaboration: 'Collaboration',
   Visuals: 'Visuals',
   Post: 'Post',
-  PostList: 'PostList',
   InterestedList: 'InterestedList',
   IncomingConnection: 'IncomingConnection',
   OutgoingConnection: 'OutgoingConnection',

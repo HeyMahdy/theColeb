@@ -59,11 +59,6 @@ export type Visuals = $Result.DefaultSelection<Prisma.$VisualsPayload>
  */
 export type Post = $Result.DefaultSelection<Prisma.$PostPayload>
 /**
- * Model PostList
- * 
- */
-export type PostList = $Result.DefaultSelection<Prisma.$PostListPayload>
-/**
  * Model InterestedList
  * 
  */
@@ -83,6 +78,25 @@ export type OutgoingConnection = $Result.DefaultSelection<Prisma.$OutgoingConnec
  * 
  */
 export type Connection = $Result.DefaultSelection<Prisma.$ConnectionPayload>
+
+/**
+ * Enums
+ */
+export namespace $Enums {
+  export const PostType: {
+  IDEA: 'IDEA',
+  MVP: 'MVP',
+  COFOUNDER_NEEDED: 'COFOUNDER_NEEDED',
+  OTHER: 'OTHER'
+};
+
+export type PostType = (typeof PostType)[keyof typeof PostType]
+
+}
+
+export type PostType = $Enums.PostType
+
+export const PostType: typeof $Enums.PostType
 
 /**
  * ##  Prisma Client ʲˢ
@@ -298,16 +312,6 @@ export class PrismaClient<
     * ```
     */
   get post(): Prisma.PostDelegate<ExtArgs, ClientOptions>;
-
-  /**
-   * `prisma.postList`: Exposes CRUD operations for the **PostList** model.
-    * Example usage:
-    * ```ts
-    * // Fetch zero or more PostLists
-    * const postLists = await prisma.postList.findMany()
-    * ```
-    */
-  get postList(): Prisma.PostListDelegate<ExtArgs, ClientOptions>;
 
   /**
    * `prisma.interestedList`: Exposes CRUD operations for the **InterestedList** model.
@@ -797,7 +801,6 @@ export namespace Prisma {
     Collaboration: 'Collaboration',
     Visuals: 'Visuals',
     Post: 'Post',
-    PostList: 'PostList',
     InterestedList: 'InterestedList',
     IncomingConnection: 'IncomingConnection',
     OutgoingConnection: 'OutgoingConnection',
@@ -820,7 +823,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "user" | "basicInfo" | "technicalProfile" | "bioSummary" | "showcase" | "project" | "collaboration" | "visuals" | "post" | "postList" | "interestedList" | "incomingConnection" | "outgoingConnection" | "connection"
+      modelProps: "user" | "basicInfo" | "technicalProfile" | "bioSummary" | "showcase" | "project" | "collaboration" | "visuals" | "post" | "interestedList" | "incomingConnection" | "outgoingConnection" | "connection"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -1490,80 +1493,6 @@ export namespace Prisma {
           }
         }
       }
-      PostList: {
-        payload: Prisma.$PostListPayload<ExtArgs>
-        fields: Prisma.PostListFieldRefs
-        operations: {
-          findUnique: {
-            args: Prisma.PostListFindUniqueArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$PostListPayload> | null
-          }
-          findUniqueOrThrow: {
-            args: Prisma.PostListFindUniqueOrThrowArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$PostListPayload>
-          }
-          findFirst: {
-            args: Prisma.PostListFindFirstArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$PostListPayload> | null
-          }
-          findFirstOrThrow: {
-            args: Prisma.PostListFindFirstOrThrowArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$PostListPayload>
-          }
-          findMany: {
-            args: Prisma.PostListFindManyArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$PostListPayload>[]
-          }
-          create: {
-            args: Prisma.PostListCreateArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$PostListPayload>
-          }
-          createMany: {
-            args: Prisma.PostListCreateManyArgs<ExtArgs>
-            result: BatchPayload
-          }
-          createManyAndReturn: {
-            args: Prisma.PostListCreateManyAndReturnArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$PostListPayload>[]
-          }
-          delete: {
-            args: Prisma.PostListDeleteArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$PostListPayload>
-          }
-          update: {
-            args: Prisma.PostListUpdateArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$PostListPayload>
-          }
-          deleteMany: {
-            args: Prisma.PostListDeleteManyArgs<ExtArgs>
-            result: BatchPayload
-          }
-          updateMany: {
-            args: Prisma.PostListUpdateManyArgs<ExtArgs>
-            result: BatchPayload
-          }
-          updateManyAndReturn: {
-            args: Prisma.PostListUpdateManyAndReturnArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$PostListPayload>[]
-          }
-          upsert: {
-            args: Prisma.PostListUpsertArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$PostListPayload>
-          }
-          aggregate: {
-            args: Prisma.PostListAggregateArgs<ExtArgs>
-            result: $Utils.Optional<AggregatePostList>
-          }
-          groupBy: {
-            args: Prisma.PostListGroupByArgs<ExtArgs>
-            result: $Utils.Optional<PostListGroupByOutputType>[]
-          }
-          count: {
-            args: Prisma.PostListCountArgs<ExtArgs>
-            result: $Utils.Optional<PostListCountAggregateOutputType> | number
-          }
-        }
-      }
       InterestedList: {
         payload: Prisma.$InterestedListPayload<ExtArgs>
         fields: Prisma.InterestedListFieldRefs
@@ -1953,7 +1882,6 @@ export namespace Prisma {
     collaboration?: CollaborationOmit
     visuals?: VisualsOmit
     post?: PostOmit
-    postList?: PostListOmit
     interestedList?: InterestedListOmit
     incomingConnection?: IncomingConnectionOmit
     outgoingConnection?: OutgoingConnectionOmit
@@ -2059,7 +1987,6 @@ export namespace Prisma {
     outgoingConnections: number
     ReceiveoutgoingConnections: number
     posts: number
-    postLists: number
     projects: number
   }
 
@@ -2071,7 +1998,6 @@ export namespace Prisma {
     outgoingConnections?: boolean | UserCountOutputTypeCountOutgoingConnectionsArgs
     ReceiveoutgoingConnections?: boolean | UserCountOutputTypeCountReceiveoutgoingConnectionsArgs
     posts?: boolean | UserCountOutputTypeCountPostsArgs
-    postLists?: boolean | UserCountOutputTypeCountPostListsArgs
     projects?: boolean | UserCountOutputTypeCountProjectsArgs
   }
 
@@ -2138,13 +2064,6 @@ export namespace Prisma {
   /**
    * UserCountOutputType without action
    */
-  export type UserCountOutputTypeCountPostListsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: PostListWhereInput
-  }
-
-  /**
-   * UserCountOutputType without action
-   */
   export type UserCountOutputTypeCountProjectsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: ProjectWhereInput
   }
@@ -2156,12 +2075,10 @@ export namespace Prisma {
 
   export type PostCountOutputType = {
     interested: number
-    postLists: number
   }
 
   export type PostCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     interested?: boolean | PostCountOutputTypeCountInterestedArgs
-    postLists?: boolean | PostCountOutputTypeCountPostListsArgs
   }
 
   // Custom InputTypes
@@ -2180,13 +2097,6 @@ export namespace Prisma {
    */
   export type PostCountOutputTypeCountInterestedArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: InterestedListWhereInput
-  }
-
-  /**
-   * PostCountOutputType without action
-   */
-  export type PostCountOutputTypeCountPostListsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: PostListWhereInput
   }
 
 
@@ -2418,7 +2328,6 @@ export namespace Prisma {
     outgoingConnections?: boolean | User$outgoingConnectionsArgs<ExtArgs>
     ReceiveoutgoingConnections?: boolean | User$ReceiveoutgoingConnectionsArgs<ExtArgs>
     posts?: boolean | User$postsArgs<ExtArgs>
-    postLists?: boolean | User$postListsArgs<ExtArgs>
     projects?: boolean | User$projectsArgs<ExtArgs>
     showcase?: boolean | User$showcaseArgs<ExtArgs>
     technicalProfile?: boolean | User$technicalProfileArgs<ExtArgs>
@@ -2468,7 +2377,6 @@ export namespace Prisma {
     outgoingConnections?: boolean | User$outgoingConnectionsArgs<ExtArgs>
     ReceiveoutgoingConnections?: boolean | User$ReceiveoutgoingConnectionsArgs<ExtArgs>
     posts?: boolean | User$postsArgs<ExtArgs>
-    postLists?: boolean | User$postListsArgs<ExtArgs>
     projects?: boolean | User$projectsArgs<ExtArgs>
     showcase?: boolean | User$showcaseArgs<ExtArgs>
     technicalProfile?: boolean | User$technicalProfileArgs<ExtArgs>
@@ -2491,7 +2399,6 @@ export namespace Prisma {
       outgoingConnections: Prisma.$OutgoingConnectionPayload<ExtArgs>[]
       ReceiveoutgoingConnections: Prisma.$OutgoingConnectionPayload<ExtArgs>[]
       posts: Prisma.$PostPayload<ExtArgs>[]
-      postLists: Prisma.$PostListPayload<ExtArgs>[]
       projects: Prisma.$ProjectPayload<ExtArgs>[]
       showcase: Prisma.$ShowcasePayload<ExtArgs> | null
       technicalProfile: Prisma.$TechnicalProfilePayload<ExtArgs> | null
@@ -2909,7 +2816,6 @@ export namespace Prisma {
     outgoingConnections<T extends User$outgoingConnectionsArgs<ExtArgs> = {}>(args?: Subset<T, User$outgoingConnectionsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$OutgoingConnectionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     ReceiveoutgoingConnections<T extends User$ReceiveoutgoingConnectionsArgs<ExtArgs> = {}>(args?: Subset<T, User$ReceiveoutgoingConnectionsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$OutgoingConnectionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     posts<T extends User$postsArgs<ExtArgs> = {}>(args?: Subset<T, User$postsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PostPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-    postLists<T extends User$postListsArgs<ExtArgs> = {}>(args?: Subset<T, User$postListsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PostListPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     projects<T extends User$projectsArgs<ExtArgs> = {}>(args?: Subset<T, User$projectsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ProjectPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     showcase<T extends User$showcaseArgs<ExtArgs> = {}>(args?: Subset<T, User$showcaseArgs<ExtArgs>>): Prisma__ShowcaseClient<$Result.GetResult<Prisma.$ShowcasePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     technicalProfile<T extends User$technicalProfileArgs<ExtArgs> = {}>(args?: Subset<T, User$technicalProfileArgs<ExtArgs>>): Prisma__TechnicalProfileClient<$Result.GetResult<Prisma.$TechnicalProfilePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
@@ -3569,30 +3475,6 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: PostScalarFieldEnum | PostScalarFieldEnum[]
-  }
-
-  /**
-   * User.postLists
-   */
-  export type User$postListsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the PostList
-     */
-    select?: PostListSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the PostList
-     */
-    omit?: PostListOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: PostListInclude<ExtArgs> | null
-    where?: PostListWhereInput
-    orderBy?: PostListOrderByWithRelationInput | PostListOrderByWithRelationInput[]
-    cursor?: PostListWhereUniqueInput
-    take?: number
-    skip?: number
-    distinct?: PostListScalarFieldEnum | PostListScalarFieldEnum[]
   }
 
   /**
@@ -11521,20 +11403,18 @@ export namespace Prisma {
     id: number | null
     userId: number | null
     title: string | null
-    type: string | null
+    type: $Enums.PostType | null
     description: string | null
-    tags: string | null
-    category: string | null
+    createdAt: Date | null
   }
 
   export type PostMaxAggregateOutputType = {
     id: number | null
     userId: number | null
     title: string | null
-    type: string | null
+    type: $Enums.PostType | null
     description: string | null
-    tags: string | null
-    category: string | null
+    createdAt: Date | null
   }
 
   export type PostCountAggregateOutputType = {
@@ -11543,8 +11423,7 @@ export namespace Prisma {
     title: number
     type: number
     description: number
-    tags: number
-    category: number
+    createdAt: number
     _all: number
   }
 
@@ -11565,8 +11444,7 @@ export namespace Prisma {
     title?: true
     type?: true
     description?: true
-    tags?: true
-    category?: true
+    createdAt?: true
   }
 
   export type PostMaxAggregateInputType = {
@@ -11575,8 +11453,7 @@ export namespace Prisma {
     title?: true
     type?: true
     description?: true
-    tags?: true
-    category?: true
+    createdAt?: true
   }
 
   export type PostCountAggregateInputType = {
@@ -11585,8 +11462,7 @@ export namespace Prisma {
     title?: true
     type?: true
     description?: true
-    tags?: true
-    category?: true
+    createdAt?: true
     _all?: true
   }
 
@@ -11680,10 +11556,9 @@ export namespace Prisma {
     id: number
     userId: number
     title: string
-    type: string
+    type: $Enums.PostType
     description: string | null
-    tags: string | null
-    category: string | null
+    createdAt: Date
     _count: PostCountAggregateOutputType | null
     _avg: PostAvgAggregateOutputType | null
     _sum: PostSumAggregateOutputType | null
@@ -11711,11 +11586,9 @@ export namespace Prisma {
     title?: boolean
     type?: boolean
     description?: boolean
-    tags?: boolean
-    category?: boolean
+    createdAt?: boolean
     interested?: boolean | Post$interestedArgs<ExtArgs>
     user?: boolean | UserDefaultArgs<ExtArgs>
-    postLists?: boolean | Post$postListsArgs<ExtArgs>
     _count?: boolean | PostCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["post"]>
 
@@ -11725,8 +11598,7 @@ export namespace Prisma {
     title?: boolean
     type?: boolean
     description?: boolean
-    tags?: boolean
-    category?: boolean
+    createdAt?: boolean
     user?: boolean | UserDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["post"]>
 
@@ -11736,8 +11608,7 @@ export namespace Prisma {
     title?: boolean
     type?: boolean
     description?: boolean
-    tags?: boolean
-    category?: boolean
+    createdAt?: boolean
     user?: boolean | UserDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["post"]>
 
@@ -11747,15 +11618,13 @@ export namespace Prisma {
     title?: boolean
     type?: boolean
     description?: boolean
-    tags?: boolean
-    category?: boolean
+    createdAt?: boolean
   }
 
-  export type PostOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "userId" | "title" | "type" | "description" | "tags" | "category", ExtArgs["result"]["post"]>
+  export type PostOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "userId" | "title" | "type" | "description" | "createdAt", ExtArgs["result"]["post"]>
   export type PostInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     interested?: boolean | Post$interestedArgs<ExtArgs>
     user?: boolean | UserDefaultArgs<ExtArgs>
-    postLists?: boolean | Post$postListsArgs<ExtArgs>
     _count?: boolean | PostCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type PostIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -11770,16 +11639,14 @@ export namespace Prisma {
     objects: {
       interested: Prisma.$InterestedListPayload<ExtArgs>[]
       user: Prisma.$UserPayload<ExtArgs>
-      postLists: Prisma.$PostListPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: number
       userId: number
       title: string
-      type: string
+      type: $Enums.PostType
       description: string | null
-      tags: string | null
-      category: string | null
+      createdAt: Date
     }, ExtArgs["result"]["post"]>
     composites: {}
   }
@@ -12176,7 +12043,6 @@ export namespace Prisma {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     interested<T extends Post$interestedArgs<ExtArgs> = {}>(args?: Subset<T, Post$interestedArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$InterestedListPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     user<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
-    postLists<T extends Post$postListsArgs<ExtArgs> = {}>(args?: Subset<T, Post$postListsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PostListPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -12209,10 +12075,9 @@ export namespace Prisma {
     readonly id: FieldRef<"Post", 'Int'>
     readonly userId: FieldRef<"Post", 'Int'>
     readonly title: FieldRef<"Post", 'String'>
-    readonly type: FieldRef<"Post", 'String'>
+    readonly type: FieldRef<"Post", 'PostType'>
     readonly description: FieldRef<"Post", 'String'>
-    readonly tags: FieldRef<"Post", 'String'>
-    readonly category: FieldRef<"Post", 'String'>
+    readonly createdAt: FieldRef<"Post", 'DateTime'>
   }
     
 
@@ -12642,30 +12507,6 @@ export namespace Prisma {
   }
 
   /**
-   * Post.postLists
-   */
-  export type Post$postListsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the PostList
-     */
-    select?: PostListSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the PostList
-     */
-    omit?: PostListOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: PostListInclude<ExtArgs> | null
-    where?: PostListWhereInput
-    orderBy?: PostListOrderByWithRelationInput | PostListOrderByWithRelationInput[]
-    cursor?: PostListWhereUniqueInput
-    take?: number
-    skip?: number
-    distinct?: PostListScalarFieldEnum | PostListScalarFieldEnum[]
-  }
-
-  /**
    * Post without action
    */
   export type PostDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -12681,1097 +12522,6 @@ export namespace Prisma {
      * Choose, which related nodes to fetch as well
      */
     include?: PostInclude<ExtArgs> | null
-  }
-
-
-  /**
-   * Model PostList
-   */
-
-  export type AggregatePostList = {
-    _count: PostListCountAggregateOutputType | null
-    _avg: PostListAvgAggregateOutputType | null
-    _sum: PostListSumAggregateOutputType | null
-    _min: PostListMinAggregateOutputType | null
-    _max: PostListMaxAggregateOutputType | null
-  }
-
-  export type PostListAvgAggregateOutputType = {
-    id: number | null
-    postId: number | null
-    userId: number | null
-  }
-
-  export type PostListSumAggregateOutputType = {
-    id: number | null
-    postId: number | null
-    userId: number | null
-  }
-
-  export type PostListMinAggregateOutputType = {
-    id: number | null
-    postId: number | null
-    userId: number | null
-  }
-
-  export type PostListMaxAggregateOutputType = {
-    id: number | null
-    postId: number | null
-    userId: number | null
-  }
-
-  export type PostListCountAggregateOutputType = {
-    id: number
-    postId: number
-    userId: number
-    _all: number
-  }
-
-
-  export type PostListAvgAggregateInputType = {
-    id?: true
-    postId?: true
-    userId?: true
-  }
-
-  export type PostListSumAggregateInputType = {
-    id?: true
-    postId?: true
-    userId?: true
-  }
-
-  export type PostListMinAggregateInputType = {
-    id?: true
-    postId?: true
-    userId?: true
-  }
-
-  export type PostListMaxAggregateInputType = {
-    id?: true
-    postId?: true
-    userId?: true
-  }
-
-  export type PostListCountAggregateInputType = {
-    id?: true
-    postId?: true
-    userId?: true
-    _all?: true
-  }
-
-  export type PostListAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Filter which PostList to aggregate.
-     */
-    where?: PostListWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of PostLists to fetch.
-     */
-    orderBy?: PostListOrderByWithRelationInput | PostListOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the start position
-     */
-    cursor?: PostListWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` PostLists from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` PostLists.
-     */
-    skip?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Count returned PostLists
-    **/
-    _count?: true | PostListCountAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to average
-    **/
-    _avg?: PostListAvgAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to sum
-    **/
-    _sum?: PostListSumAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to find the minimum value
-    **/
-    _min?: PostListMinAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to find the maximum value
-    **/
-    _max?: PostListMaxAggregateInputType
-  }
-
-  export type GetPostListAggregateType<T extends PostListAggregateArgs> = {
-        [P in keyof T & keyof AggregatePostList]: P extends '_count' | 'count'
-      ? T[P] extends true
-        ? number
-        : GetScalarType<T[P], AggregatePostList[P]>
-      : GetScalarType<T[P], AggregatePostList[P]>
-  }
-
-
-
-
-  export type PostListGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: PostListWhereInput
-    orderBy?: PostListOrderByWithAggregationInput | PostListOrderByWithAggregationInput[]
-    by: PostListScalarFieldEnum[] | PostListScalarFieldEnum
-    having?: PostListScalarWhereWithAggregatesInput
-    take?: number
-    skip?: number
-    _count?: PostListCountAggregateInputType | true
-    _avg?: PostListAvgAggregateInputType
-    _sum?: PostListSumAggregateInputType
-    _min?: PostListMinAggregateInputType
-    _max?: PostListMaxAggregateInputType
-  }
-
-  export type PostListGroupByOutputType = {
-    id: number
-    postId: number
-    userId: number
-    _count: PostListCountAggregateOutputType | null
-    _avg: PostListAvgAggregateOutputType | null
-    _sum: PostListSumAggregateOutputType | null
-    _min: PostListMinAggregateOutputType | null
-    _max: PostListMaxAggregateOutputType | null
-  }
-
-  type GetPostListGroupByPayload<T extends PostListGroupByArgs> = Prisma.PrismaPromise<
-    Array<
-      PickEnumerable<PostListGroupByOutputType, T['by']> &
-        {
-          [P in ((keyof T) & (keyof PostListGroupByOutputType))]: P extends '_count'
-            ? T[P] extends boolean
-              ? number
-              : GetScalarType<T[P], PostListGroupByOutputType[P]>
-            : GetScalarType<T[P], PostListGroupByOutputType[P]>
-        }
-      >
-    >
-
-
-  export type PostListSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    id?: boolean
-    postId?: boolean
-    userId?: boolean
-    post?: boolean | PostDefaultArgs<ExtArgs>
-    user?: boolean | UserDefaultArgs<ExtArgs>
-  }, ExtArgs["result"]["postList"]>
-
-  export type PostListSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    id?: boolean
-    postId?: boolean
-    userId?: boolean
-    post?: boolean | PostDefaultArgs<ExtArgs>
-    user?: boolean | UserDefaultArgs<ExtArgs>
-  }, ExtArgs["result"]["postList"]>
-
-  export type PostListSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    id?: boolean
-    postId?: boolean
-    userId?: boolean
-    post?: boolean | PostDefaultArgs<ExtArgs>
-    user?: boolean | UserDefaultArgs<ExtArgs>
-  }, ExtArgs["result"]["postList"]>
-
-  export type PostListSelectScalar = {
-    id?: boolean
-    postId?: boolean
-    userId?: boolean
-  }
-
-  export type PostListOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "postId" | "userId", ExtArgs["result"]["postList"]>
-  export type PostListInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    post?: boolean | PostDefaultArgs<ExtArgs>
-    user?: boolean | UserDefaultArgs<ExtArgs>
-  }
-  export type PostListIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    post?: boolean | PostDefaultArgs<ExtArgs>
-    user?: boolean | UserDefaultArgs<ExtArgs>
-  }
-  export type PostListIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    post?: boolean | PostDefaultArgs<ExtArgs>
-    user?: boolean | UserDefaultArgs<ExtArgs>
-  }
-
-  export type $PostListPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    name: "PostList"
-    objects: {
-      post: Prisma.$PostPayload<ExtArgs>
-      user: Prisma.$UserPayload<ExtArgs>
-    }
-    scalars: $Extensions.GetPayloadResult<{
-      id: number
-      postId: number
-      userId: number
-    }, ExtArgs["result"]["postList"]>
-    composites: {}
-  }
-
-  type PostListGetPayload<S extends boolean | null | undefined | PostListDefaultArgs> = $Result.GetResult<Prisma.$PostListPayload, S>
-
-  type PostListCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
-    Omit<PostListFindManyArgs, 'select' | 'include' | 'distinct' | 'omit' | 'relationLoadStrategy'> & {
-      select?: PostListCountAggregateInputType | true
-    }
-
-  export interface PostListDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
-    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['PostList'], meta: { name: 'PostList' } }
-    /**
-     * Find zero or one PostList that matches the filter.
-     * @param {PostListFindUniqueArgs} args - Arguments to find a PostList
-     * @example
-     * // Get one PostList
-     * const postList = await prisma.postList.findUnique({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findUnique<T extends PostListFindUniqueArgs>(args: SelectSubset<T, PostListFindUniqueArgs<ExtArgs>>): Prisma__PostListClient<$Result.GetResult<Prisma.$PostListPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Find one PostList that matches the filter or throw an error with `error.code='P2025'`
-     * if no matches were found.
-     * @param {PostListFindUniqueOrThrowArgs} args - Arguments to find a PostList
-     * @example
-     * // Get one PostList
-     * const postList = await prisma.postList.findUniqueOrThrow({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findUniqueOrThrow<T extends PostListFindUniqueOrThrowArgs>(args: SelectSubset<T, PostListFindUniqueOrThrowArgs<ExtArgs>>): Prisma__PostListClient<$Result.GetResult<Prisma.$PostListPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Find the first PostList that matches the filter.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {PostListFindFirstArgs} args - Arguments to find a PostList
-     * @example
-     * // Get one PostList
-     * const postList = await prisma.postList.findFirst({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findFirst<T extends PostListFindFirstArgs>(args?: SelectSubset<T, PostListFindFirstArgs<ExtArgs>>): Prisma__PostListClient<$Result.GetResult<Prisma.$PostListPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Find the first PostList that matches the filter or
-     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {PostListFindFirstOrThrowArgs} args - Arguments to find a PostList
-     * @example
-     * // Get one PostList
-     * const postList = await prisma.postList.findFirstOrThrow({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findFirstOrThrow<T extends PostListFindFirstOrThrowArgs>(args?: SelectSubset<T, PostListFindFirstOrThrowArgs<ExtArgs>>): Prisma__PostListClient<$Result.GetResult<Prisma.$PostListPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Find zero or more PostLists that matches the filter.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {PostListFindManyArgs} args - Arguments to filter and select certain fields only.
-     * @example
-     * // Get all PostLists
-     * const postLists = await prisma.postList.findMany()
-     * 
-     * // Get first 10 PostLists
-     * const postLists = await prisma.postList.findMany({ take: 10 })
-     * 
-     * // Only select the `id`
-     * const postListWithIdOnly = await prisma.postList.findMany({ select: { id: true } })
-     * 
-     */
-    findMany<T extends PostListFindManyArgs>(args?: SelectSubset<T, PostListFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PostListPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
-
-    /**
-     * Create a PostList.
-     * @param {PostListCreateArgs} args - Arguments to create a PostList.
-     * @example
-     * // Create one PostList
-     * const PostList = await prisma.postList.create({
-     *   data: {
-     *     // ... data to create a PostList
-     *   }
-     * })
-     * 
-     */
-    create<T extends PostListCreateArgs>(args: SelectSubset<T, PostListCreateArgs<ExtArgs>>): Prisma__PostListClient<$Result.GetResult<Prisma.$PostListPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Create many PostLists.
-     * @param {PostListCreateManyArgs} args - Arguments to create many PostLists.
-     * @example
-     * // Create many PostLists
-     * const postList = await prisma.postList.createMany({
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     *     
-     */
-    createMany<T extends PostListCreateManyArgs>(args?: SelectSubset<T, PostListCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
-
-    /**
-     * Create many PostLists and returns the data saved in the database.
-     * @param {PostListCreateManyAndReturnArgs} args - Arguments to create many PostLists.
-     * @example
-     * // Create many PostLists
-     * const postList = await prisma.postList.createManyAndReturn({
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     * 
-     * // Create many PostLists and only return the `id`
-     * const postListWithIdOnly = await prisma.postList.createManyAndReturn({
-     *   select: { id: true },
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * 
-     */
-    createManyAndReturn<T extends PostListCreateManyAndReturnArgs>(args?: SelectSubset<T, PostListCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PostListPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
-
-    /**
-     * Delete a PostList.
-     * @param {PostListDeleteArgs} args - Arguments to delete one PostList.
-     * @example
-     * // Delete one PostList
-     * const PostList = await prisma.postList.delete({
-     *   where: {
-     *     // ... filter to delete one PostList
-     *   }
-     * })
-     * 
-     */
-    delete<T extends PostListDeleteArgs>(args: SelectSubset<T, PostListDeleteArgs<ExtArgs>>): Prisma__PostListClient<$Result.GetResult<Prisma.$PostListPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Update one PostList.
-     * @param {PostListUpdateArgs} args - Arguments to update one PostList.
-     * @example
-     * // Update one PostList
-     * const postList = await prisma.postList.update({
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: {
-     *     // ... provide data here
-     *   }
-     * })
-     * 
-     */
-    update<T extends PostListUpdateArgs>(args: SelectSubset<T, PostListUpdateArgs<ExtArgs>>): Prisma__PostListClient<$Result.GetResult<Prisma.$PostListPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Delete zero or more PostLists.
-     * @param {PostListDeleteManyArgs} args - Arguments to filter PostLists to delete.
-     * @example
-     * // Delete a few PostLists
-     * const { count } = await prisma.postList.deleteMany({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     * 
-     */
-    deleteMany<T extends PostListDeleteManyArgs>(args?: SelectSubset<T, PostListDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
-
-    /**
-     * Update zero or more PostLists.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {PostListUpdateManyArgs} args - Arguments to update one or more rows.
-     * @example
-     * // Update many PostLists
-     * const postList = await prisma.postList.updateMany({
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: {
-     *     // ... provide data here
-     *   }
-     * })
-     * 
-     */
-    updateMany<T extends PostListUpdateManyArgs>(args: SelectSubset<T, PostListUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
-
-    /**
-     * Update zero or more PostLists and returns the data updated in the database.
-     * @param {PostListUpdateManyAndReturnArgs} args - Arguments to update many PostLists.
-     * @example
-     * // Update many PostLists
-     * const postList = await prisma.postList.updateManyAndReturn({
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     * 
-     * // Update zero or more PostLists and only return the `id`
-     * const postListWithIdOnly = await prisma.postList.updateManyAndReturn({
-     *   select: { id: true },
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * 
-     */
-    updateManyAndReturn<T extends PostListUpdateManyAndReturnArgs>(args: SelectSubset<T, PostListUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PostListPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
-
-    /**
-     * Create or update one PostList.
-     * @param {PostListUpsertArgs} args - Arguments to update or create a PostList.
-     * @example
-     * // Update or create a PostList
-     * const postList = await prisma.postList.upsert({
-     *   create: {
-     *     // ... data to create a PostList
-     *   },
-     *   update: {
-     *     // ... in case it already exists, update
-     *   },
-     *   where: {
-     *     // ... the filter for the PostList we want to update
-     *   }
-     * })
-     */
-    upsert<T extends PostListUpsertArgs>(args: SelectSubset<T, PostListUpsertArgs<ExtArgs>>): Prisma__PostListClient<$Result.GetResult<Prisma.$PostListPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-
-    /**
-     * Count the number of PostLists.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {PostListCountArgs} args - Arguments to filter PostLists to count.
-     * @example
-     * // Count the number of PostLists
-     * const count = await prisma.postList.count({
-     *   where: {
-     *     // ... the filter for the PostLists we want to count
-     *   }
-     * })
-    **/
-    count<T extends PostListCountArgs>(
-      args?: Subset<T, PostListCountArgs>,
-    ): Prisma.PrismaPromise<
-      T extends $Utils.Record<'select', any>
-        ? T['select'] extends true
-          ? number
-          : GetScalarType<T['select'], PostListCountAggregateOutputType>
-        : number
-    >
-
-    /**
-     * Allows you to perform aggregations operations on a PostList.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {PostListAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
-     * @example
-     * // Ordered by age ascending
-     * // Where email contains prisma.io
-     * // Limited to the 10 users
-     * const aggregations = await prisma.user.aggregate({
-     *   _avg: {
-     *     age: true,
-     *   },
-     *   where: {
-     *     email: {
-     *       contains: "prisma.io",
-     *     },
-     *   },
-     *   orderBy: {
-     *     age: "asc",
-     *   },
-     *   take: 10,
-     * })
-    **/
-    aggregate<T extends PostListAggregateArgs>(args: Subset<T, PostListAggregateArgs>): Prisma.PrismaPromise<GetPostListAggregateType<T>>
-
-    /**
-     * Group by PostList.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {PostListGroupByArgs} args - Group by arguments.
-     * @example
-     * // Group by city, order by createdAt, get count
-     * const result = await prisma.user.groupBy({
-     *   by: ['city', 'createdAt'],
-     *   orderBy: {
-     *     createdAt: true
-     *   },
-     *   _count: {
-     *     _all: true
-     *   },
-     * })
-     * 
-    **/
-    groupBy<
-      T extends PostListGroupByArgs,
-      HasSelectOrTake extends Or<
-        Extends<'skip', Keys<T>>,
-        Extends<'take', Keys<T>>
-      >,
-      OrderByArg extends True extends HasSelectOrTake
-        ? { orderBy: PostListGroupByArgs['orderBy'] }
-        : { orderBy?: PostListGroupByArgs['orderBy'] },
-      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
-      ByFields extends MaybeTupleToUnion<T['by']>,
-      ByValid extends Has<ByFields, OrderFields>,
-      HavingFields extends GetHavingFields<T['having']>,
-      HavingValid extends Has<ByFields, HavingFields>,
-      ByEmpty extends T['by'] extends never[] ? True : False,
-      InputErrors extends ByEmpty extends True
-      ? `Error: "by" must not be empty.`
-      : HavingValid extends False
-      ? {
-          [P in HavingFields]: P extends ByFields
-            ? never
-            : P extends string
-            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
-            : [
-                Error,
-                'Field ',
-                P,
-                ` in "having" needs to be provided in "by"`,
-              ]
-        }[HavingFields]
-      : 'take' extends Keys<T>
-      ? 'orderBy' extends Keys<T>
-        ? ByValid extends True
-          ? {}
-          : {
-              [P in OrderFields]: P extends ByFields
-                ? never
-                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-            }[OrderFields]
-        : 'Error: If you provide "take", you also need to provide "orderBy"'
-      : 'skip' extends Keys<T>
-      ? 'orderBy' extends Keys<T>
-        ? ByValid extends True
-          ? {}
-          : {
-              [P in OrderFields]: P extends ByFields
-                ? never
-                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-            }[OrderFields]
-        : 'Error: If you provide "skip", you also need to provide "orderBy"'
-      : ByValid extends True
-      ? {}
-      : {
-          [P in OrderFields]: P extends ByFields
-            ? never
-            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-        }[OrderFields]
-    >(args: SubsetIntersection<T, PostListGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetPostListGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
-  /**
-   * Fields of the PostList model
-   */
-  readonly fields: PostListFieldRefs;
-  }
-
-  /**
-   * The delegate class that acts as a "Promise-like" for PostList.
-   * Why is this prefixed with `Prisma__`?
-   * Because we want to prevent naming conflicts as mentioned in
-   * https://github.com/prisma/prisma-client-js/issues/707
-   */
-  export interface Prisma__PostListClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
-    readonly [Symbol.toStringTag]: "PrismaPromise"
-    post<T extends PostDefaultArgs<ExtArgs> = {}>(args?: Subset<T, PostDefaultArgs<ExtArgs>>): Prisma__PostClient<$Result.GetResult<Prisma.$PostPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
-    user<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
-    /**
-     * Attaches callbacks for the resolution and/or rejection of the Promise.
-     * @param onfulfilled The callback to execute when the Promise is resolved.
-     * @param onrejected The callback to execute when the Promise is rejected.
-     * @returns A Promise for the completion of which ever callback is executed.
-     */
-    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
-    /**
-     * Attaches a callback for only the rejection of the Promise.
-     * @param onrejected The callback to execute when the Promise is rejected.
-     * @returns A Promise for the completion of the callback.
-     */
-    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
-    /**
-     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
-     * resolved value cannot be modified from the callback.
-     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
-     * @returns A Promise for the completion of the callback.
-     */
-    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
-  }
-
-
-
-
-  /**
-   * Fields of the PostList model
-   */
-  interface PostListFieldRefs {
-    readonly id: FieldRef<"PostList", 'Int'>
-    readonly postId: FieldRef<"PostList", 'Int'>
-    readonly userId: FieldRef<"PostList", 'Int'>
-  }
-    
-
-  // Custom InputTypes
-  /**
-   * PostList findUnique
-   */
-  export type PostListFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the PostList
-     */
-    select?: PostListSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the PostList
-     */
-    omit?: PostListOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: PostListInclude<ExtArgs> | null
-    /**
-     * Filter, which PostList to fetch.
-     */
-    where: PostListWhereUniqueInput
-    relationLoadStrategy?: RelationLoadStrategy
-  }
-
-  /**
-   * PostList findUniqueOrThrow
-   */
-  export type PostListFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the PostList
-     */
-    select?: PostListSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the PostList
-     */
-    omit?: PostListOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: PostListInclude<ExtArgs> | null
-    /**
-     * Filter, which PostList to fetch.
-     */
-    where: PostListWhereUniqueInput
-    relationLoadStrategy?: RelationLoadStrategy
-  }
-
-  /**
-   * PostList findFirst
-   */
-  export type PostListFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the PostList
-     */
-    select?: PostListSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the PostList
-     */
-    omit?: PostListOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: PostListInclude<ExtArgs> | null
-    /**
-     * Filter, which PostList to fetch.
-     */
-    where?: PostListWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of PostLists to fetch.
-     */
-    orderBy?: PostListOrderByWithRelationInput | PostListOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the position for searching for PostLists.
-     */
-    cursor?: PostListWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` PostLists from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` PostLists.
-     */
-    skip?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
-     * 
-     * Filter by unique combinations of PostLists.
-     */
-    distinct?: PostListScalarFieldEnum | PostListScalarFieldEnum[]
-    relationLoadStrategy?: RelationLoadStrategy
-  }
-
-  /**
-   * PostList findFirstOrThrow
-   */
-  export type PostListFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the PostList
-     */
-    select?: PostListSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the PostList
-     */
-    omit?: PostListOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: PostListInclude<ExtArgs> | null
-    /**
-     * Filter, which PostList to fetch.
-     */
-    where?: PostListWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of PostLists to fetch.
-     */
-    orderBy?: PostListOrderByWithRelationInput | PostListOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the position for searching for PostLists.
-     */
-    cursor?: PostListWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` PostLists from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` PostLists.
-     */
-    skip?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
-     * 
-     * Filter by unique combinations of PostLists.
-     */
-    distinct?: PostListScalarFieldEnum | PostListScalarFieldEnum[]
-    relationLoadStrategy?: RelationLoadStrategy
-  }
-
-  /**
-   * PostList findMany
-   */
-  export type PostListFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the PostList
-     */
-    select?: PostListSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the PostList
-     */
-    omit?: PostListOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: PostListInclude<ExtArgs> | null
-    /**
-     * Filter, which PostLists to fetch.
-     */
-    where?: PostListWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of PostLists to fetch.
-     */
-    orderBy?: PostListOrderByWithRelationInput | PostListOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the position for listing PostLists.
-     */
-    cursor?: PostListWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` PostLists from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` PostLists.
-     */
-    skip?: number
-    distinct?: PostListScalarFieldEnum | PostListScalarFieldEnum[]
-    relationLoadStrategy?: RelationLoadStrategy
-  }
-
-  /**
-   * PostList create
-   */
-  export type PostListCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the PostList
-     */
-    select?: PostListSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the PostList
-     */
-    omit?: PostListOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: PostListInclude<ExtArgs> | null
-    /**
-     * The data needed to create a PostList.
-     */
-    data: XOR<PostListCreateInput, PostListUncheckedCreateInput>
-    relationLoadStrategy?: RelationLoadStrategy
-  }
-
-  /**
-   * PostList createMany
-   */
-  export type PostListCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * The data used to create many PostLists.
-     */
-    data: PostListCreateManyInput | PostListCreateManyInput[]
-    skipDuplicates?: boolean
-  }
-
-  /**
-   * PostList createManyAndReturn
-   */
-  export type PostListCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the PostList
-     */
-    select?: PostListSelectCreateManyAndReturn<ExtArgs> | null
-    /**
-     * Omit specific fields from the PostList
-     */
-    omit?: PostListOmit<ExtArgs> | null
-    /**
-     * The data used to create many PostLists.
-     */
-    data: PostListCreateManyInput | PostListCreateManyInput[]
-    skipDuplicates?: boolean
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: PostListIncludeCreateManyAndReturn<ExtArgs> | null
-  }
-
-  /**
-   * PostList update
-   */
-  export type PostListUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the PostList
-     */
-    select?: PostListSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the PostList
-     */
-    omit?: PostListOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: PostListInclude<ExtArgs> | null
-    /**
-     * The data needed to update a PostList.
-     */
-    data: XOR<PostListUpdateInput, PostListUncheckedUpdateInput>
-    /**
-     * Choose, which PostList to update.
-     */
-    where: PostListWhereUniqueInput
-    relationLoadStrategy?: RelationLoadStrategy
-  }
-
-  /**
-   * PostList updateMany
-   */
-  export type PostListUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * The data used to update PostLists.
-     */
-    data: XOR<PostListUpdateManyMutationInput, PostListUncheckedUpdateManyInput>
-    /**
-     * Filter which PostLists to update
-     */
-    where?: PostListWhereInput
-    /**
-     * Limit how many PostLists to update.
-     */
-    limit?: number
-  }
-
-  /**
-   * PostList updateManyAndReturn
-   */
-  export type PostListUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the PostList
-     */
-    select?: PostListSelectUpdateManyAndReturn<ExtArgs> | null
-    /**
-     * Omit specific fields from the PostList
-     */
-    omit?: PostListOmit<ExtArgs> | null
-    /**
-     * The data used to update PostLists.
-     */
-    data: XOR<PostListUpdateManyMutationInput, PostListUncheckedUpdateManyInput>
-    /**
-     * Filter which PostLists to update
-     */
-    where?: PostListWhereInput
-    /**
-     * Limit how many PostLists to update.
-     */
-    limit?: number
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: PostListIncludeUpdateManyAndReturn<ExtArgs> | null
-  }
-
-  /**
-   * PostList upsert
-   */
-  export type PostListUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the PostList
-     */
-    select?: PostListSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the PostList
-     */
-    omit?: PostListOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: PostListInclude<ExtArgs> | null
-    /**
-     * The filter to search for the PostList to update in case it exists.
-     */
-    where: PostListWhereUniqueInput
-    /**
-     * In case the PostList found by the `where` argument doesn't exist, create a new PostList with this data.
-     */
-    create: XOR<PostListCreateInput, PostListUncheckedCreateInput>
-    /**
-     * In case the PostList was found with the provided `where` argument, update it with this data.
-     */
-    update: XOR<PostListUpdateInput, PostListUncheckedUpdateInput>
-    relationLoadStrategy?: RelationLoadStrategy
-  }
-
-  /**
-   * PostList delete
-   */
-  export type PostListDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the PostList
-     */
-    select?: PostListSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the PostList
-     */
-    omit?: PostListOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: PostListInclude<ExtArgs> | null
-    /**
-     * Filter which PostList to delete.
-     */
-    where: PostListWhereUniqueInput
-    relationLoadStrategy?: RelationLoadStrategy
-  }
-
-  /**
-   * PostList deleteMany
-   */
-  export type PostListDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Filter which PostLists to delete
-     */
-    where?: PostListWhereInput
-    /**
-     * Limit how many PostLists to delete.
-     */
-    limit?: number
-  }
-
-  /**
-   * PostList without action
-   */
-  export type PostListDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the PostList
-     */
-    select?: PostListSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the PostList
-     */
-    omit?: PostListOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: PostListInclude<ExtArgs> | null
   }
 
 
@@ -18276,20 +17026,10 @@ export namespace Prisma {
     title: 'title',
     type: 'type',
     description: 'description',
-    tags: 'tags',
-    category: 'category'
+    createdAt: 'createdAt'
   };
 
   export type PostScalarFieldEnum = (typeof PostScalarFieldEnum)[keyof typeof PostScalarFieldEnum]
-
-
-  export const PostListScalarFieldEnum: {
-    id: 'id',
-    postId: 'postId',
-    userId: 'userId'
-  };
-
-  export type PostListScalarFieldEnum = (typeof PostListScalarFieldEnum)[keyof typeof PostListScalarFieldEnum]
 
 
   export const InterestedListScalarFieldEnum: {
@@ -18409,6 +17149,20 @@ export namespace Prisma {
 
 
   /**
+   * Reference to a field of type 'PostType'
+   */
+  export type EnumPostTypeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'PostType'>
+    
+
+
+  /**
+   * Reference to a field of type 'PostType[]'
+   */
+  export type ListEnumPostTypeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'PostType[]'>
+    
+
+
+  /**
    * Reference to a field of type 'Float'
    */
   export type FloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float'>
@@ -18446,7 +17200,6 @@ export namespace Prisma {
     outgoingConnections?: OutgoingConnectionListRelationFilter
     ReceiveoutgoingConnections?: OutgoingConnectionListRelationFilter
     posts?: PostListRelationFilter
-    postLists?: PostListListRelationFilter
     projects?: ProjectListRelationFilter
     showcase?: XOR<ShowcaseNullableScalarRelationFilter, ShowcaseWhereInput> | null
     technicalProfile?: XOR<TechnicalProfileNullableScalarRelationFilter, TechnicalProfileWhereInput> | null
@@ -18471,7 +17224,6 @@ export namespace Prisma {
     outgoingConnections?: OutgoingConnectionOrderByRelationAggregateInput
     ReceiveoutgoingConnections?: OutgoingConnectionOrderByRelationAggregateInput
     posts?: PostOrderByRelationAggregateInput
-    postLists?: PostListOrderByRelationAggregateInput
     projects?: ProjectOrderByRelationAggregateInput
     showcase?: ShowcaseOrderByWithRelationInput
     technicalProfile?: TechnicalProfileOrderByWithRelationInput
@@ -18499,7 +17251,6 @@ export namespace Prisma {
     outgoingConnections?: OutgoingConnectionListRelationFilter
     ReceiveoutgoingConnections?: OutgoingConnectionListRelationFilter
     posts?: PostListRelationFilter
-    postLists?: PostListListRelationFilter
     projects?: ProjectListRelationFilter
     showcase?: XOR<ShowcaseNullableScalarRelationFilter, ShowcaseWhereInput> | null
     technicalProfile?: XOR<TechnicalProfileNullableScalarRelationFilter, TechnicalProfileWhereInput> | null
@@ -18965,13 +17716,11 @@ export namespace Prisma {
     id?: IntFilter<"Post"> | number
     userId?: IntFilter<"Post"> | number
     title?: StringFilter<"Post"> | string
-    type?: StringFilter<"Post"> | string
+    type?: EnumPostTypeFilter<"Post"> | $Enums.PostType
     description?: StringNullableFilter<"Post"> | string | null
-    tags?: StringNullableFilter<"Post"> | string | null
-    category?: StringNullableFilter<"Post"> | string | null
+    createdAt?: DateTimeFilter<"Post"> | Date | string
     interested?: InterestedListListRelationFilter
     user?: XOR<UserScalarRelationFilter, UserWhereInput>
-    postLists?: PostListListRelationFilter
   }
 
   export type PostOrderByWithRelationInput = {
@@ -18980,11 +17729,9 @@ export namespace Prisma {
     title?: SortOrder
     type?: SortOrder
     description?: SortOrderInput | SortOrder
-    tags?: SortOrderInput | SortOrder
-    category?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
     interested?: InterestedListOrderByRelationAggregateInput
     user?: UserOrderByWithRelationInput
-    postLists?: PostListOrderByRelationAggregateInput
   }
 
   export type PostWhereUniqueInput = Prisma.AtLeast<{
@@ -18994,13 +17741,11 @@ export namespace Prisma {
     NOT?: PostWhereInput | PostWhereInput[]
     userId?: IntFilter<"Post"> | number
     title?: StringFilter<"Post"> | string
-    type?: StringFilter<"Post"> | string
+    type?: EnumPostTypeFilter<"Post"> | $Enums.PostType
     description?: StringNullableFilter<"Post"> | string | null
-    tags?: StringNullableFilter<"Post"> | string | null
-    category?: StringNullableFilter<"Post"> | string | null
+    createdAt?: DateTimeFilter<"Post"> | Date | string
     interested?: InterestedListListRelationFilter
     user?: XOR<UserScalarRelationFilter, UserWhereInput>
-    postLists?: PostListListRelationFilter
   }, "id">
 
   export type PostOrderByWithAggregationInput = {
@@ -19009,8 +17754,7 @@ export namespace Prisma {
     title?: SortOrder
     type?: SortOrder
     description?: SortOrderInput | SortOrder
-    tags?: SortOrderInput | SortOrder
-    category?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
     _count?: PostCountOrderByAggregateInput
     _avg?: PostAvgOrderByAggregateInput
     _max?: PostMaxOrderByAggregateInput
@@ -19025,60 +17769,9 @@ export namespace Prisma {
     id?: IntWithAggregatesFilter<"Post"> | number
     userId?: IntWithAggregatesFilter<"Post"> | number
     title?: StringWithAggregatesFilter<"Post"> | string
-    type?: StringWithAggregatesFilter<"Post"> | string
+    type?: EnumPostTypeWithAggregatesFilter<"Post"> | $Enums.PostType
     description?: StringNullableWithAggregatesFilter<"Post"> | string | null
-    tags?: StringNullableWithAggregatesFilter<"Post"> | string | null
-    category?: StringNullableWithAggregatesFilter<"Post"> | string | null
-  }
-
-  export type PostListWhereInput = {
-    AND?: PostListWhereInput | PostListWhereInput[]
-    OR?: PostListWhereInput[]
-    NOT?: PostListWhereInput | PostListWhereInput[]
-    id?: IntFilter<"PostList"> | number
-    postId?: IntFilter<"PostList"> | number
-    userId?: IntFilter<"PostList"> | number
-    post?: XOR<PostScalarRelationFilter, PostWhereInput>
-    user?: XOR<UserScalarRelationFilter, UserWhereInput>
-  }
-
-  export type PostListOrderByWithRelationInput = {
-    id?: SortOrder
-    postId?: SortOrder
-    userId?: SortOrder
-    post?: PostOrderByWithRelationInput
-    user?: UserOrderByWithRelationInput
-  }
-
-  export type PostListWhereUniqueInput = Prisma.AtLeast<{
-    id?: number
-    AND?: PostListWhereInput | PostListWhereInput[]
-    OR?: PostListWhereInput[]
-    NOT?: PostListWhereInput | PostListWhereInput[]
-    postId?: IntFilter<"PostList"> | number
-    userId?: IntFilter<"PostList"> | number
-    post?: XOR<PostScalarRelationFilter, PostWhereInput>
-    user?: XOR<UserScalarRelationFilter, UserWhereInput>
-  }, "id">
-
-  export type PostListOrderByWithAggregationInput = {
-    id?: SortOrder
-    postId?: SortOrder
-    userId?: SortOrder
-    _count?: PostListCountOrderByAggregateInput
-    _avg?: PostListAvgOrderByAggregateInput
-    _max?: PostListMaxOrderByAggregateInput
-    _min?: PostListMinOrderByAggregateInput
-    _sum?: PostListSumOrderByAggregateInput
-  }
-
-  export type PostListScalarWhereWithAggregatesInput = {
-    AND?: PostListScalarWhereWithAggregatesInput | PostListScalarWhereWithAggregatesInput[]
-    OR?: PostListScalarWhereWithAggregatesInput[]
-    NOT?: PostListScalarWhereWithAggregatesInput | PostListScalarWhereWithAggregatesInput[]
-    id?: IntWithAggregatesFilter<"PostList"> | number
-    postId?: IntWithAggregatesFilter<"PostList"> | number
-    userId?: IntWithAggregatesFilter<"PostList"> | number
+    createdAt?: DateTimeWithAggregatesFilter<"Post"> | Date | string
   }
 
   export type InterestedListWhereInput = {
@@ -19308,7 +18001,6 @@ export namespace Prisma {
     outgoingConnections?: OutgoingConnectionCreateNestedManyWithoutReceiverInput
     ReceiveoutgoingConnections?: OutgoingConnectionCreateNestedManyWithoutSenderInput
     posts?: PostCreateNestedManyWithoutUserInput
-    postLists?: PostListCreateNestedManyWithoutUserInput
     projects?: ProjectCreateNestedManyWithoutUserInput
     showcase?: ShowcaseCreateNestedOneWithoutUserInput
     technicalProfile?: TechnicalProfileCreateNestedOneWithoutUserInput
@@ -19333,7 +18025,6 @@ export namespace Prisma {
     outgoingConnections?: OutgoingConnectionUncheckedCreateNestedManyWithoutReceiverInput
     ReceiveoutgoingConnections?: OutgoingConnectionUncheckedCreateNestedManyWithoutSenderInput
     posts?: PostUncheckedCreateNestedManyWithoutUserInput
-    postLists?: PostListUncheckedCreateNestedManyWithoutUserInput
     projects?: ProjectUncheckedCreateNestedManyWithoutUserInput
     showcase?: ShowcaseUncheckedCreateNestedOneWithoutUserInput
     technicalProfile?: TechnicalProfileUncheckedCreateNestedOneWithoutUserInput
@@ -19357,7 +18048,6 @@ export namespace Prisma {
     outgoingConnections?: OutgoingConnectionUpdateManyWithoutReceiverNestedInput
     ReceiveoutgoingConnections?: OutgoingConnectionUpdateManyWithoutSenderNestedInput
     posts?: PostUpdateManyWithoutUserNestedInput
-    postLists?: PostListUpdateManyWithoutUserNestedInput
     projects?: ProjectUpdateManyWithoutUserNestedInput
     showcase?: ShowcaseUpdateOneWithoutUserNestedInput
     technicalProfile?: TechnicalProfileUpdateOneWithoutUserNestedInput
@@ -19382,7 +18072,6 @@ export namespace Prisma {
     outgoingConnections?: OutgoingConnectionUncheckedUpdateManyWithoutReceiverNestedInput
     ReceiveoutgoingConnections?: OutgoingConnectionUncheckedUpdateManyWithoutSenderNestedInput
     posts?: PostUncheckedUpdateManyWithoutUserNestedInput
-    postLists?: PostListUncheckedUpdateManyWithoutUserNestedInput
     projects?: ProjectUncheckedUpdateManyWithoutUserNestedInput
     showcase?: ShowcaseUncheckedUpdateOneWithoutUserNestedInput
     technicalProfile?: TechnicalProfileUncheckedUpdateOneWithoutUserNestedInput
@@ -19819,114 +18508,65 @@ export namespace Prisma {
 
   export type PostCreateInput = {
     title: string
-    type: string
+    type?: $Enums.PostType
     description?: string | null
-    tags?: string | null
-    category?: string | null
+    createdAt?: Date | string
     interested?: InterestedListCreateNestedManyWithoutPostInput
     user: UserCreateNestedOneWithoutPostsInput
-    postLists?: PostListCreateNestedManyWithoutPostInput
   }
 
   export type PostUncheckedCreateInput = {
     id?: number
     userId: number
     title: string
-    type: string
+    type?: $Enums.PostType
     description?: string | null
-    tags?: string | null
-    category?: string | null
+    createdAt?: Date | string
     interested?: InterestedListUncheckedCreateNestedManyWithoutPostInput
-    postLists?: PostListUncheckedCreateNestedManyWithoutPostInput
   }
 
   export type PostUpdateInput = {
     title?: StringFieldUpdateOperationsInput | string
-    type?: StringFieldUpdateOperationsInput | string
+    type?: EnumPostTypeFieldUpdateOperationsInput | $Enums.PostType
     description?: NullableStringFieldUpdateOperationsInput | string | null
-    tags?: NullableStringFieldUpdateOperationsInput | string | null
-    category?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     interested?: InterestedListUpdateManyWithoutPostNestedInput
     user?: UserUpdateOneRequiredWithoutPostsNestedInput
-    postLists?: PostListUpdateManyWithoutPostNestedInput
   }
 
   export type PostUncheckedUpdateInput = {
     id?: IntFieldUpdateOperationsInput | number
     userId?: IntFieldUpdateOperationsInput | number
     title?: StringFieldUpdateOperationsInput | string
-    type?: StringFieldUpdateOperationsInput | string
+    type?: EnumPostTypeFieldUpdateOperationsInput | $Enums.PostType
     description?: NullableStringFieldUpdateOperationsInput | string | null
-    tags?: NullableStringFieldUpdateOperationsInput | string | null
-    category?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     interested?: InterestedListUncheckedUpdateManyWithoutPostNestedInput
-    postLists?: PostListUncheckedUpdateManyWithoutPostNestedInput
   }
 
   export type PostCreateManyInput = {
     id?: number
     userId: number
     title: string
-    type: string
+    type?: $Enums.PostType
     description?: string | null
-    tags?: string | null
-    category?: string | null
+    createdAt?: Date | string
   }
 
   export type PostUpdateManyMutationInput = {
     title?: StringFieldUpdateOperationsInput | string
-    type?: StringFieldUpdateOperationsInput | string
+    type?: EnumPostTypeFieldUpdateOperationsInput | $Enums.PostType
     description?: NullableStringFieldUpdateOperationsInput | string | null
-    tags?: NullableStringFieldUpdateOperationsInput | string | null
-    category?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type PostUncheckedUpdateManyInput = {
     id?: IntFieldUpdateOperationsInput | number
     userId?: IntFieldUpdateOperationsInput | number
     title?: StringFieldUpdateOperationsInput | string
-    type?: StringFieldUpdateOperationsInput | string
+    type?: EnumPostTypeFieldUpdateOperationsInput | $Enums.PostType
     description?: NullableStringFieldUpdateOperationsInput | string | null
-    tags?: NullableStringFieldUpdateOperationsInput | string | null
-    category?: NullableStringFieldUpdateOperationsInput | string | null
-  }
-
-  export type PostListCreateInput = {
-    post: PostCreateNestedOneWithoutPostListsInput
-    user: UserCreateNestedOneWithoutPostListsInput
-  }
-
-  export type PostListUncheckedCreateInput = {
-    id?: number
-    postId: number
-    userId: number
-  }
-
-  export type PostListUpdateInput = {
-    post?: PostUpdateOneRequiredWithoutPostListsNestedInput
-    user?: UserUpdateOneRequiredWithoutPostListsNestedInput
-  }
-
-  export type PostListUncheckedUpdateInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    postId?: IntFieldUpdateOperationsInput | number
-    userId?: IntFieldUpdateOperationsInput | number
-  }
-
-  export type PostListCreateManyInput = {
-    id?: number
-    postId: number
-    userId: number
-  }
-
-  export type PostListUpdateManyMutationInput = {
-
-  }
-
-  export type PostListUncheckedUpdateManyInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    postId?: IntFieldUpdateOperationsInput | number
-    userId?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type InterestedListCreateInput = {
@@ -20200,12 +18840,6 @@ export namespace Prisma {
     none?: PostWhereInput
   }
 
-  export type PostListListRelationFilter = {
-    every?: PostListWhereInput
-    some?: PostListWhereInput
-    none?: PostListWhereInput
-  }
-
   export type ProjectListRelationFilter = {
     every?: ProjectWhereInput
     some?: ProjectWhereInput
@@ -20245,10 +18879,6 @@ export namespace Prisma {
   }
 
   export type PostOrderByRelationAggregateInput = {
-    _count?: SortOrder
-  }
-
-  export type PostListOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
@@ -20688,6 +19318,13 @@ export namespace Prisma {
     userId?: SortOrder
   }
 
+  export type EnumPostTypeFilter<$PrismaModel = never> = {
+    equals?: $Enums.PostType | EnumPostTypeFieldRefInput<$PrismaModel>
+    in?: $Enums.PostType[] | ListEnumPostTypeFieldRefInput<$PrismaModel>
+    notIn?: $Enums.PostType[] | ListEnumPostTypeFieldRefInput<$PrismaModel>
+    not?: NestedEnumPostTypeFilter<$PrismaModel> | $Enums.PostType
+  }
+
   export type InterestedListListRelationFilter = {
     every?: InterestedListWhereInput
     some?: InterestedListWhereInput
@@ -20704,8 +19341,7 @@ export namespace Prisma {
     title?: SortOrder
     type?: SortOrder
     description?: SortOrder
-    tags?: SortOrder
-    category?: SortOrder
+    createdAt?: SortOrder
   }
 
   export type PostAvgOrderByAggregateInput = {
@@ -20719,8 +19355,7 @@ export namespace Prisma {
     title?: SortOrder
     type?: SortOrder
     description?: SortOrder
-    tags?: SortOrder
-    category?: SortOrder
+    createdAt?: SortOrder
   }
 
   export type PostMinOrderByAggregateInput = {
@@ -20729,8 +19364,7 @@ export namespace Prisma {
     title?: SortOrder
     type?: SortOrder
     description?: SortOrder
-    tags?: SortOrder
-    category?: SortOrder
+    createdAt?: SortOrder
   }
 
   export type PostSumOrderByAggregateInput = {
@@ -20738,39 +19372,19 @@ export namespace Prisma {
     userId?: SortOrder
   }
 
+  export type EnumPostTypeWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.PostType | EnumPostTypeFieldRefInput<$PrismaModel>
+    in?: $Enums.PostType[] | ListEnumPostTypeFieldRefInput<$PrismaModel>
+    notIn?: $Enums.PostType[] | ListEnumPostTypeFieldRefInput<$PrismaModel>
+    not?: NestedEnumPostTypeWithAggregatesFilter<$PrismaModel> | $Enums.PostType
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumPostTypeFilter<$PrismaModel>
+    _max?: NestedEnumPostTypeFilter<$PrismaModel>
+  }
+
   export type PostScalarRelationFilter = {
     is?: PostWhereInput
     isNot?: PostWhereInput
-  }
-
-  export type PostListCountOrderByAggregateInput = {
-    id?: SortOrder
-    postId?: SortOrder
-    userId?: SortOrder
-  }
-
-  export type PostListAvgOrderByAggregateInput = {
-    id?: SortOrder
-    postId?: SortOrder
-    userId?: SortOrder
-  }
-
-  export type PostListMaxOrderByAggregateInput = {
-    id?: SortOrder
-    postId?: SortOrder
-    userId?: SortOrder
-  }
-
-  export type PostListMinOrderByAggregateInput = {
-    id?: SortOrder
-    postId?: SortOrder
-    userId?: SortOrder
-  }
-
-  export type PostListSumOrderByAggregateInput = {
-    id?: SortOrder
-    postId?: SortOrder
-    userId?: SortOrder
   }
 
   export type InterestedListCountOrderByAggregateInput = {
@@ -20979,13 +19593,6 @@ export namespace Prisma {
     connect?: PostWhereUniqueInput | PostWhereUniqueInput[]
   }
 
-  export type PostListCreateNestedManyWithoutUserInput = {
-    create?: XOR<PostListCreateWithoutUserInput, PostListUncheckedCreateWithoutUserInput> | PostListCreateWithoutUserInput[] | PostListUncheckedCreateWithoutUserInput[]
-    connectOrCreate?: PostListCreateOrConnectWithoutUserInput | PostListCreateOrConnectWithoutUserInput[]
-    createMany?: PostListCreateManyUserInputEnvelope
-    connect?: PostListWhereUniqueInput | PostListWhereUniqueInput[]
-  }
-
   export type ProjectCreateNestedManyWithoutUserInput = {
     create?: XOR<ProjectCreateWithoutUserInput, ProjectUncheckedCreateWithoutUserInput> | ProjectCreateWithoutUserInput[] | ProjectUncheckedCreateWithoutUserInput[]
     connectOrCreate?: ProjectCreateOrConnectWithoutUserInput | ProjectCreateOrConnectWithoutUserInput[]
@@ -21076,13 +19683,6 @@ export namespace Prisma {
     connectOrCreate?: PostCreateOrConnectWithoutUserInput | PostCreateOrConnectWithoutUserInput[]
     createMany?: PostCreateManyUserInputEnvelope
     connect?: PostWhereUniqueInput | PostWhereUniqueInput[]
-  }
-
-  export type PostListUncheckedCreateNestedManyWithoutUserInput = {
-    create?: XOR<PostListCreateWithoutUserInput, PostListUncheckedCreateWithoutUserInput> | PostListCreateWithoutUserInput[] | PostListUncheckedCreateWithoutUserInput[]
-    connectOrCreate?: PostListCreateOrConnectWithoutUserInput | PostListCreateOrConnectWithoutUserInput[]
-    createMany?: PostListCreateManyUserInputEnvelope
-    connect?: PostListWhereUniqueInput | PostListWhereUniqueInput[]
   }
 
   export type ProjectUncheckedCreateNestedManyWithoutUserInput = {
@@ -21256,20 +19856,6 @@ export namespace Prisma {
     update?: PostUpdateWithWhereUniqueWithoutUserInput | PostUpdateWithWhereUniqueWithoutUserInput[]
     updateMany?: PostUpdateManyWithWhereWithoutUserInput | PostUpdateManyWithWhereWithoutUserInput[]
     deleteMany?: PostScalarWhereInput | PostScalarWhereInput[]
-  }
-
-  export type PostListUpdateManyWithoutUserNestedInput = {
-    create?: XOR<PostListCreateWithoutUserInput, PostListUncheckedCreateWithoutUserInput> | PostListCreateWithoutUserInput[] | PostListUncheckedCreateWithoutUserInput[]
-    connectOrCreate?: PostListCreateOrConnectWithoutUserInput | PostListCreateOrConnectWithoutUserInput[]
-    upsert?: PostListUpsertWithWhereUniqueWithoutUserInput | PostListUpsertWithWhereUniqueWithoutUserInput[]
-    createMany?: PostListCreateManyUserInputEnvelope
-    set?: PostListWhereUniqueInput | PostListWhereUniqueInput[]
-    disconnect?: PostListWhereUniqueInput | PostListWhereUniqueInput[]
-    delete?: PostListWhereUniqueInput | PostListWhereUniqueInput[]
-    connect?: PostListWhereUniqueInput | PostListWhereUniqueInput[]
-    update?: PostListUpdateWithWhereUniqueWithoutUserInput | PostListUpdateWithWhereUniqueWithoutUserInput[]
-    updateMany?: PostListUpdateManyWithWhereWithoutUserInput | PostListUpdateManyWithWhereWithoutUserInput[]
-    deleteMany?: PostListScalarWhereInput | PostListScalarWhereInput[]
   }
 
   export type ProjectUpdateManyWithoutUserNestedInput = {
@@ -21450,20 +20036,6 @@ export namespace Prisma {
     update?: PostUpdateWithWhereUniqueWithoutUserInput | PostUpdateWithWhereUniqueWithoutUserInput[]
     updateMany?: PostUpdateManyWithWhereWithoutUserInput | PostUpdateManyWithWhereWithoutUserInput[]
     deleteMany?: PostScalarWhereInput | PostScalarWhereInput[]
-  }
-
-  export type PostListUncheckedUpdateManyWithoutUserNestedInput = {
-    create?: XOR<PostListCreateWithoutUserInput, PostListUncheckedCreateWithoutUserInput> | PostListCreateWithoutUserInput[] | PostListUncheckedCreateWithoutUserInput[]
-    connectOrCreate?: PostListCreateOrConnectWithoutUserInput | PostListCreateOrConnectWithoutUserInput[]
-    upsert?: PostListUpsertWithWhereUniqueWithoutUserInput | PostListUpsertWithWhereUniqueWithoutUserInput[]
-    createMany?: PostListCreateManyUserInputEnvelope
-    set?: PostListWhereUniqueInput | PostListWhereUniqueInput[]
-    disconnect?: PostListWhereUniqueInput | PostListWhereUniqueInput[]
-    delete?: PostListWhereUniqueInput | PostListWhereUniqueInput[]
-    connect?: PostListWhereUniqueInput | PostListWhereUniqueInput[]
-    update?: PostListUpdateWithWhereUniqueWithoutUserInput | PostListUpdateWithWhereUniqueWithoutUserInput[]
-    updateMany?: PostListUpdateManyWithWhereWithoutUserInput | PostListUpdateManyWithWhereWithoutUserInput[]
-    deleteMany?: PostListScalarWhereInput | PostListScalarWhereInput[]
   }
 
   export type ProjectUncheckedUpdateManyWithoutUserNestedInput = {
@@ -21651,13 +20223,6 @@ export namespace Prisma {
     connect?: UserWhereUniqueInput
   }
 
-  export type PostListCreateNestedManyWithoutPostInput = {
-    create?: XOR<PostListCreateWithoutPostInput, PostListUncheckedCreateWithoutPostInput> | PostListCreateWithoutPostInput[] | PostListUncheckedCreateWithoutPostInput[]
-    connectOrCreate?: PostListCreateOrConnectWithoutPostInput | PostListCreateOrConnectWithoutPostInput[]
-    createMany?: PostListCreateManyPostInputEnvelope
-    connect?: PostListWhereUniqueInput | PostListWhereUniqueInput[]
-  }
-
   export type InterestedListUncheckedCreateNestedManyWithoutPostInput = {
     create?: XOR<InterestedListCreateWithoutPostInput, InterestedListUncheckedCreateWithoutPostInput> | InterestedListCreateWithoutPostInput[] | InterestedListUncheckedCreateWithoutPostInput[]
     connectOrCreate?: InterestedListCreateOrConnectWithoutPostInput | InterestedListCreateOrConnectWithoutPostInput[]
@@ -21665,11 +20230,8 @@ export namespace Prisma {
     connect?: InterestedListWhereUniqueInput | InterestedListWhereUniqueInput[]
   }
 
-  export type PostListUncheckedCreateNestedManyWithoutPostInput = {
-    create?: XOR<PostListCreateWithoutPostInput, PostListUncheckedCreateWithoutPostInput> | PostListCreateWithoutPostInput[] | PostListUncheckedCreateWithoutPostInput[]
-    connectOrCreate?: PostListCreateOrConnectWithoutPostInput | PostListCreateOrConnectWithoutPostInput[]
-    createMany?: PostListCreateManyPostInputEnvelope
-    connect?: PostListWhereUniqueInput | PostListWhereUniqueInput[]
+  export type EnumPostTypeFieldUpdateOperationsInput = {
+    set?: $Enums.PostType
   }
 
   export type InterestedListUpdateManyWithoutPostNestedInput = {
@@ -21694,20 +20256,6 @@ export namespace Prisma {
     update?: XOR<XOR<UserUpdateToOneWithWhereWithoutPostsInput, UserUpdateWithoutPostsInput>, UserUncheckedUpdateWithoutPostsInput>
   }
 
-  export type PostListUpdateManyWithoutPostNestedInput = {
-    create?: XOR<PostListCreateWithoutPostInput, PostListUncheckedCreateWithoutPostInput> | PostListCreateWithoutPostInput[] | PostListUncheckedCreateWithoutPostInput[]
-    connectOrCreate?: PostListCreateOrConnectWithoutPostInput | PostListCreateOrConnectWithoutPostInput[]
-    upsert?: PostListUpsertWithWhereUniqueWithoutPostInput | PostListUpsertWithWhereUniqueWithoutPostInput[]
-    createMany?: PostListCreateManyPostInputEnvelope
-    set?: PostListWhereUniqueInput | PostListWhereUniqueInput[]
-    disconnect?: PostListWhereUniqueInput | PostListWhereUniqueInput[]
-    delete?: PostListWhereUniqueInput | PostListWhereUniqueInput[]
-    connect?: PostListWhereUniqueInput | PostListWhereUniqueInput[]
-    update?: PostListUpdateWithWhereUniqueWithoutPostInput | PostListUpdateWithWhereUniqueWithoutPostInput[]
-    updateMany?: PostListUpdateManyWithWhereWithoutPostInput | PostListUpdateManyWithWhereWithoutPostInput[]
-    deleteMany?: PostListScalarWhereInput | PostListScalarWhereInput[]
-  }
-
   export type InterestedListUncheckedUpdateManyWithoutPostNestedInput = {
     create?: XOR<InterestedListCreateWithoutPostInput, InterestedListUncheckedCreateWithoutPostInput> | InterestedListCreateWithoutPostInput[] | InterestedListUncheckedCreateWithoutPostInput[]
     connectOrCreate?: InterestedListCreateOrConnectWithoutPostInput | InterestedListCreateOrConnectWithoutPostInput[]
@@ -21720,48 +20268,6 @@ export namespace Prisma {
     update?: InterestedListUpdateWithWhereUniqueWithoutPostInput | InterestedListUpdateWithWhereUniqueWithoutPostInput[]
     updateMany?: InterestedListUpdateManyWithWhereWithoutPostInput | InterestedListUpdateManyWithWhereWithoutPostInput[]
     deleteMany?: InterestedListScalarWhereInput | InterestedListScalarWhereInput[]
-  }
-
-  export type PostListUncheckedUpdateManyWithoutPostNestedInput = {
-    create?: XOR<PostListCreateWithoutPostInput, PostListUncheckedCreateWithoutPostInput> | PostListCreateWithoutPostInput[] | PostListUncheckedCreateWithoutPostInput[]
-    connectOrCreate?: PostListCreateOrConnectWithoutPostInput | PostListCreateOrConnectWithoutPostInput[]
-    upsert?: PostListUpsertWithWhereUniqueWithoutPostInput | PostListUpsertWithWhereUniqueWithoutPostInput[]
-    createMany?: PostListCreateManyPostInputEnvelope
-    set?: PostListWhereUniqueInput | PostListWhereUniqueInput[]
-    disconnect?: PostListWhereUniqueInput | PostListWhereUniqueInput[]
-    delete?: PostListWhereUniqueInput | PostListWhereUniqueInput[]
-    connect?: PostListWhereUniqueInput | PostListWhereUniqueInput[]
-    update?: PostListUpdateWithWhereUniqueWithoutPostInput | PostListUpdateWithWhereUniqueWithoutPostInput[]
-    updateMany?: PostListUpdateManyWithWhereWithoutPostInput | PostListUpdateManyWithWhereWithoutPostInput[]
-    deleteMany?: PostListScalarWhereInput | PostListScalarWhereInput[]
-  }
-
-  export type PostCreateNestedOneWithoutPostListsInput = {
-    create?: XOR<PostCreateWithoutPostListsInput, PostUncheckedCreateWithoutPostListsInput>
-    connectOrCreate?: PostCreateOrConnectWithoutPostListsInput
-    connect?: PostWhereUniqueInput
-  }
-
-  export type UserCreateNestedOneWithoutPostListsInput = {
-    create?: XOR<UserCreateWithoutPostListsInput, UserUncheckedCreateWithoutPostListsInput>
-    connectOrCreate?: UserCreateOrConnectWithoutPostListsInput
-    connect?: UserWhereUniqueInput
-  }
-
-  export type PostUpdateOneRequiredWithoutPostListsNestedInput = {
-    create?: XOR<PostCreateWithoutPostListsInput, PostUncheckedCreateWithoutPostListsInput>
-    connectOrCreate?: PostCreateOrConnectWithoutPostListsInput
-    upsert?: PostUpsertWithoutPostListsInput
-    connect?: PostWhereUniqueInput
-    update?: XOR<XOR<PostUpdateToOneWithWhereWithoutPostListsInput, PostUpdateWithoutPostListsInput>, PostUncheckedUpdateWithoutPostListsInput>
-  }
-
-  export type UserUpdateOneRequiredWithoutPostListsNestedInput = {
-    create?: XOR<UserCreateWithoutPostListsInput, UserUncheckedCreateWithoutPostListsInput>
-    connectOrCreate?: UserCreateOrConnectWithoutPostListsInput
-    upsert?: UserUpsertWithoutPostListsInput
-    connect?: UserWhereUniqueInput
-    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutPostListsInput, UserUpdateWithoutPostListsInput>, UserUncheckedUpdateWithoutPostListsInput>
   }
 
   export type PostCreateNestedOneWithoutInterestedInput = {
@@ -22076,6 +20582,23 @@ export namespace Prisma {
     _max?: NestedBoolNullableFilter<$PrismaModel>
   }
 
+  export type NestedEnumPostTypeFilter<$PrismaModel = never> = {
+    equals?: $Enums.PostType | EnumPostTypeFieldRefInput<$PrismaModel>
+    in?: $Enums.PostType[] | ListEnumPostTypeFieldRefInput<$PrismaModel>
+    notIn?: $Enums.PostType[] | ListEnumPostTypeFieldRefInput<$PrismaModel>
+    not?: NestedEnumPostTypeFilter<$PrismaModel> | $Enums.PostType
+  }
+
+  export type NestedEnumPostTypeWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.PostType | EnumPostTypeFieldRefInput<$PrismaModel>
+    in?: $Enums.PostType[] | ListEnumPostTypeFieldRefInput<$PrismaModel>
+    notIn?: $Enums.PostType[] | ListEnumPostTypeFieldRefInput<$PrismaModel>
+    not?: NestedEnumPostTypeWithAggregatesFilter<$PrismaModel> | $Enums.PostType
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumPostTypeFilter<$PrismaModel>
+    _max?: NestedEnumPostTypeFilter<$PrismaModel>
+  }
+
   export type BasicInfoCreateWithoutUserInput = {
     fullName?: string | null
     Institute?: string | null
@@ -22264,23 +20787,19 @@ export namespace Prisma {
 
   export type PostCreateWithoutUserInput = {
     title: string
-    type: string
+    type?: $Enums.PostType
     description?: string | null
-    tags?: string | null
-    category?: string | null
+    createdAt?: Date | string
     interested?: InterestedListCreateNestedManyWithoutPostInput
-    postLists?: PostListCreateNestedManyWithoutPostInput
   }
 
   export type PostUncheckedCreateWithoutUserInput = {
     id?: number
     title: string
-    type: string
+    type?: $Enums.PostType
     description?: string | null
-    tags?: string | null
-    category?: string | null
+    createdAt?: Date | string
     interested?: InterestedListUncheckedCreateNestedManyWithoutPostInput
-    postLists?: PostListUncheckedCreateNestedManyWithoutPostInput
   }
 
   export type PostCreateOrConnectWithoutUserInput = {
@@ -22290,25 +20809,6 @@ export namespace Prisma {
 
   export type PostCreateManyUserInputEnvelope = {
     data: PostCreateManyUserInput | PostCreateManyUserInput[]
-    skipDuplicates?: boolean
-  }
-
-  export type PostListCreateWithoutUserInput = {
-    post: PostCreateNestedOneWithoutPostListsInput
-  }
-
-  export type PostListUncheckedCreateWithoutUserInput = {
-    id?: number
-    postId: number
-  }
-
-  export type PostListCreateOrConnectWithoutUserInput = {
-    where: PostListWhereUniqueInput
-    create: XOR<PostListCreateWithoutUserInput, PostListUncheckedCreateWithoutUserInput>
-  }
-
-  export type PostListCreateManyUserInputEnvelope = {
-    data: PostListCreateManyUserInput | PostListCreateManyUserInput[]
     skipDuplicates?: boolean
   }
 
@@ -22620,35 +21120,9 @@ export namespace Prisma {
     id?: IntFilter<"Post"> | number
     userId?: IntFilter<"Post"> | number
     title?: StringFilter<"Post"> | string
-    type?: StringFilter<"Post"> | string
+    type?: EnumPostTypeFilter<"Post"> | $Enums.PostType
     description?: StringNullableFilter<"Post"> | string | null
-    tags?: StringNullableFilter<"Post"> | string | null
-    category?: StringNullableFilter<"Post"> | string | null
-  }
-
-  export type PostListUpsertWithWhereUniqueWithoutUserInput = {
-    where: PostListWhereUniqueInput
-    update: XOR<PostListUpdateWithoutUserInput, PostListUncheckedUpdateWithoutUserInput>
-    create: XOR<PostListCreateWithoutUserInput, PostListUncheckedCreateWithoutUserInput>
-  }
-
-  export type PostListUpdateWithWhereUniqueWithoutUserInput = {
-    where: PostListWhereUniqueInput
-    data: XOR<PostListUpdateWithoutUserInput, PostListUncheckedUpdateWithoutUserInput>
-  }
-
-  export type PostListUpdateManyWithWhereWithoutUserInput = {
-    where: PostListScalarWhereInput
-    data: XOR<PostListUpdateManyMutationInput, PostListUncheckedUpdateManyWithoutUserInput>
-  }
-
-  export type PostListScalarWhereInput = {
-    AND?: PostListScalarWhereInput | PostListScalarWhereInput[]
-    OR?: PostListScalarWhereInput[]
-    NOT?: PostListScalarWhereInput | PostListScalarWhereInput[]
-    id?: IntFilter<"PostList"> | number
-    postId?: IntFilter<"PostList"> | number
-    userId?: IntFilter<"PostList"> | number
+    createdAt?: DateTimeFilter<"Post"> | Date | string
   }
 
   export type ProjectUpsertWithWhereUniqueWithoutUserInput = {
@@ -22769,7 +21243,6 @@ export namespace Prisma {
     outgoingConnections?: OutgoingConnectionCreateNestedManyWithoutReceiverInput
     ReceiveoutgoingConnections?: OutgoingConnectionCreateNestedManyWithoutSenderInput
     posts?: PostCreateNestedManyWithoutUserInput
-    postLists?: PostListCreateNestedManyWithoutUserInput
     projects?: ProjectCreateNestedManyWithoutUserInput
     showcase?: ShowcaseCreateNestedOneWithoutUserInput
     technicalProfile?: TechnicalProfileCreateNestedOneWithoutUserInput
@@ -22793,7 +21266,6 @@ export namespace Prisma {
     outgoingConnections?: OutgoingConnectionUncheckedCreateNestedManyWithoutReceiverInput
     ReceiveoutgoingConnections?: OutgoingConnectionUncheckedCreateNestedManyWithoutSenderInput
     posts?: PostUncheckedCreateNestedManyWithoutUserInput
-    postLists?: PostListUncheckedCreateNestedManyWithoutUserInput
     projects?: ProjectUncheckedCreateNestedManyWithoutUserInput
     showcase?: ShowcaseUncheckedCreateNestedOneWithoutUserInput
     technicalProfile?: TechnicalProfileUncheckedCreateNestedOneWithoutUserInput
@@ -22832,7 +21304,6 @@ export namespace Prisma {
     outgoingConnections?: OutgoingConnectionUpdateManyWithoutReceiverNestedInput
     ReceiveoutgoingConnections?: OutgoingConnectionUpdateManyWithoutSenderNestedInput
     posts?: PostUpdateManyWithoutUserNestedInput
-    postLists?: PostListUpdateManyWithoutUserNestedInput
     projects?: ProjectUpdateManyWithoutUserNestedInput
     showcase?: ShowcaseUpdateOneWithoutUserNestedInput
     technicalProfile?: TechnicalProfileUpdateOneWithoutUserNestedInput
@@ -22856,7 +21327,6 @@ export namespace Prisma {
     outgoingConnections?: OutgoingConnectionUncheckedUpdateManyWithoutReceiverNestedInput
     ReceiveoutgoingConnections?: OutgoingConnectionUncheckedUpdateManyWithoutSenderNestedInput
     posts?: PostUncheckedUpdateManyWithoutUserNestedInput
-    postLists?: PostListUncheckedUpdateManyWithoutUserNestedInput
     projects?: ProjectUncheckedUpdateManyWithoutUserNestedInput
     showcase?: ShowcaseUncheckedUpdateOneWithoutUserNestedInput
     technicalProfile?: TechnicalProfileUncheckedUpdateOneWithoutUserNestedInput
@@ -22880,7 +21350,6 @@ export namespace Prisma {
     outgoingConnections?: OutgoingConnectionCreateNestedManyWithoutReceiverInput
     ReceiveoutgoingConnections?: OutgoingConnectionCreateNestedManyWithoutSenderInput
     posts?: PostCreateNestedManyWithoutUserInput
-    postLists?: PostListCreateNestedManyWithoutUserInput
     projects?: ProjectCreateNestedManyWithoutUserInput
     showcase?: ShowcaseCreateNestedOneWithoutUserInput
     visuals?: VisualsCreateNestedOneWithoutUserInput
@@ -22904,7 +21373,6 @@ export namespace Prisma {
     outgoingConnections?: OutgoingConnectionUncheckedCreateNestedManyWithoutReceiverInput
     ReceiveoutgoingConnections?: OutgoingConnectionUncheckedCreateNestedManyWithoutSenderInput
     posts?: PostUncheckedCreateNestedManyWithoutUserInput
-    postLists?: PostListUncheckedCreateNestedManyWithoutUserInput
     projects?: ProjectUncheckedCreateNestedManyWithoutUserInput
     showcase?: ShowcaseUncheckedCreateNestedOneWithoutUserInput
     visuals?: VisualsUncheckedCreateNestedOneWithoutUserInput
@@ -22943,7 +21411,6 @@ export namespace Prisma {
     outgoingConnections?: OutgoingConnectionUpdateManyWithoutReceiverNestedInput
     ReceiveoutgoingConnections?: OutgoingConnectionUpdateManyWithoutSenderNestedInput
     posts?: PostUpdateManyWithoutUserNestedInput
-    postLists?: PostListUpdateManyWithoutUserNestedInput
     projects?: ProjectUpdateManyWithoutUserNestedInput
     showcase?: ShowcaseUpdateOneWithoutUserNestedInput
     visuals?: VisualsUpdateOneWithoutUserNestedInput
@@ -22967,7 +21434,6 @@ export namespace Prisma {
     outgoingConnections?: OutgoingConnectionUncheckedUpdateManyWithoutReceiverNestedInput
     ReceiveoutgoingConnections?: OutgoingConnectionUncheckedUpdateManyWithoutSenderNestedInput
     posts?: PostUncheckedUpdateManyWithoutUserNestedInput
-    postLists?: PostListUncheckedUpdateManyWithoutUserNestedInput
     projects?: ProjectUncheckedUpdateManyWithoutUserNestedInput
     showcase?: ShowcaseUncheckedUpdateOneWithoutUserNestedInput
     visuals?: VisualsUncheckedUpdateOneWithoutUserNestedInput
@@ -22989,7 +21455,6 @@ export namespace Prisma {
     outgoingConnections?: OutgoingConnectionCreateNestedManyWithoutReceiverInput
     ReceiveoutgoingConnections?: OutgoingConnectionCreateNestedManyWithoutSenderInput
     posts?: PostCreateNestedManyWithoutUserInput
-    postLists?: PostListCreateNestedManyWithoutUserInput
     projects?: ProjectCreateNestedManyWithoutUserInput
     showcase?: ShowcaseCreateNestedOneWithoutUserInput
     technicalProfile?: TechnicalProfileCreateNestedOneWithoutUserInput
@@ -23013,7 +21478,6 @@ export namespace Prisma {
     outgoingConnections?: OutgoingConnectionUncheckedCreateNestedManyWithoutReceiverInput
     ReceiveoutgoingConnections?: OutgoingConnectionUncheckedCreateNestedManyWithoutSenderInput
     posts?: PostUncheckedCreateNestedManyWithoutUserInput
-    postLists?: PostListUncheckedCreateNestedManyWithoutUserInput
     projects?: ProjectUncheckedCreateNestedManyWithoutUserInput
     showcase?: ShowcaseUncheckedCreateNestedOneWithoutUserInput
     technicalProfile?: TechnicalProfileUncheckedCreateNestedOneWithoutUserInput
@@ -23052,7 +21516,6 @@ export namespace Prisma {
     outgoingConnections?: OutgoingConnectionUpdateManyWithoutReceiverNestedInput
     ReceiveoutgoingConnections?: OutgoingConnectionUpdateManyWithoutSenderNestedInput
     posts?: PostUpdateManyWithoutUserNestedInput
-    postLists?: PostListUpdateManyWithoutUserNestedInput
     projects?: ProjectUpdateManyWithoutUserNestedInput
     showcase?: ShowcaseUpdateOneWithoutUserNestedInput
     technicalProfile?: TechnicalProfileUpdateOneWithoutUserNestedInput
@@ -23076,7 +21539,6 @@ export namespace Prisma {
     outgoingConnections?: OutgoingConnectionUncheckedUpdateManyWithoutReceiverNestedInput
     ReceiveoutgoingConnections?: OutgoingConnectionUncheckedUpdateManyWithoutSenderNestedInput
     posts?: PostUncheckedUpdateManyWithoutUserNestedInput
-    postLists?: PostListUncheckedUpdateManyWithoutUserNestedInput
     projects?: ProjectUncheckedUpdateManyWithoutUserNestedInput
     showcase?: ShowcaseUncheckedUpdateOneWithoutUserNestedInput
     technicalProfile?: TechnicalProfileUncheckedUpdateOneWithoutUserNestedInput
@@ -23100,7 +21562,6 @@ export namespace Prisma {
     outgoingConnections?: OutgoingConnectionCreateNestedManyWithoutReceiverInput
     ReceiveoutgoingConnections?: OutgoingConnectionCreateNestedManyWithoutSenderInput
     posts?: PostCreateNestedManyWithoutUserInput
-    postLists?: PostListCreateNestedManyWithoutUserInput
     projects?: ProjectCreateNestedManyWithoutUserInput
     technicalProfile?: TechnicalProfileCreateNestedOneWithoutUserInput
     visuals?: VisualsCreateNestedOneWithoutUserInput
@@ -23124,7 +21585,6 @@ export namespace Prisma {
     outgoingConnections?: OutgoingConnectionUncheckedCreateNestedManyWithoutReceiverInput
     ReceiveoutgoingConnections?: OutgoingConnectionUncheckedCreateNestedManyWithoutSenderInput
     posts?: PostUncheckedCreateNestedManyWithoutUserInput
-    postLists?: PostListUncheckedCreateNestedManyWithoutUserInput
     projects?: ProjectUncheckedCreateNestedManyWithoutUserInput
     technicalProfile?: TechnicalProfileUncheckedCreateNestedOneWithoutUserInput
     visuals?: VisualsUncheckedCreateNestedOneWithoutUserInput
@@ -23163,7 +21623,6 @@ export namespace Prisma {
     outgoingConnections?: OutgoingConnectionUpdateManyWithoutReceiverNestedInput
     ReceiveoutgoingConnections?: OutgoingConnectionUpdateManyWithoutSenderNestedInput
     posts?: PostUpdateManyWithoutUserNestedInput
-    postLists?: PostListUpdateManyWithoutUserNestedInput
     projects?: ProjectUpdateManyWithoutUserNestedInput
     technicalProfile?: TechnicalProfileUpdateOneWithoutUserNestedInput
     visuals?: VisualsUpdateOneWithoutUserNestedInput
@@ -23187,7 +21646,6 @@ export namespace Prisma {
     outgoingConnections?: OutgoingConnectionUncheckedUpdateManyWithoutReceiverNestedInput
     ReceiveoutgoingConnections?: OutgoingConnectionUncheckedUpdateManyWithoutSenderNestedInput
     posts?: PostUncheckedUpdateManyWithoutUserNestedInput
-    postLists?: PostListUncheckedUpdateManyWithoutUserNestedInput
     projects?: ProjectUncheckedUpdateManyWithoutUserNestedInput
     technicalProfile?: TechnicalProfileUncheckedUpdateOneWithoutUserNestedInput
     visuals?: VisualsUncheckedUpdateOneWithoutUserNestedInput
@@ -23210,7 +21668,6 @@ export namespace Prisma {
     outgoingConnections?: OutgoingConnectionCreateNestedManyWithoutReceiverInput
     ReceiveoutgoingConnections?: OutgoingConnectionCreateNestedManyWithoutSenderInput
     posts?: PostCreateNestedManyWithoutUserInput
-    postLists?: PostListCreateNestedManyWithoutUserInput
     showcase?: ShowcaseCreateNestedOneWithoutUserInput
     technicalProfile?: TechnicalProfileCreateNestedOneWithoutUserInput
     visuals?: VisualsCreateNestedOneWithoutUserInput
@@ -23234,7 +21691,6 @@ export namespace Prisma {
     outgoingConnections?: OutgoingConnectionUncheckedCreateNestedManyWithoutReceiverInput
     ReceiveoutgoingConnections?: OutgoingConnectionUncheckedCreateNestedManyWithoutSenderInput
     posts?: PostUncheckedCreateNestedManyWithoutUserInput
-    postLists?: PostListUncheckedCreateNestedManyWithoutUserInput
     showcase?: ShowcaseUncheckedCreateNestedOneWithoutUserInput
     technicalProfile?: TechnicalProfileUncheckedCreateNestedOneWithoutUserInput
     visuals?: VisualsUncheckedCreateNestedOneWithoutUserInput
@@ -23273,7 +21729,6 @@ export namespace Prisma {
     outgoingConnections?: OutgoingConnectionUpdateManyWithoutReceiverNestedInput
     ReceiveoutgoingConnections?: OutgoingConnectionUpdateManyWithoutSenderNestedInput
     posts?: PostUpdateManyWithoutUserNestedInput
-    postLists?: PostListUpdateManyWithoutUserNestedInput
     showcase?: ShowcaseUpdateOneWithoutUserNestedInput
     technicalProfile?: TechnicalProfileUpdateOneWithoutUserNestedInput
     visuals?: VisualsUpdateOneWithoutUserNestedInput
@@ -23297,7 +21752,6 @@ export namespace Prisma {
     outgoingConnections?: OutgoingConnectionUncheckedUpdateManyWithoutReceiverNestedInput
     ReceiveoutgoingConnections?: OutgoingConnectionUncheckedUpdateManyWithoutSenderNestedInput
     posts?: PostUncheckedUpdateManyWithoutUserNestedInput
-    postLists?: PostListUncheckedUpdateManyWithoutUserNestedInput
     showcase?: ShowcaseUncheckedUpdateOneWithoutUserNestedInput
     technicalProfile?: TechnicalProfileUncheckedUpdateOneWithoutUserNestedInput
     visuals?: VisualsUncheckedUpdateOneWithoutUserNestedInput
@@ -23319,7 +21773,6 @@ export namespace Prisma {
     outgoingConnections?: OutgoingConnectionCreateNestedManyWithoutReceiverInput
     ReceiveoutgoingConnections?: OutgoingConnectionCreateNestedManyWithoutSenderInput
     posts?: PostCreateNestedManyWithoutUserInput
-    postLists?: PostListCreateNestedManyWithoutUserInput
     projects?: ProjectCreateNestedManyWithoutUserInput
     showcase?: ShowcaseCreateNestedOneWithoutUserInput
     technicalProfile?: TechnicalProfileCreateNestedOneWithoutUserInput
@@ -23343,7 +21796,6 @@ export namespace Prisma {
     outgoingConnections?: OutgoingConnectionUncheckedCreateNestedManyWithoutReceiverInput
     ReceiveoutgoingConnections?: OutgoingConnectionUncheckedCreateNestedManyWithoutSenderInput
     posts?: PostUncheckedCreateNestedManyWithoutUserInput
-    postLists?: PostListUncheckedCreateNestedManyWithoutUserInput
     projects?: ProjectUncheckedCreateNestedManyWithoutUserInput
     showcase?: ShowcaseUncheckedCreateNestedOneWithoutUserInput
     technicalProfile?: TechnicalProfileUncheckedCreateNestedOneWithoutUserInput
@@ -23382,7 +21834,6 @@ export namespace Prisma {
     outgoingConnections?: OutgoingConnectionUpdateManyWithoutReceiverNestedInput
     ReceiveoutgoingConnections?: OutgoingConnectionUpdateManyWithoutSenderNestedInput
     posts?: PostUpdateManyWithoutUserNestedInput
-    postLists?: PostListUpdateManyWithoutUserNestedInput
     projects?: ProjectUpdateManyWithoutUserNestedInput
     showcase?: ShowcaseUpdateOneWithoutUserNestedInput
     technicalProfile?: TechnicalProfileUpdateOneWithoutUserNestedInput
@@ -23406,7 +21857,6 @@ export namespace Prisma {
     outgoingConnections?: OutgoingConnectionUncheckedUpdateManyWithoutReceiverNestedInput
     ReceiveoutgoingConnections?: OutgoingConnectionUncheckedUpdateManyWithoutSenderNestedInput
     posts?: PostUncheckedUpdateManyWithoutUserNestedInput
-    postLists?: PostListUncheckedUpdateManyWithoutUserNestedInput
     projects?: ProjectUncheckedUpdateManyWithoutUserNestedInput
     showcase?: ShowcaseUncheckedUpdateOneWithoutUserNestedInput
     technicalProfile?: TechnicalProfileUncheckedUpdateOneWithoutUserNestedInput
@@ -23430,7 +21880,6 @@ export namespace Prisma {
     outgoingConnections?: OutgoingConnectionCreateNestedManyWithoutReceiverInput
     ReceiveoutgoingConnections?: OutgoingConnectionCreateNestedManyWithoutSenderInput
     posts?: PostCreateNestedManyWithoutUserInput
-    postLists?: PostListCreateNestedManyWithoutUserInput
     projects?: ProjectCreateNestedManyWithoutUserInput
     showcase?: ShowcaseCreateNestedOneWithoutUserInput
     technicalProfile?: TechnicalProfileCreateNestedOneWithoutUserInput
@@ -23454,7 +21903,6 @@ export namespace Prisma {
     outgoingConnections?: OutgoingConnectionUncheckedCreateNestedManyWithoutReceiverInput
     ReceiveoutgoingConnections?: OutgoingConnectionUncheckedCreateNestedManyWithoutSenderInput
     posts?: PostUncheckedCreateNestedManyWithoutUserInput
-    postLists?: PostListUncheckedCreateNestedManyWithoutUserInput
     projects?: ProjectUncheckedCreateNestedManyWithoutUserInput
     showcase?: ShowcaseUncheckedCreateNestedOneWithoutUserInput
     technicalProfile?: TechnicalProfileUncheckedCreateNestedOneWithoutUserInput
@@ -23493,7 +21941,6 @@ export namespace Prisma {
     outgoingConnections?: OutgoingConnectionUpdateManyWithoutReceiverNestedInput
     ReceiveoutgoingConnections?: OutgoingConnectionUpdateManyWithoutSenderNestedInput
     posts?: PostUpdateManyWithoutUserNestedInput
-    postLists?: PostListUpdateManyWithoutUserNestedInput
     projects?: ProjectUpdateManyWithoutUserNestedInput
     showcase?: ShowcaseUpdateOneWithoutUserNestedInput
     technicalProfile?: TechnicalProfileUpdateOneWithoutUserNestedInput
@@ -23517,7 +21964,6 @@ export namespace Prisma {
     outgoingConnections?: OutgoingConnectionUncheckedUpdateManyWithoutReceiverNestedInput
     ReceiveoutgoingConnections?: OutgoingConnectionUncheckedUpdateManyWithoutSenderNestedInput
     posts?: PostUncheckedUpdateManyWithoutUserNestedInput
-    postLists?: PostListUncheckedUpdateManyWithoutUserNestedInput
     projects?: ProjectUncheckedUpdateManyWithoutUserNestedInput
     showcase?: ShowcaseUncheckedUpdateOneWithoutUserNestedInput
     technicalProfile?: TechnicalProfileUncheckedUpdateOneWithoutUserNestedInput
@@ -23557,7 +22003,6 @@ export namespace Prisma {
     incomingConnections?: IncomingConnectionCreateNestedManyWithoutReceiverInput
     outgoingConnections?: OutgoingConnectionCreateNestedManyWithoutReceiverInput
     ReceiveoutgoingConnections?: OutgoingConnectionCreateNestedManyWithoutSenderInput
-    postLists?: PostListCreateNestedManyWithoutUserInput
     projects?: ProjectCreateNestedManyWithoutUserInput
     showcase?: ShowcaseCreateNestedOneWithoutUserInput
     technicalProfile?: TechnicalProfileCreateNestedOneWithoutUserInput
@@ -23581,7 +22026,6 @@ export namespace Prisma {
     incomingConnections?: IncomingConnectionUncheckedCreateNestedManyWithoutReceiverInput
     outgoingConnections?: OutgoingConnectionUncheckedCreateNestedManyWithoutReceiverInput
     ReceiveoutgoingConnections?: OutgoingConnectionUncheckedCreateNestedManyWithoutSenderInput
-    postLists?: PostListUncheckedCreateNestedManyWithoutUserInput
     projects?: ProjectUncheckedCreateNestedManyWithoutUserInput
     showcase?: ShowcaseUncheckedCreateNestedOneWithoutUserInput
     technicalProfile?: TechnicalProfileUncheckedCreateNestedOneWithoutUserInput
@@ -23591,25 +22035,6 @@ export namespace Prisma {
   export type UserCreateOrConnectWithoutPostsInput = {
     where: UserWhereUniqueInput
     create: XOR<UserCreateWithoutPostsInput, UserUncheckedCreateWithoutPostsInput>
-  }
-
-  export type PostListCreateWithoutPostInput = {
-    user: UserCreateNestedOneWithoutPostListsInput
-  }
-
-  export type PostListUncheckedCreateWithoutPostInput = {
-    id?: number
-    userId: number
-  }
-
-  export type PostListCreateOrConnectWithoutPostInput = {
-    where: PostListWhereUniqueInput
-    create: XOR<PostListCreateWithoutPostInput, PostListUncheckedCreateWithoutPostInput>
-  }
-
-  export type PostListCreateManyPostInputEnvelope = {
-    data: PostListCreateManyPostInput | PostListCreateManyPostInput[]
-    skipDuplicates?: boolean
   }
 
   export type InterestedListUpsertWithWhereUniqueWithoutPostInput = {
@@ -23663,7 +22088,6 @@ export namespace Prisma {
     incomingConnections?: IncomingConnectionUpdateManyWithoutReceiverNestedInput
     outgoingConnections?: OutgoingConnectionUpdateManyWithoutReceiverNestedInput
     ReceiveoutgoingConnections?: OutgoingConnectionUpdateManyWithoutSenderNestedInput
-    postLists?: PostListUpdateManyWithoutUserNestedInput
     projects?: ProjectUpdateManyWithoutUserNestedInput
     showcase?: ShowcaseUpdateOneWithoutUserNestedInput
     technicalProfile?: TechnicalProfileUpdateOneWithoutUserNestedInput
@@ -23687,191 +22111,6 @@ export namespace Prisma {
     incomingConnections?: IncomingConnectionUncheckedUpdateManyWithoutReceiverNestedInput
     outgoingConnections?: OutgoingConnectionUncheckedUpdateManyWithoutReceiverNestedInput
     ReceiveoutgoingConnections?: OutgoingConnectionUncheckedUpdateManyWithoutSenderNestedInput
-    postLists?: PostListUncheckedUpdateManyWithoutUserNestedInput
-    projects?: ProjectUncheckedUpdateManyWithoutUserNestedInput
-    showcase?: ShowcaseUncheckedUpdateOneWithoutUserNestedInput
-    technicalProfile?: TechnicalProfileUncheckedUpdateOneWithoutUserNestedInput
-    visuals?: VisualsUncheckedUpdateOneWithoutUserNestedInput
-  }
-
-  export type PostListUpsertWithWhereUniqueWithoutPostInput = {
-    where: PostListWhereUniqueInput
-    update: XOR<PostListUpdateWithoutPostInput, PostListUncheckedUpdateWithoutPostInput>
-    create: XOR<PostListCreateWithoutPostInput, PostListUncheckedCreateWithoutPostInput>
-  }
-
-  export type PostListUpdateWithWhereUniqueWithoutPostInput = {
-    where: PostListWhereUniqueInput
-    data: XOR<PostListUpdateWithoutPostInput, PostListUncheckedUpdateWithoutPostInput>
-  }
-
-  export type PostListUpdateManyWithWhereWithoutPostInput = {
-    where: PostListScalarWhereInput
-    data: XOR<PostListUpdateManyMutationInput, PostListUncheckedUpdateManyWithoutPostInput>
-  }
-
-  export type PostCreateWithoutPostListsInput = {
-    title: string
-    type: string
-    description?: string | null
-    tags?: string | null
-    category?: string | null
-    interested?: InterestedListCreateNestedManyWithoutPostInput
-    user: UserCreateNestedOneWithoutPostsInput
-  }
-
-  export type PostUncheckedCreateWithoutPostListsInput = {
-    id?: number
-    userId: number
-    title: string
-    type: string
-    description?: string | null
-    tags?: string | null
-    category?: string | null
-    interested?: InterestedListUncheckedCreateNestedManyWithoutPostInput
-  }
-
-  export type PostCreateOrConnectWithoutPostListsInput = {
-    where: PostWhereUniqueInput
-    create: XOR<PostCreateWithoutPostListsInput, PostUncheckedCreateWithoutPostListsInput>
-  }
-
-  export type UserCreateWithoutPostListsInput = {
-    email: string
-    password: string
-    createdAt?: Date | string
-    isEmailVerified?: boolean
-    otp?: string | null
-    otpExpiry?: Date | string | null
-    basicInfo?: BasicInfoCreateNestedOneWithoutUserInput
-    bioSummary?: BioSummaryCreateNestedOneWithoutUserInput
-    collaboration?: CollaborationCreateNestedOneWithoutUserInput
-    ParticipantA?: ConnectionCreateNestedManyWithoutParticipantAInput
-    ParticipantB?: ConnectionCreateNestedManyWithoutParticipantBInput
-    sentIncomingConnections?: IncomingConnectionCreateNestedManyWithoutSenderInput
-    incomingConnections?: IncomingConnectionCreateNestedManyWithoutReceiverInput
-    outgoingConnections?: OutgoingConnectionCreateNestedManyWithoutReceiverInput
-    ReceiveoutgoingConnections?: OutgoingConnectionCreateNestedManyWithoutSenderInput
-    posts?: PostCreateNestedManyWithoutUserInput
-    projects?: ProjectCreateNestedManyWithoutUserInput
-    showcase?: ShowcaseCreateNestedOneWithoutUserInput
-    technicalProfile?: TechnicalProfileCreateNestedOneWithoutUserInput
-    visuals?: VisualsCreateNestedOneWithoutUserInput
-  }
-
-  export type UserUncheckedCreateWithoutPostListsInput = {
-    id?: number
-    email: string
-    password: string
-    createdAt?: Date | string
-    isEmailVerified?: boolean
-    otp?: string | null
-    otpExpiry?: Date | string | null
-    basicInfo?: BasicInfoUncheckedCreateNestedOneWithoutUserInput
-    bioSummary?: BioSummaryUncheckedCreateNestedOneWithoutUserInput
-    collaboration?: CollaborationUncheckedCreateNestedOneWithoutUserInput
-    ParticipantA?: ConnectionUncheckedCreateNestedManyWithoutParticipantAInput
-    ParticipantB?: ConnectionUncheckedCreateNestedManyWithoutParticipantBInput
-    sentIncomingConnections?: IncomingConnectionUncheckedCreateNestedManyWithoutSenderInput
-    incomingConnections?: IncomingConnectionUncheckedCreateNestedManyWithoutReceiverInput
-    outgoingConnections?: OutgoingConnectionUncheckedCreateNestedManyWithoutReceiverInput
-    ReceiveoutgoingConnections?: OutgoingConnectionUncheckedCreateNestedManyWithoutSenderInput
-    posts?: PostUncheckedCreateNestedManyWithoutUserInput
-    projects?: ProjectUncheckedCreateNestedManyWithoutUserInput
-    showcase?: ShowcaseUncheckedCreateNestedOneWithoutUserInput
-    technicalProfile?: TechnicalProfileUncheckedCreateNestedOneWithoutUserInput
-    visuals?: VisualsUncheckedCreateNestedOneWithoutUserInput
-  }
-
-  export type UserCreateOrConnectWithoutPostListsInput = {
-    where: UserWhereUniqueInput
-    create: XOR<UserCreateWithoutPostListsInput, UserUncheckedCreateWithoutPostListsInput>
-  }
-
-  export type PostUpsertWithoutPostListsInput = {
-    update: XOR<PostUpdateWithoutPostListsInput, PostUncheckedUpdateWithoutPostListsInput>
-    create: XOR<PostCreateWithoutPostListsInput, PostUncheckedCreateWithoutPostListsInput>
-    where?: PostWhereInput
-  }
-
-  export type PostUpdateToOneWithWhereWithoutPostListsInput = {
-    where?: PostWhereInput
-    data: XOR<PostUpdateWithoutPostListsInput, PostUncheckedUpdateWithoutPostListsInput>
-  }
-
-  export type PostUpdateWithoutPostListsInput = {
-    title?: StringFieldUpdateOperationsInput | string
-    type?: StringFieldUpdateOperationsInput | string
-    description?: NullableStringFieldUpdateOperationsInput | string | null
-    tags?: NullableStringFieldUpdateOperationsInput | string | null
-    category?: NullableStringFieldUpdateOperationsInput | string | null
-    interested?: InterestedListUpdateManyWithoutPostNestedInput
-    user?: UserUpdateOneRequiredWithoutPostsNestedInput
-  }
-
-  export type PostUncheckedUpdateWithoutPostListsInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    userId?: IntFieldUpdateOperationsInput | number
-    title?: StringFieldUpdateOperationsInput | string
-    type?: StringFieldUpdateOperationsInput | string
-    description?: NullableStringFieldUpdateOperationsInput | string | null
-    tags?: NullableStringFieldUpdateOperationsInput | string | null
-    category?: NullableStringFieldUpdateOperationsInput | string | null
-    interested?: InterestedListUncheckedUpdateManyWithoutPostNestedInput
-  }
-
-  export type UserUpsertWithoutPostListsInput = {
-    update: XOR<UserUpdateWithoutPostListsInput, UserUncheckedUpdateWithoutPostListsInput>
-    create: XOR<UserCreateWithoutPostListsInput, UserUncheckedCreateWithoutPostListsInput>
-    where?: UserWhereInput
-  }
-
-  export type UserUpdateToOneWithWhereWithoutPostListsInput = {
-    where?: UserWhereInput
-    data: XOR<UserUpdateWithoutPostListsInput, UserUncheckedUpdateWithoutPostListsInput>
-  }
-
-  export type UserUpdateWithoutPostListsInput = {
-    email?: StringFieldUpdateOperationsInput | string
-    password?: StringFieldUpdateOperationsInput | string
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    isEmailVerified?: BoolFieldUpdateOperationsInput | boolean
-    otp?: NullableStringFieldUpdateOperationsInput | string | null
-    otpExpiry?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    basicInfo?: BasicInfoUpdateOneWithoutUserNestedInput
-    bioSummary?: BioSummaryUpdateOneWithoutUserNestedInput
-    collaboration?: CollaborationUpdateOneWithoutUserNestedInput
-    ParticipantA?: ConnectionUpdateManyWithoutParticipantANestedInput
-    ParticipantB?: ConnectionUpdateManyWithoutParticipantBNestedInput
-    sentIncomingConnections?: IncomingConnectionUpdateManyWithoutSenderNestedInput
-    incomingConnections?: IncomingConnectionUpdateManyWithoutReceiverNestedInput
-    outgoingConnections?: OutgoingConnectionUpdateManyWithoutReceiverNestedInput
-    ReceiveoutgoingConnections?: OutgoingConnectionUpdateManyWithoutSenderNestedInput
-    posts?: PostUpdateManyWithoutUserNestedInput
-    projects?: ProjectUpdateManyWithoutUserNestedInput
-    showcase?: ShowcaseUpdateOneWithoutUserNestedInput
-    technicalProfile?: TechnicalProfileUpdateOneWithoutUserNestedInput
-    visuals?: VisualsUpdateOneWithoutUserNestedInput
-  }
-
-  export type UserUncheckedUpdateWithoutPostListsInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    email?: StringFieldUpdateOperationsInput | string
-    password?: StringFieldUpdateOperationsInput | string
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    isEmailVerified?: BoolFieldUpdateOperationsInput | boolean
-    otp?: NullableStringFieldUpdateOperationsInput | string | null
-    otpExpiry?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    basicInfo?: BasicInfoUncheckedUpdateOneWithoutUserNestedInput
-    bioSummary?: BioSummaryUncheckedUpdateOneWithoutUserNestedInput
-    collaboration?: CollaborationUncheckedUpdateOneWithoutUserNestedInput
-    ParticipantA?: ConnectionUncheckedUpdateManyWithoutParticipantANestedInput
-    ParticipantB?: ConnectionUncheckedUpdateManyWithoutParticipantBNestedInput
-    sentIncomingConnections?: IncomingConnectionUncheckedUpdateManyWithoutSenderNestedInput
-    incomingConnections?: IncomingConnectionUncheckedUpdateManyWithoutReceiverNestedInput
-    outgoingConnections?: OutgoingConnectionUncheckedUpdateManyWithoutReceiverNestedInput
-    ReceiveoutgoingConnections?: OutgoingConnectionUncheckedUpdateManyWithoutSenderNestedInput
-    posts?: PostUncheckedUpdateManyWithoutUserNestedInput
     projects?: ProjectUncheckedUpdateManyWithoutUserNestedInput
     showcase?: ShowcaseUncheckedUpdateOneWithoutUserNestedInput
     technicalProfile?: TechnicalProfileUncheckedUpdateOneWithoutUserNestedInput
@@ -23880,23 +22119,19 @@ export namespace Prisma {
 
   export type PostCreateWithoutInterestedInput = {
     title: string
-    type: string
+    type?: $Enums.PostType
     description?: string | null
-    tags?: string | null
-    category?: string | null
+    createdAt?: Date | string
     user: UserCreateNestedOneWithoutPostsInput
-    postLists?: PostListCreateNestedManyWithoutPostInput
   }
 
   export type PostUncheckedCreateWithoutInterestedInput = {
     id?: number
     userId: number
     title: string
-    type: string
+    type?: $Enums.PostType
     description?: string | null
-    tags?: string | null
-    category?: string | null
-    postLists?: PostListUncheckedCreateNestedManyWithoutPostInput
+    createdAt?: Date | string
   }
 
   export type PostCreateOrConnectWithoutInterestedInput = {
@@ -23917,23 +22152,19 @@ export namespace Prisma {
 
   export type PostUpdateWithoutInterestedInput = {
     title?: StringFieldUpdateOperationsInput | string
-    type?: StringFieldUpdateOperationsInput | string
+    type?: EnumPostTypeFieldUpdateOperationsInput | $Enums.PostType
     description?: NullableStringFieldUpdateOperationsInput | string | null
-    tags?: NullableStringFieldUpdateOperationsInput | string | null
-    category?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     user?: UserUpdateOneRequiredWithoutPostsNestedInput
-    postLists?: PostListUpdateManyWithoutPostNestedInput
   }
 
   export type PostUncheckedUpdateWithoutInterestedInput = {
     id?: IntFieldUpdateOperationsInput | number
     userId?: IntFieldUpdateOperationsInput | number
     title?: StringFieldUpdateOperationsInput | string
-    type?: StringFieldUpdateOperationsInput | string
+    type?: EnumPostTypeFieldUpdateOperationsInput | $Enums.PostType
     description?: NullableStringFieldUpdateOperationsInput | string | null
-    tags?: NullableStringFieldUpdateOperationsInput | string | null
-    category?: NullableStringFieldUpdateOperationsInput | string | null
-    postLists?: PostListUncheckedUpdateManyWithoutPostNestedInput
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type UserCreateWithoutIncomingConnectionsInput = {
@@ -23952,7 +22183,6 @@ export namespace Prisma {
     outgoingConnections?: OutgoingConnectionCreateNestedManyWithoutReceiverInput
     ReceiveoutgoingConnections?: OutgoingConnectionCreateNestedManyWithoutSenderInput
     posts?: PostCreateNestedManyWithoutUserInput
-    postLists?: PostListCreateNestedManyWithoutUserInput
     projects?: ProjectCreateNestedManyWithoutUserInput
     showcase?: ShowcaseCreateNestedOneWithoutUserInput
     technicalProfile?: TechnicalProfileCreateNestedOneWithoutUserInput
@@ -23976,7 +22206,6 @@ export namespace Prisma {
     outgoingConnections?: OutgoingConnectionUncheckedCreateNestedManyWithoutReceiverInput
     ReceiveoutgoingConnections?: OutgoingConnectionUncheckedCreateNestedManyWithoutSenderInput
     posts?: PostUncheckedCreateNestedManyWithoutUserInput
-    postLists?: PostListUncheckedCreateNestedManyWithoutUserInput
     projects?: ProjectUncheckedCreateNestedManyWithoutUserInput
     showcase?: ShowcaseUncheckedCreateNestedOneWithoutUserInput
     technicalProfile?: TechnicalProfileUncheckedCreateNestedOneWithoutUserInput
@@ -24004,7 +22233,6 @@ export namespace Prisma {
     outgoingConnections?: OutgoingConnectionCreateNestedManyWithoutReceiverInput
     ReceiveoutgoingConnections?: OutgoingConnectionCreateNestedManyWithoutSenderInput
     posts?: PostCreateNestedManyWithoutUserInput
-    postLists?: PostListCreateNestedManyWithoutUserInput
     projects?: ProjectCreateNestedManyWithoutUserInput
     showcase?: ShowcaseCreateNestedOneWithoutUserInput
     technicalProfile?: TechnicalProfileCreateNestedOneWithoutUserInput
@@ -24028,7 +22256,6 @@ export namespace Prisma {
     outgoingConnections?: OutgoingConnectionUncheckedCreateNestedManyWithoutReceiverInput
     ReceiveoutgoingConnections?: OutgoingConnectionUncheckedCreateNestedManyWithoutSenderInput
     posts?: PostUncheckedCreateNestedManyWithoutUserInput
-    postLists?: PostListUncheckedCreateNestedManyWithoutUserInput
     projects?: ProjectUncheckedCreateNestedManyWithoutUserInput
     showcase?: ShowcaseUncheckedCreateNestedOneWithoutUserInput
     technicalProfile?: TechnicalProfileUncheckedCreateNestedOneWithoutUserInput
@@ -24067,7 +22294,6 @@ export namespace Prisma {
     outgoingConnections?: OutgoingConnectionUpdateManyWithoutReceiverNestedInput
     ReceiveoutgoingConnections?: OutgoingConnectionUpdateManyWithoutSenderNestedInput
     posts?: PostUpdateManyWithoutUserNestedInput
-    postLists?: PostListUpdateManyWithoutUserNestedInput
     projects?: ProjectUpdateManyWithoutUserNestedInput
     showcase?: ShowcaseUpdateOneWithoutUserNestedInput
     technicalProfile?: TechnicalProfileUpdateOneWithoutUserNestedInput
@@ -24091,7 +22317,6 @@ export namespace Prisma {
     outgoingConnections?: OutgoingConnectionUncheckedUpdateManyWithoutReceiverNestedInput
     ReceiveoutgoingConnections?: OutgoingConnectionUncheckedUpdateManyWithoutSenderNestedInput
     posts?: PostUncheckedUpdateManyWithoutUserNestedInput
-    postLists?: PostListUncheckedUpdateManyWithoutUserNestedInput
     projects?: ProjectUncheckedUpdateManyWithoutUserNestedInput
     showcase?: ShowcaseUncheckedUpdateOneWithoutUserNestedInput
     technicalProfile?: TechnicalProfileUncheckedUpdateOneWithoutUserNestedInput
@@ -24125,7 +22350,6 @@ export namespace Prisma {
     outgoingConnections?: OutgoingConnectionUpdateManyWithoutReceiverNestedInput
     ReceiveoutgoingConnections?: OutgoingConnectionUpdateManyWithoutSenderNestedInput
     posts?: PostUpdateManyWithoutUserNestedInput
-    postLists?: PostListUpdateManyWithoutUserNestedInput
     projects?: ProjectUpdateManyWithoutUserNestedInput
     showcase?: ShowcaseUpdateOneWithoutUserNestedInput
     technicalProfile?: TechnicalProfileUpdateOneWithoutUserNestedInput
@@ -24149,7 +22373,6 @@ export namespace Prisma {
     outgoingConnections?: OutgoingConnectionUncheckedUpdateManyWithoutReceiverNestedInput
     ReceiveoutgoingConnections?: OutgoingConnectionUncheckedUpdateManyWithoutSenderNestedInput
     posts?: PostUncheckedUpdateManyWithoutUserNestedInput
-    postLists?: PostListUncheckedUpdateManyWithoutUserNestedInput
     projects?: ProjectUncheckedUpdateManyWithoutUserNestedInput
     showcase?: ShowcaseUncheckedUpdateOneWithoutUserNestedInput
     technicalProfile?: TechnicalProfileUncheckedUpdateOneWithoutUserNestedInput
@@ -24172,7 +22395,6 @@ export namespace Prisma {
     incomingConnections?: IncomingConnectionCreateNestedManyWithoutReceiverInput
     ReceiveoutgoingConnections?: OutgoingConnectionCreateNestedManyWithoutSenderInput
     posts?: PostCreateNestedManyWithoutUserInput
-    postLists?: PostListCreateNestedManyWithoutUserInput
     projects?: ProjectCreateNestedManyWithoutUserInput
     showcase?: ShowcaseCreateNestedOneWithoutUserInput
     technicalProfile?: TechnicalProfileCreateNestedOneWithoutUserInput
@@ -24196,7 +22418,6 @@ export namespace Prisma {
     incomingConnections?: IncomingConnectionUncheckedCreateNestedManyWithoutReceiverInput
     ReceiveoutgoingConnections?: OutgoingConnectionUncheckedCreateNestedManyWithoutSenderInput
     posts?: PostUncheckedCreateNestedManyWithoutUserInput
-    postLists?: PostListUncheckedCreateNestedManyWithoutUserInput
     projects?: ProjectUncheckedCreateNestedManyWithoutUserInput
     showcase?: ShowcaseUncheckedCreateNestedOneWithoutUserInput
     technicalProfile?: TechnicalProfileUncheckedCreateNestedOneWithoutUserInput
@@ -24224,7 +22445,6 @@ export namespace Prisma {
     incomingConnections?: IncomingConnectionCreateNestedManyWithoutReceiverInput
     outgoingConnections?: OutgoingConnectionCreateNestedManyWithoutReceiverInput
     posts?: PostCreateNestedManyWithoutUserInput
-    postLists?: PostListCreateNestedManyWithoutUserInput
     projects?: ProjectCreateNestedManyWithoutUserInput
     showcase?: ShowcaseCreateNestedOneWithoutUserInput
     technicalProfile?: TechnicalProfileCreateNestedOneWithoutUserInput
@@ -24248,7 +22468,6 @@ export namespace Prisma {
     incomingConnections?: IncomingConnectionUncheckedCreateNestedManyWithoutReceiverInput
     outgoingConnections?: OutgoingConnectionUncheckedCreateNestedManyWithoutReceiverInput
     posts?: PostUncheckedCreateNestedManyWithoutUserInput
-    postLists?: PostListUncheckedCreateNestedManyWithoutUserInput
     projects?: ProjectUncheckedCreateNestedManyWithoutUserInput
     showcase?: ShowcaseUncheckedCreateNestedOneWithoutUserInput
     technicalProfile?: TechnicalProfileUncheckedCreateNestedOneWithoutUserInput
@@ -24287,7 +22506,6 @@ export namespace Prisma {
     incomingConnections?: IncomingConnectionUpdateManyWithoutReceiverNestedInput
     ReceiveoutgoingConnections?: OutgoingConnectionUpdateManyWithoutSenderNestedInput
     posts?: PostUpdateManyWithoutUserNestedInput
-    postLists?: PostListUpdateManyWithoutUserNestedInput
     projects?: ProjectUpdateManyWithoutUserNestedInput
     showcase?: ShowcaseUpdateOneWithoutUserNestedInput
     technicalProfile?: TechnicalProfileUpdateOneWithoutUserNestedInput
@@ -24311,7 +22529,6 @@ export namespace Prisma {
     incomingConnections?: IncomingConnectionUncheckedUpdateManyWithoutReceiverNestedInput
     ReceiveoutgoingConnections?: OutgoingConnectionUncheckedUpdateManyWithoutSenderNestedInput
     posts?: PostUncheckedUpdateManyWithoutUserNestedInput
-    postLists?: PostListUncheckedUpdateManyWithoutUserNestedInput
     projects?: ProjectUncheckedUpdateManyWithoutUserNestedInput
     showcase?: ShowcaseUncheckedUpdateOneWithoutUserNestedInput
     technicalProfile?: TechnicalProfileUncheckedUpdateOneWithoutUserNestedInput
@@ -24345,7 +22562,6 @@ export namespace Prisma {
     incomingConnections?: IncomingConnectionUpdateManyWithoutReceiverNestedInput
     outgoingConnections?: OutgoingConnectionUpdateManyWithoutReceiverNestedInput
     posts?: PostUpdateManyWithoutUserNestedInput
-    postLists?: PostListUpdateManyWithoutUserNestedInput
     projects?: ProjectUpdateManyWithoutUserNestedInput
     showcase?: ShowcaseUpdateOneWithoutUserNestedInput
     technicalProfile?: TechnicalProfileUpdateOneWithoutUserNestedInput
@@ -24369,7 +22585,6 @@ export namespace Prisma {
     incomingConnections?: IncomingConnectionUncheckedUpdateManyWithoutReceiverNestedInput
     outgoingConnections?: OutgoingConnectionUncheckedUpdateManyWithoutReceiverNestedInput
     posts?: PostUncheckedUpdateManyWithoutUserNestedInput
-    postLists?: PostListUncheckedUpdateManyWithoutUserNestedInput
     projects?: ProjectUncheckedUpdateManyWithoutUserNestedInput
     showcase?: ShowcaseUncheckedUpdateOneWithoutUserNestedInput
     technicalProfile?: TechnicalProfileUncheckedUpdateOneWithoutUserNestedInput
@@ -24392,7 +22607,6 @@ export namespace Prisma {
     outgoingConnections?: OutgoingConnectionCreateNestedManyWithoutReceiverInput
     ReceiveoutgoingConnections?: OutgoingConnectionCreateNestedManyWithoutSenderInput
     posts?: PostCreateNestedManyWithoutUserInput
-    postLists?: PostListCreateNestedManyWithoutUserInput
     projects?: ProjectCreateNestedManyWithoutUserInput
     showcase?: ShowcaseCreateNestedOneWithoutUserInput
     technicalProfile?: TechnicalProfileCreateNestedOneWithoutUserInput
@@ -24416,7 +22630,6 @@ export namespace Prisma {
     outgoingConnections?: OutgoingConnectionUncheckedCreateNestedManyWithoutReceiverInput
     ReceiveoutgoingConnections?: OutgoingConnectionUncheckedCreateNestedManyWithoutSenderInput
     posts?: PostUncheckedCreateNestedManyWithoutUserInput
-    postLists?: PostListUncheckedCreateNestedManyWithoutUserInput
     projects?: ProjectUncheckedCreateNestedManyWithoutUserInput
     showcase?: ShowcaseUncheckedCreateNestedOneWithoutUserInput
     technicalProfile?: TechnicalProfileUncheckedCreateNestedOneWithoutUserInput
@@ -24444,7 +22657,6 @@ export namespace Prisma {
     outgoingConnections?: OutgoingConnectionCreateNestedManyWithoutReceiverInput
     ReceiveoutgoingConnections?: OutgoingConnectionCreateNestedManyWithoutSenderInput
     posts?: PostCreateNestedManyWithoutUserInput
-    postLists?: PostListCreateNestedManyWithoutUserInput
     projects?: ProjectCreateNestedManyWithoutUserInput
     showcase?: ShowcaseCreateNestedOneWithoutUserInput
     technicalProfile?: TechnicalProfileCreateNestedOneWithoutUserInput
@@ -24468,7 +22680,6 @@ export namespace Prisma {
     outgoingConnections?: OutgoingConnectionUncheckedCreateNestedManyWithoutReceiverInput
     ReceiveoutgoingConnections?: OutgoingConnectionUncheckedCreateNestedManyWithoutSenderInput
     posts?: PostUncheckedCreateNestedManyWithoutUserInput
-    postLists?: PostListUncheckedCreateNestedManyWithoutUserInput
     projects?: ProjectUncheckedCreateNestedManyWithoutUserInput
     showcase?: ShowcaseUncheckedCreateNestedOneWithoutUserInput
     technicalProfile?: TechnicalProfileUncheckedCreateNestedOneWithoutUserInput
@@ -24507,7 +22718,6 @@ export namespace Prisma {
     outgoingConnections?: OutgoingConnectionUpdateManyWithoutReceiverNestedInput
     ReceiveoutgoingConnections?: OutgoingConnectionUpdateManyWithoutSenderNestedInput
     posts?: PostUpdateManyWithoutUserNestedInput
-    postLists?: PostListUpdateManyWithoutUserNestedInput
     projects?: ProjectUpdateManyWithoutUserNestedInput
     showcase?: ShowcaseUpdateOneWithoutUserNestedInput
     technicalProfile?: TechnicalProfileUpdateOneWithoutUserNestedInput
@@ -24531,7 +22741,6 @@ export namespace Prisma {
     outgoingConnections?: OutgoingConnectionUncheckedUpdateManyWithoutReceiverNestedInput
     ReceiveoutgoingConnections?: OutgoingConnectionUncheckedUpdateManyWithoutSenderNestedInput
     posts?: PostUncheckedUpdateManyWithoutUserNestedInput
-    postLists?: PostListUncheckedUpdateManyWithoutUserNestedInput
     projects?: ProjectUncheckedUpdateManyWithoutUserNestedInput
     showcase?: ShowcaseUncheckedUpdateOneWithoutUserNestedInput
     technicalProfile?: TechnicalProfileUncheckedUpdateOneWithoutUserNestedInput
@@ -24565,7 +22774,6 @@ export namespace Prisma {
     outgoingConnections?: OutgoingConnectionUpdateManyWithoutReceiverNestedInput
     ReceiveoutgoingConnections?: OutgoingConnectionUpdateManyWithoutSenderNestedInput
     posts?: PostUpdateManyWithoutUserNestedInput
-    postLists?: PostListUpdateManyWithoutUserNestedInput
     projects?: ProjectUpdateManyWithoutUserNestedInput
     showcase?: ShowcaseUpdateOneWithoutUserNestedInput
     technicalProfile?: TechnicalProfileUpdateOneWithoutUserNestedInput
@@ -24589,7 +22797,6 @@ export namespace Prisma {
     outgoingConnections?: OutgoingConnectionUncheckedUpdateManyWithoutReceiverNestedInput
     ReceiveoutgoingConnections?: OutgoingConnectionUncheckedUpdateManyWithoutSenderNestedInput
     posts?: PostUncheckedUpdateManyWithoutUserNestedInput
-    postLists?: PostListUncheckedUpdateManyWithoutUserNestedInput
     projects?: ProjectUncheckedUpdateManyWithoutUserNestedInput
     showcase?: ShowcaseUncheckedUpdateOneWithoutUserNestedInput
     technicalProfile?: TechnicalProfileUncheckedUpdateOneWithoutUserNestedInput
@@ -24635,15 +22842,9 @@ export namespace Prisma {
   export type PostCreateManyUserInput = {
     id?: number
     title: string
-    type: string
+    type?: $Enums.PostType
     description?: string | null
-    tags?: string | null
-    category?: string | null
-  }
-
-  export type PostListCreateManyUserInput = {
-    id?: number
-    postId: number
+    createdAt?: Date | string
   }
 
   export type ProjectCreateManyUserInput = {
@@ -24758,46 +22959,27 @@ export namespace Prisma {
 
   export type PostUpdateWithoutUserInput = {
     title?: StringFieldUpdateOperationsInput | string
-    type?: StringFieldUpdateOperationsInput | string
+    type?: EnumPostTypeFieldUpdateOperationsInput | $Enums.PostType
     description?: NullableStringFieldUpdateOperationsInput | string | null
-    tags?: NullableStringFieldUpdateOperationsInput | string | null
-    category?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     interested?: InterestedListUpdateManyWithoutPostNestedInput
-    postLists?: PostListUpdateManyWithoutPostNestedInput
   }
 
   export type PostUncheckedUpdateWithoutUserInput = {
     id?: IntFieldUpdateOperationsInput | number
     title?: StringFieldUpdateOperationsInput | string
-    type?: StringFieldUpdateOperationsInput | string
+    type?: EnumPostTypeFieldUpdateOperationsInput | $Enums.PostType
     description?: NullableStringFieldUpdateOperationsInput | string | null
-    tags?: NullableStringFieldUpdateOperationsInput | string | null
-    category?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     interested?: InterestedListUncheckedUpdateManyWithoutPostNestedInput
-    postLists?: PostListUncheckedUpdateManyWithoutPostNestedInput
   }
 
   export type PostUncheckedUpdateManyWithoutUserInput = {
     id?: IntFieldUpdateOperationsInput | number
     title?: StringFieldUpdateOperationsInput | string
-    type?: StringFieldUpdateOperationsInput | string
+    type?: EnumPostTypeFieldUpdateOperationsInput | $Enums.PostType
     description?: NullableStringFieldUpdateOperationsInput | string | null
-    tags?: NullableStringFieldUpdateOperationsInput | string | null
-    category?: NullableStringFieldUpdateOperationsInput | string | null
-  }
-
-  export type PostListUpdateWithoutUserInput = {
-    post?: PostUpdateOneRequiredWithoutPostListsNestedInput
-  }
-
-  export type PostListUncheckedUpdateWithoutUserInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    postId?: IntFieldUpdateOperationsInput | number
-  }
-
-  export type PostListUncheckedUpdateManyWithoutUserInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    postId?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type ProjectUpdateWithoutUserInput = {
@@ -24827,11 +23009,6 @@ export namespace Prisma {
     id?: number
   }
 
-  export type PostListCreateManyPostInput = {
-    id?: number
-    userId: number
-  }
-
   export type InterestedListUpdateWithoutPostInput = {
 
   }
@@ -24842,20 +23019,6 @@ export namespace Prisma {
 
   export type InterestedListUncheckedUpdateManyWithoutPostInput = {
     id?: IntFieldUpdateOperationsInput | number
-  }
-
-  export type PostListUpdateWithoutPostInput = {
-    user?: UserUpdateOneRequiredWithoutPostListsNestedInput
-  }
-
-  export type PostListUncheckedUpdateWithoutPostInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    userId?: IntFieldUpdateOperationsInput | number
-  }
-
-  export type PostListUncheckedUpdateManyWithoutPostInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    userId?: IntFieldUpdateOperationsInput | number
   }
 
 
