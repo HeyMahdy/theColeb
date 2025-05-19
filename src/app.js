@@ -29,25 +29,26 @@ app.use((req, res, next) => {
 const corsOptions = {
   origin: function (origin, callback) {
     const allowedOrigins = [
-      'https://thecoleb.onrender.com'
+      'https://coleb-connect-universe.vercel.app', // ✅ Your frontend
+      'http://localhost:5173' // ✅ For local dev if needed
     ];
-    
-    // Allow requests with no origin (like mobile apps or curl requests)
-    if (!origin) return callback(null, true);
-    
+
+    if (!origin) return callback(null, true); // Allow requests with no origin
+
     if (allowedOrigins.indexOf(origin) === -1) {
       const msg = 'The CORS policy for this site does not allow access from the specified Origin.';
       return callback(new Error(msg), false);
     }
-    
+
     return callback(null, true);
   },
   credentials: true,
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With'],
   exposedHeaders: ['Content-Range', 'X-Content-Range'],
-  maxAge: 86400 // 24 hours
+  maxAge: 86400
 };
+
 
 app.use(cors(corsOptions));
 
