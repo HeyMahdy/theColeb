@@ -21,7 +21,8 @@ const app = express();
 // Add CORS configuration before other middleware
 const allowedOrigins = [
   'http://localhost:5173',
-   process.env.FRONTEND_URL,
+  'https://thecoleb.onrender.com',
+  process.env.FRONTEND_URL,
 ];
 
 app.use(cors({
@@ -35,7 +36,9 @@ app.use(cors({
   },
   credentials: true,
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'],
-  allowedHeaders: ['Content-Type', 'Authorization'],
+  allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With'],
+  exposedHeaders: ['Content-Range', 'X-Content-Range'],
+  maxAge: 86400 // 24 hours
 }));
 
 app.use(json());
