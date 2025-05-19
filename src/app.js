@@ -29,10 +29,7 @@ app.use((req, res, next) => {
 const corsOptions = {
   origin: function (origin, callback) {
     const allowedOrigins = [
-      'http://localhost:5173',
-      'http://localhost:3000',
-      'https://thecoleb.onrender.com',
-       'https://thecoleb.onrender.com/collab/v1/auth/signup'
+      'https://thecoleb.onrender.com'
     ];
     
     // Allow requests with no origin (like mobile apps or curl requests)
