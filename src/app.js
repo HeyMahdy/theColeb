@@ -18,36 +18,22 @@ import postrouter from './routes/v1/postRoute/post.js';
 
 const app = express();
 
-// Add CORS configuration before other middleware
-const allowedOrigins = [
-  'http://localhost:5173',
-  'https://thecoleb.onrender.com',
-  'http://localhost:3000',
-  process.env.FRONTEND_URL
-].filter(Boolean); // Remove any undefined values
+// Add request logging middleware
+app.use((req, res, next) => {
+  console.log(`${req.method} ${req.url}`);
+  console.log('Headers:', req.headers);
+  next();
+});
 
+// Basic CORS configuration
 app.use(cors({
-  origin: function (origin, callback) {
-    // Allow requests with no origin (like mobile apps, curl, postman)
-    if (!origin) {
-      return callback(null, true);
-    }
-
-    if (allowedOrigins.indexOf(origin) === -1) {
-      console.log('Blocked by CORS:', origin);
-      console.log('Allowed origins:', allowedOrigins);
-      return callback(new Error('Not allowed by CORS'));
-    }
-
-    return callback(null, true);
-  },
+  origin: '*', // Allow all origins temporarily
   credentials: true,
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With'],
-  exposedHeaders: ['Content-Range', 'X-Content-Range'],
-  maxAge: 86400 // 24 hours
 }));
 
+// Parse JSON bodies
 app.use(json());
 
 // Main routes
@@ -64,6 +50,16 @@ app.use('/collab/v1/info', infoRouter); // Add the basic info route
 app.use('/collab/v1/filter', filterRoute); 
 app.use('/collab/v1/connect', reqConnect); 
 app.use('/collab/v1/posts', postrouter);
+
+// Error handling middleware (should be last)
+app.use((err, req, res, next) => {
+  console.error('Error:', err);
+  console.error('Stack:', err.stack);
+  res.status(500).json({
+    error: 'Internal Server Error',
+    message: err.message
+  });
+});
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
