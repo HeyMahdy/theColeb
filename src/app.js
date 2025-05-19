@@ -1,4 +1,5 @@
 import express, { json } from 'express';
+import cors from 'cors';
 
 // Correct paths based on your folder structure
 import bioRouter from './routes/v1/userRoute/bio.js';
@@ -16,6 +17,15 @@ import reqConnect from './routes/v1/connectionRoute/connect.js'
 import postrouter from './routes/v1/postRoute/post.js';
 
 const app = express();
+
+// Add CORS configuration before other middleware
+app.use(cors({
+  origin: process.env.FRONTEND_URL || 'http://localhost:5173', // Default to Vite's default port
+  credentials: true, // Allow credentials (cookies, authorization headers, etc)
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization']
+}));
+
 app.use(json());
 
 // Main routes

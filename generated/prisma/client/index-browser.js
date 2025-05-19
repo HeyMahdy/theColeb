@@ -127,7 +127,8 @@ exports.Prisma.UserScalarFieldEnum = {
   createdAt: 'createdAt',
   isEmailVerified: 'isEmailVerified',
   otp: 'otp',
-  otpExpiry: 'otpExpiry'
+  otpExpiry: 'otpExpiry',
+  role: 'role'
 };
 
 exports.Prisma.RelationLoadStrategy = {
@@ -245,6 +246,11 @@ exports.Prisma.NullsOrder = {
   first: 'first',
   last: 'last'
 };
+exports.Role = exports.$Enums.Role = {
+  USER: 'USER',
+  ADMIN: 'ADMIN'
+};
+
 exports.PostType = exports.$Enums.PostType = {
   IDEA: 'IDEA',
   MVP: 'MVP',

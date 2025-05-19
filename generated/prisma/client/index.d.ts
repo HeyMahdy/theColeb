@@ -92,11 +92,23 @@ export namespace $Enums {
 
 export type PostType = (typeof PostType)[keyof typeof PostType]
 
+
+export const Role: {
+  USER: 'USER',
+  ADMIN: 'ADMIN'
+};
+
+export type Role = (typeof Role)[keyof typeof Role]
+
 }
 
 export type PostType = $Enums.PostType
 
 export const PostType: typeof $Enums.PostType
+
+export type Role = $Enums.Role
+
+export const Role: typeof $Enums.Role
 
 /**
  * ##  Prisma Client ʲˢ
@@ -2132,6 +2144,7 @@ export namespace Prisma {
     isEmailVerified: boolean | null
     otp: string | null
     otpExpiry: Date | null
+    role: $Enums.Role | null
   }
 
   export type UserMaxAggregateOutputType = {
@@ -2142,6 +2155,7 @@ export namespace Prisma {
     isEmailVerified: boolean | null
     otp: string | null
     otpExpiry: Date | null
+    role: $Enums.Role | null
   }
 
   export type UserCountAggregateOutputType = {
@@ -2152,6 +2166,7 @@ export namespace Prisma {
     isEmailVerified: number
     otp: number
     otpExpiry: number
+    role: number
     _all: number
   }
 
@@ -2172,6 +2187,7 @@ export namespace Prisma {
     isEmailVerified?: true
     otp?: true
     otpExpiry?: true
+    role?: true
   }
 
   export type UserMaxAggregateInputType = {
@@ -2182,6 +2198,7 @@ export namespace Prisma {
     isEmailVerified?: true
     otp?: true
     otpExpiry?: true
+    role?: true
   }
 
   export type UserCountAggregateInputType = {
@@ -2192,6 +2209,7 @@ export namespace Prisma {
     isEmailVerified?: true
     otp?: true
     otpExpiry?: true
+    role?: true
     _all?: true
   }
 
@@ -2289,6 +2307,7 @@ export namespace Prisma {
     isEmailVerified: boolean
     otp: string | null
     otpExpiry: Date | null
+    role: $Enums.Role
     _count: UserCountAggregateOutputType | null
     _avg: UserAvgAggregateOutputType | null
     _sum: UserSumAggregateOutputType | null
@@ -2318,6 +2337,7 @@ export namespace Prisma {
     isEmailVerified?: boolean
     otp?: boolean
     otpExpiry?: boolean
+    role?: boolean
     basicInfo?: boolean | User$basicInfoArgs<ExtArgs>
     bioSummary?: boolean | User$bioSummaryArgs<ExtArgs>
     collaboration?: boolean | User$collaborationArgs<ExtArgs>
@@ -2343,6 +2363,7 @@ export namespace Prisma {
     isEmailVerified?: boolean
     otp?: boolean
     otpExpiry?: boolean
+    role?: boolean
   }, ExtArgs["result"]["user"]>
 
   export type UserSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -2353,6 +2374,7 @@ export namespace Prisma {
     isEmailVerified?: boolean
     otp?: boolean
     otpExpiry?: boolean
+    role?: boolean
   }, ExtArgs["result"]["user"]>
 
   export type UserSelectScalar = {
@@ -2363,9 +2385,10 @@ export namespace Prisma {
     isEmailVerified?: boolean
     otp?: boolean
     otpExpiry?: boolean
+    role?: boolean
   }
 
-  export type UserOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "email" | "password" | "createdAt" | "isEmailVerified" | "otp" | "otpExpiry", ExtArgs["result"]["user"]>
+  export type UserOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "email" | "password" | "createdAt" | "isEmailVerified" | "otp" | "otpExpiry" | "role", ExtArgs["result"]["user"]>
   export type UserInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     basicInfo?: boolean | User$basicInfoArgs<ExtArgs>
     bioSummary?: boolean | User$bioSummaryArgs<ExtArgs>
@@ -2412,6 +2435,7 @@ export namespace Prisma {
       isEmailVerified: boolean
       otp: string | null
       otpExpiry: Date | null
+      role: $Enums.Role
     }, ExtArgs["result"]["user"]>
     composites: {}
   }
@@ -2856,6 +2880,7 @@ export namespace Prisma {
     readonly isEmailVerified: FieldRef<"User", 'Boolean'>
     readonly otp: FieldRef<"User", 'String'>
     readonly otpExpiry: FieldRef<"User", 'DateTime'>
+    readonly role: FieldRef<"User", 'Role'>
   }
     
 
@@ -16924,7 +16949,8 @@ export namespace Prisma {
     createdAt: 'createdAt',
     isEmailVerified: 'isEmailVerified',
     otp: 'otp',
-    otpExpiry: 'otpExpiry'
+    otpExpiry: 'otpExpiry',
+    role: 'role'
   };
 
   export type UserScalarFieldEnum = (typeof UserScalarFieldEnum)[keyof typeof UserScalarFieldEnum]
@@ -17149,6 +17175,20 @@ export namespace Prisma {
 
 
   /**
+   * Reference to a field of type 'Role'
+   */
+  export type EnumRoleFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Role'>
+    
+
+
+  /**
+   * Reference to a field of type 'Role[]'
+   */
+  export type ListEnumRoleFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Role[]'>
+    
+
+
+  /**
    * Reference to a field of type 'PostType'
    */
   export type EnumPostTypeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'PostType'>
@@ -17190,6 +17230,7 @@ export namespace Prisma {
     isEmailVerified?: BoolFilter<"User"> | boolean
     otp?: StringNullableFilter<"User"> | string | null
     otpExpiry?: DateTimeNullableFilter<"User"> | Date | string | null
+    role?: EnumRoleFilter<"User"> | $Enums.Role
     basicInfo?: XOR<BasicInfoNullableScalarRelationFilter, BasicInfoWhereInput> | null
     bioSummary?: XOR<BioSummaryNullableScalarRelationFilter, BioSummaryWhereInput> | null
     collaboration?: XOR<CollaborationNullableScalarRelationFilter, CollaborationWhereInput> | null
@@ -17214,6 +17255,7 @@ export namespace Prisma {
     isEmailVerified?: SortOrder
     otp?: SortOrderInput | SortOrder
     otpExpiry?: SortOrderInput | SortOrder
+    role?: SortOrder
     basicInfo?: BasicInfoOrderByWithRelationInput
     bioSummary?: BioSummaryOrderByWithRelationInput
     collaboration?: CollaborationOrderByWithRelationInput
@@ -17241,6 +17283,7 @@ export namespace Prisma {
     isEmailVerified?: BoolFilter<"User"> | boolean
     otp?: StringNullableFilter<"User"> | string | null
     otpExpiry?: DateTimeNullableFilter<"User"> | Date | string | null
+    role?: EnumRoleFilter<"User"> | $Enums.Role
     basicInfo?: XOR<BasicInfoNullableScalarRelationFilter, BasicInfoWhereInput> | null
     bioSummary?: XOR<BioSummaryNullableScalarRelationFilter, BioSummaryWhereInput> | null
     collaboration?: XOR<CollaborationNullableScalarRelationFilter, CollaborationWhereInput> | null
@@ -17265,6 +17308,7 @@ export namespace Prisma {
     isEmailVerified?: SortOrder
     otp?: SortOrderInput | SortOrder
     otpExpiry?: SortOrderInput | SortOrder
+    role?: SortOrder
     _count?: UserCountOrderByAggregateInput
     _avg?: UserAvgOrderByAggregateInput
     _max?: UserMaxOrderByAggregateInput
@@ -17283,6 +17327,7 @@ export namespace Prisma {
     isEmailVerified?: BoolWithAggregatesFilter<"User"> | boolean
     otp?: StringNullableWithAggregatesFilter<"User"> | string | null
     otpExpiry?: DateTimeNullableWithAggregatesFilter<"User"> | Date | string | null
+    role?: EnumRoleWithAggregatesFilter<"User"> | $Enums.Role
   }
 
   export type BasicInfoWhereInput = {
@@ -17991,6 +18036,7 @@ export namespace Prisma {
     isEmailVerified?: boolean
     otp?: string | null
     otpExpiry?: Date | string | null
+    role?: $Enums.Role
     basicInfo?: BasicInfoCreateNestedOneWithoutUserInput
     bioSummary?: BioSummaryCreateNestedOneWithoutUserInput
     collaboration?: CollaborationCreateNestedOneWithoutUserInput
@@ -18015,6 +18061,7 @@ export namespace Prisma {
     isEmailVerified?: boolean
     otp?: string | null
     otpExpiry?: Date | string | null
+    role?: $Enums.Role
     basicInfo?: BasicInfoUncheckedCreateNestedOneWithoutUserInput
     bioSummary?: BioSummaryUncheckedCreateNestedOneWithoutUserInput
     collaboration?: CollaborationUncheckedCreateNestedOneWithoutUserInput
@@ -18038,6 +18085,7 @@ export namespace Prisma {
     isEmailVerified?: BoolFieldUpdateOperationsInput | boolean
     otp?: NullableStringFieldUpdateOperationsInput | string | null
     otpExpiry?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
     basicInfo?: BasicInfoUpdateOneWithoutUserNestedInput
     bioSummary?: BioSummaryUpdateOneWithoutUserNestedInput
     collaboration?: CollaborationUpdateOneWithoutUserNestedInput
@@ -18062,6 +18110,7 @@ export namespace Prisma {
     isEmailVerified?: BoolFieldUpdateOperationsInput | boolean
     otp?: NullableStringFieldUpdateOperationsInput | string | null
     otpExpiry?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
     basicInfo?: BasicInfoUncheckedUpdateOneWithoutUserNestedInput
     bioSummary?: BioSummaryUncheckedUpdateOneWithoutUserNestedInput
     collaboration?: CollaborationUncheckedUpdateOneWithoutUserNestedInput
@@ -18086,6 +18135,7 @@ export namespace Prisma {
     isEmailVerified?: boolean
     otp?: string | null
     otpExpiry?: Date | string | null
+    role?: $Enums.Role
   }
 
   export type UserUpdateManyMutationInput = {
@@ -18095,6 +18145,7 @@ export namespace Prisma {
     isEmailVerified?: BoolFieldUpdateOperationsInput | boolean
     otp?: NullableStringFieldUpdateOperationsInput | string | null
     otpExpiry?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
   }
 
   export type UserUncheckedUpdateManyInput = {
@@ -18105,6 +18156,7 @@ export namespace Prisma {
     isEmailVerified?: BoolFieldUpdateOperationsInput | boolean
     otp?: NullableStringFieldUpdateOperationsInput | string | null
     otpExpiry?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
   }
 
   export type BasicInfoCreateInput = {
@@ -18801,6 +18853,13 @@ export namespace Prisma {
     not?: NestedDateTimeNullableFilter<$PrismaModel> | Date | string | null
   }
 
+  export type EnumRoleFilter<$PrismaModel = never> = {
+    equals?: $Enums.Role | EnumRoleFieldRefInput<$PrismaModel>
+    in?: $Enums.Role[] | ListEnumRoleFieldRefInput<$PrismaModel>
+    notIn?: $Enums.Role[] | ListEnumRoleFieldRefInput<$PrismaModel>
+    not?: NestedEnumRoleFilter<$PrismaModel> | $Enums.Role
+  }
+
   export type BasicInfoNullableScalarRelationFilter = {
     is?: BasicInfoWhereInput | null
     isNot?: BasicInfoWhereInput | null
@@ -18894,6 +18953,7 @@ export namespace Prisma {
     isEmailVerified?: SortOrder
     otp?: SortOrder
     otpExpiry?: SortOrder
+    role?: SortOrder
   }
 
   export type UserAvgOrderByAggregateInput = {
@@ -18908,6 +18968,7 @@ export namespace Prisma {
     isEmailVerified?: SortOrder
     otp?: SortOrder
     otpExpiry?: SortOrder
+    role?: SortOrder
   }
 
   export type UserMinOrderByAggregateInput = {
@@ -18918,6 +18979,7 @@ export namespace Prisma {
     isEmailVerified?: SortOrder
     otp?: SortOrder
     otpExpiry?: SortOrder
+    role?: SortOrder
   }
 
   export type UserSumOrderByAggregateInput = {
@@ -19010,6 +19072,16 @@ export namespace Prisma {
     _count?: NestedIntNullableFilter<$PrismaModel>
     _min?: NestedDateTimeNullableFilter<$PrismaModel>
     _max?: NestedDateTimeNullableFilter<$PrismaModel>
+  }
+
+  export type EnumRoleWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.Role | EnumRoleFieldRefInput<$PrismaModel>
+    in?: $Enums.Role[] | ListEnumRoleFieldRefInput<$PrismaModel>
+    notIn?: $Enums.Role[] | ListEnumRoleFieldRefInput<$PrismaModel>
+    not?: NestedEnumRoleWithAggregatesFilter<$PrismaModel> | $Enums.Role
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumRoleFilter<$PrismaModel>
+    _max?: NestedEnumRoleFilter<$PrismaModel>
   }
 
   export type IntNullableFilter<$PrismaModel = never> = {
@@ -19730,6 +19802,10 @@ export namespace Prisma {
     set?: Date | string | null
   }
 
+  export type EnumRoleFieldUpdateOperationsInput = {
+    set?: $Enums.Role
+  }
+
   export type BasicInfoUpdateOneWithoutUserNestedInput = {
     create?: XOR<BasicInfoCreateWithoutUserInput, BasicInfoUncheckedCreateWithoutUserInput>
     connectOrCreate?: BasicInfoCreateOrConnectWithoutUserInput
@@ -20434,6 +20510,13 @@ export namespace Prisma {
     not?: NestedDateTimeNullableFilter<$PrismaModel> | Date | string | null
   }
 
+  export type NestedEnumRoleFilter<$PrismaModel = never> = {
+    equals?: $Enums.Role | EnumRoleFieldRefInput<$PrismaModel>
+    in?: $Enums.Role[] | ListEnumRoleFieldRefInput<$PrismaModel>
+    notIn?: $Enums.Role[] | ListEnumRoleFieldRefInput<$PrismaModel>
+    not?: NestedEnumRoleFilter<$PrismaModel> | $Enums.Role
+  }
+
   export type NestedIntWithAggregatesFilter<$PrismaModel = never> = {
     equals?: number | IntFieldRefInput<$PrismaModel>
     in?: number[] | ListIntFieldRefInput<$PrismaModel>
@@ -20540,6 +20623,16 @@ export namespace Prisma {
     _count?: NestedIntNullableFilter<$PrismaModel>
     _min?: NestedDateTimeNullableFilter<$PrismaModel>
     _max?: NestedDateTimeNullableFilter<$PrismaModel>
+  }
+
+  export type NestedEnumRoleWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.Role | EnumRoleFieldRefInput<$PrismaModel>
+    in?: $Enums.Role[] | ListEnumRoleFieldRefInput<$PrismaModel>
+    notIn?: $Enums.Role[] | ListEnumRoleFieldRefInput<$PrismaModel>
+    not?: NestedEnumRoleWithAggregatesFilter<$PrismaModel> | $Enums.Role
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumRoleFilter<$PrismaModel>
+    _max?: NestedEnumRoleFilter<$PrismaModel>
   }
 
   export type NestedIntNullableWithAggregatesFilter<$PrismaModel = never> = {
@@ -21234,6 +21327,7 @@ export namespace Prisma {
     isEmailVerified?: boolean
     otp?: string | null
     otpExpiry?: Date | string | null
+    role?: $Enums.Role
     bioSummary?: BioSummaryCreateNestedOneWithoutUserInput
     collaboration?: CollaborationCreateNestedOneWithoutUserInput
     ParticipantA?: ConnectionCreateNestedManyWithoutParticipantAInput
@@ -21257,6 +21351,7 @@ export namespace Prisma {
     isEmailVerified?: boolean
     otp?: string | null
     otpExpiry?: Date | string | null
+    role?: $Enums.Role
     bioSummary?: BioSummaryUncheckedCreateNestedOneWithoutUserInput
     collaboration?: CollaborationUncheckedCreateNestedOneWithoutUserInput
     ParticipantA?: ConnectionUncheckedCreateNestedManyWithoutParticipantAInput
@@ -21295,6 +21390,7 @@ export namespace Prisma {
     isEmailVerified?: BoolFieldUpdateOperationsInput | boolean
     otp?: NullableStringFieldUpdateOperationsInput | string | null
     otpExpiry?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
     bioSummary?: BioSummaryUpdateOneWithoutUserNestedInput
     collaboration?: CollaborationUpdateOneWithoutUserNestedInput
     ParticipantA?: ConnectionUpdateManyWithoutParticipantANestedInput
@@ -21318,6 +21414,7 @@ export namespace Prisma {
     isEmailVerified?: BoolFieldUpdateOperationsInput | boolean
     otp?: NullableStringFieldUpdateOperationsInput | string | null
     otpExpiry?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
     bioSummary?: BioSummaryUncheckedUpdateOneWithoutUserNestedInput
     collaboration?: CollaborationUncheckedUpdateOneWithoutUserNestedInput
     ParticipantA?: ConnectionUncheckedUpdateManyWithoutParticipantANestedInput
@@ -21340,6 +21437,7 @@ export namespace Prisma {
     isEmailVerified?: boolean
     otp?: string | null
     otpExpiry?: Date | string | null
+    role?: $Enums.Role
     basicInfo?: BasicInfoCreateNestedOneWithoutUserInput
     bioSummary?: BioSummaryCreateNestedOneWithoutUserInput
     collaboration?: CollaborationCreateNestedOneWithoutUserInput
@@ -21363,6 +21461,7 @@ export namespace Prisma {
     isEmailVerified?: boolean
     otp?: string | null
     otpExpiry?: Date | string | null
+    role?: $Enums.Role
     basicInfo?: BasicInfoUncheckedCreateNestedOneWithoutUserInput
     bioSummary?: BioSummaryUncheckedCreateNestedOneWithoutUserInput
     collaboration?: CollaborationUncheckedCreateNestedOneWithoutUserInput
@@ -21401,6 +21500,7 @@ export namespace Prisma {
     isEmailVerified?: BoolFieldUpdateOperationsInput | boolean
     otp?: NullableStringFieldUpdateOperationsInput | string | null
     otpExpiry?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
     basicInfo?: BasicInfoUpdateOneWithoutUserNestedInput
     bioSummary?: BioSummaryUpdateOneWithoutUserNestedInput
     collaboration?: CollaborationUpdateOneWithoutUserNestedInput
@@ -21424,6 +21524,7 @@ export namespace Prisma {
     isEmailVerified?: BoolFieldUpdateOperationsInput | boolean
     otp?: NullableStringFieldUpdateOperationsInput | string | null
     otpExpiry?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
     basicInfo?: BasicInfoUncheckedUpdateOneWithoutUserNestedInput
     bioSummary?: BioSummaryUncheckedUpdateOneWithoutUserNestedInput
     collaboration?: CollaborationUncheckedUpdateOneWithoutUserNestedInput
@@ -21446,6 +21547,7 @@ export namespace Prisma {
     isEmailVerified?: boolean
     otp?: string | null
     otpExpiry?: Date | string | null
+    role?: $Enums.Role
     basicInfo?: BasicInfoCreateNestedOneWithoutUserInput
     collaboration?: CollaborationCreateNestedOneWithoutUserInput
     ParticipantA?: ConnectionCreateNestedManyWithoutParticipantAInput
@@ -21469,6 +21571,7 @@ export namespace Prisma {
     isEmailVerified?: boolean
     otp?: string | null
     otpExpiry?: Date | string | null
+    role?: $Enums.Role
     basicInfo?: BasicInfoUncheckedCreateNestedOneWithoutUserInput
     collaboration?: CollaborationUncheckedCreateNestedOneWithoutUserInput
     ParticipantA?: ConnectionUncheckedCreateNestedManyWithoutParticipantAInput
@@ -21507,6 +21610,7 @@ export namespace Prisma {
     isEmailVerified?: BoolFieldUpdateOperationsInput | boolean
     otp?: NullableStringFieldUpdateOperationsInput | string | null
     otpExpiry?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
     basicInfo?: BasicInfoUpdateOneWithoutUserNestedInput
     collaboration?: CollaborationUpdateOneWithoutUserNestedInput
     ParticipantA?: ConnectionUpdateManyWithoutParticipantANestedInput
@@ -21530,6 +21634,7 @@ export namespace Prisma {
     isEmailVerified?: BoolFieldUpdateOperationsInput | boolean
     otp?: NullableStringFieldUpdateOperationsInput | string | null
     otpExpiry?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
     basicInfo?: BasicInfoUncheckedUpdateOneWithoutUserNestedInput
     collaboration?: CollaborationUncheckedUpdateOneWithoutUserNestedInput
     ParticipantA?: ConnectionUncheckedUpdateManyWithoutParticipantANestedInput
@@ -21552,6 +21657,7 @@ export namespace Prisma {
     isEmailVerified?: boolean
     otp?: string | null
     otpExpiry?: Date | string | null
+    role?: $Enums.Role
     basicInfo?: BasicInfoCreateNestedOneWithoutUserInput
     bioSummary?: BioSummaryCreateNestedOneWithoutUserInput
     collaboration?: CollaborationCreateNestedOneWithoutUserInput
@@ -21575,6 +21681,7 @@ export namespace Prisma {
     isEmailVerified?: boolean
     otp?: string | null
     otpExpiry?: Date | string | null
+    role?: $Enums.Role
     basicInfo?: BasicInfoUncheckedCreateNestedOneWithoutUserInput
     bioSummary?: BioSummaryUncheckedCreateNestedOneWithoutUserInput
     collaboration?: CollaborationUncheckedCreateNestedOneWithoutUserInput
@@ -21613,6 +21720,7 @@ export namespace Prisma {
     isEmailVerified?: BoolFieldUpdateOperationsInput | boolean
     otp?: NullableStringFieldUpdateOperationsInput | string | null
     otpExpiry?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
     basicInfo?: BasicInfoUpdateOneWithoutUserNestedInput
     bioSummary?: BioSummaryUpdateOneWithoutUserNestedInput
     collaboration?: CollaborationUpdateOneWithoutUserNestedInput
@@ -21636,6 +21744,7 @@ export namespace Prisma {
     isEmailVerified?: BoolFieldUpdateOperationsInput | boolean
     otp?: NullableStringFieldUpdateOperationsInput | string | null
     otpExpiry?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
     basicInfo?: BasicInfoUncheckedUpdateOneWithoutUserNestedInput
     bioSummary?: BioSummaryUncheckedUpdateOneWithoutUserNestedInput
     collaboration?: CollaborationUncheckedUpdateOneWithoutUserNestedInput
@@ -21658,6 +21767,7 @@ export namespace Prisma {
     isEmailVerified?: boolean
     otp?: string | null
     otpExpiry?: Date | string | null
+    role?: $Enums.Role
     basicInfo?: BasicInfoCreateNestedOneWithoutUserInput
     bioSummary?: BioSummaryCreateNestedOneWithoutUserInput
     collaboration?: CollaborationCreateNestedOneWithoutUserInput
@@ -21681,6 +21791,7 @@ export namespace Prisma {
     isEmailVerified?: boolean
     otp?: string | null
     otpExpiry?: Date | string | null
+    role?: $Enums.Role
     basicInfo?: BasicInfoUncheckedCreateNestedOneWithoutUserInput
     bioSummary?: BioSummaryUncheckedCreateNestedOneWithoutUserInput
     collaboration?: CollaborationUncheckedCreateNestedOneWithoutUserInput
@@ -21719,6 +21830,7 @@ export namespace Prisma {
     isEmailVerified?: BoolFieldUpdateOperationsInput | boolean
     otp?: NullableStringFieldUpdateOperationsInput | string | null
     otpExpiry?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
     basicInfo?: BasicInfoUpdateOneWithoutUserNestedInput
     bioSummary?: BioSummaryUpdateOneWithoutUserNestedInput
     collaboration?: CollaborationUpdateOneWithoutUserNestedInput
@@ -21742,6 +21854,7 @@ export namespace Prisma {
     isEmailVerified?: BoolFieldUpdateOperationsInput | boolean
     otp?: NullableStringFieldUpdateOperationsInput | string | null
     otpExpiry?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
     basicInfo?: BasicInfoUncheckedUpdateOneWithoutUserNestedInput
     bioSummary?: BioSummaryUncheckedUpdateOneWithoutUserNestedInput
     collaboration?: CollaborationUncheckedUpdateOneWithoutUserNestedInput
@@ -21764,6 +21877,7 @@ export namespace Prisma {
     isEmailVerified?: boolean
     otp?: string | null
     otpExpiry?: Date | string | null
+    role?: $Enums.Role
     basicInfo?: BasicInfoCreateNestedOneWithoutUserInput
     bioSummary?: BioSummaryCreateNestedOneWithoutUserInput
     ParticipantA?: ConnectionCreateNestedManyWithoutParticipantAInput
@@ -21787,6 +21901,7 @@ export namespace Prisma {
     isEmailVerified?: boolean
     otp?: string | null
     otpExpiry?: Date | string | null
+    role?: $Enums.Role
     basicInfo?: BasicInfoUncheckedCreateNestedOneWithoutUserInput
     bioSummary?: BioSummaryUncheckedCreateNestedOneWithoutUserInput
     ParticipantA?: ConnectionUncheckedCreateNestedManyWithoutParticipantAInput
@@ -21825,6 +21940,7 @@ export namespace Prisma {
     isEmailVerified?: BoolFieldUpdateOperationsInput | boolean
     otp?: NullableStringFieldUpdateOperationsInput | string | null
     otpExpiry?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
     basicInfo?: BasicInfoUpdateOneWithoutUserNestedInput
     bioSummary?: BioSummaryUpdateOneWithoutUserNestedInput
     ParticipantA?: ConnectionUpdateManyWithoutParticipantANestedInput
@@ -21848,6 +21964,7 @@ export namespace Prisma {
     isEmailVerified?: BoolFieldUpdateOperationsInput | boolean
     otp?: NullableStringFieldUpdateOperationsInput | string | null
     otpExpiry?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
     basicInfo?: BasicInfoUncheckedUpdateOneWithoutUserNestedInput
     bioSummary?: BioSummaryUncheckedUpdateOneWithoutUserNestedInput
     ParticipantA?: ConnectionUncheckedUpdateManyWithoutParticipantANestedInput
@@ -21870,6 +21987,7 @@ export namespace Prisma {
     isEmailVerified?: boolean
     otp?: string | null
     otpExpiry?: Date | string | null
+    role?: $Enums.Role
     basicInfo?: BasicInfoCreateNestedOneWithoutUserInput
     bioSummary?: BioSummaryCreateNestedOneWithoutUserInput
     collaboration?: CollaborationCreateNestedOneWithoutUserInput
@@ -21893,6 +22011,7 @@ export namespace Prisma {
     isEmailVerified?: boolean
     otp?: string | null
     otpExpiry?: Date | string | null
+    role?: $Enums.Role
     basicInfo?: BasicInfoUncheckedCreateNestedOneWithoutUserInput
     bioSummary?: BioSummaryUncheckedCreateNestedOneWithoutUserInput
     collaboration?: CollaborationUncheckedCreateNestedOneWithoutUserInput
@@ -21931,6 +22050,7 @@ export namespace Prisma {
     isEmailVerified?: BoolFieldUpdateOperationsInput | boolean
     otp?: NullableStringFieldUpdateOperationsInput | string | null
     otpExpiry?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
     basicInfo?: BasicInfoUpdateOneWithoutUserNestedInput
     bioSummary?: BioSummaryUpdateOneWithoutUserNestedInput
     collaboration?: CollaborationUpdateOneWithoutUserNestedInput
@@ -21954,6 +22074,7 @@ export namespace Prisma {
     isEmailVerified?: BoolFieldUpdateOperationsInput | boolean
     otp?: NullableStringFieldUpdateOperationsInput | string | null
     otpExpiry?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
     basicInfo?: BasicInfoUncheckedUpdateOneWithoutUserNestedInput
     bioSummary?: BioSummaryUncheckedUpdateOneWithoutUserNestedInput
     collaboration?: CollaborationUncheckedUpdateOneWithoutUserNestedInput
@@ -21994,6 +22115,7 @@ export namespace Prisma {
     isEmailVerified?: boolean
     otp?: string | null
     otpExpiry?: Date | string | null
+    role?: $Enums.Role
     basicInfo?: BasicInfoCreateNestedOneWithoutUserInput
     bioSummary?: BioSummaryCreateNestedOneWithoutUserInput
     collaboration?: CollaborationCreateNestedOneWithoutUserInput
@@ -22017,6 +22139,7 @@ export namespace Prisma {
     isEmailVerified?: boolean
     otp?: string | null
     otpExpiry?: Date | string | null
+    role?: $Enums.Role
     basicInfo?: BasicInfoUncheckedCreateNestedOneWithoutUserInput
     bioSummary?: BioSummaryUncheckedCreateNestedOneWithoutUserInput
     collaboration?: CollaborationUncheckedCreateNestedOneWithoutUserInput
@@ -22079,6 +22202,7 @@ export namespace Prisma {
     isEmailVerified?: BoolFieldUpdateOperationsInput | boolean
     otp?: NullableStringFieldUpdateOperationsInput | string | null
     otpExpiry?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
     basicInfo?: BasicInfoUpdateOneWithoutUserNestedInput
     bioSummary?: BioSummaryUpdateOneWithoutUserNestedInput
     collaboration?: CollaborationUpdateOneWithoutUserNestedInput
@@ -22102,6 +22226,7 @@ export namespace Prisma {
     isEmailVerified?: BoolFieldUpdateOperationsInput | boolean
     otp?: NullableStringFieldUpdateOperationsInput | string | null
     otpExpiry?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
     basicInfo?: BasicInfoUncheckedUpdateOneWithoutUserNestedInput
     bioSummary?: BioSummaryUncheckedUpdateOneWithoutUserNestedInput
     collaboration?: CollaborationUncheckedUpdateOneWithoutUserNestedInput
@@ -22174,6 +22299,7 @@ export namespace Prisma {
     isEmailVerified?: boolean
     otp?: string | null
     otpExpiry?: Date | string | null
+    role?: $Enums.Role
     basicInfo?: BasicInfoCreateNestedOneWithoutUserInput
     bioSummary?: BioSummaryCreateNestedOneWithoutUserInput
     collaboration?: CollaborationCreateNestedOneWithoutUserInput
@@ -22197,6 +22323,7 @@ export namespace Prisma {
     isEmailVerified?: boolean
     otp?: string | null
     otpExpiry?: Date | string | null
+    role?: $Enums.Role
     basicInfo?: BasicInfoUncheckedCreateNestedOneWithoutUserInput
     bioSummary?: BioSummaryUncheckedCreateNestedOneWithoutUserInput
     collaboration?: CollaborationUncheckedCreateNestedOneWithoutUserInput
@@ -22224,6 +22351,7 @@ export namespace Prisma {
     isEmailVerified?: boolean
     otp?: string | null
     otpExpiry?: Date | string | null
+    role?: $Enums.Role
     basicInfo?: BasicInfoCreateNestedOneWithoutUserInput
     bioSummary?: BioSummaryCreateNestedOneWithoutUserInput
     collaboration?: CollaborationCreateNestedOneWithoutUserInput
@@ -22247,6 +22375,7 @@ export namespace Prisma {
     isEmailVerified?: boolean
     otp?: string | null
     otpExpiry?: Date | string | null
+    role?: $Enums.Role
     basicInfo?: BasicInfoUncheckedCreateNestedOneWithoutUserInput
     bioSummary?: BioSummaryUncheckedCreateNestedOneWithoutUserInput
     collaboration?: CollaborationUncheckedCreateNestedOneWithoutUserInput
@@ -22285,6 +22414,7 @@ export namespace Prisma {
     isEmailVerified?: BoolFieldUpdateOperationsInput | boolean
     otp?: NullableStringFieldUpdateOperationsInput | string | null
     otpExpiry?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
     basicInfo?: BasicInfoUpdateOneWithoutUserNestedInput
     bioSummary?: BioSummaryUpdateOneWithoutUserNestedInput
     collaboration?: CollaborationUpdateOneWithoutUserNestedInput
@@ -22308,6 +22438,7 @@ export namespace Prisma {
     isEmailVerified?: BoolFieldUpdateOperationsInput | boolean
     otp?: NullableStringFieldUpdateOperationsInput | string | null
     otpExpiry?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
     basicInfo?: BasicInfoUncheckedUpdateOneWithoutUserNestedInput
     bioSummary?: BioSummaryUncheckedUpdateOneWithoutUserNestedInput
     collaboration?: CollaborationUncheckedUpdateOneWithoutUserNestedInput
@@ -22341,6 +22472,7 @@ export namespace Prisma {
     isEmailVerified?: BoolFieldUpdateOperationsInput | boolean
     otp?: NullableStringFieldUpdateOperationsInput | string | null
     otpExpiry?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
     basicInfo?: BasicInfoUpdateOneWithoutUserNestedInput
     bioSummary?: BioSummaryUpdateOneWithoutUserNestedInput
     collaboration?: CollaborationUpdateOneWithoutUserNestedInput
@@ -22364,6 +22496,7 @@ export namespace Prisma {
     isEmailVerified?: BoolFieldUpdateOperationsInput | boolean
     otp?: NullableStringFieldUpdateOperationsInput | string | null
     otpExpiry?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
     basicInfo?: BasicInfoUncheckedUpdateOneWithoutUserNestedInput
     bioSummary?: BioSummaryUncheckedUpdateOneWithoutUserNestedInput
     collaboration?: CollaborationUncheckedUpdateOneWithoutUserNestedInput
@@ -22386,6 +22519,7 @@ export namespace Prisma {
     isEmailVerified?: boolean
     otp?: string | null
     otpExpiry?: Date | string | null
+    role?: $Enums.Role
     basicInfo?: BasicInfoCreateNestedOneWithoutUserInput
     bioSummary?: BioSummaryCreateNestedOneWithoutUserInput
     collaboration?: CollaborationCreateNestedOneWithoutUserInput
@@ -22409,6 +22543,7 @@ export namespace Prisma {
     isEmailVerified?: boolean
     otp?: string | null
     otpExpiry?: Date | string | null
+    role?: $Enums.Role
     basicInfo?: BasicInfoUncheckedCreateNestedOneWithoutUserInput
     bioSummary?: BioSummaryUncheckedCreateNestedOneWithoutUserInput
     collaboration?: CollaborationUncheckedCreateNestedOneWithoutUserInput
@@ -22436,6 +22571,7 @@ export namespace Prisma {
     isEmailVerified?: boolean
     otp?: string | null
     otpExpiry?: Date | string | null
+    role?: $Enums.Role
     basicInfo?: BasicInfoCreateNestedOneWithoutUserInput
     bioSummary?: BioSummaryCreateNestedOneWithoutUserInput
     collaboration?: CollaborationCreateNestedOneWithoutUserInput
@@ -22459,6 +22595,7 @@ export namespace Prisma {
     isEmailVerified?: boolean
     otp?: string | null
     otpExpiry?: Date | string | null
+    role?: $Enums.Role
     basicInfo?: BasicInfoUncheckedCreateNestedOneWithoutUserInput
     bioSummary?: BioSummaryUncheckedCreateNestedOneWithoutUserInput
     collaboration?: CollaborationUncheckedCreateNestedOneWithoutUserInput
@@ -22497,6 +22634,7 @@ export namespace Prisma {
     isEmailVerified?: BoolFieldUpdateOperationsInput | boolean
     otp?: NullableStringFieldUpdateOperationsInput | string | null
     otpExpiry?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
     basicInfo?: BasicInfoUpdateOneWithoutUserNestedInput
     bioSummary?: BioSummaryUpdateOneWithoutUserNestedInput
     collaboration?: CollaborationUpdateOneWithoutUserNestedInput
@@ -22520,6 +22658,7 @@ export namespace Prisma {
     isEmailVerified?: BoolFieldUpdateOperationsInput | boolean
     otp?: NullableStringFieldUpdateOperationsInput | string | null
     otpExpiry?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
     basicInfo?: BasicInfoUncheckedUpdateOneWithoutUserNestedInput
     bioSummary?: BioSummaryUncheckedUpdateOneWithoutUserNestedInput
     collaboration?: CollaborationUncheckedUpdateOneWithoutUserNestedInput
@@ -22553,6 +22692,7 @@ export namespace Prisma {
     isEmailVerified?: BoolFieldUpdateOperationsInput | boolean
     otp?: NullableStringFieldUpdateOperationsInput | string | null
     otpExpiry?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
     basicInfo?: BasicInfoUpdateOneWithoutUserNestedInput
     bioSummary?: BioSummaryUpdateOneWithoutUserNestedInput
     collaboration?: CollaborationUpdateOneWithoutUserNestedInput
@@ -22576,6 +22716,7 @@ export namespace Prisma {
     isEmailVerified?: BoolFieldUpdateOperationsInput | boolean
     otp?: NullableStringFieldUpdateOperationsInput | string | null
     otpExpiry?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
     basicInfo?: BasicInfoUncheckedUpdateOneWithoutUserNestedInput
     bioSummary?: BioSummaryUncheckedUpdateOneWithoutUserNestedInput
     collaboration?: CollaborationUncheckedUpdateOneWithoutUserNestedInput
@@ -22598,6 +22739,7 @@ export namespace Prisma {
     isEmailVerified?: boolean
     otp?: string | null
     otpExpiry?: Date | string | null
+    role?: $Enums.Role
     basicInfo?: BasicInfoCreateNestedOneWithoutUserInput
     bioSummary?: BioSummaryCreateNestedOneWithoutUserInput
     collaboration?: CollaborationCreateNestedOneWithoutUserInput
@@ -22621,6 +22763,7 @@ export namespace Prisma {
     isEmailVerified?: boolean
     otp?: string | null
     otpExpiry?: Date | string | null
+    role?: $Enums.Role
     basicInfo?: BasicInfoUncheckedCreateNestedOneWithoutUserInput
     bioSummary?: BioSummaryUncheckedCreateNestedOneWithoutUserInput
     collaboration?: CollaborationUncheckedCreateNestedOneWithoutUserInput
@@ -22648,6 +22791,7 @@ export namespace Prisma {
     isEmailVerified?: boolean
     otp?: string | null
     otpExpiry?: Date | string | null
+    role?: $Enums.Role
     basicInfo?: BasicInfoCreateNestedOneWithoutUserInput
     bioSummary?: BioSummaryCreateNestedOneWithoutUserInput
     collaboration?: CollaborationCreateNestedOneWithoutUserInput
@@ -22671,6 +22815,7 @@ export namespace Prisma {
     isEmailVerified?: boolean
     otp?: string | null
     otpExpiry?: Date | string | null
+    role?: $Enums.Role
     basicInfo?: BasicInfoUncheckedCreateNestedOneWithoutUserInput
     bioSummary?: BioSummaryUncheckedCreateNestedOneWithoutUserInput
     collaboration?: CollaborationUncheckedCreateNestedOneWithoutUserInput
@@ -22709,6 +22854,7 @@ export namespace Prisma {
     isEmailVerified?: BoolFieldUpdateOperationsInput | boolean
     otp?: NullableStringFieldUpdateOperationsInput | string | null
     otpExpiry?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
     basicInfo?: BasicInfoUpdateOneWithoutUserNestedInput
     bioSummary?: BioSummaryUpdateOneWithoutUserNestedInput
     collaboration?: CollaborationUpdateOneWithoutUserNestedInput
@@ -22732,6 +22878,7 @@ export namespace Prisma {
     isEmailVerified?: BoolFieldUpdateOperationsInput | boolean
     otp?: NullableStringFieldUpdateOperationsInput | string | null
     otpExpiry?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
     basicInfo?: BasicInfoUncheckedUpdateOneWithoutUserNestedInput
     bioSummary?: BioSummaryUncheckedUpdateOneWithoutUserNestedInput
     collaboration?: CollaborationUncheckedUpdateOneWithoutUserNestedInput
@@ -22765,6 +22912,7 @@ export namespace Prisma {
     isEmailVerified?: BoolFieldUpdateOperationsInput | boolean
     otp?: NullableStringFieldUpdateOperationsInput | string | null
     otpExpiry?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
     basicInfo?: BasicInfoUpdateOneWithoutUserNestedInput
     bioSummary?: BioSummaryUpdateOneWithoutUserNestedInput
     collaboration?: CollaborationUpdateOneWithoutUserNestedInput
@@ -22788,6 +22936,7 @@ export namespace Prisma {
     isEmailVerified?: BoolFieldUpdateOperationsInput | boolean
     otp?: NullableStringFieldUpdateOperationsInput | string | null
     otpExpiry?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
     basicInfo?: BasicInfoUncheckedUpdateOneWithoutUserNestedInput
     bioSummary?: BioSummaryUncheckedUpdateOneWithoutUserNestedInput
     collaboration?: CollaborationUncheckedUpdateOneWithoutUserNestedInput

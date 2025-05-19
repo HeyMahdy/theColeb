@@ -17,6 +17,7 @@ model User {
   isEmailVerified            Boolean              @default(false)
   otp                        String?              @db.VarChar(6)
   otpExpiry                  DateTime?
+  role                       Role                 @default(USER)
   basicInfo                  BasicInfo?
   bioSummary                 BioSummary?
   collaboration              Collaboration?
@@ -183,4 +184,9 @@ enum PostType {
   MVP
   COFOUNDER_NEEDED
   OTHER
+}
+
+enum Role {
+  USER
+  ADMIN
 }
