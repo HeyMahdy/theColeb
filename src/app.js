@@ -19,11 +19,23 @@ import postrouter from './routes/v1/postRoute/post.js';
 const app = express();
 
 // Add CORS configuration before other middleware
+const allowedOrigins = [
+  'http://localhost:5173',
+   process.env.FRONTEND_URL,
+];
+
 app.use(cors({
-  origin: process.env.FRONTEND_URL || 'http://localhost:5173', // Default to Vite's default port
-  credentials: true, // Allow credentials (cookies, authorization headers, etc)
+  origin: function (origin, callback) {
+    // Allow requests with no origin (like Postman)
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
+  },
+  credentials: true,
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'],
-  allowedHeaders: ['Content-Type', 'Authorization']
+  allowedHeaders: ['Content-Type', 'Authorization'],
 }));
 
 app.use(json());
