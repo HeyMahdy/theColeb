@@ -118,11 +118,13 @@ class AuthController {
 
       return res.status(200).json({
         message: 'Login successful',
-        token,
-        user: {
-          id: user.id,
-          email: user.email,
-          isEmailVerified: user.isEmailVerified
+        data: {
+          token,
+          user: {
+            id: user.id,
+            email: user.email,
+            isEmailVerified: user.isEmailVerified
+          }
         }
       });
     } catch (error) {
