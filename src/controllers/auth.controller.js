@@ -132,27 +132,22 @@ class AuthController {
       });
     }
   }
-
+  
   static async verifyOTP(req, res) {
     try {
-      const { userId, otp } = req.body;
-
-      const isValid = await OTPService.verifyotp(userId, otp);
-
-      if (!isValid) {
-        return res.status(400).json({
-          message: 'Invalid or expired OTP',
-        });
+      const { email, otp } = req.body;
+      const user = await prisma.user.findUnique({ where: { email } });
+      if (!user) {
+        return res.status(404).json({ message: 'User not found' });
       }
-
-      return res.status(200).json({
-        message: 'Email verified successfully',
-      });
+      const isValid = await OTPService.verifyotp(user.id, otp);
+      if (!isValid) {
+        return res.status(400).json({ message: 'Invalid or expired OTP' });
+      }
+      return res.status(200).json({ message: 'Email verified successfully' });
     } catch (error) {
       console.error('OTP verification error:', error);
-      return res.status(500).json({
-        message: 'An error occurred during OTP verification',
-      });
+      return res.status(500).json({ message: 'An error occurred during OTP verification' });
     }
   }
 

@@ -29,8 +29,10 @@ app.use((req, res, next) => {
 const corsOptions = {
   origin: function (origin, callback) {
     const allowedOrigins = [
-      'https://coleb-connect-universe.vercel.app', // ✅ Your frontend
-      'http://localhost:5173' // ✅ For local dev if needed
+      'https://coleb-connect-universe.vercel.app',
+      'http://localhost:5173',
+      'http://localhost:8080',
+      'http://192.168.0.106:8080' // <-- Add this line
     ];
 
     if (!origin) return callback(null, true); // Allow requests with no origin
