@@ -87,6 +87,7 @@ export namespace $Enums {
   IDEA: 'IDEA',
   MVP: 'MVP',
   COFOUNDER_NEEDED: 'COFOUNDER_NEEDED',
+  MEETUP: 'MEETUP',
   OTHER: 'OTHER'
 };
 
@@ -3617,13 +3618,11 @@ export namespace Prisma {
   export type BasicInfoAvgAggregateOutputType = {
     id: number | null
     userId: number | null
-    graduationYear: number | null
   }
 
   export type BasicInfoSumAggregateOutputType = {
     id: number | null
     userId: number | null
-    graduationYear: number | null
   }
 
   export type BasicInfoMinAggregateOutputType = {
@@ -3631,10 +3630,7 @@ export namespace Prisma {
     userId: number | null
     fullName: string | null
     Institute: string | null
-    degree: string | null
     major: string | null
-    graduationYear: number | null
-    phone: string | null
     location: string | null
   }
 
@@ -3643,10 +3639,7 @@ export namespace Prisma {
     userId: number | null
     fullName: string | null
     Institute: string | null
-    degree: string | null
     major: string | null
-    graduationYear: number | null
-    phone: string | null
     location: string | null
   }
 
@@ -3655,10 +3648,7 @@ export namespace Prisma {
     userId: number
     fullName: number
     Institute: number
-    degree: number
     major: number
-    graduationYear: number
-    phone: number
     location: number
     _all: number
   }
@@ -3667,13 +3657,11 @@ export namespace Prisma {
   export type BasicInfoAvgAggregateInputType = {
     id?: true
     userId?: true
-    graduationYear?: true
   }
 
   export type BasicInfoSumAggregateInputType = {
     id?: true
     userId?: true
-    graduationYear?: true
   }
 
   export type BasicInfoMinAggregateInputType = {
@@ -3681,10 +3669,7 @@ export namespace Prisma {
     userId?: true
     fullName?: true
     Institute?: true
-    degree?: true
     major?: true
-    graduationYear?: true
-    phone?: true
     location?: true
   }
 
@@ -3693,10 +3678,7 @@ export namespace Prisma {
     userId?: true
     fullName?: true
     Institute?: true
-    degree?: true
     major?: true
-    graduationYear?: true
-    phone?: true
     location?: true
   }
 
@@ -3705,10 +3687,7 @@ export namespace Prisma {
     userId?: true
     fullName?: true
     Institute?: true
-    degree?: true
     major?: true
-    graduationYear?: true
-    phone?: true
     location?: true
     _all?: true
   }
@@ -3802,12 +3781,9 @@ export namespace Prisma {
   export type BasicInfoGroupByOutputType = {
     id: number
     userId: number
-    fullName: string | null
+    fullName: string
     Institute: string | null
-    degree: string | null
     major: string | null
-    graduationYear: number | null
-    phone: string | null
     location: string | null
     _count: BasicInfoCountAggregateOutputType | null
     _avg: BasicInfoAvgAggregateOutputType | null
@@ -3835,10 +3811,7 @@ export namespace Prisma {
     userId?: boolean
     fullName?: boolean
     Institute?: boolean
-    degree?: boolean
     major?: boolean
-    graduationYear?: boolean
-    phone?: boolean
     location?: boolean
     user?: boolean | UserDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["basicInfo"]>
@@ -3848,10 +3821,7 @@ export namespace Prisma {
     userId?: boolean
     fullName?: boolean
     Institute?: boolean
-    degree?: boolean
     major?: boolean
-    graduationYear?: boolean
-    phone?: boolean
     location?: boolean
     user?: boolean | UserDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["basicInfo"]>
@@ -3861,10 +3831,7 @@ export namespace Prisma {
     userId?: boolean
     fullName?: boolean
     Institute?: boolean
-    degree?: boolean
     major?: boolean
-    graduationYear?: boolean
-    phone?: boolean
     location?: boolean
     user?: boolean | UserDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["basicInfo"]>
@@ -3874,14 +3841,11 @@ export namespace Prisma {
     userId?: boolean
     fullName?: boolean
     Institute?: boolean
-    degree?: boolean
     major?: boolean
-    graduationYear?: boolean
-    phone?: boolean
     location?: boolean
   }
 
-  export type BasicInfoOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "userId" | "fullName" | "Institute" | "degree" | "major" | "graduationYear" | "phone" | "location", ExtArgs["result"]["basicInfo"]>
+  export type BasicInfoOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "userId" | "fullName" | "Institute" | "major" | "location", ExtArgs["result"]["basicInfo"]>
   export type BasicInfoInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     user?: boolean | UserDefaultArgs<ExtArgs>
   }
@@ -3900,12 +3864,9 @@ export namespace Prisma {
     scalars: $Extensions.GetPayloadResult<{
       id: number
       userId: number
-      fullName: string | null
+      fullName: string
       Institute: string | null
-      degree: string | null
       major: string | null
-      graduationYear: number | null
-      phone: string | null
       location: string | null
     }, ExtArgs["result"]["basicInfo"]>
     composites: {}
@@ -4335,10 +4296,7 @@ export namespace Prisma {
     readonly userId: FieldRef<"BasicInfo", 'Int'>
     readonly fullName: FieldRef<"BasicInfo", 'String'>
     readonly Institute: FieldRef<"BasicInfo", 'String'>
-    readonly degree: FieldRef<"BasicInfo", 'String'>
     readonly major: FieldRef<"BasicInfo", 'String'>
-    readonly graduationYear: FieldRef<"BasicInfo", 'Int'>
-    readonly phone: FieldRef<"BasicInfo", 'String'>
     readonly location: FieldRef<"BasicInfo", 'String'>
   }
     
@@ -4778,29 +4736,23 @@ export namespace Prisma {
   export type TechnicalProfileAvgAggregateOutputType = {
     id: number | null
     userId: number | null
-    yearsOfExperience: number | null
   }
 
   export type TechnicalProfileSumAggregateOutputType = {
     id: number | null
     userId: number | null
-    yearsOfExperience: number | null
   }
 
   export type TechnicalProfileMinAggregateOutputType = {
     id: number | null
     userId: number | null
     experienceLevel: string | null
-    yearsOfExperience: number | null
-    availability: string | null
   }
 
   export type TechnicalProfileMaxAggregateOutputType = {
     id: number | null
     userId: number | null
     experienceLevel: string | null
-    yearsOfExperience: number | null
-    availability: string | null
   }
 
   export type TechnicalProfileCountAggregateOutputType = {
@@ -4808,9 +4760,6 @@ export namespace Prisma {
     userId: number
     skills: number
     experienceLevel: number
-    yearsOfExperience: number
-    projectInterests: number
-    availability: number
     _all: number
   }
 
@@ -4818,29 +4767,23 @@ export namespace Prisma {
   export type TechnicalProfileAvgAggregateInputType = {
     id?: true
     userId?: true
-    yearsOfExperience?: true
   }
 
   export type TechnicalProfileSumAggregateInputType = {
     id?: true
     userId?: true
-    yearsOfExperience?: true
   }
 
   export type TechnicalProfileMinAggregateInputType = {
     id?: true
     userId?: true
     experienceLevel?: true
-    yearsOfExperience?: true
-    availability?: true
   }
 
   export type TechnicalProfileMaxAggregateInputType = {
     id?: true
     userId?: true
     experienceLevel?: true
-    yearsOfExperience?: true
-    availability?: true
   }
 
   export type TechnicalProfileCountAggregateInputType = {
@@ -4848,9 +4791,6 @@ export namespace Prisma {
     userId?: true
     skills?: true
     experienceLevel?: true
-    yearsOfExperience?: true
-    projectInterests?: true
-    availability?: true
     _all?: true
   }
 
@@ -4945,9 +4885,6 @@ export namespace Prisma {
     userId: number
     skills: string[]
     experienceLevel: string | null
-    yearsOfExperience: number | null
-    projectInterests: string[]
-    availability: string | null
     _count: TechnicalProfileCountAggregateOutputType | null
     _avg: TechnicalProfileAvgAggregateOutputType | null
     _sum: TechnicalProfileSumAggregateOutputType | null
@@ -4974,9 +4911,6 @@ export namespace Prisma {
     userId?: boolean
     skills?: boolean
     experienceLevel?: boolean
-    yearsOfExperience?: boolean
-    projectInterests?: boolean
-    availability?: boolean
     user?: boolean | UserDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["technicalProfile"]>
 
@@ -4985,9 +4919,6 @@ export namespace Prisma {
     userId?: boolean
     skills?: boolean
     experienceLevel?: boolean
-    yearsOfExperience?: boolean
-    projectInterests?: boolean
-    availability?: boolean
     user?: boolean | UserDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["technicalProfile"]>
 
@@ -4996,9 +4927,6 @@ export namespace Prisma {
     userId?: boolean
     skills?: boolean
     experienceLevel?: boolean
-    yearsOfExperience?: boolean
-    projectInterests?: boolean
-    availability?: boolean
     user?: boolean | UserDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["technicalProfile"]>
 
@@ -5007,12 +4935,9 @@ export namespace Prisma {
     userId?: boolean
     skills?: boolean
     experienceLevel?: boolean
-    yearsOfExperience?: boolean
-    projectInterests?: boolean
-    availability?: boolean
   }
 
-  export type TechnicalProfileOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "userId" | "skills" | "experienceLevel" | "yearsOfExperience" | "projectInterests" | "availability", ExtArgs["result"]["technicalProfile"]>
+  export type TechnicalProfileOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "userId" | "skills" | "experienceLevel", ExtArgs["result"]["technicalProfile"]>
   export type TechnicalProfileInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     user?: boolean | UserDefaultArgs<ExtArgs>
   }
@@ -5033,9 +4958,6 @@ export namespace Prisma {
       userId: number
       skills: string[]
       experienceLevel: string | null
-      yearsOfExperience: number | null
-      projectInterests: string[]
-      availability: string | null
     }, ExtArgs["result"]["technicalProfile"]>
     composites: {}
   }
@@ -5464,9 +5386,6 @@ export namespace Prisma {
     readonly userId: FieldRef<"TechnicalProfile", 'Int'>
     readonly skills: FieldRef<"TechnicalProfile", 'String[]'>
     readonly experienceLevel: FieldRef<"TechnicalProfile", 'String'>
-    readonly yearsOfExperience: FieldRef<"TechnicalProfile", 'Int'>
-    readonly projectInterests: FieldRef<"TechnicalProfile", 'String[]'>
-    readonly availability: FieldRef<"TechnicalProfile", 'String'>
   }
     
 
@@ -7010,6 +6929,8 @@ export namespace Prisma {
     github: string | null
     portfolio: string | null
     linkedin: string | null
+    email: string | null
+    whatsapp: string | null
   }
 
   export type ShowcaseMaxAggregateOutputType = {
@@ -7018,6 +6939,8 @@ export namespace Prisma {
     github: string | null
     portfolio: string | null
     linkedin: string | null
+    email: string | null
+    whatsapp: string | null
   }
 
   export type ShowcaseCountAggregateOutputType = {
@@ -7026,6 +6949,8 @@ export namespace Prisma {
     github: number
     portfolio: number
     linkedin: number
+    email: number
+    whatsapp: number
     _all: number
   }
 
@@ -7046,6 +6971,8 @@ export namespace Prisma {
     github?: true
     portfolio?: true
     linkedin?: true
+    email?: true
+    whatsapp?: true
   }
 
   export type ShowcaseMaxAggregateInputType = {
@@ -7054,6 +6981,8 @@ export namespace Prisma {
     github?: true
     portfolio?: true
     linkedin?: true
+    email?: true
+    whatsapp?: true
   }
 
   export type ShowcaseCountAggregateInputType = {
@@ -7062,6 +6991,8 @@ export namespace Prisma {
     github?: true
     portfolio?: true
     linkedin?: true
+    email?: true
+    whatsapp?: true
     _all?: true
   }
 
@@ -7157,6 +7088,8 @@ export namespace Prisma {
     github: string | null
     portfolio: string | null
     linkedin: string | null
+    email: string | null
+    whatsapp: string | null
     _count: ShowcaseCountAggregateOutputType | null
     _avg: ShowcaseAvgAggregateOutputType | null
     _sum: ShowcaseSumAggregateOutputType | null
@@ -7184,6 +7117,8 @@ export namespace Prisma {
     github?: boolean
     portfolio?: boolean
     linkedin?: boolean
+    email?: boolean
+    whatsapp?: boolean
     user?: boolean | UserDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["showcase"]>
 
@@ -7193,6 +7128,8 @@ export namespace Prisma {
     github?: boolean
     portfolio?: boolean
     linkedin?: boolean
+    email?: boolean
+    whatsapp?: boolean
     user?: boolean | UserDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["showcase"]>
 
@@ -7202,6 +7139,8 @@ export namespace Prisma {
     github?: boolean
     portfolio?: boolean
     linkedin?: boolean
+    email?: boolean
+    whatsapp?: boolean
     user?: boolean | UserDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["showcase"]>
 
@@ -7211,9 +7150,11 @@ export namespace Prisma {
     github?: boolean
     portfolio?: boolean
     linkedin?: boolean
+    email?: boolean
+    whatsapp?: boolean
   }
 
-  export type ShowcaseOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "userId" | "github" | "portfolio" | "linkedin", ExtArgs["result"]["showcase"]>
+  export type ShowcaseOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "userId" | "github" | "portfolio" | "linkedin" | "email" | "whatsapp", ExtArgs["result"]["showcase"]>
   export type ShowcaseInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     user?: boolean | UserDefaultArgs<ExtArgs>
   }
@@ -7235,6 +7176,8 @@ export namespace Prisma {
       github: string | null
       portfolio: string | null
       linkedin: string | null
+      email: string | null
+      whatsapp: string | null
     }, ExtArgs["result"]["showcase"]>
     composites: {}
   }
@@ -7664,6 +7607,8 @@ export namespace Prisma {
     readonly github: FieldRef<"Showcase", 'String'>
     readonly portfolio: FieldRef<"Showcase", 'String'>
     readonly linkedin: FieldRef<"Showcase", 'String'>
+    readonly email: FieldRef<"Showcase", 'String'>
+    readonly whatsapp: FieldRef<"Showcase", 'String'>
   }
     
 
@@ -8114,7 +8059,6 @@ export namespace Prisma {
     userId: number | null
     name: string | null
     description: string | null
-    techUsed: string | null
     link: string | null
   }
 
@@ -8123,7 +8067,6 @@ export namespace Prisma {
     userId: number | null
     name: string | null
     description: string | null
-    techUsed: string | null
     link: string | null
   }
 
@@ -8153,7 +8096,6 @@ export namespace Prisma {
     userId?: true
     name?: true
     description?: true
-    techUsed?: true
     link?: true
   }
 
@@ -8162,7 +8104,6 @@ export namespace Prisma {
     userId?: true
     name?: true
     description?: true
-    techUsed?: true
     link?: true
   }
 
@@ -8267,7 +8208,7 @@ export namespace Prisma {
     userId: number
     name: string
     description: string | null
-    techUsed: string | null
+    techUsed: string[]
     link: string | null
     _count: ProjectCountAggregateOutputType | null
     _avg: ProjectAvgAggregateOutputType | null
@@ -8350,7 +8291,7 @@ export namespace Prisma {
       userId: number
       name: string
       description: string | null
-      techUsed: string | null
+      techUsed: string[]
       link: string | null
     }, ExtArgs["result"]["project"]>
     composites: {}
@@ -8780,7 +8721,7 @@ export namespace Prisma {
     readonly userId: FieldRef<"Project", 'Int'>
     readonly name: FieldRef<"Project", 'String'>
     readonly description: FieldRef<"Project", 'String'>
-    readonly techUsed: FieldRef<"Project", 'String'>
+    readonly techUsed: FieldRef<"Project", 'String[]'>
     readonly link: FieldRef<"Project", 'String'>
   }
     
@@ -9230,7 +9171,6 @@ export namespace Prisma {
   export type CollaborationMinAggregateOutputType = {
     id: number | null
     userId: number | null
-    lookingForTeam: boolean | null
     openToCollaboration: boolean | null
     ideaInterests: string | null
   }
@@ -9238,7 +9178,6 @@ export namespace Prisma {
   export type CollaborationMaxAggregateOutputType = {
     id: number | null
     userId: number | null
-    lookingForTeam: boolean | null
     openToCollaboration: boolean | null
     ideaInterests: string | null
   }
@@ -9246,7 +9185,6 @@ export namespace Prisma {
   export type CollaborationCountAggregateOutputType = {
     id: number
     userId: number
-    lookingForTeam: number
     openToCollaboration: number
     ideaInterests: number
     _all: number
@@ -9266,7 +9204,6 @@ export namespace Prisma {
   export type CollaborationMinAggregateInputType = {
     id?: true
     userId?: true
-    lookingForTeam?: true
     openToCollaboration?: true
     ideaInterests?: true
   }
@@ -9274,7 +9211,6 @@ export namespace Prisma {
   export type CollaborationMaxAggregateInputType = {
     id?: true
     userId?: true
-    lookingForTeam?: true
     openToCollaboration?: true
     ideaInterests?: true
   }
@@ -9282,7 +9218,6 @@ export namespace Prisma {
   export type CollaborationCountAggregateInputType = {
     id?: true
     userId?: true
-    lookingForTeam?: true
     openToCollaboration?: true
     ideaInterests?: true
     _all?: true
@@ -9377,7 +9312,6 @@ export namespace Prisma {
   export type CollaborationGroupByOutputType = {
     id: number
     userId: number
-    lookingForTeam: boolean | null
     openToCollaboration: boolean | null
     ideaInterests: string | null
     _count: CollaborationCountAggregateOutputType | null
@@ -9404,7 +9338,6 @@ export namespace Prisma {
   export type CollaborationSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     userId?: boolean
-    lookingForTeam?: boolean
     openToCollaboration?: boolean
     ideaInterests?: boolean
     user?: boolean | UserDefaultArgs<ExtArgs>
@@ -9413,7 +9346,6 @@ export namespace Prisma {
   export type CollaborationSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     userId?: boolean
-    lookingForTeam?: boolean
     openToCollaboration?: boolean
     ideaInterests?: boolean
     user?: boolean | UserDefaultArgs<ExtArgs>
@@ -9422,7 +9354,6 @@ export namespace Prisma {
   export type CollaborationSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     userId?: boolean
-    lookingForTeam?: boolean
     openToCollaboration?: boolean
     ideaInterests?: boolean
     user?: boolean | UserDefaultArgs<ExtArgs>
@@ -9431,12 +9362,11 @@ export namespace Prisma {
   export type CollaborationSelectScalar = {
     id?: boolean
     userId?: boolean
-    lookingForTeam?: boolean
     openToCollaboration?: boolean
     ideaInterests?: boolean
   }
 
-  export type CollaborationOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "userId" | "lookingForTeam" | "openToCollaboration" | "ideaInterests", ExtArgs["result"]["collaboration"]>
+  export type CollaborationOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "userId" | "openToCollaboration" | "ideaInterests", ExtArgs["result"]["collaboration"]>
   export type CollaborationInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     user?: boolean | UserDefaultArgs<ExtArgs>
   }
@@ -9455,7 +9385,6 @@ export namespace Prisma {
     scalars: $Extensions.GetPayloadResult<{
       id: number
       userId: number
-      lookingForTeam: boolean | null
       openToCollaboration: boolean | null
       ideaInterests: string | null
     }, ExtArgs["result"]["collaboration"]>
@@ -9884,7 +9813,6 @@ export namespace Prisma {
   interface CollaborationFieldRefs {
     readonly id: FieldRef<"Collaboration", 'Int'>
     readonly userId: FieldRef<"Collaboration", 'Int'>
-    readonly lookingForTeam: FieldRef<"Collaboration", 'Boolean'>
     readonly openToCollaboration: FieldRef<"Collaboration", 'Boolean'>
     readonly ideaInterests: FieldRef<"Collaboration", 'String'>
   }
@@ -16969,10 +16897,7 @@ export namespace Prisma {
     userId: 'userId',
     fullName: 'fullName',
     Institute: 'Institute',
-    degree: 'degree',
     major: 'major',
-    graduationYear: 'graduationYear',
-    phone: 'phone',
     location: 'location'
   };
 
@@ -16983,10 +16908,7 @@ export namespace Prisma {
     id: 'id',
     userId: 'userId',
     skills: 'skills',
-    experienceLevel: 'experienceLevel',
-    yearsOfExperience: 'yearsOfExperience',
-    projectInterests: 'projectInterests',
-    availability: 'availability'
+    experienceLevel: 'experienceLevel'
   };
 
   export type TechnicalProfileScalarFieldEnum = (typeof TechnicalProfileScalarFieldEnum)[keyof typeof TechnicalProfileScalarFieldEnum]
@@ -17007,7 +16929,9 @@ export namespace Prisma {
     userId: 'userId',
     github: 'github',
     portfolio: 'portfolio',
-    linkedin: 'linkedin'
+    linkedin: 'linkedin',
+    email: 'email',
+    whatsapp: 'whatsapp'
   };
 
   export type ShowcaseScalarFieldEnum = (typeof ShowcaseScalarFieldEnum)[keyof typeof ShowcaseScalarFieldEnum]
@@ -17028,7 +16952,6 @@ export namespace Prisma {
   export const CollaborationScalarFieldEnum: {
     id: 'id',
     userId: 'userId',
-    lookingForTeam: 'lookingForTeam',
     openToCollaboration: 'openToCollaboration',
     ideaInterests: 'ideaInterests'
   };
@@ -17336,12 +17259,9 @@ export namespace Prisma {
     NOT?: BasicInfoWhereInput | BasicInfoWhereInput[]
     id?: IntFilter<"BasicInfo"> | number
     userId?: IntFilter<"BasicInfo"> | number
-    fullName?: StringNullableFilter<"BasicInfo"> | string | null
+    fullName?: StringFilter<"BasicInfo"> | string
     Institute?: StringNullableFilter<"BasicInfo"> | string | null
-    degree?: StringNullableFilter<"BasicInfo"> | string | null
     major?: StringNullableFilter<"BasicInfo"> | string | null
-    graduationYear?: IntNullableFilter<"BasicInfo"> | number | null
-    phone?: StringNullableFilter<"BasicInfo"> | string | null
     location?: StringNullableFilter<"BasicInfo"> | string | null
     user?: XOR<UserScalarRelationFilter, UserWhereInput>
   }
@@ -17349,12 +17269,9 @@ export namespace Prisma {
   export type BasicInfoOrderByWithRelationInput = {
     id?: SortOrder
     userId?: SortOrder
-    fullName?: SortOrderInput | SortOrder
+    fullName?: SortOrder
     Institute?: SortOrderInput | SortOrder
-    degree?: SortOrderInput | SortOrder
     major?: SortOrderInput | SortOrder
-    graduationYear?: SortOrderInput | SortOrder
-    phone?: SortOrderInput | SortOrder
     location?: SortOrderInput | SortOrder
     user?: UserOrderByWithRelationInput
   }
@@ -17365,12 +17282,9 @@ export namespace Prisma {
     AND?: BasicInfoWhereInput | BasicInfoWhereInput[]
     OR?: BasicInfoWhereInput[]
     NOT?: BasicInfoWhereInput | BasicInfoWhereInput[]
-    fullName?: StringNullableFilter<"BasicInfo"> | string | null
+    fullName?: StringFilter<"BasicInfo"> | string
     Institute?: StringNullableFilter<"BasicInfo"> | string | null
-    degree?: StringNullableFilter<"BasicInfo"> | string | null
     major?: StringNullableFilter<"BasicInfo"> | string | null
-    graduationYear?: IntNullableFilter<"BasicInfo"> | number | null
-    phone?: StringNullableFilter<"BasicInfo"> | string | null
     location?: StringNullableFilter<"BasicInfo"> | string | null
     user?: XOR<UserScalarRelationFilter, UserWhereInput>
   }, "id" | "userId">
@@ -17378,12 +17292,9 @@ export namespace Prisma {
   export type BasicInfoOrderByWithAggregationInput = {
     id?: SortOrder
     userId?: SortOrder
-    fullName?: SortOrderInput | SortOrder
+    fullName?: SortOrder
     Institute?: SortOrderInput | SortOrder
-    degree?: SortOrderInput | SortOrder
     major?: SortOrderInput | SortOrder
-    graduationYear?: SortOrderInput | SortOrder
-    phone?: SortOrderInput | SortOrder
     location?: SortOrderInput | SortOrder
     _count?: BasicInfoCountOrderByAggregateInput
     _avg?: BasicInfoAvgOrderByAggregateInput
@@ -17398,12 +17309,9 @@ export namespace Prisma {
     NOT?: BasicInfoScalarWhereWithAggregatesInput | BasicInfoScalarWhereWithAggregatesInput[]
     id?: IntWithAggregatesFilter<"BasicInfo"> | number
     userId?: IntWithAggregatesFilter<"BasicInfo"> | number
-    fullName?: StringNullableWithAggregatesFilter<"BasicInfo"> | string | null
+    fullName?: StringWithAggregatesFilter<"BasicInfo"> | string
     Institute?: StringNullableWithAggregatesFilter<"BasicInfo"> | string | null
-    degree?: StringNullableWithAggregatesFilter<"BasicInfo"> | string | null
     major?: StringNullableWithAggregatesFilter<"BasicInfo"> | string | null
-    graduationYear?: IntNullableWithAggregatesFilter<"BasicInfo"> | number | null
-    phone?: StringNullableWithAggregatesFilter<"BasicInfo"> | string | null
     location?: StringNullableWithAggregatesFilter<"BasicInfo"> | string | null
   }
 
@@ -17415,9 +17323,6 @@ export namespace Prisma {
     userId?: IntFilter<"TechnicalProfile"> | number
     skills?: StringNullableListFilter<"TechnicalProfile">
     experienceLevel?: StringNullableFilter<"TechnicalProfile"> | string | null
-    yearsOfExperience?: IntNullableFilter<"TechnicalProfile"> | number | null
-    projectInterests?: StringNullableListFilter<"TechnicalProfile">
-    availability?: StringNullableFilter<"TechnicalProfile"> | string | null
     user?: XOR<UserScalarRelationFilter, UserWhereInput>
   }
 
@@ -17426,9 +17331,6 @@ export namespace Prisma {
     userId?: SortOrder
     skills?: SortOrder
     experienceLevel?: SortOrderInput | SortOrder
-    yearsOfExperience?: SortOrderInput | SortOrder
-    projectInterests?: SortOrder
-    availability?: SortOrderInput | SortOrder
     user?: UserOrderByWithRelationInput
   }
 
@@ -17440,9 +17342,6 @@ export namespace Prisma {
     NOT?: TechnicalProfileWhereInput | TechnicalProfileWhereInput[]
     skills?: StringNullableListFilter<"TechnicalProfile">
     experienceLevel?: StringNullableFilter<"TechnicalProfile"> | string | null
-    yearsOfExperience?: IntNullableFilter<"TechnicalProfile"> | number | null
-    projectInterests?: StringNullableListFilter<"TechnicalProfile">
-    availability?: StringNullableFilter<"TechnicalProfile"> | string | null
     user?: XOR<UserScalarRelationFilter, UserWhereInput>
   }, "id" | "userId">
 
@@ -17451,9 +17350,6 @@ export namespace Prisma {
     userId?: SortOrder
     skills?: SortOrder
     experienceLevel?: SortOrderInput | SortOrder
-    yearsOfExperience?: SortOrderInput | SortOrder
-    projectInterests?: SortOrder
-    availability?: SortOrderInput | SortOrder
     _count?: TechnicalProfileCountOrderByAggregateInput
     _avg?: TechnicalProfileAvgOrderByAggregateInput
     _max?: TechnicalProfileMaxOrderByAggregateInput
@@ -17469,9 +17365,6 @@ export namespace Prisma {
     userId?: IntWithAggregatesFilter<"TechnicalProfile"> | number
     skills?: StringNullableListFilter<"TechnicalProfile">
     experienceLevel?: StringNullableWithAggregatesFilter<"TechnicalProfile"> | string | null
-    yearsOfExperience?: IntNullableWithAggregatesFilter<"TechnicalProfile"> | number | null
-    projectInterests?: StringNullableListFilter<"TechnicalProfile">
-    availability?: StringNullableWithAggregatesFilter<"TechnicalProfile"> | string | null
   }
 
   export type BioSummaryWhereInput = {
@@ -17535,6 +17428,8 @@ export namespace Prisma {
     github?: StringNullableFilter<"Showcase"> | string | null
     portfolio?: StringNullableFilter<"Showcase"> | string | null
     linkedin?: StringNullableFilter<"Showcase"> | string | null
+    email?: StringNullableFilter<"Showcase"> | string | null
+    whatsapp?: StringNullableFilter<"Showcase"> | string | null
     user?: XOR<UserScalarRelationFilter, UserWhereInput>
   }
 
@@ -17544,6 +17439,8 @@ export namespace Prisma {
     github?: SortOrderInput | SortOrder
     portfolio?: SortOrderInput | SortOrder
     linkedin?: SortOrderInput | SortOrder
+    email?: SortOrderInput | SortOrder
+    whatsapp?: SortOrderInput | SortOrder
     user?: UserOrderByWithRelationInput
   }
 
@@ -17556,6 +17453,8 @@ export namespace Prisma {
     github?: StringNullableFilter<"Showcase"> | string | null
     portfolio?: StringNullableFilter<"Showcase"> | string | null
     linkedin?: StringNullableFilter<"Showcase"> | string | null
+    email?: StringNullableFilter<"Showcase"> | string | null
+    whatsapp?: StringNullableFilter<"Showcase"> | string | null
     user?: XOR<UserScalarRelationFilter, UserWhereInput>
   }, "id" | "userId">
 
@@ -17565,6 +17464,8 @@ export namespace Prisma {
     github?: SortOrderInput | SortOrder
     portfolio?: SortOrderInput | SortOrder
     linkedin?: SortOrderInput | SortOrder
+    email?: SortOrderInput | SortOrder
+    whatsapp?: SortOrderInput | SortOrder
     _count?: ShowcaseCountOrderByAggregateInput
     _avg?: ShowcaseAvgOrderByAggregateInput
     _max?: ShowcaseMaxOrderByAggregateInput
@@ -17581,6 +17482,8 @@ export namespace Prisma {
     github?: StringNullableWithAggregatesFilter<"Showcase"> | string | null
     portfolio?: StringNullableWithAggregatesFilter<"Showcase"> | string | null
     linkedin?: StringNullableWithAggregatesFilter<"Showcase"> | string | null
+    email?: StringNullableWithAggregatesFilter<"Showcase"> | string | null
+    whatsapp?: StringNullableWithAggregatesFilter<"Showcase"> | string | null
   }
 
   export type ProjectWhereInput = {
@@ -17591,7 +17494,7 @@ export namespace Prisma {
     userId?: IntFilter<"Project"> | number
     name?: StringFilter<"Project"> | string
     description?: StringNullableFilter<"Project"> | string | null
-    techUsed?: StringNullableFilter<"Project"> | string | null
+    techUsed?: StringNullableListFilter<"Project">
     link?: StringNullableFilter<"Project"> | string | null
     user?: XOR<UserScalarRelationFilter, UserWhereInput>
   }
@@ -17601,7 +17504,7 @@ export namespace Prisma {
     userId?: SortOrder
     name?: SortOrder
     description?: SortOrderInput | SortOrder
-    techUsed?: SortOrderInput | SortOrder
+    techUsed?: SortOrder
     link?: SortOrderInput | SortOrder
     user?: UserOrderByWithRelationInput
   }
@@ -17614,7 +17517,7 @@ export namespace Prisma {
     userId?: IntFilter<"Project"> | number
     name?: StringFilter<"Project"> | string
     description?: StringNullableFilter<"Project"> | string | null
-    techUsed?: StringNullableFilter<"Project"> | string | null
+    techUsed?: StringNullableListFilter<"Project">
     link?: StringNullableFilter<"Project"> | string | null
     user?: XOR<UserScalarRelationFilter, UserWhereInput>
   }, "id">
@@ -17624,7 +17527,7 @@ export namespace Prisma {
     userId?: SortOrder
     name?: SortOrder
     description?: SortOrderInput | SortOrder
-    techUsed?: SortOrderInput | SortOrder
+    techUsed?: SortOrder
     link?: SortOrderInput | SortOrder
     _count?: ProjectCountOrderByAggregateInput
     _avg?: ProjectAvgOrderByAggregateInput
@@ -17641,7 +17544,7 @@ export namespace Prisma {
     userId?: IntWithAggregatesFilter<"Project"> | number
     name?: StringWithAggregatesFilter<"Project"> | string
     description?: StringNullableWithAggregatesFilter<"Project"> | string | null
-    techUsed?: StringNullableWithAggregatesFilter<"Project"> | string | null
+    techUsed?: StringNullableListFilter<"Project">
     link?: StringNullableWithAggregatesFilter<"Project"> | string | null
   }
 
@@ -17651,7 +17554,6 @@ export namespace Prisma {
     NOT?: CollaborationWhereInput | CollaborationWhereInput[]
     id?: IntFilter<"Collaboration"> | number
     userId?: IntFilter<"Collaboration"> | number
-    lookingForTeam?: BoolNullableFilter<"Collaboration"> | boolean | null
     openToCollaboration?: BoolNullableFilter<"Collaboration"> | boolean | null
     ideaInterests?: StringNullableFilter<"Collaboration"> | string | null
     user?: XOR<UserScalarRelationFilter, UserWhereInput>
@@ -17660,7 +17562,6 @@ export namespace Prisma {
   export type CollaborationOrderByWithRelationInput = {
     id?: SortOrder
     userId?: SortOrder
-    lookingForTeam?: SortOrderInput | SortOrder
     openToCollaboration?: SortOrderInput | SortOrder
     ideaInterests?: SortOrderInput | SortOrder
     user?: UserOrderByWithRelationInput
@@ -17672,7 +17573,6 @@ export namespace Prisma {
     AND?: CollaborationWhereInput | CollaborationWhereInput[]
     OR?: CollaborationWhereInput[]
     NOT?: CollaborationWhereInput | CollaborationWhereInput[]
-    lookingForTeam?: BoolNullableFilter<"Collaboration"> | boolean | null
     openToCollaboration?: BoolNullableFilter<"Collaboration"> | boolean | null
     ideaInterests?: StringNullableFilter<"Collaboration"> | string | null
     user?: XOR<UserScalarRelationFilter, UserWhereInput>
@@ -17681,7 +17581,6 @@ export namespace Prisma {
   export type CollaborationOrderByWithAggregationInput = {
     id?: SortOrder
     userId?: SortOrder
-    lookingForTeam?: SortOrderInput | SortOrder
     openToCollaboration?: SortOrderInput | SortOrder
     ideaInterests?: SortOrderInput | SortOrder
     _count?: CollaborationCountOrderByAggregateInput
@@ -17697,7 +17596,6 @@ export namespace Prisma {
     NOT?: CollaborationScalarWhereWithAggregatesInput | CollaborationScalarWhereWithAggregatesInput[]
     id?: IntWithAggregatesFilter<"Collaboration"> | number
     userId?: IntWithAggregatesFilter<"Collaboration"> | number
-    lookingForTeam?: BoolNullableWithAggregatesFilter<"Collaboration"> | boolean | null
     openToCollaboration?: BoolNullableWithAggregatesFilter<"Collaboration"> | boolean | null
     ideaInterests?: StringNullableWithAggregatesFilter<"Collaboration"> | string | null
   }
@@ -18160,12 +18058,9 @@ export namespace Prisma {
   }
 
   export type BasicInfoCreateInput = {
-    fullName?: string | null
+    fullName: string
     Institute?: string | null
-    degree?: string | null
     major?: string | null
-    graduationYear?: number | null
-    phone?: string | null
     location?: string | null
     user: UserCreateNestedOneWithoutBasicInfoInput
   }
@@ -18173,22 +18068,16 @@ export namespace Prisma {
   export type BasicInfoUncheckedCreateInput = {
     id?: number
     userId: number
-    fullName?: string | null
+    fullName: string
     Institute?: string | null
-    degree?: string | null
     major?: string | null
-    graduationYear?: number | null
-    phone?: string | null
     location?: string | null
   }
 
   export type BasicInfoUpdateInput = {
-    fullName?: NullableStringFieldUpdateOperationsInput | string | null
+    fullName?: StringFieldUpdateOperationsInput | string
     Institute?: NullableStringFieldUpdateOperationsInput | string | null
-    degree?: NullableStringFieldUpdateOperationsInput | string | null
     major?: NullableStringFieldUpdateOperationsInput | string | null
-    graduationYear?: NullableIntFieldUpdateOperationsInput | number | null
-    phone?: NullableStringFieldUpdateOperationsInput | string | null
     location?: NullableStringFieldUpdateOperationsInput | string | null
     user?: UserUpdateOneRequiredWithoutBasicInfoNestedInput
   }
@@ -18196,55 +18085,40 @@ export namespace Prisma {
   export type BasicInfoUncheckedUpdateInput = {
     id?: IntFieldUpdateOperationsInput | number
     userId?: IntFieldUpdateOperationsInput | number
-    fullName?: NullableStringFieldUpdateOperationsInput | string | null
+    fullName?: StringFieldUpdateOperationsInput | string
     Institute?: NullableStringFieldUpdateOperationsInput | string | null
-    degree?: NullableStringFieldUpdateOperationsInput | string | null
     major?: NullableStringFieldUpdateOperationsInput | string | null
-    graduationYear?: NullableIntFieldUpdateOperationsInput | number | null
-    phone?: NullableStringFieldUpdateOperationsInput | string | null
     location?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type BasicInfoCreateManyInput = {
     id?: number
     userId: number
-    fullName?: string | null
+    fullName: string
     Institute?: string | null
-    degree?: string | null
     major?: string | null
-    graduationYear?: number | null
-    phone?: string | null
     location?: string | null
   }
 
   export type BasicInfoUpdateManyMutationInput = {
-    fullName?: NullableStringFieldUpdateOperationsInput | string | null
+    fullName?: StringFieldUpdateOperationsInput | string
     Institute?: NullableStringFieldUpdateOperationsInput | string | null
-    degree?: NullableStringFieldUpdateOperationsInput | string | null
     major?: NullableStringFieldUpdateOperationsInput | string | null
-    graduationYear?: NullableIntFieldUpdateOperationsInput | number | null
-    phone?: NullableStringFieldUpdateOperationsInput | string | null
     location?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type BasicInfoUncheckedUpdateManyInput = {
     id?: IntFieldUpdateOperationsInput | number
     userId?: IntFieldUpdateOperationsInput | number
-    fullName?: NullableStringFieldUpdateOperationsInput | string | null
+    fullName?: StringFieldUpdateOperationsInput | string
     Institute?: NullableStringFieldUpdateOperationsInput | string | null
-    degree?: NullableStringFieldUpdateOperationsInput | string | null
     major?: NullableStringFieldUpdateOperationsInput | string | null
-    graduationYear?: NullableIntFieldUpdateOperationsInput | number | null
-    phone?: NullableStringFieldUpdateOperationsInput | string | null
     location?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type TechnicalProfileCreateInput = {
     skills?: TechnicalProfileCreateskillsInput | string[]
     experienceLevel?: string | null
-    yearsOfExperience?: number | null
-    projectInterests?: TechnicalProfileCreateprojectInterestsInput | string[]
-    availability?: string | null
     user: UserCreateNestedOneWithoutTechnicalProfileInput
   }
 
@@ -18253,17 +18127,11 @@ export namespace Prisma {
     userId: number
     skills?: TechnicalProfileCreateskillsInput | string[]
     experienceLevel?: string | null
-    yearsOfExperience?: number | null
-    projectInterests?: TechnicalProfileCreateprojectInterestsInput | string[]
-    availability?: string | null
   }
 
   export type TechnicalProfileUpdateInput = {
     skills?: TechnicalProfileUpdateskillsInput | string[]
     experienceLevel?: NullableStringFieldUpdateOperationsInput | string | null
-    yearsOfExperience?: NullableIntFieldUpdateOperationsInput | number | null
-    projectInterests?: TechnicalProfileUpdateprojectInterestsInput | string[]
-    availability?: NullableStringFieldUpdateOperationsInput | string | null
     user?: UserUpdateOneRequiredWithoutTechnicalProfileNestedInput
   }
 
@@ -18272,9 +18140,6 @@ export namespace Prisma {
     userId?: IntFieldUpdateOperationsInput | number
     skills?: TechnicalProfileUpdateskillsInput | string[]
     experienceLevel?: NullableStringFieldUpdateOperationsInput | string | null
-    yearsOfExperience?: NullableIntFieldUpdateOperationsInput | number | null
-    projectInterests?: TechnicalProfileUpdateprojectInterestsInput | string[]
-    availability?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type TechnicalProfileCreateManyInput = {
@@ -18282,17 +18147,11 @@ export namespace Prisma {
     userId: number
     skills?: TechnicalProfileCreateskillsInput | string[]
     experienceLevel?: string | null
-    yearsOfExperience?: number | null
-    projectInterests?: TechnicalProfileCreateprojectInterestsInput | string[]
-    availability?: string | null
   }
 
   export type TechnicalProfileUpdateManyMutationInput = {
     skills?: TechnicalProfileUpdateskillsInput | string[]
     experienceLevel?: NullableStringFieldUpdateOperationsInput | string | null
-    yearsOfExperience?: NullableIntFieldUpdateOperationsInput | number | null
-    projectInterests?: TechnicalProfileUpdateprojectInterestsInput | string[]
-    availability?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type TechnicalProfileUncheckedUpdateManyInput = {
@@ -18300,9 +18159,6 @@ export namespace Prisma {
     userId?: IntFieldUpdateOperationsInput | number
     skills?: TechnicalProfileUpdateskillsInput | string[]
     experienceLevel?: NullableStringFieldUpdateOperationsInput | string | null
-    yearsOfExperience?: NullableIntFieldUpdateOperationsInput | number | null
-    projectInterests?: TechnicalProfileUpdateprojectInterestsInput | string[]
-    availability?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type BioSummaryCreateInput = {
@@ -18354,6 +18210,8 @@ export namespace Prisma {
     github?: string | null
     portfolio?: string | null
     linkedin?: string | null
+    email?: string | null
+    whatsapp?: string | null
     user: UserCreateNestedOneWithoutShowcaseInput
   }
 
@@ -18363,12 +18221,16 @@ export namespace Prisma {
     github?: string | null
     portfolio?: string | null
     linkedin?: string | null
+    email?: string | null
+    whatsapp?: string | null
   }
 
   export type ShowcaseUpdateInput = {
     github?: NullableStringFieldUpdateOperationsInput | string | null
     portfolio?: NullableStringFieldUpdateOperationsInput | string | null
     linkedin?: NullableStringFieldUpdateOperationsInput | string | null
+    email?: NullableStringFieldUpdateOperationsInput | string | null
+    whatsapp?: NullableStringFieldUpdateOperationsInput | string | null
     user?: UserUpdateOneRequiredWithoutShowcaseNestedInput
   }
 
@@ -18378,6 +18240,8 @@ export namespace Prisma {
     github?: NullableStringFieldUpdateOperationsInput | string | null
     portfolio?: NullableStringFieldUpdateOperationsInput | string | null
     linkedin?: NullableStringFieldUpdateOperationsInput | string | null
+    email?: NullableStringFieldUpdateOperationsInput | string | null
+    whatsapp?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type ShowcaseCreateManyInput = {
@@ -18386,12 +18250,16 @@ export namespace Prisma {
     github?: string | null
     portfolio?: string | null
     linkedin?: string | null
+    email?: string | null
+    whatsapp?: string | null
   }
 
   export type ShowcaseUpdateManyMutationInput = {
     github?: NullableStringFieldUpdateOperationsInput | string | null
     portfolio?: NullableStringFieldUpdateOperationsInput | string | null
     linkedin?: NullableStringFieldUpdateOperationsInput | string | null
+    email?: NullableStringFieldUpdateOperationsInput | string | null
+    whatsapp?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type ShowcaseUncheckedUpdateManyInput = {
@@ -18400,12 +18268,14 @@ export namespace Prisma {
     github?: NullableStringFieldUpdateOperationsInput | string | null
     portfolio?: NullableStringFieldUpdateOperationsInput | string | null
     linkedin?: NullableStringFieldUpdateOperationsInput | string | null
+    email?: NullableStringFieldUpdateOperationsInput | string | null
+    whatsapp?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type ProjectCreateInput = {
     name: string
     description?: string | null
-    techUsed?: string | null
+    techUsed?: ProjectCreatetechUsedInput | string[]
     link?: string | null
     user: UserCreateNestedOneWithoutProjectsInput
   }
@@ -18415,14 +18285,14 @@ export namespace Prisma {
     userId: number
     name: string
     description?: string | null
-    techUsed?: string | null
+    techUsed?: ProjectCreatetechUsedInput | string[]
     link?: string | null
   }
 
   export type ProjectUpdateInput = {
     name?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
-    techUsed?: NullableStringFieldUpdateOperationsInput | string | null
+    techUsed?: ProjectUpdatetechUsedInput | string[]
     link?: NullableStringFieldUpdateOperationsInput | string | null
     user?: UserUpdateOneRequiredWithoutProjectsNestedInput
   }
@@ -18432,7 +18302,7 @@ export namespace Prisma {
     userId?: IntFieldUpdateOperationsInput | number
     name?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
-    techUsed?: NullableStringFieldUpdateOperationsInput | string | null
+    techUsed?: ProjectUpdatetechUsedInput | string[]
     link?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
@@ -18441,14 +18311,14 @@ export namespace Prisma {
     userId: number
     name: string
     description?: string | null
-    techUsed?: string | null
+    techUsed?: ProjectCreatetechUsedInput | string[]
     link?: string | null
   }
 
   export type ProjectUpdateManyMutationInput = {
     name?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
-    techUsed?: NullableStringFieldUpdateOperationsInput | string | null
+    techUsed?: ProjectUpdatetechUsedInput | string[]
     link?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
@@ -18457,12 +18327,11 @@ export namespace Prisma {
     userId?: IntFieldUpdateOperationsInput | number
     name?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
-    techUsed?: NullableStringFieldUpdateOperationsInput | string | null
+    techUsed?: ProjectUpdatetechUsedInput | string[]
     link?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type CollaborationCreateInput = {
-    lookingForTeam?: boolean | null
     openToCollaboration?: boolean | null
     ideaInterests?: string | null
     user: UserCreateNestedOneWithoutCollaborationInput
@@ -18471,13 +18340,11 @@ export namespace Prisma {
   export type CollaborationUncheckedCreateInput = {
     id?: number
     userId: number
-    lookingForTeam?: boolean | null
     openToCollaboration?: boolean | null
     ideaInterests?: string | null
   }
 
   export type CollaborationUpdateInput = {
-    lookingForTeam?: NullableBoolFieldUpdateOperationsInput | boolean | null
     openToCollaboration?: NullableBoolFieldUpdateOperationsInput | boolean | null
     ideaInterests?: NullableStringFieldUpdateOperationsInput | string | null
     user?: UserUpdateOneRequiredWithoutCollaborationNestedInput
@@ -18486,7 +18353,6 @@ export namespace Prisma {
   export type CollaborationUncheckedUpdateInput = {
     id?: IntFieldUpdateOperationsInput | number
     userId?: IntFieldUpdateOperationsInput | number
-    lookingForTeam?: NullableBoolFieldUpdateOperationsInput | boolean | null
     openToCollaboration?: NullableBoolFieldUpdateOperationsInput | boolean | null
     ideaInterests?: NullableStringFieldUpdateOperationsInput | string | null
   }
@@ -18494,13 +18360,11 @@ export namespace Prisma {
   export type CollaborationCreateManyInput = {
     id?: number
     userId: number
-    lookingForTeam?: boolean | null
     openToCollaboration?: boolean | null
     ideaInterests?: string | null
   }
 
   export type CollaborationUpdateManyMutationInput = {
-    lookingForTeam?: NullableBoolFieldUpdateOperationsInput | boolean | null
     openToCollaboration?: NullableBoolFieldUpdateOperationsInput | boolean | null
     ideaInterests?: NullableStringFieldUpdateOperationsInput | string | null
   }
@@ -18508,7 +18372,6 @@ export namespace Prisma {
   export type CollaborationUncheckedUpdateManyInput = {
     id?: IntFieldUpdateOperationsInput | number
     userId?: IntFieldUpdateOperationsInput | number
-    lookingForTeam?: NullableBoolFieldUpdateOperationsInput | boolean | null
     openToCollaboration?: NullableBoolFieldUpdateOperationsInput | boolean | null
     ideaInterests?: NullableStringFieldUpdateOperationsInput | string | null
   }
@@ -19084,17 +18947,6 @@ export namespace Prisma {
     _max?: NestedEnumRoleFilter<$PrismaModel>
   }
 
-  export type IntNullableFilter<$PrismaModel = never> = {
-    equals?: number | IntFieldRefInput<$PrismaModel> | null
-    in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
-    notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null
-    lt?: number | IntFieldRefInput<$PrismaModel>
-    lte?: number | IntFieldRefInput<$PrismaModel>
-    gt?: number | IntFieldRefInput<$PrismaModel>
-    gte?: number | IntFieldRefInput<$PrismaModel>
-    not?: NestedIntNullableFilter<$PrismaModel> | number | null
-  }
-
   export type UserScalarRelationFilter = {
     is?: UserWhereInput
     isNot?: UserWhereInput
@@ -19105,17 +18957,13 @@ export namespace Prisma {
     userId?: SortOrder
     fullName?: SortOrder
     Institute?: SortOrder
-    degree?: SortOrder
     major?: SortOrder
-    graduationYear?: SortOrder
-    phone?: SortOrder
     location?: SortOrder
   }
 
   export type BasicInfoAvgOrderByAggregateInput = {
     id?: SortOrder
     userId?: SortOrder
-    graduationYear?: SortOrder
   }
 
   export type BasicInfoMaxOrderByAggregateInput = {
@@ -19123,10 +18971,7 @@ export namespace Prisma {
     userId?: SortOrder
     fullName?: SortOrder
     Institute?: SortOrder
-    degree?: SortOrder
     major?: SortOrder
-    graduationYear?: SortOrder
-    phone?: SortOrder
     location?: SortOrder
   }
 
@@ -19135,33 +18980,13 @@ export namespace Prisma {
     userId?: SortOrder
     fullName?: SortOrder
     Institute?: SortOrder
-    degree?: SortOrder
     major?: SortOrder
-    graduationYear?: SortOrder
-    phone?: SortOrder
     location?: SortOrder
   }
 
   export type BasicInfoSumOrderByAggregateInput = {
     id?: SortOrder
     userId?: SortOrder
-    graduationYear?: SortOrder
-  }
-
-  export type IntNullableWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: number | IntFieldRefInput<$PrismaModel> | null
-    in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
-    notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null
-    lt?: number | IntFieldRefInput<$PrismaModel>
-    lte?: number | IntFieldRefInput<$PrismaModel>
-    gt?: number | IntFieldRefInput<$PrismaModel>
-    gte?: number | IntFieldRefInput<$PrismaModel>
-    not?: NestedIntNullableWithAggregatesFilter<$PrismaModel> | number | null
-    _count?: NestedIntNullableFilter<$PrismaModel>
-    _avg?: NestedFloatNullableFilter<$PrismaModel>
-    _sum?: NestedIntNullableFilter<$PrismaModel>
-    _min?: NestedIntNullableFilter<$PrismaModel>
-    _max?: NestedIntNullableFilter<$PrismaModel>
   }
 
   export type StringNullableListFilter<$PrismaModel = never> = {
@@ -19177,37 +19002,28 @@ export namespace Prisma {
     userId?: SortOrder
     skills?: SortOrder
     experienceLevel?: SortOrder
-    yearsOfExperience?: SortOrder
-    projectInterests?: SortOrder
-    availability?: SortOrder
   }
 
   export type TechnicalProfileAvgOrderByAggregateInput = {
     id?: SortOrder
     userId?: SortOrder
-    yearsOfExperience?: SortOrder
   }
 
   export type TechnicalProfileMaxOrderByAggregateInput = {
     id?: SortOrder
     userId?: SortOrder
     experienceLevel?: SortOrder
-    yearsOfExperience?: SortOrder
-    availability?: SortOrder
   }
 
   export type TechnicalProfileMinOrderByAggregateInput = {
     id?: SortOrder
     userId?: SortOrder
     experienceLevel?: SortOrder
-    yearsOfExperience?: SortOrder
-    availability?: SortOrder
   }
 
   export type TechnicalProfileSumOrderByAggregateInput = {
     id?: SortOrder
     userId?: SortOrder
-    yearsOfExperience?: SortOrder
   }
 
   export type BioSummaryCountOrderByAggregateInput = {
@@ -19247,6 +19063,8 @@ export namespace Prisma {
     github?: SortOrder
     portfolio?: SortOrder
     linkedin?: SortOrder
+    email?: SortOrder
+    whatsapp?: SortOrder
   }
 
   export type ShowcaseAvgOrderByAggregateInput = {
@@ -19260,6 +19078,8 @@ export namespace Prisma {
     github?: SortOrder
     portfolio?: SortOrder
     linkedin?: SortOrder
+    email?: SortOrder
+    whatsapp?: SortOrder
   }
 
   export type ShowcaseMinOrderByAggregateInput = {
@@ -19268,6 +19088,8 @@ export namespace Prisma {
     github?: SortOrder
     portfolio?: SortOrder
     linkedin?: SortOrder
+    email?: SortOrder
+    whatsapp?: SortOrder
   }
 
   export type ShowcaseSumOrderByAggregateInput = {
@@ -19294,7 +19116,6 @@ export namespace Prisma {
     userId?: SortOrder
     name?: SortOrder
     description?: SortOrder
-    techUsed?: SortOrder
     link?: SortOrder
   }
 
@@ -19303,7 +19124,6 @@ export namespace Prisma {
     userId?: SortOrder
     name?: SortOrder
     description?: SortOrder
-    techUsed?: SortOrder
     link?: SortOrder
   }
 
@@ -19320,7 +19140,6 @@ export namespace Prisma {
   export type CollaborationCountOrderByAggregateInput = {
     id?: SortOrder
     userId?: SortOrder
-    lookingForTeam?: SortOrder
     openToCollaboration?: SortOrder
     ideaInterests?: SortOrder
   }
@@ -19333,7 +19152,6 @@ export namespace Prisma {
   export type CollaborationMaxOrderByAggregateInput = {
     id?: SortOrder
     userId?: SortOrder
-    lookingForTeam?: SortOrder
     openToCollaboration?: SortOrder
     ideaInterests?: SortOrder
   }
@@ -19341,7 +19159,6 @@ export namespace Prisma {
   export type CollaborationMinOrderByAggregateInput = {
     id?: SortOrder
     userId?: SortOrder
-    lookingForTeam?: SortOrder
     openToCollaboration?: SortOrder
     ideaInterests?: SortOrder
   }
@@ -20164,14 +19981,6 @@ export namespace Prisma {
     connect?: UserWhereUniqueInput
   }
 
-  export type NullableIntFieldUpdateOperationsInput = {
-    set?: number | null
-    increment?: number
-    decrement?: number
-    multiply?: number
-    divide?: number
-  }
-
   export type UserUpdateOneRequiredWithoutBasicInfoNestedInput = {
     create?: XOR<UserCreateWithoutBasicInfoInput, UserUncheckedCreateWithoutBasicInfoInput>
     connectOrCreate?: UserCreateOrConnectWithoutBasicInfoInput
@@ -20184,10 +19993,6 @@ export namespace Prisma {
     set: string[]
   }
 
-  export type TechnicalProfileCreateprojectInterestsInput = {
-    set: string[]
-  }
-
   export type UserCreateNestedOneWithoutTechnicalProfileInput = {
     create?: XOR<UserCreateWithoutTechnicalProfileInput, UserUncheckedCreateWithoutTechnicalProfileInput>
     connectOrCreate?: UserCreateOrConnectWithoutTechnicalProfileInput
@@ -20195,11 +20000,6 @@ export namespace Prisma {
   }
 
   export type TechnicalProfileUpdateskillsInput = {
-    set?: string[]
-    push?: string | string[]
-  }
-
-  export type TechnicalProfileUpdateprojectInterestsInput = {
     set?: string[]
     push?: string | string[]
   }
@@ -20240,10 +20040,19 @@ export namespace Prisma {
     update?: XOR<XOR<UserUpdateToOneWithWhereWithoutShowcaseInput, UserUpdateWithoutShowcaseInput>, UserUncheckedUpdateWithoutShowcaseInput>
   }
 
+  export type ProjectCreatetechUsedInput = {
+    set: string[]
+  }
+
   export type UserCreateNestedOneWithoutProjectsInput = {
     create?: XOR<UserCreateWithoutProjectsInput, UserUncheckedCreateWithoutProjectsInput>
     connectOrCreate?: UserCreateOrConnectWithoutProjectsInput
     connect?: UserWhereUniqueInput
+  }
+
+  export type ProjectUpdatetechUsedInput = {
+    set?: string[]
+    push?: string | string[]
   }
 
   export type UserUpdateOneRequiredWithoutProjectsNestedInput = {
@@ -20635,33 +20444,6 @@ export namespace Prisma {
     _max?: NestedEnumRoleFilter<$PrismaModel>
   }
 
-  export type NestedIntNullableWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: number | IntFieldRefInput<$PrismaModel> | null
-    in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
-    notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null
-    lt?: number | IntFieldRefInput<$PrismaModel>
-    lte?: number | IntFieldRefInput<$PrismaModel>
-    gt?: number | IntFieldRefInput<$PrismaModel>
-    gte?: number | IntFieldRefInput<$PrismaModel>
-    not?: NestedIntNullableWithAggregatesFilter<$PrismaModel> | number | null
-    _count?: NestedIntNullableFilter<$PrismaModel>
-    _avg?: NestedFloatNullableFilter<$PrismaModel>
-    _sum?: NestedIntNullableFilter<$PrismaModel>
-    _min?: NestedIntNullableFilter<$PrismaModel>
-    _max?: NestedIntNullableFilter<$PrismaModel>
-  }
-
-  export type NestedFloatNullableFilter<$PrismaModel = never> = {
-    equals?: number | FloatFieldRefInput<$PrismaModel> | null
-    in?: number[] | ListFloatFieldRefInput<$PrismaModel> | null
-    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel> | null
-    lt?: number | FloatFieldRefInput<$PrismaModel>
-    lte?: number | FloatFieldRefInput<$PrismaModel>
-    gt?: number | FloatFieldRefInput<$PrismaModel>
-    gte?: number | FloatFieldRefInput<$PrismaModel>
-    not?: NestedFloatNullableFilter<$PrismaModel> | number | null
-  }
-
   export type NestedBoolNullableFilter<$PrismaModel = never> = {
     equals?: boolean | BooleanFieldRefInput<$PrismaModel> | null
     not?: NestedBoolNullableFilter<$PrismaModel> | boolean | null
@@ -20693,23 +20475,17 @@ export namespace Prisma {
   }
 
   export type BasicInfoCreateWithoutUserInput = {
-    fullName?: string | null
+    fullName: string
     Institute?: string | null
-    degree?: string | null
     major?: string | null
-    graduationYear?: number | null
-    phone?: string | null
     location?: string | null
   }
 
   export type BasicInfoUncheckedCreateWithoutUserInput = {
     id?: number
-    fullName?: string | null
+    fullName: string
     Institute?: string | null
-    degree?: string | null
     major?: string | null
-    graduationYear?: number | null
-    phone?: string | null
     location?: string | null
   }
 
@@ -20735,14 +20511,12 @@ export namespace Prisma {
   }
 
   export type CollaborationCreateWithoutUserInput = {
-    lookingForTeam?: boolean | null
     openToCollaboration?: boolean | null
     ideaInterests?: string | null
   }
 
   export type CollaborationUncheckedCreateWithoutUserInput = {
     id?: number
-    lookingForTeam?: boolean | null
     openToCollaboration?: boolean | null
     ideaInterests?: string | null
   }
@@ -20908,7 +20682,7 @@ export namespace Prisma {
   export type ProjectCreateWithoutUserInput = {
     name: string
     description?: string | null
-    techUsed?: string | null
+    techUsed?: ProjectCreatetechUsedInput | string[]
     link?: string | null
   }
 
@@ -20916,7 +20690,7 @@ export namespace Prisma {
     id?: number
     name: string
     description?: string | null
-    techUsed?: string | null
+    techUsed?: ProjectCreatetechUsedInput | string[]
     link?: string | null
   }
 
@@ -20934,6 +20708,8 @@ export namespace Prisma {
     github?: string | null
     portfolio?: string | null
     linkedin?: string | null
+    email?: string | null
+    whatsapp?: string | null
   }
 
   export type ShowcaseUncheckedCreateWithoutUserInput = {
@@ -20941,6 +20717,8 @@ export namespace Prisma {
     github?: string | null
     portfolio?: string | null
     linkedin?: string | null
+    email?: string | null
+    whatsapp?: string | null
   }
 
   export type ShowcaseCreateOrConnectWithoutUserInput = {
@@ -20951,18 +20729,12 @@ export namespace Prisma {
   export type TechnicalProfileCreateWithoutUserInput = {
     skills?: TechnicalProfileCreateskillsInput | string[]
     experienceLevel?: string | null
-    yearsOfExperience?: number | null
-    projectInterests?: TechnicalProfileCreateprojectInterestsInput | string[]
-    availability?: string | null
   }
 
   export type TechnicalProfileUncheckedCreateWithoutUserInput = {
     id?: number
     skills?: TechnicalProfileCreateskillsInput | string[]
     experienceLevel?: string | null
-    yearsOfExperience?: number | null
-    projectInterests?: TechnicalProfileCreateprojectInterestsInput | string[]
-    availability?: string | null
   }
 
   export type TechnicalProfileCreateOrConnectWithoutUserInput = {
@@ -20998,23 +20770,17 @@ export namespace Prisma {
   }
 
   export type BasicInfoUpdateWithoutUserInput = {
-    fullName?: NullableStringFieldUpdateOperationsInput | string | null
+    fullName?: StringFieldUpdateOperationsInput | string
     Institute?: NullableStringFieldUpdateOperationsInput | string | null
-    degree?: NullableStringFieldUpdateOperationsInput | string | null
     major?: NullableStringFieldUpdateOperationsInput | string | null
-    graduationYear?: NullableIntFieldUpdateOperationsInput | number | null
-    phone?: NullableStringFieldUpdateOperationsInput | string | null
     location?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type BasicInfoUncheckedUpdateWithoutUserInput = {
     id?: IntFieldUpdateOperationsInput | number
-    fullName?: NullableStringFieldUpdateOperationsInput | string | null
+    fullName?: StringFieldUpdateOperationsInput | string
     Institute?: NullableStringFieldUpdateOperationsInput | string | null
-    degree?: NullableStringFieldUpdateOperationsInput | string | null
     major?: NullableStringFieldUpdateOperationsInput | string | null
-    graduationYear?: NullableIntFieldUpdateOperationsInput | number | null
-    phone?: NullableStringFieldUpdateOperationsInput | string | null
     location?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
@@ -21052,14 +20818,12 @@ export namespace Prisma {
   }
 
   export type CollaborationUpdateWithoutUserInput = {
-    lookingForTeam?: NullableBoolFieldUpdateOperationsInput | boolean | null
     openToCollaboration?: NullableBoolFieldUpdateOperationsInput | boolean | null
     ideaInterests?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type CollaborationUncheckedUpdateWithoutUserInput = {
     id?: IntFieldUpdateOperationsInput | number
-    lookingForTeam?: NullableBoolFieldUpdateOperationsInput | boolean | null
     openToCollaboration?: NullableBoolFieldUpdateOperationsInput | boolean | null
     ideaInterests?: NullableStringFieldUpdateOperationsInput | string | null
   }
@@ -21242,7 +21006,7 @@ export namespace Prisma {
     userId?: IntFilter<"Project"> | number
     name?: StringFilter<"Project"> | string
     description?: StringNullableFilter<"Project"> | string | null
-    techUsed?: StringNullableFilter<"Project"> | string | null
+    techUsed?: StringNullableListFilter<"Project">
     link?: StringNullableFilter<"Project"> | string | null
   }
 
@@ -21261,6 +21025,8 @@ export namespace Prisma {
     github?: NullableStringFieldUpdateOperationsInput | string | null
     portfolio?: NullableStringFieldUpdateOperationsInput | string | null
     linkedin?: NullableStringFieldUpdateOperationsInput | string | null
+    email?: NullableStringFieldUpdateOperationsInput | string | null
+    whatsapp?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type ShowcaseUncheckedUpdateWithoutUserInput = {
@@ -21268,6 +21034,8 @@ export namespace Prisma {
     github?: NullableStringFieldUpdateOperationsInput | string | null
     portfolio?: NullableStringFieldUpdateOperationsInput | string | null
     linkedin?: NullableStringFieldUpdateOperationsInput | string | null
+    email?: NullableStringFieldUpdateOperationsInput | string | null
+    whatsapp?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type TechnicalProfileUpsertWithoutUserInput = {
@@ -21284,18 +21052,12 @@ export namespace Prisma {
   export type TechnicalProfileUpdateWithoutUserInput = {
     skills?: TechnicalProfileUpdateskillsInput | string[]
     experienceLevel?: NullableStringFieldUpdateOperationsInput | string | null
-    yearsOfExperience?: NullableIntFieldUpdateOperationsInput | number | null
-    projectInterests?: TechnicalProfileUpdateprojectInterestsInput | string[]
-    availability?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type TechnicalProfileUncheckedUpdateWithoutUserInput = {
     id?: IntFieldUpdateOperationsInput | number
     skills?: TechnicalProfileUpdateskillsInput | string[]
     experienceLevel?: NullableStringFieldUpdateOperationsInput | string | null
-    yearsOfExperience?: NullableIntFieldUpdateOperationsInput | number | null
-    projectInterests?: TechnicalProfileUpdateprojectInterestsInput | string[]
-    availability?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type VisualsUpsertWithoutUserInput = {
@@ -23000,7 +22762,7 @@ export namespace Prisma {
     id?: number
     name: string
     description?: string | null
-    techUsed?: string | null
+    techUsed?: ProjectCreatetechUsedInput | string[]
     link?: string | null
   }
 
@@ -23134,7 +22896,7 @@ export namespace Prisma {
   export type ProjectUpdateWithoutUserInput = {
     name?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
-    techUsed?: NullableStringFieldUpdateOperationsInput | string | null
+    techUsed?: ProjectUpdatetechUsedInput | string[]
     link?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
@@ -23142,7 +22904,7 @@ export namespace Prisma {
     id?: IntFieldUpdateOperationsInput | number
     name?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
-    techUsed?: NullableStringFieldUpdateOperationsInput | string | null
+    techUsed?: ProjectUpdatetechUsedInput | string[]
     link?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
@@ -23150,7 +22912,7 @@ export namespace Prisma {
     id?: IntFieldUpdateOperationsInput | number
     name?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
-    techUsed?: NullableStringFieldUpdateOperationsInput | string | null
+    techUsed?: ProjectUpdatetechUsedInput | string[]
     link?: NullableStringFieldUpdateOperationsInput | string | null
   }
 

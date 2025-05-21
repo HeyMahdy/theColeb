@@ -1,7 +1,7 @@
 import { Router } from 'express';
 import logger from '../../../logger.js';
 import verifyToken from '../../../middlewares/authenticateToken.js';
-import * as basicInfoController from '../../../controllers/v1/BasicInfoController.js';
+import {createBasicInfo,getBasicInfo,updateBasicInfo,deleteBasicInfo} from '../../../controllers/v1/BasicInfoController.js';
 
 const router = Router();
 
@@ -9,15 +9,15 @@ const router = Router();
 router.use(verifyToken);
 
 // Create basic info
-router.post('/', basicInfoController.createBasicInfo);
+router.post('/', createBasicInfo);
 
 // Get basic info
-router.get('/', basicInfoController.getBasicInfo);
+router.get('/', getBasicInfo);
 
 // Update basic info
-router.put('/', basicInfoController.updateBasicInfo);
+router.put('/', updateBasicInfo);
 
 // Delete basic info
-router.delete('/', basicInfoController.deleteBasicInfo);
+router.delete('/', deleteBasicInfo);
 
 export default router;

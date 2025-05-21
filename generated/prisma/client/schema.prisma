@@ -38,29 +38,23 @@ model User {
 }
 
 model BasicInfo {
-  id             Int     @id @default(autoincrement())
-  userId         Int     @unique
-  fullName       String? @db.VarChar(100)
-  Institute      String? @db.VarChar(100)
-  degree         String? @db.VarChar(100)
-  major          String? @db.VarChar(100)
-  graduationYear Int?
-  phone          String? @db.VarChar(20)
-  location       String?
-  user           User    @relation(fields: [userId], references: [id])
+  id        Int     @id @default(autoincrement())
+  userId    Int     @unique
+  fullName  String  @db.VarChar(100)
+  Institute String? @db.VarChar(100)
+  major     String? @db.VarChar(100)
+  location  String?
+  user      User    @relation(fields: [userId], references: [id])
 
   @@map("basic_info")
 }
 
 model TechnicalProfile {
-  id                Int      @id @default(autoincrement())
-  userId            Int      @unique
-  skills            String[]
-  experienceLevel   String?  @db.VarChar(50)
-  yearsOfExperience Int?
-  projectInterests  String[] @db.Text
-  availability      String?  @db.VarChar(50)
-  user              User     @relation(fields: [userId], references: [id])
+  id              Int      @id @default(autoincrement())
+  userId          Int      @unique
+  skills          String[]
+  experienceLevel String?  @db.VarChar(50)
+  user            User     @relation(fields: [userId], references: [id])
 
   @@map("technical_profile")
 }
@@ -81,19 +75,22 @@ model Showcase {
   github    String? @db.VarChar(100)
   portfolio String? @db.VarChar(255)
   linkedin  String? @db.VarChar(100)
-  user      User    @relation(fields: [userId], references: [id])
+  email     String? @db.VarChar(100)
+  whatsapp  String? @db.VarChar(100)
+
+  user User @relation(fields: [userId], references: [id])
 
   @@map("showcase")
 }
 
 model Project {
-  id          Int     @id @default(autoincrement())
+  id          Int      @id @default(autoincrement())
   userId      Int
-  name        String  @db.VarChar(100)
+  name        String   @db.VarChar(100)
   description String?
-  techUsed    String?
-  link        String? @db.VarChar(255)
-  user        User    @relation(fields: [userId], references: [id])
+  techUsed    String[]
+  link        String?  @db.VarChar(255)
+  user        User     @relation(fields: [userId], references: [id])
 
   @@map("projects")
 }
@@ -101,7 +98,6 @@ model Project {
 model Collaboration {
   id                  Int      @id @default(autoincrement())
   userId              Int      @unique
-  lookingForTeam      Boolean?
   openToCollaboration Boolean?
   ideaInterests       String?
   user                User     @relation(fields: [userId], references: [id])
@@ -184,6 +180,7 @@ enum PostType {
   IDEA
   MVP
   COFOUNDER_NEEDED
+  MEETUP
   OTHER
 }
 
