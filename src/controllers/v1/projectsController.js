@@ -23,7 +23,7 @@ export const getUserProjects = async (req, res) => {
 export const createUserProject = async (req, res) => {
     try {
         const userId = req.user.userId; // From JWT token
-        const { name, description, techUsed, link } = req.body;
+        const { name, description, techUsed, link  , ProjectStatus} = req.body;
 
         // Validate input
         if (!name) {
@@ -38,7 +38,8 @@ export const createUserProject = async (req, res) => {
                 name,
                 description,
                 techUsed,
-                link
+                link,
+                ProjectStatus
             }
         });
 
@@ -63,7 +64,7 @@ export const updateUserProject = async (req, res) => {
     try {
         const userId = req.user.userId; // From JWT token
         const projectId = parseInt(req.params.projectId);
-        const { name, description, techUsed, link } = req.body;
+        const { name, description, techUsed, link , ProjectStatus } = req.body;
 
         // Validate input
         if (!name && !description && !techUsed && !link) {
@@ -92,7 +93,8 @@ export const updateUserProject = async (req, res) => {
                 name,
                 description,
                 techUsed,
-                link
+                link,
+                ProjectStatus
             }
         });
 
