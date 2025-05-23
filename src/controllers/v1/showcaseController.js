@@ -29,7 +29,7 @@ export const getUserShowcase = async (req, res) => {
 export const createUserShowcase = async (req, res) => {
     try {
         const userId = req.user.userId; // From JWT token
-        const { github, portfolio, linkedin } = req.body;
+        const { github, portfolio, linkedin , whatsapp ,email} = req.body;
 
         // Validate input - at least one field should be provided
         if (!github && !portfolio && !linkedin) {
@@ -43,7 +43,9 @@ export const createUserShowcase = async (req, res) => {
                 userId,
                 github,
                 portfolio,
-                linkedin
+                linkedin,
+                whatsapp,
+                email
             }
         });
 
@@ -86,7 +88,9 @@ export const updateUserShowcase = async (req, res) => {
             data: {
                 github,
                 portfolio,
-                linkedin
+                linkedin,
+                whatsapp,
+                email
             }
         });
 

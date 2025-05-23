@@ -141,10 +141,7 @@ exports.Prisma.BasicInfoScalarFieldEnum = {
   userId: 'userId',
   fullName: 'fullName',
   Institute: 'Institute',
-  degree: 'degree',
   major: 'major',
-  graduationYear: 'graduationYear',
-  phone: 'phone',
   location: 'location'
 };
 
@@ -152,10 +149,7 @@ exports.Prisma.TechnicalProfileScalarFieldEnum = {
   id: 'id',
   userId: 'userId',
   skills: 'skills',
-  experienceLevel: 'experienceLevel',
-  yearsOfExperience: 'yearsOfExperience',
-  projectInterests: 'projectInterests',
-  availability: 'availability'
+  experienceLevel: 'experienceLevel'
 };
 
 exports.Prisma.BioSummaryScalarFieldEnum = {
@@ -170,7 +164,9 @@ exports.Prisma.ShowcaseScalarFieldEnum = {
   userId: 'userId',
   github: 'github',
   portfolio: 'portfolio',
-  linkedin: 'linkedin'
+  linkedin: 'linkedin',
+  email: 'email',
+  whatsapp: 'whatsapp'
 };
 
 exports.Prisma.ProjectScalarFieldEnum = {
@@ -185,7 +181,6 @@ exports.Prisma.ProjectScalarFieldEnum = {
 exports.Prisma.CollaborationScalarFieldEnum = {
   id: 'id',
   userId: 'userId',
-  lookingForTeam: 'lookingForTeam',
   openToCollaboration: 'openToCollaboration',
   ideaInterests: 'ideaInterests'
 };
@@ -255,6 +250,7 @@ exports.PostType = exports.$Enums.PostType = {
   IDEA: 'IDEA',
   MVP: 'MVP',
   COFOUNDER_NEEDED: 'COFOUNDER_NEEDED',
+  MEETUP: 'MEETUP',
   OTHER: 'OTHER'
 };
 
