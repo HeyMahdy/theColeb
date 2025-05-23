@@ -31,8 +31,9 @@ const corsOptions = {
     const allowedOrigins = [
       'https://coleb-connect-universe.vercel.app',
       'http://localhost:5173',
-      'http://localhost:8080',
-      'http://192.168.0.106:8080' // <-- Add this line
+      'http://localhost:3000',
+      'http://192.168.0.106:8080',
+       'http://192.168.0.102:3000'// <-- Add this line
     ];
 
     if (!origin) return callback(null, true); // Allow requests with no origin
