@@ -7,18 +7,12 @@ export const createTechProfile = async (req, res) => {
         const {
             skills,
             experienceLevel,
-            yearsOfExperience,
-            projectInterests,
-            availability
         } = req.body;
 
         // Basic validation: at least one field required
         if (
             !skills &&
-            !experienceLevel &&
-            !yearsOfExperience &&
-            !projectInterests &&
-            !availability
+            !experienceLevel
         ) {
             return res.status(400).json({
                 message: 'At least one field must be provided to create a technical profile',
@@ -29,10 +23,7 @@ export const createTechProfile = async (req, res) => {
             data: {
                 userId,
                 skills,
-                experienceLevel,
-                yearsOfExperience,
-                projectInterests,
-                availability
+                experienceLevel
             }
         });
 
@@ -89,19 +80,13 @@ export const updateTechProfile = async (req, res) => {
         const userId = req.user.userId; // From JWT token
         const {
             skills,
-            experienceLevel,
-            yearsOfExperience,
-            projectInterests,
-            availability
+            experienceLevel
         } = req.body;
 
         // Ensure at least one field is being updated
         if (
             !skills &&
-            !experienceLevel &&
-            !yearsOfExperience &&
-            !projectInterests &&
-            !availability
+            !experienceLevel
         ) {
             return res.status(400).json({
                 message: 'At least one field must be provided to update the technical profile',
@@ -112,10 +97,7 @@ export const updateTechProfile = async (req, res) => {
             where: { userId },
             data: {
                 skills,
-                experienceLevel,
-                yearsOfExperience,
-                projectInterests,
-                availability
+                experienceLevel
             }
         });
 
