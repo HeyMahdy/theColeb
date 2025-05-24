@@ -83,42 +83,50 @@ export const updateTechProfile = async (req, res) => {
             experienceLevel
         } = req.body;
 
-        // Ensure at least one field is being updated
-        if (
-            !skills &&
-            !experienceLevel
-        ) {
+        // Validate input
+        if (!skills && !experienceLevel) {
             return res.status(400).json({
-                message: 'At least one field must be provided to update the technical profile',
+                success: false,
+                message: 'At least one field (skills or experienceLevel) is required',
             });
         }
 
-        const techProfile = await prisma.technicalProfile.update({
-            where: { userId },
-            data: {
-                skills,
-                experienceLevel
-            }
+        // First check if the tech profile exists
+        const existingProfile = await prisma.technicalProfile.findUnique({
+            where: { userId }
         });
+
+        let techProfile;
+        if (!existingProfile) {
+            // If no profile exists, create one
+            techProfile = await prisma.technicalProfile.create({
+                data: {
+                    userId,
+                    skills,
+                    experienceLevel
+                }
+            });
+        } else {
+            // If profile exists, update it
+            techProfile = await prisma.technicalProfile.update({
+                where: { userId },
+                data: {
+                    skills,
+                    experienceLevel
+                }
+            });
+        }
 
         return res.status(200).json({
-            message: 'Technical profile updated successfully',
-            techProfile
+            success: true,
+            data: techProfile
         });
     } catch (error) {
-        if (error instanceof Prisma.PrismaClientKnownRequestError) {
-            if (error.code === 'P2025') {
-                return res.status(404).json({
-                    message: 'Technical profile not found'
-                });
-            }
-            return res.status(500).json({
-                message: 'Database error occurred'
-            });
-        }
-        console.error('Update tech profile error:', error);
+        console.error('Error in updateTechProfile:', error);
         return res.status(500).json({
-            message: 'An error occurred while updating technical profile'
+            success: false,
+            message: 'Internal server error',
+            error: error.message
         });
     }
 };
