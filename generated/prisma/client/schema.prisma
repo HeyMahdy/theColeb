@@ -121,6 +121,7 @@ model Post {
   title       String           @db.VarChar(255)
   type        PostType         @default(COFOUNDER_NEEDED)
   description String?
+  status      ProjectStatus    @default(finished)
   // Relations
   interested  InterestedList[]
   user        User             @relation(fields: [userId], references: [id])
@@ -187,4 +188,10 @@ enum PostType {
 enum Role {
   USER
   ADMIN
+}
+
+enum ProjectStatus {
+  running
+  finished
+  incomplete
 }

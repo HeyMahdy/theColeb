@@ -101,6 +101,15 @@ export const Role: {
 
 export type Role = (typeof Role)[keyof typeof Role]
 
+
+export const ProjectStatus: {
+  running: 'running',
+  finished: 'finished',
+  incomplete: 'incomplete'
+};
+
+export type ProjectStatus = (typeof ProjectStatus)[keyof typeof ProjectStatus]
+
 }
 
 export type PostType = $Enums.PostType
@@ -110,6 +119,10 @@ export const PostType: typeof $Enums.PostType
 export type Role = $Enums.Role
 
 export const Role: typeof $Enums.Role
+
+export type ProjectStatus = $Enums.ProjectStatus
+
+export const ProjectStatus: typeof $Enums.ProjectStatus
 
 /**
  * ##  Prisma Client ʲˢ
@@ -11358,6 +11371,7 @@ export namespace Prisma {
     title: string | null
     type: $Enums.PostType | null
     description: string | null
+    status: $Enums.ProjectStatus | null
     createdAt: Date | null
   }
 
@@ -11367,6 +11381,7 @@ export namespace Prisma {
     title: string | null
     type: $Enums.PostType | null
     description: string | null
+    status: $Enums.ProjectStatus | null
     createdAt: Date | null
   }
 
@@ -11376,6 +11391,7 @@ export namespace Prisma {
     title: number
     type: number
     description: number
+    status: number
     createdAt: number
     _all: number
   }
@@ -11397,6 +11413,7 @@ export namespace Prisma {
     title?: true
     type?: true
     description?: true
+    status?: true
     createdAt?: true
   }
 
@@ -11406,6 +11423,7 @@ export namespace Prisma {
     title?: true
     type?: true
     description?: true
+    status?: true
     createdAt?: true
   }
 
@@ -11415,6 +11433,7 @@ export namespace Prisma {
     title?: true
     type?: true
     description?: true
+    status?: true
     createdAt?: true
     _all?: true
   }
@@ -11511,6 +11530,7 @@ export namespace Prisma {
     title: string
     type: $Enums.PostType
     description: string | null
+    status: $Enums.ProjectStatus
     createdAt: Date
     _count: PostCountAggregateOutputType | null
     _avg: PostAvgAggregateOutputType | null
@@ -11539,6 +11559,7 @@ export namespace Prisma {
     title?: boolean
     type?: boolean
     description?: boolean
+    status?: boolean
     createdAt?: boolean
     interested?: boolean | Post$interestedArgs<ExtArgs>
     user?: boolean | UserDefaultArgs<ExtArgs>
@@ -11551,6 +11572,7 @@ export namespace Prisma {
     title?: boolean
     type?: boolean
     description?: boolean
+    status?: boolean
     createdAt?: boolean
     user?: boolean | UserDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["post"]>
@@ -11561,6 +11583,7 @@ export namespace Prisma {
     title?: boolean
     type?: boolean
     description?: boolean
+    status?: boolean
     createdAt?: boolean
     user?: boolean | UserDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["post"]>
@@ -11571,10 +11594,11 @@ export namespace Prisma {
     title?: boolean
     type?: boolean
     description?: boolean
+    status?: boolean
     createdAt?: boolean
   }
 
-  export type PostOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "userId" | "title" | "type" | "description" | "createdAt", ExtArgs["result"]["post"]>
+  export type PostOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "userId" | "title" | "type" | "description" | "status" | "createdAt", ExtArgs["result"]["post"]>
   export type PostInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     interested?: boolean | Post$interestedArgs<ExtArgs>
     user?: boolean | UserDefaultArgs<ExtArgs>
@@ -11599,6 +11623,7 @@ export namespace Prisma {
       title: string
       type: $Enums.PostType
       description: string | null
+      status: $Enums.ProjectStatus
       createdAt: Date
     }, ExtArgs["result"]["post"]>
     composites: {}
@@ -12030,6 +12055,7 @@ export namespace Prisma {
     readonly title: FieldRef<"Post", 'String'>
     readonly type: FieldRef<"Post", 'PostType'>
     readonly description: FieldRef<"Post", 'String'>
+    readonly status: FieldRef<"Post", 'ProjectStatus'>
     readonly createdAt: FieldRef<"Post", 'DateTime'>
   }
     
@@ -16975,6 +17001,7 @@ export namespace Prisma {
     title: 'title',
     type: 'type',
     description: 'description',
+    status: 'status',
     createdAt: 'createdAt'
   };
 
@@ -17122,6 +17149,20 @@ export namespace Prisma {
    * Reference to a field of type 'PostType[]'
    */
   export type ListEnumPostTypeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'PostType[]'>
+    
+
+
+  /**
+   * Reference to a field of type 'ProjectStatus'
+   */
+  export type EnumProjectStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'ProjectStatus'>
+    
+
+
+  /**
+   * Reference to a field of type 'ProjectStatus[]'
+   */
+  export type ListEnumProjectStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'ProjectStatus[]'>
     
 
 
@@ -17661,6 +17702,7 @@ export namespace Prisma {
     title?: StringFilter<"Post"> | string
     type?: EnumPostTypeFilter<"Post"> | $Enums.PostType
     description?: StringNullableFilter<"Post"> | string | null
+    status?: EnumProjectStatusFilter<"Post"> | $Enums.ProjectStatus
     createdAt?: DateTimeFilter<"Post"> | Date | string
     interested?: InterestedListListRelationFilter
     user?: XOR<UserScalarRelationFilter, UserWhereInput>
@@ -17672,6 +17714,7 @@ export namespace Prisma {
     title?: SortOrder
     type?: SortOrder
     description?: SortOrderInput | SortOrder
+    status?: SortOrder
     createdAt?: SortOrder
     interested?: InterestedListOrderByRelationAggregateInput
     user?: UserOrderByWithRelationInput
@@ -17686,6 +17729,7 @@ export namespace Prisma {
     title?: StringFilter<"Post"> | string
     type?: EnumPostTypeFilter<"Post"> | $Enums.PostType
     description?: StringNullableFilter<"Post"> | string | null
+    status?: EnumProjectStatusFilter<"Post"> | $Enums.ProjectStatus
     createdAt?: DateTimeFilter<"Post"> | Date | string
     interested?: InterestedListListRelationFilter
     user?: XOR<UserScalarRelationFilter, UserWhereInput>
@@ -17697,6 +17741,7 @@ export namespace Prisma {
     title?: SortOrder
     type?: SortOrder
     description?: SortOrderInput | SortOrder
+    status?: SortOrder
     createdAt?: SortOrder
     _count?: PostCountOrderByAggregateInput
     _avg?: PostAvgOrderByAggregateInput
@@ -17714,6 +17759,7 @@ export namespace Prisma {
     title?: StringWithAggregatesFilter<"Post"> | string
     type?: EnumPostTypeWithAggregatesFilter<"Post"> | $Enums.PostType
     description?: StringNullableWithAggregatesFilter<"Post"> | string | null
+    status?: EnumProjectStatusWithAggregatesFilter<"Post"> | $Enums.ProjectStatus
     createdAt?: DateTimeWithAggregatesFilter<"Post"> | Date | string
   }
 
@@ -18425,6 +18471,7 @@ export namespace Prisma {
     title: string
     type?: $Enums.PostType
     description?: string | null
+    status?: $Enums.ProjectStatus
     createdAt?: Date | string
     interested?: InterestedListCreateNestedManyWithoutPostInput
     user: UserCreateNestedOneWithoutPostsInput
@@ -18436,6 +18483,7 @@ export namespace Prisma {
     title: string
     type?: $Enums.PostType
     description?: string | null
+    status?: $Enums.ProjectStatus
     createdAt?: Date | string
     interested?: InterestedListUncheckedCreateNestedManyWithoutPostInput
   }
@@ -18444,6 +18492,7 @@ export namespace Prisma {
     title?: StringFieldUpdateOperationsInput | string
     type?: EnumPostTypeFieldUpdateOperationsInput | $Enums.PostType
     description?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: EnumProjectStatusFieldUpdateOperationsInput | $Enums.ProjectStatus
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     interested?: InterestedListUpdateManyWithoutPostNestedInput
     user?: UserUpdateOneRequiredWithoutPostsNestedInput
@@ -18455,6 +18504,7 @@ export namespace Prisma {
     title?: StringFieldUpdateOperationsInput | string
     type?: EnumPostTypeFieldUpdateOperationsInput | $Enums.PostType
     description?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: EnumProjectStatusFieldUpdateOperationsInput | $Enums.ProjectStatus
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     interested?: InterestedListUncheckedUpdateManyWithoutPostNestedInput
   }
@@ -18465,6 +18515,7 @@ export namespace Prisma {
     title: string
     type?: $Enums.PostType
     description?: string | null
+    status?: $Enums.ProjectStatus
     createdAt?: Date | string
   }
 
@@ -18472,6 +18523,7 @@ export namespace Prisma {
     title?: StringFieldUpdateOperationsInput | string
     type?: EnumPostTypeFieldUpdateOperationsInput | $Enums.PostType
     description?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: EnumProjectStatusFieldUpdateOperationsInput | $Enums.ProjectStatus
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
@@ -18481,6 +18533,7 @@ export namespace Prisma {
     title?: StringFieldUpdateOperationsInput | string
     type?: EnumPostTypeFieldUpdateOperationsInput | $Enums.PostType
     description?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: EnumProjectStatusFieldUpdateOperationsInput | $Enums.ProjectStatus
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
@@ -19214,6 +19267,13 @@ export namespace Prisma {
     not?: NestedEnumPostTypeFilter<$PrismaModel> | $Enums.PostType
   }
 
+  export type EnumProjectStatusFilter<$PrismaModel = never> = {
+    equals?: $Enums.ProjectStatus | EnumProjectStatusFieldRefInput<$PrismaModel>
+    in?: $Enums.ProjectStatus[] | ListEnumProjectStatusFieldRefInput<$PrismaModel>
+    notIn?: $Enums.ProjectStatus[] | ListEnumProjectStatusFieldRefInput<$PrismaModel>
+    not?: NestedEnumProjectStatusFilter<$PrismaModel> | $Enums.ProjectStatus
+  }
+
   export type InterestedListListRelationFilter = {
     every?: InterestedListWhereInput
     some?: InterestedListWhereInput
@@ -19230,6 +19290,7 @@ export namespace Prisma {
     title?: SortOrder
     type?: SortOrder
     description?: SortOrder
+    status?: SortOrder
     createdAt?: SortOrder
   }
 
@@ -19244,6 +19305,7 @@ export namespace Prisma {
     title?: SortOrder
     type?: SortOrder
     description?: SortOrder
+    status?: SortOrder
     createdAt?: SortOrder
   }
 
@@ -19253,6 +19315,7 @@ export namespace Prisma {
     title?: SortOrder
     type?: SortOrder
     description?: SortOrder
+    status?: SortOrder
     createdAt?: SortOrder
   }
 
@@ -19269,6 +19332,16 @@ export namespace Prisma {
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedEnumPostTypeFilter<$PrismaModel>
     _max?: NestedEnumPostTypeFilter<$PrismaModel>
+  }
+
+  export type EnumProjectStatusWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.ProjectStatus | EnumProjectStatusFieldRefInput<$PrismaModel>
+    in?: $Enums.ProjectStatus[] | ListEnumProjectStatusFieldRefInput<$PrismaModel>
+    notIn?: $Enums.ProjectStatus[] | ListEnumProjectStatusFieldRefInput<$PrismaModel>
+    not?: NestedEnumProjectStatusWithAggregatesFilter<$PrismaModel> | $Enums.ProjectStatus
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumProjectStatusFilter<$PrismaModel>
+    _max?: NestedEnumProjectStatusFilter<$PrismaModel>
   }
 
   export type PostScalarRelationFilter = {
@@ -20119,6 +20192,10 @@ export namespace Prisma {
     set?: $Enums.PostType
   }
 
+  export type EnumProjectStatusFieldUpdateOperationsInput = {
+    set?: $Enums.ProjectStatus
+  }
+
   export type InterestedListUpdateManyWithoutPostNestedInput = {
     create?: XOR<InterestedListCreateWithoutPostInput, InterestedListUncheckedCreateWithoutPostInput> | InterestedListCreateWithoutPostInput[] | InterestedListUncheckedCreateWithoutPostInput[]
     connectOrCreate?: InterestedListCreateOrConnectWithoutPostInput | InterestedListCreateOrConnectWithoutPostInput[]
@@ -20464,6 +20541,13 @@ export namespace Prisma {
     not?: NestedEnumPostTypeFilter<$PrismaModel> | $Enums.PostType
   }
 
+  export type NestedEnumProjectStatusFilter<$PrismaModel = never> = {
+    equals?: $Enums.ProjectStatus | EnumProjectStatusFieldRefInput<$PrismaModel>
+    in?: $Enums.ProjectStatus[] | ListEnumProjectStatusFieldRefInput<$PrismaModel>
+    notIn?: $Enums.ProjectStatus[] | ListEnumProjectStatusFieldRefInput<$PrismaModel>
+    not?: NestedEnumProjectStatusFilter<$PrismaModel> | $Enums.ProjectStatus
+  }
+
   export type NestedEnumPostTypeWithAggregatesFilter<$PrismaModel = never> = {
     equals?: $Enums.PostType | EnumPostTypeFieldRefInput<$PrismaModel>
     in?: $Enums.PostType[] | ListEnumPostTypeFieldRefInput<$PrismaModel>
@@ -20472,6 +20556,16 @@ export namespace Prisma {
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedEnumPostTypeFilter<$PrismaModel>
     _max?: NestedEnumPostTypeFilter<$PrismaModel>
+  }
+
+  export type NestedEnumProjectStatusWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.ProjectStatus | EnumProjectStatusFieldRefInput<$PrismaModel>
+    in?: $Enums.ProjectStatus[] | ListEnumProjectStatusFieldRefInput<$PrismaModel>
+    notIn?: $Enums.ProjectStatus[] | ListEnumProjectStatusFieldRefInput<$PrismaModel>
+    not?: NestedEnumProjectStatusWithAggregatesFilter<$PrismaModel> | $Enums.ProjectStatus
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumProjectStatusFilter<$PrismaModel>
+    _max?: NestedEnumProjectStatusFilter<$PrismaModel>
   }
 
   export type BasicInfoCreateWithoutUserInput = {
@@ -20656,6 +20750,7 @@ export namespace Prisma {
     title: string
     type?: $Enums.PostType
     description?: string | null
+    status?: $Enums.ProjectStatus
     createdAt?: Date | string
     interested?: InterestedListCreateNestedManyWithoutPostInput
   }
@@ -20665,6 +20760,7 @@ export namespace Prisma {
     title: string
     type?: $Enums.PostType
     description?: string | null
+    status?: $Enums.ProjectStatus
     createdAt?: Date | string
     interested?: InterestedListUncheckedCreateNestedManyWithoutPostInput
   }
@@ -20979,6 +21075,7 @@ export namespace Prisma {
     title?: StringFilter<"Post"> | string
     type?: EnumPostTypeFilter<"Post"> | $Enums.PostType
     description?: StringNullableFilter<"Post"> | string | null
+    status?: EnumProjectStatusFilter<"Post"> | $Enums.ProjectStatus
     createdAt?: DateTimeFilter<"Post"> | Date | string
   }
 
@@ -22008,6 +22105,7 @@ export namespace Prisma {
     title: string
     type?: $Enums.PostType
     description?: string | null
+    status?: $Enums.ProjectStatus
     createdAt?: Date | string
     user: UserCreateNestedOneWithoutPostsInput
   }
@@ -22018,6 +22116,7 @@ export namespace Prisma {
     title: string
     type?: $Enums.PostType
     description?: string | null
+    status?: $Enums.ProjectStatus
     createdAt?: Date | string
   }
 
@@ -22041,6 +22140,7 @@ export namespace Prisma {
     title?: StringFieldUpdateOperationsInput | string
     type?: EnumPostTypeFieldUpdateOperationsInput | $Enums.PostType
     description?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: EnumProjectStatusFieldUpdateOperationsInput | $Enums.ProjectStatus
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     user?: UserUpdateOneRequiredWithoutPostsNestedInput
   }
@@ -22051,6 +22151,7 @@ export namespace Prisma {
     title?: StringFieldUpdateOperationsInput | string
     type?: EnumPostTypeFieldUpdateOperationsInput | $Enums.PostType
     description?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: EnumProjectStatusFieldUpdateOperationsInput | $Enums.ProjectStatus
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
@@ -22755,6 +22856,7 @@ export namespace Prisma {
     title: string
     type?: $Enums.PostType
     description?: string | null
+    status?: $Enums.ProjectStatus
     createdAt?: Date | string
   }
 
@@ -22872,6 +22974,7 @@ export namespace Prisma {
     title?: StringFieldUpdateOperationsInput | string
     type?: EnumPostTypeFieldUpdateOperationsInput | $Enums.PostType
     description?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: EnumProjectStatusFieldUpdateOperationsInput | $Enums.ProjectStatus
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     interested?: InterestedListUpdateManyWithoutPostNestedInput
   }
@@ -22881,6 +22984,7 @@ export namespace Prisma {
     title?: StringFieldUpdateOperationsInput | string
     type?: EnumPostTypeFieldUpdateOperationsInput | $Enums.PostType
     description?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: EnumProjectStatusFieldUpdateOperationsInput | $Enums.ProjectStatus
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     interested?: InterestedListUncheckedUpdateManyWithoutPostNestedInput
   }
@@ -22890,6 +22994,7 @@ export namespace Prisma {
     title?: StringFieldUpdateOperationsInput | string
     type?: EnumPostTypeFieldUpdateOperationsInput | $Enums.PostType
     description?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: EnumProjectStatusFieldUpdateOperationsInput | $Enums.ProjectStatus
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 

@@ -79,15 +79,35 @@ export const updateBasicInfo = async (req, res) => {
         const userId = req.user.userId;
         const { fullName, Institute, major, location } = req.body;
 
-        const basicInfo = await prisma.basicInfo.update({
-            where: { userId },
-            data: {
-                fullName,
-                Institute,
-                major,
-                location
-            }
+        // First check if the record exists
+        const existingInfo = await prisma.basicInfo.findUnique({
+            where: { userId }
         });
+
+        let basicInfo;
+        if (!existingInfo) {
+            // If no record exists, create one
+            basicInfo = await prisma.basicInfo.create({
+                data: {
+                    userId,
+                    fullName,
+                    Institute,
+                    major,
+                    location
+                }
+            });
+        } else {
+            // If record exists, update it
+            basicInfo = await prisma.basicInfo.update({
+                where: { userId },
+                data: {
+                    fullName,
+                    Institute,
+                    major,
+                    location
+                }
+            });
+        }
 
         return res.status(200).json({
             success: true,

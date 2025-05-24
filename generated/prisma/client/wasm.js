@@ -198,6 +198,7 @@ exports.Prisma.PostScalarFieldEnum = {
   title: 'title',
   type: 'type',
   description: 'description',
+  status: 'status',
   createdAt: 'createdAt'
 };
 
@@ -252,6 +253,12 @@ exports.PostType = exports.$Enums.PostType = {
   COFOUNDER_NEEDED: 'COFOUNDER_NEEDED',
   MEETUP: 'MEETUP',
   OTHER: 'OTHER'
+};
+
+exports.ProjectStatus = exports.$Enums.ProjectStatus = {
+  running: 'running',
+  finished: 'finished',
+  incomplete: 'incomplete'
 };
 
 exports.Prisma.ModelName = {
