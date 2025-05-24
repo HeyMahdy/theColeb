@@ -33,7 +33,9 @@ const corsOptions = {
       'http://localhost:5173',
       'http://localhost:3000',
       'http://192.168.0.106:8080',
-       'http://192.168.0.102:3000'// <-- Add this line
+       'http://192.168.0.102:3000',
+       'http://192.168.0.104:8080',
+       'http://192.168.0.102:8080'
     ];
 
     if (!origin) return callback(null, true); // Allow requests with no origin
