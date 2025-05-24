@@ -13,21 +13,21 @@ datasource db {
 model User {
   id                         Int                  @id @default(autoincrement())
   email                      String               @unique @db.VarChar(255)
-  password                   String               @db.VarChar(255)
   createdAt                  DateTime             @default(now())
   isEmailVerified            Boolean              @default(false)
   otp                        String?              @db.VarChar(6)
   otpExpiry                  DateTime?
+  password                   String               @db.VarChar(255)
   role                       Role                 @default(USER)
   basicInfo                  BasicInfo?
   bioSummary                 BioSummary?
   collaboration              Collaboration?
-  ParticipantA               Connection[]         @relation("ConnectionParticipantA") // userId side
-  ParticipantB               Connection[]         @relation("ConnectionParticipantB") //
-  sentIncomingConnections    IncomingConnection[] @relation("SentIncomingConnections")
+  ParticipantA               Connection[]         @relation("ConnectionParticipantA")
+  ParticipantB               Connection[]         @relation("ConnectionParticipantB")
   incomingConnections        IncomingConnection[] @relation("ReceivedConnections")
-  outgoingConnections        OutgoingConnection[] @relation("SentConnections")
+  sentIncomingConnections    IncomingConnection[] @relation("SentIncomingConnections")
   ReceiveoutgoingConnections OutgoingConnection[] @relation("ReceiveoutgoingConnections")
+  outgoingConnections        OutgoingConnection[] @relation("SentConnections")
   posts                      Post[]
   projects                   Project[]
   showcase                   Showcase?
@@ -52,8 +52,8 @@ model BasicInfo {
 model TechnicalProfile {
   id              Int      @id @default(autoincrement())
   userId          Int      @unique
-  skills          String[]
   experienceLevel String?  @db.VarChar(50)
+  skills          String[]
   user            User     @relation(fields: [userId], references: [id])
 
   @@map("technical_profile")
@@ -77,8 +77,7 @@ model Showcase {
   linkedin  String? @db.VarChar(100)
   email     String? @db.VarChar(100)
   whatsapp  String? @db.VarChar(100)
-
-  user User @relation(fields: [userId], references: [id])
+  user      User    @relation(fields: [userId], references: [id])
 
   @@map("showcase")
 }
@@ -88,9 +87,9 @@ model Project {
   userId      Int
   name        String        @db.VarChar(100)
   description String?
+  link        String?       @db.VarChar(255)
   techUsed    String[]
   status      ProjectStatus @default(finished)
-  link        String?       @db.VarChar(255)
   user        User          @relation(fields: [userId], references: [id])
 
   @@map("projects")
@@ -117,18 +116,14 @@ model Visuals {
 }
 
 model Post {
-  id          Int      @id @default(autoincrement())
+  id          Int              @id @default(autoincrement())
   userId      Int
-  title       String   @db.VarChar(255)
-  type        PostType @default(COFOUNDER_NEEDED)
+  title       String           @db.VarChar(255)
   description String?
-
-  // Relations
-  interested InterestedList[]
-  user       User             @relation(fields: [userId], references: [id])
-
-  // Timestamps
-  createdAt DateTime @default(now())
+  createdAt   DateTime         @default(now())
+  type        PostType         @default(COFOUNDER_NEEDED)
+  interested  InterestedList[]
+  user        User             @relation(fields: [userId], references: [id])
 
   @@map("post")
 }
@@ -144,8 +139,8 @@ model InterestedList {
 model IncomingConnection {
   id          Int      @id @default(autoincrement())
   senderId    Int
-  receiverId  Int
   requestedAt DateTime @default(now())
+  receiverId  Int
   receiver    User     @relation("ReceivedConnections", fields: [receiverId], references: [id])
   sender      User     @relation("SentIncomingConnections", fields: [senderId], references: [id])
 
@@ -156,10 +151,10 @@ model IncomingConnection {
 model OutgoingConnection {
   id          Int      @id @default(autoincrement())
   receiverId  Int
-  senderId    Int
   requestedAt DateTime @default(now())
-  receiver    User     @relation("SentConnections", fields: [senderId], references: [id])
+  senderId    Int
   sender      User     @relation("ReceiveoutgoingConnections", fields: [receiverId], references: [id])
+  receiver    User     @relation("SentConnections", fields: [senderId], references: [id])
 
   @@unique([senderId, receiverId])
   @@map("outgoing_connection")
@@ -167,12 +162,11 @@ model OutgoingConnection {
 
 model Connection {
   id             Int      @id @default(autoincrement())
+  connectedAt    DateTime @default(now())
   participantAId Int
   participantBId Int
-  connectedAt    DateTime @default(now())
-
-  participantA User @relation("ConnectionParticipantA", fields: [participantAId], references: [id])
-  participantB User @relation("ConnectionParticipantB", fields: [participantBId], references: [id])
+  participantA   User     @relation("ConnectionParticipantA", fields: [participantAId], references: [id])
+  participantB   User     @relation("ConnectionParticipantB", fields: [participantBId], references: [id])
 
   @@unique([participantAId, participantBId])
   @@map("connections")
@@ -182,8 +176,8 @@ enum PostType {
   IDEA
   MVP
   COFOUNDER_NEEDED
-  MEETUP
   OTHER
+  MEETUP
 }
 
 enum Role {

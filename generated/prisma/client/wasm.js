@@ -123,11 +123,11 @@ exports.Prisma.TransactionIsolationLevel = makeStrictEnum({
 exports.Prisma.UserScalarFieldEnum = {
   id: 'id',
   email: 'email',
-  password: 'password',
   createdAt: 'createdAt',
   isEmailVerified: 'isEmailVerified',
   otp: 'otp',
   otpExpiry: 'otpExpiry',
+  password: 'password',
   role: 'role'
 };
 
@@ -148,8 +148,8 @@ exports.Prisma.BasicInfoScalarFieldEnum = {
 exports.Prisma.TechnicalProfileScalarFieldEnum = {
   id: 'id',
   userId: 'userId',
-  skills: 'skills',
-  experienceLevel: 'experienceLevel'
+  experienceLevel: 'experienceLevel',
+  skills: 'skills'
 };
 
 exports.Prisma.BioSummaryScalarFieldEnum = {
@@ -174,9 +174,9 @@ exports.Prisma.ProjectScalarFieldEnum = {
   userId: 'userId',
   name: 'name',
   description: 'description',
+  link: 'link',
   techUsed: 'techUsed',
-  status: 'status',
-  link: 'link'
+  status: 'status'
 };
 
 exports.Prisma.CollaborationScalarFieldEnum = {
@@ -197,9 +197,9 @@ exports.Prisma.PostScalarFieldEnum = {
   id: 'id',
   userId: 'userId',
   title: 'title',
-  type: 'type',
   description: 'description',
-  createdAt: 'createdAt'
+  createdAt: 'createdAt',
+  type: 'type'
 };
 
 exports.Prisma.InterestedListScalarFieldEnum = {
@@ -210,22 +210,22 @@ exports.Prisma.InterestedListScalarFieldEnum = {
 exports.Prisma.IncomingConnectionScalarFieldEnum = {
   id: 'id',
   senderId: 'senderId',
-  receiverId: 'receiverId',
-  requestedAt: 'requestedAt'
+  requestedAt: 'requestedAt',
+  receiverId: 'receiverId'
 };
 
 exports.Prisma.OutgoingConnectionScalarFieldEnum = {
   id: 'id',
   receiverId: 'receiverId',
-  senderId: 'senderId',
-  requestedAt: 'requestedAt'
+  requestedAt: 'requestedAt',
+  senderId: 'senderId'
 };
 
 exports.Prisma.ConnectionScalarFieldEnum = {
   id: 'id',
+  connectedAt: 'connectedAt',
   participantAId: 'participantAId',
-  participantBId: 'participantBId',
-  connectedAt: 'connectedAt'
+  participantBId: 'participantBId'
 };
 
 exports.Prisma.SortOrder = {
@@ -257,8 +257,8 @@ exports.PostType = exports.$Enums.PostType = {
   IDEA: 'IDEA',
   MVP: 'MVP',
   COFOUNDER_NEEDED: 'COFOUNDER_NEEDED',
-  MEETUP: 'MEETUP',
-  OTHER: 'OTHER'
+  OTHER: 'OTHER',
+  MEETUP: 'MEETUP'
 };
 
 exports.Prisma.ModelName = {
