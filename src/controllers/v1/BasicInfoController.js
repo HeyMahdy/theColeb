@@ -48,20 +48,37 @@ export const getBasicInfo = async (req, res) => {
     try {
         const userId = req.user.userId;
 
-        const basicInfo = await prisma.basicInfo.findUnique({
-            where: { userId }
+        // Get user with basic info
+        const user = await prisma.user.findUnique({
+            where: { id: userId },
+            include: {
+                basicInfo: true
+            }
         });
 
-        if (!basicInfo) {
+        if (!user) {
             return res.status(404).json({
                 success: false,
-                message: 'Basic info not found'
+                message: 'User not found'
+            });
+        }
+
+        // If no basic info exists, return empty object
+        if (!user.basicInfo) {
+            return res.status(200).json({
+                success: true,
+                data: {
+                    fullName: '',
+                    Institute: '',
+                    major: '',
+                    location: ''
+                }
             });
         }
 
         return res.status(200).json({
             success: true,
-            data: basicInfo
+            data: user.basicInfo
         });
     } catch (error) {
         console.error('Error in getBasicInfo:', error);
