@@ -118,29 +118,64 @@ export const deletePost = async (req, res) => {
 export const getPosts = async (req, res) => {
     try {
         const userId = req.user.userId;
-        const {type,page,limit} = req.query
+        const { type, page = 1, limit = 10 } = req.query;
 
         const skip = (parseInt(page) - 1) * parseInt(limit);
 
+        const whereClause = type ? { type } : {};
 
         const posts = await prisma.post.findMany({
             skip,
             take: parseInt(limit),
-            where : {
-                type : type
+            where: whereClause,
+            select: {
+                id: true,
+                title: true,
+                content: true,
+                type: true,
+                createdAt: true,
+                updatedAt: true,
+                user: {
+                    select: {
+                        id: true,
+                        email: true,
+                        basicInfo: {
+                            select: {
+                                fullName: true
+                            }
+                        }
+                    }
+                }
             },
-            select : {
-                title : true,
-                description : true,
-                type : true
+            orderBy: {
+                createdAt: 'desc'
             }
-            
         });
 
-        res.status(200).json({ posts });
+        // Get total count for pagination
+        const total = await prisma.post.count({
+            where: whereClause
+        });
+
+        res.status(200).json({
+            success: true,
+            data: {
+                posts,
+                pagination: {
+                    total,
+                    page: parseInt(page),
+                    limit: parseInt(limit),
+                    totalPages: Math.ceil(total / parseInt(limit))
+                }
+            }
+        });
     } catch (error) {
         console.error('Error retrieving posts:', error);
-        res.status(500).json({ error: 'Failed to retrieve posts' });
+        res.status(500).json({
+            success: false,
+            message: 'Failed to retrieve posts',
+            error: error.message
+        });
     }
 };
 
