@@ -131,7 +131,7 @@ export const getPosts = async (req, res) => {
             select: {
                 id: true,
                 title: true,
-                content: true,
+                description: true,
                 type: true,
                 createdAt: true,
                 updatedAt: true,
