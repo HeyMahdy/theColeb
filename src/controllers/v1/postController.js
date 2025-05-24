@@ -134,7 +134,6 @@ export const getPosts = async (req, res) => {
                 description: true,
                 type: true,
                 createdAt: true,
-                updatedAt: true,
                 user: {
                     select: {
                         id: true,

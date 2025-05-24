@@ -89,6 +89,7 @@ model Project {
   name        String  @db.VarChar(100)
   description String?
   techUsed    String[]
+  status      ProjectStatus    @default(finished)
   link        String? @db.VarChar(255)
   user        User    @relation(fields: [userId], references: [id])
 
@@ -121,7 +122,7 @@ model Post {
   title       String           @db.VarChar(255)
   type        PostType         @default(COFOUNDER_NEEDED)
   description String?
-  status      ProjectStatus    @default(finished)
+  
   // Relations
   interested  InterestedList[]
   user        User             @relation(fields: [userId], references: [id])

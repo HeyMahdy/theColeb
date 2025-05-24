@@ -175,6 +175,7 @@ exports.Prisma.ProjectScalarFieldEnum = {
   name: 'name',
   description: 'description',
   techUsed: 'techUsed',
+  status: 'status',
   link: 'link'
 };
 
@@ -198,7 +199,6 @@ exports.Prisma.PostScalarFieldEnum = {
   title: 'title',
   type: 'type',
   description: 'description',
-  status: 'status',
   createdAt: 'createdAt'
 };
 
@@ -247,18 +247,18 @@ exports.Role = exports.$Enums.Role = {
   ADMIN: 'ADMIN'
 };
 
+exports.ProjectStatus = exports.$Enums.ProjectStatus = {
+  running: 'running',
+  finished: 'finished',
+  incomplete: 'incomplete'
+};
+
 exports.PostType = exports.$Enums.PostType = {
   IDEA: 'IDEA',
   MVP: 'MVP',
   COFOUNDER_NEEDED: 'COFOUNDER_NEEDED',
   MEETUP: 'MEETUP',
   OTHER: 'OTHER'
-};
-
-exports.ProjectStatus = exports.$Enums.ProjectStatus = {
-  running: 'running',
-  finished: 'finished',
-  incomplete: 'incomplete'
 };
 
 exports.Prisma.ModelName = {

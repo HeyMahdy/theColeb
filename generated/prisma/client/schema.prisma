@@ -84,13 +84,14 @@ model Showcase {
 }
 
 model Project {
-  id          Int      @id @default(autoincrement())
+  id          Int           @id @default(autoincrement())
   userId      Int
-  name        String   @db.VarChar(100)
+  name        String        @db.VarChar(100)
   description String?
   techUsed    String[]
-  link        String?  @db.VarChar(255)
-  user        User     @relation(fields: [userId], references: [id])
+  status      ProjectStatus @default(finished)
+  link        String?       @db.VarChar(255)
+  user        User          @relation(fields: [userId], references: [id])
 
   @@map("projects")
 }
@@ -116,15 +117,15 @@ model Visuals {
 }
 
 model Post {
-  id          Int              @id @default(autoincrement())
+  id          Int      @id @default(autoincrement())
   userId      Int
-  title       String           @db.VarChar(255)
-  type        PostType         @default(COFOUNDER_NEEDED)
+  title       String   @db.VarChar(255)
+  type        PostType @default(COFOUNDER_NEEDED)
   description String?
-  status      ProjectStatus    @default(finished)
+
   // Relations
-  interested  InterestedList[]
-  user        User             @relation(fields: [userId], references: [id])
+  interested InterestedList[]
+  user       User             @relation(fields: [userId], references: [id])
 
   // Timestamps
   createdAt DateTime @default(now())
