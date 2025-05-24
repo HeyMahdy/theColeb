@@ -72,7 +72,7 @@ export const getRequestList = async (req, res) => {
                         id: true,
                         basicInfo: {
                             select: {
-                                fullName
+                                fullName : true
                             }
                         }
                     }
