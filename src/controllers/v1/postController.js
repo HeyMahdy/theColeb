@@ -5,7 +5,7 @@ export const createPost = async (req, res) => {
     try {
         const userId = req.user.userId;
                
-        const { title, content,type  } = req.body;
+        const { title, description,type  } = req.body;
 
         if (!title && !content && !type) {
             return res.status(400).json({ error: 'all fields are required' });
@@ -15,7 +15,7 @@ export const createPost = async (req, res) => {
             data: {
                 userId,
                 title,
-                content,
+                  description ,
                 type,
             },
         });
@@ -45,7 +45,7 @@ export const updatePost = async (req, res) => {
     try {
         const userId = req.user.userId;
         const { id } = req.params;
-        const { title, content, type } = req.body;
+        const { title, description, type } = req.body;
 
         if (!title && !content && !type) {
             return res.status(400).json({ error: 'At least one field (title, content, or type) is required for update' });
@@ -68,7 +68,7 @@ export const updatePost = async (req, res) => {
             where: { id: parseInt(id) },
             data: {
                 ...(title && { title }),
-                ...(content && { content }),
+                ...(description && { description }),
                 ...(type && { type }),
             },
         });
