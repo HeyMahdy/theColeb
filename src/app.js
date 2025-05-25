@@ -15,6 +15,8 @@ import infoRouter from './routes/v1/userRoute/info.js'; // Import the basic info
 import filterRoute from './routes/v1/postfeed/feed.js'
 import reqConnect from './routes/v1/connectionRoute/connect.js'
 import postrouter from './routes/v1/postRoute/post.js';
+import exprouter  from './routes/v1/userRoute/expericence.js'
+import academicsrouter from './routes/v1/userRoute/academics.js'
 
 const app = express();
 
@@ -74,6 +76,8 @@ app.use('/collab/v1/info', infoRouter); // Add the basic info route
 app.use('/collab/v1/filter', filterRoute); 
 app.use('/collab/v1/connect', reqConnect); 
 app.use('/collab/v1/posts', postrouter);
+app.use('/collab/v1/exp',exprouter)
+app.use('/collab/v1/academics',academicsrouter)
 
 // Error handling middleware (should be last)
 app.use((err, req, res, next) => {

@@ -94,7 +94,7 @@ export const getBasicInfo = async (req, res) => {
 export const updateBasicInfo = async (req, res) => {
     try {
         const userId = req.user.userId;
-        const { fullName, Institute, major, location } = req.body;
+        const { fullName, location } = req.body;
 
         // First check if the record exists
         const existingInfo = await prisma.basicInfo.findUnique({
@@ -108,8 +108,6 @@ export const updateBasicInfo = async (req, res) => {
                 data: {
                     userId,
                     fullName,
-                    Institute,
-                    major,
                     location
                 }
             });
@@ -119,8 +117,6 @@ export const updateBasicInfo = async (req, res) => {
                 where: { userId },
                 data: {
                     fullName,
-                    Institute,
-                    major,
                     location
                 }
             });

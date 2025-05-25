@@ -22,6 +22,8 @@ model User {
   basicInfo                  BasicInfo?
   bioSummary                 BioSummary?
   collaboration              Collaboration?
+  academics                  Academic[]           @relation("Academic")
+  experience                 Experience[]          @relation("Experience")
   ParticipantA               Connection[]         @relation("ConnectionParticipantA")
   ParticipantB               Connection[]         @relation("ConnectionParticipantB")
   incomingConnections        IncomingConnection[] @relation("ReceivedConnections")
@@ -41,8 +43,6 @@ model BasicInfo {
   id        Int     @id @default(autoincrement())
   userId    Int     @unique
   fullName  String  @db.VarChar(100)
-  Institute String? @db.VarChar(100)
-  major     String? @db.VarChar(100)
   location  String?
   user      User    @relation(fields: [userId], references: [id])
 
@@ -170,6 +170,26 @@ model Connection {
 
   @@unique([participantAId, participantBId])
   @@map("connections")
+}
+model Academic {
+  id         Int    @id @default(autoincrement())
+  userId     Int     @unique
+  user       User   @relation("Academic",fields: [userId], references: [id])
+  institute  String
+  degree     String
+  startYear  Int
+  endYear    Int?
+}
+
+model Experience {
+  id          Int      @id @default(autoincrement())
+  userId      Int      @unique
+  user        User     @relation("Experience",fields: [userId], references: [id])
+  title       String
+  company     String
+  jobDescription String?
+  startDate   DateTime
+  endDate     DateTime?
 }
 
 enum PostType {
