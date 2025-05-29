@@ -140,8 +140,6 @@ exports.Prisma.BasicInfoScalarFieldEnum = {
   id: 'id',
   userId: 'userId',
   fullName: 'fullName',
-  Institute: 'Institute',
-  major: 'major',
   location: 'location'
 };
 
@@ -228,6 +226,25 @@ exports.Prisma.ConnectionScalarFieldEnum = {
   participantBId: 'participantBId'
 };
 
+exports.Prisma.AcademicScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  institute: 'institute',
+  degree: 'degree',
+  startYear: 'startYear',
+  endYear: 'endYear'
+};
+
+exports.Prisma.ExperienceScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  title: 'title',
+  company: 'company',
+  jobDescription: 'jobDescription',
+  startDate: 'startDate',
+  endDate: 'endDate'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -274,7 +291,9 @@ exports.Prisma.ModelName = {
   InterestedList: 'InterestedList',
   IncomingConnection: 'IncomingConnection',
   OutgoingConnection: 'OutgoingConnection',
-  Connection: 'Connection'
+  Connection: 'Connection',
+  Academic: 'Academic',
+  Experience: 'Experience'
 };
 
 /**

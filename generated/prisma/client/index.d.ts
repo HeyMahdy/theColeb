@@ -78,6 +78,16 @@ export type OutgoingConnection = $Result.DefaultSelection<Prisma.$OutgoingConnec
  * 
  */
 export type Connection = $Result.DefaultSelection<Prisma.$ConnectionPayload>
+/**
+ * Model Academic
+ * 
+ */
+export type Academic = $Result.DefaultSelection<Prisma.$AcademicPayload>
+/**
+ * Model Experience
+ * 
+ */
+export type Experience = $Result.DefaultSelection<Prisma.$ExperiencePayload>
 
 /**
  * Enums
@@ -378,6 +388,26 @@ export class PrismaClient<
     * ```
     */
   get connection(): Prisma.ConnectionDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.academic`: Exposes CRUD operations for the **Academic** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Academics
+    * const academics = await prisma.academic.findMany()
+    * ```
+    */
+  get academic(): Prisma.AcademicDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.experience`: Exposes CRUD operations for the **Experience** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Experiences
+    * const experiences = await prisma.experience.findMany()
+    * ```
+    */
+  get experience(): Prisma.ExperienceDelegate<ExtArgs, ClientOptions>;
 }
 
 export namespace Prisma {
@@ -830,7 +860,9 @@ export namespace Prisma {
     InterestedList: 'InterestedList',
     IncomingConnection: 'IncomingConnection',
     OutgoingConnection: 'OutgoingConnection',
-    Connection: 'Connection'
+    Connection: 'Connection',
+    Academic: 'Academic',
+    Experience: 'Experience'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -849,7 +881,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "user" | "basicInfo" | "technicalProfile" | "bioSummary" | "showcase" | "project" | "collaboration" | "visuals" | "post" | "interestedList" | "incomingConnection" | "outgoingConnection" | "connection"
+      modelProps: "user" | "basicInfo" | "technicalProfile" | "bioSummary" | "showcase" | "project" | "collaboration" | "visuals" | "post" | "interestedList" | "incomingConnection" | "outgoingConnection" | "connection" | "academic" | "experience"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -1815,6 +1847,154 @@ export namespace Prisma {
           }
         }
       }
+      Academic: {
+        payload: Prisma.$AcademicPayload<ExtArgs>
+        fields: Prisma.AcademicFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.AcademicFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AcademicPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.AcademicFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AcademicPayload>
+          }
+          findFirst: {
+            args: Prisma.AcademicFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AcademicPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.AcademicFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AcademicPayload>
+          }
+          findMany: {
+            args: Prisma.AcademicFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AcademicPayload>[]
+          }
+          create: {
+            args: Prisma.AcademicCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AcademicPayload>
+          }
+          createMany: {
+            args: Prisma.AcademicCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.AcademicCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AcademicPayload>[]
+          }
+          delete: {
+            args: Prisma.AcademicDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AcademicPayload>
+          }
+          update: {
+            args: Prisma.AcademicUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AcademicPayload>
+          }
+          deleteMany: {
+            args: Prisma.AcademicDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.AcademicUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.AcademicUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AcademicPayload>[]
+          }
+          upsert: {
+            args: Prisma.AcademicUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AcademicPayload>
+          }
+          aggregate: {
+            args: Prisma.AcademicAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateAcademic>
+          }
+          groupBy: {
+            args: Prisma.AcademicGroupByArgs<ExtArgs>
+            result: $Utils.Optional<AcademicGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.AcademicCountArgs<ExtArgs>
+            result: $Utils.Optional<AcademicCountAggregateOutputType> | number
+          }
+        }
+      }
+      Experience: {
+        payload: Prisma.$ExperiencePayload<ExtArgs>
+        fields: Prisma.ExperienceFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.ExperienceFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ExperiencePayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.ExperienceFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ExperiencePayload>
+          }
+          findFirst: {
+            args: Prisma.ExperienceFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ExperiencePayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.ExperienceFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ExperiencePayload>
+          }
+          findMany: {
+            args: Prisma.ExperienceFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ExperiencePayload>[]
+          }
+          create: {
+            args: Prisma.ExperienceCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ExperiencePayload>
+          }
+          createMany: {
+            args: Prisma.ExperienceCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.ExperienceCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ExperiencePayload>[]
+          }
+          delete: {
+            args: Prisma.ExperienceDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ExperiencePayload>
+          }
+          update: {
+            args: Prisma.ExperienceUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ExperiencePayload>
+          }
+          deleteMany: {
+            args: Prisma.ExperienceDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.ExperienceUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.ExperienceUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ExperiencePayload>[]
+          }
+          upsert: {
+            args: Prisma.ExperienceUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ExperiencePayload>
+          }
+          aggregate: {
+            args: Prisma.ExperienceAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateExperience>
+          }
+          groupBy: {
+            args: Prisma.ExperienceGroupByArgs<ExtArgs>
+            result: $Utils.Optional<ExperienceGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.ExperienceCountArgs<ExtArgs>
+            result: $Utils.Optional<ExperienceCountAggregateOutputType> | number
+          }
+        }
+      }
     }
   } & {
     other: {
@@ -1912,6 +2092,8 @@ export namespace Prisma {
     incomingConnection?: IncomingConnectionOmit
     outgoingConnection?: OutgoingConnectionOmit
     connection?: ConnectionOmit
+    academic?: AcademicOmit
+    experience?: ExperienceOmit
   }
 
   /* Types for Logging */
@@ -2006,6 +2188,8 @@ export namespace Prisma {
    */
 
   export type UserCountOutputType = {
+    academics: number
+    experience: number
     ParticipantA: number
     ParticipantB: number
     incomingConnections: number
@@ -2017,6 +2201,8 @@ export namespace Prisma {
   }
 
   export type UserCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    academics?: boolean | UserCountOutputTypeCountAcademicsArgs
+    experience?: boolean | UserCountOutputTypeCountExperienceArgs
     ParticipantA?: boolean | UserCountOutputTypeCountParticipantAArgs
     ParticipantB?: boolean | UserCountOutputTypeCountParticipantBArgs
     incomingConnections?: boolean | UserCountOutputTypeCountIncomingConnectionsArgs
@@ -2036,6 +2222,20 @@ export namespace Prisma {
      * Select specific fields to fetch from the UserCountOutputType
      */
     select?: UserCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * UserCountOutputType without action
+   */
+  export type UserCountOutputTypeCountAcademicsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: AcademicWhereInput
+  }
+
+  /**
+   * UserCountOutputType without action
+   */
+  export type UserCountOutputTypeCountExperienceArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ExperienceWhereInput
   }
 
   /**
@@ -2355,6 +2555,8 @@ export namespace Prisma {
     basicInfo?: boolean | User$basicInfoArgs<ExtArgs>
     bioSummary?: boolean | User$bioSummaryArgs<ExtArgs>
     collaboration?: boolean | User$collaborationArgs<ExtArgs>
+    academics?: boolean | User$academicsArgs<ExtArgs>
+    experience?: boolean | User$experienceArgs<ExtArgs>
     ParticipantA?: boolean | User$ParticipantAArgs<ExtArgs>
     ParticipantB?: boolean | User$ParticipantBArgs<ExtArgs>
     incomingConnections?: boolean | User$incomingConnectionsArgs<ExtArgs>
@@ -2407,6 +2609,8 @@ export namespace Prisma {
     basicInfo?: boolean | User$basicInfoArgs<ExtArgs>
     bioSummary?: boolean | User$bioSummaryArgs<ExtArgs>
     collaboration?: boolean | User$collaborationArgs<ExtArgs>
+    academics?: boolean | User$academicsArgs<ExtArgs>
+    experience?: boolean | User$experienceArgs<ExtArgs>
     ParticipantA?: boolean | User$ParticipantAArgs<ExtArgs>
     ParticipantB?: boolean | User$ParticipantBArgs<ExtArgs>
     incomingConnections?: boolean | User$incomingConnectionsArgs<ExtArgs>
@@ -2429,6 +2633,8 @@ export namespace Prisma {
       basicInfo: Prisma.$BasicInfoPayload<ExtArgs> | null
       bioSummary: Prisma.$BioSummaryPayload<ExtArgs> | null
       collaboration: Prisma.$CollaborationPayload<ExtArgs> | null
+      academics: Prisma.$AcademicPayload<ExtArgs>[]
+      experience: Prisma.$ExperiencePayload<ExtArgs>[]
       ParticipantA: Prisma.$ConnectionPayload<ExtArgs>[]
       ParticipantB: Prisma.$ConnectionPayload<ExtArgs>[]
       incomingConnections: Prisma.$IncomingConnectionPayload<ExtArgs>[]
@@ -2847,6 +3053,8 @@ export namespace Prisma {
     basicInfo<T extends User$basicInfoArgs<ExtArgs> = {}>(args?: Subset<T, User$basicInfoArgs<ExtArgs>>): Prisma__BasicInfoClient<$Result.GetResult<Prisma.$BasicInfoPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     bioSummary<T extends User$bioSummaryArgs<ExtArgs> = {}>(args?: Subset<T, User$bioSummaryArgs<ExtArgs>>): Prisma__BioSummaryClient<$Result.GetResult<Prisma.$BioSummaryPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     collaboration<T extends User$collaborationArgs<ExtArgs> = {}>(args?: Subset<T, User$collaborationArgs<ExtArgs>>): Prisma__CollaborationClient<$Result.GetResult<Prisma.$CollaborationPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    academics<T extends User$academicsArgs<ExtArgs> = {}>(args?: Subset<T, User$academicsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AcademicPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    experience<T extends User$experienceArgs<ExtArgs> = {}>(args?: Subset<T, User$experienceArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ExperiencePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     ParticipantA<T extends User$ParticipantAArgs<ExtArgs> = {}>(args?: Subset<T, User$ParticipantAArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ConnectionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     ParticipantB<T extends User$ParticipantBArgs<ExtArgs> = {}>(args?: Subset<T, User$ParticipantBArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ConnectionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     incomingConnections<T extends User$incomingConnectionsArgs<ExtArgs> = {}>(args?: Subset<T, User$incomingConnectionsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$IncomingConnectionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
@@ -3349,6 +3557,54 @@ export namespace Prisma {
   }
 
   /**
+   * User.academics
+   */
+  export type User$academicsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Academic
+     */
+    select?: AcademicSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Academic
+     */
+    omit?: AcademicOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AcademicInclude<ExtArgs> | null
+    where?: AcademicWhereInput
+    orderBy?: AcademicOrderByWithRelationInput | AcademicOrderByWithRelationInput[]
+    cursor?: AcademicWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: AcademicScalarFieldEnum | AcademicScalarFieldEnum[]
+  }
+
+  /**
+   * User.experience
+   */
+  export type User$experienceArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Experience
+     */
+    select?: ExperienceSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Experience
+     */
+    omit?: ExperienceOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ExperienceInclude<ExtArgs> | null
+    where?: ExperienceWhereInput
+    orderBy?: ExperienceOrderByWithRelationInput | ExperienceOrderByWithRelationInput[]
+    cursor?: ExperienceWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: ExperienceScalarFieldEnum | ExperienceScalarFieldEnum[]
+  }
+
+  /**
    * User.ParticipantA
    */
   export type User$ParticipantAArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -3642,8 +3898,6 @@ export namespace Prisma {
     id: number | null
     userId: number | null
     fullName: string | null
-    Institute: string | null
-    major: string | null
     location: string | null
   }
 
@@ -3651,8 +3905,6 @@ export namespace Prisma {
     id: number | null
     userId: number | null
     fullName: string | null
-    Institute: string | null
-    major: string | null
     location: string | null
   }
 
@@ -3660,8 +3912,6 @@ export namespace Prisma {
     id: number
     userId: number
     fullName: number
-    Institute: number
-    major: number
     location: number
     _all: number
   }
@@ -3681,8 +3931,6 @@ export namespace Prisma {
     id?: true
     userId?: true
     fullName?: true
-    Institute?: true
-    major?: true
     location?: true
   }
 
@@ -3690,8 +3938,6 @@ export namespace Prisma {
     id?: true
     userId?: true
     fullName?: true
-    Institute?: true
-    major?: true
     location?: true
   }
 
@@ -3699,8 +3945,6 @@ export namespace Prisma {
     id?: true
     userId?: true
     fullName?: true
-    Institute?: true
-    major?: true
     location?: true
     _all?: true
   }
@@ -3795,8 +4039,6 @@ export namespace Prisma {
     id: number
     userId: number
     fullName: string
-    Institute: string | null
-    major: string | null
     location: string | null
     _count: BasicInfoCountAggregateOutputType | null
     _avg: BasicInfoAvgAggregateOutputType | null
@@ -3823,8 +4065,6 @@ export namespace Prisma {
     id?: boolean
     userId?: boolean
     fullName?: boolean
-    Institute?: boolean
-    major?: boolean
     location?: boolean
     user?: boolean | UserDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["basicInfo"]>
@@ -3833,8 +4073,6 @@ export namespace Prisma {
     id?: boolean
     userId?: boolean
     fullName?: boolean
-    Institute?: boolean
-    major?: boolean
     location?: boolean
     user?: boolean | UserDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["basicInfo"]>
@@ -3843,8 +4081,6 @@ export namespace Prisma {
     id?: boolean
     userId?: boolean
     fullName?: boolean
-    Institute?: boolean
-    major?: boolean
     location?: boolean
     user?: boolean | UserDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["basicInfo"]>
@@ -3853,12 +4089,10 @@ export namespace Prisma {
     id?: boolean
     userId?: boolean
     fullName?: boolean
-    Institute?: boolean
-    major?: boolean
     location?: boolean
   }
 
-  export type BasicInfoOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "userId" | "fullName" | "Institute" | "major" | "location", ExtArgs["result"]["basicInfo"]>
+  export type BasicInfoOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "userId" | "fullName" | "location", ExtArgs["result"]["basicInfo"]>
   export type BasicInfoInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     user?: boolean | UserDefaultArgs<ExtArgs>
   }
@@ -3878,8 +4112,6 @@ export namespace Prisma {
       id: number
       userId: number
       fullName: string
-      Institute: string | null
-      major: string | null
       location: string | null
     }, ExtArgs["result"]["basicInfo"]>
     composites: {}
@@ -4308,8 +4540,6 @@ export namespace Prisma {
     readonly id: FieldRef<"BasicInfo", 'Int'>
     readonly userId: FieldRef<"BasicInfo", 'Int'>
     readonly fullName: FieldRef<"BasicInfo", 'String'>
-    readonly Institute: FieldRef<"BasicInfo", 'String'>
-    readonly major: FieldRef<"BasicInfo", 'String'>
     readonly location: FieldRef<"BasicInfo", 'String'>
   }
     
@@ -16883,6 +17113,2263 @@ export namespace Prisma {
 
 
   /**
+   * Model Academic
+   */
+
+  export type AggregateAcademic = {
+    _count: AcademicCountAggregateOutputType | null
+    _avg: AcademicAvgAggregateOutputType | null
+    _sum: AcademicSumAggregateOutputType | null
+    _min: AcademicMinAggregateOutputType | null
+    _max: AcademicMaxAggregateOutputType | null
+  }
+
+  export type AcademicAvgAggregateOutputType = {
+    id: number | null
+    userId: number | null
+    startYear: number | null
+    endYear: number | null
+  }
+
+  export type AcademicSumAggregateOutputType = {
+    id: number | null
+    userId: number | null
+    startYear: number | null
+    endYear: number | null
+  }
+
+  export type AcademicMinAggregateOutputType = {
+    id: number | null
+    userId: number | null
+    institute: string | null
+    degree: string | null
+    startYear: number | null
+    endYear: number | null
+  }
+
+  export type AcademicMaxAggregateOutputType = {
+    id: number | null
+    userId: number | null
+    institute: string | null
+    degree: string | null
+    startYear: number | null
+    endYear: number | null
+  }
+
+  export type AcademicCountAggregateOutputType = {
+    id: number
+    userId: number
+    institute: number
+    degree: number
+    startYear: number
+    endYear: number
+    _all: number
+  }
+
+
+  export type AcademicAvgAggregateInputType = {
+    id?: true
+    userId?: true
+    startYear?: true
+    endYear?: true
+  }
+
+  export type AcademicSumAggregateInputType = {
+    id?: true
+    userId?: true
+    startYear?: true
+    endYear?: true
+  }
+
+  export type AcademicMinAggregateInputType = {
+    id?: true
+    userId?: true
+    institute?: true
+    degree?: true
+    startYear?: true
+    endYear?: true
+  }
+
+  export type AcademicMaxAggregateInputType = {
+    id?: true
+    userId?: true
+    institute?: true
+    degree?: true
+    startYear?: true
+    endYear?: true
+  }
+
+  export type AcademicCountAggregateInputType = {
+    id?: true
+    userId?: true
+    institute?: true
+    degree?: true
+    startYear?: true
+    endYear?: true
+    _all?: true
+  }
+
+  export type AcademicAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Academic to aggregate.
+     */
+    where?: AcademicWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Academics to fetch.
+     */
+    orderBy?: AcademicOrderByWithRelationInput | AcademicOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: AcademicWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Academics from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Academics.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned Academics
+    **/
+    _count?: true | AcademicCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: AcademicAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: AcademicSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: AcademicMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: AcademicMaxAggregateInputType
+  }
+
+  export type GetAcademicAggregateType<T extends AcademicAggregateArgs> = {
+        [P in keyof T & keyof AggregateAcademic]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateAcademic[P]>
+      : GetScalarType<T[P], AggregateAcademic[P]>
+  }
+
+
+
+
+  export type AcademicGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: AcademicWhereInput
+    orderBy?: AcademicOrderByWithAggregationInput | AcademicOrderByWithAggregationInput[]
+    by: AcademicScalarFieldEnum[] | AcademicScalarFieldEnum
+    having?: AcademicScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: AcademicCountAggregateInputType | true
+    _avg?: AcademicAvgAggregateInputType
+    _sum?: AcademicSumAggregateInputType
+    _min?: AcademicMinAggregateInputType
+    _max?: AcademicMaxAggregateInputType
+  }
+
+  export type AcademicGroupByOutputType = {
+    id: number
+    userId: number
+    institute: string
+    degree: string
+    startYear: number
+    endYear: number | null
+    _count: AcademicCountAggregateOutputType | null
+    _avg: AcademicAvgAggregateOutputType | null
+    _sum: AcademicSumAggregateOutputType | null
+    _min: AcademicMinAggregateOutputType | null
+    _max: AcademicMaxAggregateOutputType | null
+  }
+
+  type GetAcademicGroupByPayload<T extends AcademicGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<AcademicGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof AcademicGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], AcademicGroupByOutputType[P]>
+            : GetScalarType<T[P], AcademicGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type AcademicSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    userId?: boolean
+    institute?: boolean
+    degree?: boolean
+    startYear?: boolean
+    endYear?: boolean
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["academic"]>
+
+  export type AcademicSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    userId?: boolean
+    institute?: boolean
+    degree?: boolean
+    startYear?: boolean
+    endYear?: boolean
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["academic"]>
+
+  export type AcademicSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    userId?: boolean
+    institute?: boolean
+    degree?: boolean
+    startYear?: boolean
+    endYear?: boolean
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["academic"]>
+
+  export type AcademicSelectScalar = {
+    id?: boolean
+    userId?: boolean
+    institute?: boolean
+    degree?: boolean
+    startYear?: boolean
+    endYear?: boolean
+  }
+
+  export type AcademicOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "userId" | "institute" | "degree" | "startYear" | "endYear", ExtArgs["result"]["academic"]>
+  export type AcademicInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }
+  export type AcademicIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }
+  export type AcademicIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }
+
+  export type $AcademicPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "Academic"
+    objects: {
+      user: Prisma.$UserPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: number
+      userId: number
+      institute: string
+      degree: string
+      startYear: number
+      endYear: number | null
+    }, ExtArgs["result"]["academic"]>
+    composites: {}
+  }
+
+  type AcademicGetPayload<S extends boolean | null | undefined | AcademicDefaultArgs> = $Result.GetResult<Prisma.$AcademicPayload, S>
+
+  type AcademicCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<AcademicFindManyArgs, 'select' | 'include' | 'distinct' | 'omit' | 'relationLoadStrategy'> & {
+      select?: AcademicCountAggregateInputType | true
+    }
+
+  export interface AcademicDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Academic'], meta: { name: 'Academic' } }
+    /**
+     * Find zero or one Academic that matches the filter.
+     * @param {AcademicFindUniqueArgs} args - Arguments to find a Academic
+     * @example
+     * // Get one Academic
+     * const academic = await prisma.academic.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends AcademicFindUniqueArgs>(args: SelectSubset<T, AcademicFindUniqueArgs<ExtArgs>>): Prisma__AcademicClient<$Result.GetResult<Prisma.$AcademicPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one Academic that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {AcademicFindUniqueOrThrowArgs} args - Arguments to find a Academic
+     * @example
+     * // Get one Academic
+     * const academic = await prisma.academic.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends AcademicFindUniqueOrThrowArgs>(args: SelectSubset<T, AcademicFindUniqueOrThrowArgs<ExtArgs>>): Prisma__AcademicClient<$Result.GetResult<Prisma.$AcademicPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Academic that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AcademicFindFirstArgs} args - Arguments to find a Academic
+     * @example
+     * // Get one Academic
+     * const academic = await prisma.academic.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends AcademicFindFirstArgs>(args?: SelectSubset<T, AcademicFindFirstArgs<ExtArgs>>): Prisma__AcademicClient<$Result.GetResult<Prisma.$AcademicPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Academic that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AcademicFindFirstOrThrowArgs} args - Arguments to find a Academic
+     * @example
+     * // Get one Academic
+     * const academic = await prisma.academic.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends AcademicFindFirstOrThrowArgs>(args?: SelectSubset<T, AcademicFindFirstOrThrowArgs<ExtArgs>>): Prisma__AcademicClient<$Result.GetResult<Prisma.$AcademicPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more Academics that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AcademicFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Academics
+     * const academics = await prisma.academic.findMany()
+     * 
+     * // Get first 10 Academics
+     * const academics = await prisma.academic.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const academicWithIdOnly = await prisma.academic.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends AcademicFindManyArgs>(args?: SelectSubset<T, AcademicFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AcademicPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a Academic.
+     * @param {AcademicCreateArgs} args - Arguments to create a Academic.
+     * @example
+     * // Create one Academic
+     * const Academic = await prisma.academic.create({
+     *   data: {
+     *     // ... data to create a Academic
+     *   }
+     * })
+     * 
+     */
+    create<T extends AcademicCreateArgs>(args: SelectSubset<T, AcademicCreateArgs<ExtArgs>>): Prisma__AcademicClient<$Result.GetResult<Prisma.$AcademicPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many Academics.
+     * @param {AcademicCreateManyArgs} args - Arguments to create many Academics.
+     * @example
+     * // Create many Academics
+     * const academic = await prisma.academic.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends AcademicCreateManyArgs>(args?: SelectSubset<T, AcademicCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many Academics and returns the data saved in the database.
+     * @param {AcademicCreateManyAndReturnArgs} args - Arguments to create many Academics.
+     * @example
+     * // Create many Academics
+     * const academic = await prisma.academic.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many Academics and only return the `id`
+     * const academicWithIdOnly = await prisma.academic.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends AcademicCreateManyAndReturnArgs>(args?: SelectSubset<T, AcademicCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AcademicPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a Academic.
+     * @param {AcademicDeleteArgs} args - Arguments to delete one Academic.
+     * @example
+     * // Delete one Academic
+     * const Academic = await prisma.academic.delete({
+     *   where: {
+     *     // ... filter to delete one Academic
+     *   }
+     * })
+     * 
+     */
+    delete<T extends AcademicDeleteArgs>(args: SelectSubset<T, AcademicDeleteArgs<ExtArgs>>): Prisma__AcademicClient<$Result.GetResult<Prisma.$AcademicPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one Academic.
+     * @param {AcademicUpdateArgs} args - Arguments to update one Academic.
+     * @example
+     * // Update one Academic
+     * const academic = await prisma.academic.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends AcademicUpdateArgs>(args: SelectSubset<T, AcademicUpdateArgs<ExtArgs>>): Prisma__AcademicClient<$Result.GetResult<Prisma.$AcademicPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more Academics.
+     * @param {AcademicDeleteManyArgs} args - Arguments to filter Academics to delete.
+     * @example
+     * // Delete a few Academics
+     * const { count } = await prisma.academic.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends AcademicDeleteManyArgs>(args?: SelectSubset<T, AcademicDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Academics.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AcademicUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Academics
+     * const academic = await prisma.academic.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends AcademicUpdateManyArgs>(args: SelectSubset<T, AcademicUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Academics and returns the data updated in the database.
+     * @param {AcademicUpdateManyAndReturnArgs} args - Arguments to update many Academics.
+     * @example
+     * // Update many Academics
+     * const academic = await prisma.academic.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more Academics and only return the `id`
+     * const academicWithIdOnly = await prisma.academic.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends AcademicUpdateManyAndReturnArgs>(args: SelectSubset<T, AcademicUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AcademicPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one Academic.
+     * @param {AcademicUpsertArgs} args - Arguments to update or create a Academic.
+     * @example
+     * // Update or create a Academic
+     * const academic = await prisma.academic.upsert({
+     *   create: {
+     *     // ... data to create a Academic
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the Academic we want to update
+     *   }
+     * })
+     */
+    upsert<T extends AcademicUpsertArgs>(args: SelectSubset<T, AcademicUpsertArgs<ExtArgs>>): Prisma__AcademicClient<$Result.GetResult<Prisma.$AcademicPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of Academics.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AcademicCountArgs} args - Arguments to filter Academics to count.
+     * @example
+     * // Count the number of Academics
+     * const count = await prisma.academic.count({
+     *   where: {
+     *     // ... the filter for the Academics we want to count
+     *   }
+     * })
+    **/
+    count<T extends AcademicCountArgs>(
+      args?: Subset<T, AcademicCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], AcademicCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a Academic.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AcademicAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends AcademicAggregateArgs>(args: Subset<T, AcademicAggregateArgs>): Prisma.PrismaPromise<GetAcademicAggregateType<T>>
+
+    /**
+     * Group by Academic.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AcademicGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends AcademicGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: AcademicGroupByArgs['orderBy'] }
+        : { orderBy?: AcademicGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, AcademicGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetAcademicGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the Academic model
+   */
+  readonly fields: AcademicFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for Academic.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__AcademicClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    user<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the Academic model
+   */
+  interface AcademicFieldRefs {
+    readonly id: FieldRef<"Academic", 'Int'>
+    readonly userId: FieldRef<"Academic", 'Int'>
+    readonly institute: FieldRef<"Academic", 'String'>
+    readonly degree: FieldRef<"Academic", 'String'>
+    readonly startYear: FieldRef<"Academic", 'Int'>
+    readonly endYear: FieldRef<"Academic", 'Int'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * Academic findUnique
+   */
+  export type AcademicFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Academic
+     */
+    select?: AcademicSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Academic
+     */
+    omit?: AcademicOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AcademicInclude<ExtArgs> | null
+    /**
+     * Filter, which Academic to fetch.
+     */
+    where: AcademicWhereUniqueInput
+    relationLoadStrategy?: RelationLoadStrategy
+  }
+
+  /**
+   * Academic findUniqueOrThrow
+   */
+  export type AcademicFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Academic
+     */
+    select?: AcademicSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Academic
+     */
+    omit?: AcademicOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AcademicInclude<ExtArgs> | null
+    /**
+     * Filter, which Academic to fetch.
+     */
+    where: AcademicWhereUniqueInput
+    relationLoadStrategy?: RelationLoadStrategy
+  }
+
+  /**
+   * Academic findFirst
+   */
+  export type AcademicFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Academic
+     */
+    select?: AcademicSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Academic
+     */
+    omit?: AcademicOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AcademicInclude<ExtArgs> | null
+    /**
+     * Filter, which Academic to fetch.
+     */
+    where?: AcademicWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Academics to fetch.
+     */
+    orderBy?: AcademicOrderByWithRelationInput | AcademicOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Academics.
+     */
+    cursor?: AcademicWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Academics from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Academics.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Academics.
+     */
+    distinct?: AcademicScalarFieldEnum | AcademicScalarFieldEnum[]
+    relationLoadStrategy?: RelationLoadStrategy
+  }
+
+  /**
+   * Academic findFirstOrThrow
+   */
+  export type AcademicFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Academic
+     */
+    select?: AcademicSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Academic
+     */
+    omit?: AcademicOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AcademicInclude<ExtArgs> | null
+    /**
+     * Filter, which Academic to fetch.
+     */
+    where?: AcademicWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Academics to fetch.
+     */
+    orderBy?: AcademicOrderByWithRelationInput | AcademicOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Academics.
+     */
+    cursor?: AcademicWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Academics from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Academics.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Academics.
+     */
+    distinct?: AcademicScalarFieldEnum | AcademicScalarFieldEnum[]
+    relationLoadStrategy?: RelationLoadStrategy
+  }
+
+  /**
+   * Academic findMany
+   */
+  export type AcademicFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Academic
+     */
+    select?: AcademicSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Academic
+     */
+    omit?: AcademicOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AcademicInclude<ExtArgs> | null
+    /**
+     * Filter, which Academics to fetch.
+     */
+    where?: AcademicWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Academics to fetch.
+     */
+    orderBy?: AcademicOrderByWithRelationInput | AcademicOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing Academics.
+     */
+    cursor?: AcademicWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Academics from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Academics.
+     */
+    skip?: number
+    distinct?: AcademicScalarFieldEnum | AcademicScalarFieldEnum[]
+    relationLoadStrategy?: RelationLoadStrategy
+  }
+
+  /**
+   * Academic create
+   */
+  export type AcademicCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Academic
+     */
+    select?: AcademicSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Academic
+     */
+    omit?: AcademicOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AcademicInclude<ExtArgs> | null
+    /**
+     * The data needed to create a Academic.
+     */
+    data: XOR<AcademicCreateInput, AcademicUncheckedCreateInput>
+    relationLoadStrategy?: RelationLoadStrategy
+  }
+
+  /**
+   * Academic createMany
+   */
+  export type AcademicCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many Academics.
+     */
+    data: AcademicCreateManyInput | AcademicCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * Academic createManyAndReturn
+   */
+  export type AcademicCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Academic
+     */
+    select?: AcademicSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the Academic
+     */
+    omit?: AcademicOmit<ExtArgs> | null
+    /**
+     * The data used to create many Academics.
+     */
+    data: AcademicCreateManyInput | AcademicCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AcademicIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * Academic update
+   */
+  export type AcademicUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Academic
+     */
+    select?: AcademicSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Academic
+     */
+    omit?: AcademicOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AcademicInclude<ExtArgs> | null
+    /**
+     * The data needed to update a Academic.
+     */
+    data: XOR<AcademicUpdateInput, AcademicUncheckedUpdateInput>
+    /**
+     * Choose, which Academic to update.
+     */
+    where: AcademicWhereUniqueInput
+    relationLoadStrategy?: RelationLoadStrategy
+  }
+
+  /**
+   * Academic updateMany
+   */
+  export type AcademicUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update Academics.
+     */
+    data: XOR<AcademicUpdateManyMutationInput, AcademicUncheckedUpdateManyInput>
+    /**
+     * Filter which Academics to update
+     */
+    where?: AcademicWhereInput
+    /**
+     * Limit how many Academics to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * Academic updateManyAndReturn
+   */
+  export type AcademicUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Academic
+     */
+    select?: AcademicSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the Academic
+     */
+    omit?: AcademicOmit<ExtArgs> | null
+    /**
+     * The data used to update Academics.
+     */
+    data: XOR<AcademicUpdateManyMutationInput, AcademicUncheckedUpdateManyInput>
+    /**
+     * Filter which Academics to update
+     */
+    where?: AcademicWhereInput
+    /**
+     * Limit how many Academics to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AcademicIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * Academic upsert
+   */
+  export type AcademicUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Academic
+     */
+    select?: AcademicSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Academic
+     */
+    omit?: AcademicOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AcademicInclude<ExtArgs> | null
+    /**
+     * The filter to search for the Academic to update in case it exists.
+     */
+    where: AcademicWhereUniqueInput
+    /**
+     * In case the Academic found by the `where` argument doesn't exist, create a new Academic with this data.
+     */
+    create: XOR<AcademicCreateInput, AcademicUncheckedCreateInput>
+    /**
+     * In case the Academic was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<AcademicUpdateInput, AcademicUncheckedUpdateInput>
+    relationLoadStrategy?: RelationLoadStrategy
+  }
+
+  /**
+   * Academic delete
+   */
+  export type AcademicDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Academic
+     */
+    select?: AcademicSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Academic
+     */
+    omit?: AcademicOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AcademicInclude<ExtArgs> | null
+    /**
+     * Filter which Academic to delete.
+     */
+    where: AcademicWhereUniqueInput
+    relationLoadStrategy?: RelationLoadStrategy
+  }
+
+  /**
+   * Academic deleteMany
+   */
+  export type AcademicDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Academics to delete
+     */
+    where?: AcademicWhereInput
+    /**
+     * Limit how many Academics to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * Academic without action
+   */
+  export type AcademicDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Academic
+     */
+    select?: AcademicSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Academic
+     */
+    omit?: AcademicOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AcademicInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model Experience
+   */
+
+  export type AggregateExperience = {
+    _count: ExperienceCountAggregateOutputType | null
+    _avg: ExperienceAvgAggregateOutputType | null
+    _sum: ExperienceSumAggregateOutputType | null
+    _min: ExperienceMinAggregateOutputType | null
+    _max: ExperienceMaxAggregateOutputType | null
+  }
+
+  export type ExperienceAvgAggregateOutputType = {
+    id: number | null
+    userId: number | null
+  }
+
+  export type ExperienceSumAggregateOutputType = {
+    id: number | null
+    userId: number | null
+  }
+
+  export type ExperienceMinAggregateOutputType = {
+    id: number | null
+    userId: number | null
+    title: string | null
+    company: string | null
+    jobDescription: string | null
+    startDate: Date | null
+    endDate: Date | null
+  }
+
+  export type ExperienceMaxAggregateOutputType = {
+    id: number | null
+    userId: number | null
+    title: string | null
+    company: string | null
+    jobDescription: string | null
+    startDate: Date | null
+    endDate: Date | null
+  }
+
+  export type ExperienceCountAggregateOutputType = {
+    id: number
+    userId: number
+    title: number
+    company: number
+    jobDescription: number
+    startDate: number
+    endDate: number
+    _all: number
+  }
+
+
+  export type ExperienceAvgAggregateInputType = {
+    id?: true
+    userId?: true
+  }
+
+  export type ExperienceSumAggregateInputType = {
+    id?: true
+    userId?: true
+  }
+
+  export type ExperienceMinAggregateInputType = {
+    id?: true
+    userId?: true
+    title?: true
+    company?: true
+    jobDescription?: true
+    startDate?: true
+    endDate?: true
+  }
+
+  export type ExperienceMaxAggregateInputType = {
+    id?: true
+    userId?: true
+    title?: true
+    company?: true
+    jobDescription?: true
+    startDate?: true
+    endDate?: true
+  }
+
+  export type ExperienceCountAggregateInputType = {
+    id?: true
+    userId?: true
+    title?: true
+    company?: true
+    jobDescription?: true
+    startDate?: true
+    endDate?: true
+    _all?: true
+  }
+
+  export type ExperienceAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Experience to aggregate.
+     */
+    where?: ExperienceWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Experiences to fetch.
+     */
+    orderBy?: ExperienceOrderByWithRelationInput | ExperienceOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: ExperienceWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Experiences from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Experiences.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned Experiences
+    **/
+    _count?: true | ExperienceCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: ExperienceAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: ExperienceSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: ExperienceMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: ExperienceMaxAggregateInputType
+  }
+
+  export type GetExperienceAggregateType<T extends ExperienceAggregateArgs> = {
+        [P in keyof T & keyof AggregateExperience]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateExperience[P]>
+      : GetScalarType<T[P], AggregateExperience[P]>
+  }
+
+
+
+
+  export type ExperienceGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ExperienceWhereInput
+    orderBy?: ExperienceOrderByWithAggregationInput | ExperienceOrderByWithAggregationInput[]
+    by: ExperienceScalarFieldEnum[] | ExperienceScalarFieldEnum
+    having?: ExperienceScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: ExperienceCountAggregateInputType | true
+    _avg?: ExperienceAvgAggregateInputType
+    _sum?: ExperienceSumAggregateInputType
+    _min?: ExperienceMinAggregateInputType
+    _max?: ExperienceMaxAggregateInputType
+  }
+
+  export type ExperienceGroupByOutputType = {
+    id: number
+    userId: number
+    title: string
+    company: string
+    jobDescription: string | null
+    startDate: Date
+    endDate: Date | null
+    _count: ExperienceCountAggregateOutputType | null
+    _avg: ExperienceAvgAggregateOutputType | null
+    _sum: ExperienceSumAggregateOutputType | null
+    _min: ExperienceMinAggregateOutputType | null
+    _max: ExperienceMaxAggregateOutputType | null
+  }
+
+  type GetExperienceGroupByPayload<T extends ExperienceGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<ExperienceGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof ExperienceGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], ExperienceGroupByOutputType[P]>
+            : GetScalarType<T[P], ExperienceGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type ExperienceSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    userId?: boolean
+    title?: boolean
+    company?: boolean
+    jobDescription?: boolean
+    startDate?: boolean
+    endDate?: boolean
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["experience"]>
+
+  export type ExperienceSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    userId?: boolean
+    title?: boolean
+    company?: boolean
+    jobDescription?: boolean
+    startDate?: boolean
+    endDate?: boolean
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["experience"]>
+
+  export type ExperienceSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    userId?: boolean
+    title?: boolean
+    company?: boolean
+    jobDescription?: boolean
+    startDate?: boolean
+    endDate?: boolean
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["experience"]>
+
+  export type ExperienceSelectScalar = {
+    id?: boolean
+    userId?: boolean
+    title?: boolean
+    company?: boolean
+    jobDescription?: boolean
+    startDate?: boolean
+    endDate?: boolean
+  }
+
+  export type ExperienceOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "userId" | "title" | "company" | "jobDescription" | "startDate" | "endDate", ExtArgs["result"]["experience"]>
+  export type ExperienceInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }
+  export type ExperienceIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }
+  export type ExperienceIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }
+
+  export type $ExperiencePayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "Experience"
+    objects: {
+      user: Prisma.$UserPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: number
+      userId: number
+      title: string
+      company: string
+      jobDescription: string | null
+      startDate: Date
+      endDate: Date | null
+    }, ExtArgs["result"]["experience"]>
+    composites: {}
+  }
+
+  type ExperienceGetPayload<S extends boolean | null | undefined | ExperienceDefaultArgs> = $Result.GetResult<Prisma.$ExperiencePayload, S>
+
+  type ExperienceCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<ExperienceFindManyArgs, 'select' | 'include' | 'distinct' | 'omit' | 'relationLoadStrategy'> & {
+      select?: ExperienceCountAggregateInputType | true
+    }
+
+  export interface ExperienceDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Experience'], meta: { name: 'Experience' } }
+    /**
+     * Find zero or one Experience that matches the filter.
+     * @param {ExperienceFindUniqueArgs} args - Arguments to find a Experience
+     * @example
+     * // Get one Experience
+     * const experience = await prisma.experience.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends ExperienceFindUniqueArgs>(args: SelectSubset<T, ExperienceFindUniqueArgs<ExtArgs>>): Prisma__ExperienceClient<$Result.GetResult<Prisma.$ExperiencePayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one Experience that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {ExperienceFindUniqueOrThrowArgs} args - Arguments to find a Experience
+     * @example
+     * // Get one Experience
+     * const experience = await prisma.experience.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends ExperienceFindUniqueOrThrowArgs>(args: SelectSubset<T, ExperienceFindUniqueOrThrowArgs<ExtArgs>>): Prisma__ExperienceClient<$Result.GetResult<Prisma.$ExperiencePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Experience that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ExperienceFindFirstArgs} args - Arguments to find a Experience
+     * @example
+     * // Get one Experience
+     * const experience = await prisma.experience.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends ExperienceFindFirstArgs>(args?: SelectSubset<T, ExperienceFindFirstArgs<ExtArgs>>): Prisma__ExperienceClient<$Result.GetResult<Prisma.$ExperiencePayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Experience that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ExperienceFindFirstOrThrowArgs} args - Arguments to find a Experience
+     * @example
+     * // Get one Experience
+     * const experience = await prisma.experience.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends ExperienceFindFirstOrThrowArgs>(args?: SelectSubset<T, ExperienceFindFirstOrThrowArgs<ExtArgs>>): Prisma__ExperienceClient<$Result.GetResult<Prisma.$ExperiencePayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more Experiences that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ExperienceFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Experiences
+     * const experiences = await prisma.experience.findMany()
+     * 
+     * // Get first 10 Experiences
+     * const experiences = await prisma.experience.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const experienceWithIdOnly = await prisma.experience.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends ExperienceFindManyArgs>(args?: SelectSubset<T, ExperienceFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ExperiencePayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a Experience.
+     * @param {ExperienceCreateArgs} args - Arguments to create a Experience.
+     * @example
+     * // Create one Experience
+     * const Experience = await prisma.experience.create({
+     *   data: {
+     *     // ... data to create a Experience
+     *   }
+     * })
+     * 
+     */
+    create<T extends ExperienceCreateArgs>(args: SelectSubset<T, ExperienceCreateArgs<ExtArgs>>): Prisma__ExperienceClient<$Result.GetResult<Prisma.$ExperiencePayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many Experiences.
+     * @param {ExperienceCreateManyArgs} args - Arguments to create many Experiences.
+     * @example
+     * // Create many Experiences
+     * const experience = await prisma.experience.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends ExperienceCreateManyArgs>(args?: SelectSubset<T, ExperienceCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many Experiences and returns the data saved in the database.
+     * @param {ExperienceCreateManyAndReturnArgs} args - Arguments to create many Experiences.
+     * @example
+     * // Create many Experiences
+     * const experience = await prisma.experience.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many Experiences and only return the `id`
+     * const experienceWithIdOnly = await prisma.experience.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends ExperienceCreateManyAndReturnArgs>(args?: SelectSubset<T, ExperienceCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ExperiencePayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a Experience.
+     * @param {ExperienceDeleteArgs} args - Arguments to delete one Experience.
+     * @example
+     * // Delete one Experience
+     * const Experience = await prisma.experience.delete({
+     *   where: {
+     *     // ... filter to delete one Experience
+     *   }
+     * })
+     * 
+     */
+    delete<T extends ExperienceDeleteArgs>(args: SelectSubset<T, ExperienceDeleteArgs<ExtArgs>>): Prisma__ExperienceClient<$Result.GetResult<Prisma.$ExperiencePayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one Experience.
+     * @param {ExperienceUpdateArgs} args - Arguments to update one Experience.
+     * @example
+     * // Update one Experience
+     * const experience = await prisma.experience.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends ExperienceUpdateArgs>(args: SelectSubset<T, ExperienceUpdateArgs<ExtArgs>>): Prisma__ExperienceClient<$Result.GetResult<Prisma.$ExperiencePayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more Experiences.
+     * @param {ExperienceDeleteManyArgs} args - Arguments to filter Experiences to delete.
+     * @example
+     * // Delete a few Experiences
+     * const { count } = await prisma.experience.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends ExperienceDeleteManyArgs>(args?: SelectSubset<T, ExperienceDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Experiences.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ExperienceUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Experiences
+     * const experience = await prisma.experience.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends ExperienceUpdateManyArgs>(args: SelectSubset<T, ExperienceUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Experiences and returns the data updated in the database.
+     * @param {ExperienceUpdateManyAndReturnArgs} args - Arguments to update many Experiences.
+     * @example
+     * // Update many Experiences
+     * const experience = await prisma.experience.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more Experiences and only return the `id`
+     * const experienceWithIdOnly = await prisma.experience.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends ExperienceUpdateManyAndReturnArgs>(args: SelectSubset<T, ExperienceUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ExperiencePayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one Experience.
+     * @param {ExperienceUpsertArgs} args - Arguments to update or create a Experience.
+     * @example
+     * // Update or create a Experience
+     * const experience = await prisma.experience.upsert({
+     *   create: {
+     *     // ... data to create a Experience
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the Experience we want to update
+     *   }
+     * })
+     */
+    upsert<T extends ExperienceUpsertArgs>(args: SelectSubset<T, ExperienceUpsertArgs<ExtArgs>>): Prisma__ExperienceClient<$Result.GetResult<Prisma.$ExperiencePayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of Experiences.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ExperienceCountArgs} args - Arguments to filter Experiences to count.
+     * @example
+     * // Count the number of Experiences
+     * const count = await prisma.experience.count({
+     *   where: {
+     *     // ... the filter for the Experiences we want to count
+     *   }
+     * })
+    **/
+    count<T extends ExperienceCountArgs>(
+      args?: Subset<T, ExperienceCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], ExperienceCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a Experience.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ExperienceAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends ExperienceAggregateArgs>(args: Subset<T, ExperienceAggregateArgs>): Prisma.PrismaPromise<GetExperienceAggregateType<T>>
+
+    /**
+     * Group by Experience.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ExperienceGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends ExperienceGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: ExperienceGroupByArgs['orderBy'] }
+        : { orderBy?: ExperienceGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, ExperienceGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetExperienceGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the Experience model
+   */
+  readonly fields: ExperienceFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for Experience.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__ExperienceClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    user<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the Experience model
+   */
+  interface ExperienceFieldRefs {
+    readonly id: FieldRef<"Experience", 'Int'>
+    readonly userId: FieldRef<"Experience", 'Int'>
+    readonly title: FieldRef<"Experience", 'String'>
+    readonly company: FieldRef<"Experience", 'String'>
+    readonly jobDescription: FieldRef<"Experience", 'String'>
+    readonly startDate: FieldRef<"Experience", 'DateTime'>
+    readonly endDate: FieldRef<"Experience", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * Experience findUnique
+   */
+  export type ExperienceFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Experience
+     */
+    select?: ExperienceSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Experience
+     */
+    omit?: ExperienceOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ExperienceInclude<ExtArgs> | null
+    /**
+     * Filter, which Experience to fetch.
+     */
+    where: ExperienceWhereUniqueInput
+    relationLoadStrategy?: RelationLoadStrategy
+  }
+
+  /**
+   * Experience findUniqueOrThrow
+   */
+  export type ExperienceFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Experience
+     */
+    select?: ExperienceSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Experience
+     */
+    omit?: ExperienceOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ExperienceInclude<ExtArgs> | null
+    /**
+     * Filter, which Experience to fetch.
+     */
+    where: ExperienceWhereUniqueInput
+    relationLoadStrategy?: RelationLoadStrategy
+  }
+
+  /**
+   * Experience findFirst
+   */
+  export type ExperienceFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Experience
+     */
+    select?: ExperienceSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Experience
+     */
+    omit?: ExperienceOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ExperienceInclude<ExtArgs> | null
+    /**
+     * Filter, which Experience to fetch.
+     */
+    where?: ExperienceWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Experiences to fetch.
+     */
+    orderBy?: ExperienceOrderByWithRelationInput | ExperienceOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Experiences.
+     */
+    cursor?: ExperienceWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Experiences from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Experiences.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Experiences.
+     */
+    distinct?: ExperienceScalarFieldEnum | ExperienceScalarFieldEnum[]
+    relationLoadStrategy?: RelationLoadStrategy
+  }
+
+  /**
+   * Experience findFirstOrThrow
+   */
+  export type ExperienceFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Experience
+     */
+    select?: ExperienceSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Experience
+     */
+    omit?: ExperienceOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ExperienceInclude<ExtArgs> | null
+    /**
+     * Filter, which Experience to fetch.
+     */
+    where?: ExperienceWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Experiences to fetch.
+     */
+    orderBy?: ExperienceOrderByWithRelationInput | ExperienceOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Experiences.
+     */
+    cursor?: ExperienceWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Experiences from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Experiences.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Experiences.
+     */
+    distinct?: ExperienceScalarFieldEnum | ExperienceScalarFieldEnum[]
+    relationLoadStrategy?: RelationLoadStrategy
+  }
+
+  /**
+   * Experience findMany
+   */
+  export type ExperienceFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Experience
+     */
+    select?: ExperienceSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Experience
+     */
+    omit?: ExperienceOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ExperienceInclude<ExtArgs> | null
+    /**
+     * Filter, which Experiences to fetch.
+     */
+    where?: ExperienceWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Experiences to fetch.
+     */
+    orderBy?: ExperienceOrderByWithRelationInput | ExperienceOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing Experiences.
+     */
+    cursor?: ExperienceWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Experiences from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Experiences.
+     */
+    skip?: number
+    distinct?: ExperienceScalarFieldEnum | ExperienceScalarFieldEnum[]
+    relationLoadStrategy?: RelationLoadStrategy
+  }
+
+  /**
+   * Experience create
+   */
+  export type ExperienceCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Experience
+     */
+    select?: ExperienceSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Experience
+     */
+    omit?: ExperienceOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ExperienceInclude<ExtArgs> | null
+    /**
+     * The data needed to create a Experience.
+     */
+    data: XOR<ExperienceCreateInput, ExperienceUncheckedCreateInput>
+    relationLoadStrategy?: RelationLoadStrategy
+  }
+
+  /**
+   * Experience createMany
+   */
+  export type ExperienceCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many Experiences.
+     */
+    data: ExperienceCreateManyInput | ExperienceCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * Experience createManyAndReturn
+   */
+  export type ExperienceCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Experience
+     */
+    select?: ExperienceSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the Experience
+     */
+    omit?: ExperienceOmit<ExtArgs> | null
+    /**
+     * The data used to create many Experiences.
+     */
+    data: ExperienceCreateManyInput | ExperienceCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ExperienceIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * Experience update
+   */
+  export type ExperienceUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Experience
+     */
+    select?: ExperienceSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Experience
+     */
+    omit?: ExperienceOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ExperienceInclude<ExtArgs> | null
+    /**
+     * The data needed to update a Experience.
+     */
+    data: XOR<ExperienceUpdateInput, ExperienceUncheckedUpdateInput>
+    /**
+     * Choose, which Experience to update.
+     */
+    where: ExperienceWhereUniqueInput
+    relationLoadStrategy?: RelationLoadStrategy
+  }
+
+  /**
+   * Experience updateMany
+   */
+  export type ExperienceUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update Experiences.
+     */
+    data: XOR<ExperienceUpdateManyMutationInput, ExperienceUncheckedUpdateManyInput>
+    /**
+     * Filter which Experiences to update
+     */
+    where?: ExperienceWhereInput
+    /**
+     * Limit how many Experiences to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * Experience updateManyAndReturn
+   */
+  export type ExperienceUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Experience
+     */
+    select?: ExperienceSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the Experience
+     */
+    omit?: ExperienceOmit<ExtArgs> | null
+    /**
+     * The data used to update Experiences.
+     */
+    data: XOR<ExperienceUpdateManyMutationInput, ExperienceUncheckedUpdateManyInput>
+    /**
+     * Filter which Experiences to update
+     */
+    where?: ExperienceWhereInput
+    /**
+     * Limit how many Experiences to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ExperienceIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * Experience upsert
+   */
+  export type ExperienceUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Experience
+     */
+    select?: ExperienceSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Experience
+     */
+    omit?: ExperienceOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ExperienceInclude<ExtArgs> | null
+    /**
+     * The filter to search for the Experience to update in case it exists.
+     */
+    where: ExperienceWhereUniqueInput
+    /**
+     * In case the Experience found by the `where` argument doesn't exist, create a new Experience with this data.
+     */
+    create: XOR<ExperienceCreateInput, ExperienceUncheckedCreateInput>
+    /**
+     * In case the Experience was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<ExperienceUpdateInput, ExperienceUncheckedUpdateInput>
+    relationLoadStrategy?: RelationLoadStrategy
+  }
+
+  /**
+   * Experience delete
+   */
+  export type ExperienceDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Experience
+     */
+    select?: ExperienceSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Experience
+     */
+    omit?: ExperienceOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ExperienceInclude<ExtArgs> | null
+    /**
+     * Filter which Experience to delete.
+     */
+    where: ExperienceWhereUniqueInput
+    relationLoadStrategy?: RelationLoadStrategy
+  }
+
+  /**
+   * Experience deleteMany
+   */
+  export type ExperienceDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Experiences to delete
+     */
+    where?: ExperienceWhereInput
+    /**
+     * Limit how many Experiences to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * Experience without action
+   */
+  export type ExperienceDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Experience
+     */
+    select?: ExperienceSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Experience
+     */
+    omit?: ExperienceOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ExperienceInclude<ExtArgs> | null
+  }
+
+
+  /**
    * Enums
    */
 
@@ -16922,8 +19409,6 @@ export namespace Prisma {
     id: 'id',
     userId: 'userId',
     fullName: 'fullName',
-    Institute: 'Institute',
-    major: 'major',
     location: 'location'
   };
 
@@ -17044,6 +19529,31 @@ export namespace Prisma {
   };
 
   export type ConnectionScalarFieldEnum = (typeof ConnectionScalarFieldEnum)[keyof typeof ConnectionScalarFieldEnum]
+
+
+  export const AcademicScalarFieldEnum: {
+    id: 'id',
+    userId: 'userId',
+    institute: 'institute',
+    degree: 'degree',
+    startYear: 'startYear',
+    endYear: 'endYear'
+  };
+
+  export type AcademicScalarFieldEnum = (typeof AcademicScalarFieldEnum)[keyof typeof AcademicScalarFieldEnum]
+
+
+  export const ExperienceScalarFieldEnum: {
+    id: 'id',
+    userId: 'userId',
+    title: 'title',
+    company: 'company',
+    jobDescription: 'jobDescription',
+    startDate: 'startDate',
+    endDate: 'endDate'
+  };
+
+  export type ExperienceScalarFieldEnum = (typeof ExperienceScalarFieldEnum)[keyof typeof ExperienceScalarFieldEnum]
 
 
   export const SortOrder: {
@@ -17198,6 +19708,8 @@ export namespace Prisma {
     basicInfo?: XOR<BasicInfoNullableScalarRelationFilter, BasicInfoWhereInput> | null
     bioSummary?: XOR<BioSummaryNullableScalarRelationFilter, BioSummaryWhereInput> | null
     collaboration?: XOR<CollaborationNullableScalarRelationFilter, CollaborationWhereInput> | null
+    academics?: AcademicListRelationFilter
+    experience?: ExperienceListRelationFilter
     ParticipantA?: ConnectionListRelationFilter
     ParticipantB?: ConnectionListRelationFilter
     incomingConnections?: IncomingConnectionListRelationFilter
@@ -17223,6 +19735,8 @@ export namespace Prisma {
     basicInfo?: BasicInfoOrderByWithRelationInput
     bioSummary?: BioSummaryOrderByWithRelationInput
     collaboration?: CollaborationOrderByWithRelationInput
+    academics?: AcademicOrderByRelationAggregateInput
+    experience?: ExperienceOrderByRelationAggregateInput
     ParticipantA?: ConnectionOrderByRelationAggregateInput
     ParticipantB?: ConnectionOrderByRelationAggregateInput
     incomingConnections?: IncomingConnectionOrderByRelationAggregateInput
@@ -17251,6 +19765,8 @@ export namespace Prisma {
     basicInfo?: XOR<BasicInfoNullableScalarRelationFilter, BasicInfoWhereInput> | null
     bioSummary?: XOR<BioSummaryNullableScalarRelationFilter, BioSummaryWhereInput> | null
     collaboration?: XOR<CollaborationNullableScalarRelationFilter, CollaborationWhereInput> | null
+    academics?: AcademicListRelationFilter
+    experience?: ExperienceListRelationFilter
     ParticipantA?: ConnectionListRelationFilter
     ParticipantB?: ConnectionListRelationFilter
     incomingConnections?: IncomingConnectionListRelationFilter
@@ -17301,8 +19817,6 @@ export namespace Prisma {
     id?: IntFilter<"BasicInfo"> | number
     userId?: IntFilter<"BasicInfo"> | number
     fullName?: StringFilter<"BasicInfo"> | string
-    Institute?: StringNullableFilter<"BasicInfo"> | string | null
-    major?: StringNullableFilter<"BasicInfo"> | string | null
     location?: StringNullableFilter<"BasicInfo"> | string | null
     user?: XOR<UserScalarRelationFilter, UserWhereInput>
   }
@@ -17311,8 +19825,6 @@ export namespace Prisma {
     id?: SortOrder
     userId?: SortOrder
     fullName?: SortOrder
-    Institute?: SortOrderInput | SortOrder
-    major?: SortOrderInput | SortOrder
     location?: SortOrderInput | SortOrder
     user?: UserOrderByWithRelationInput
   }
@@ -17324,8 +19836,6 @@ export namespace Prisma {
     OR?: BasicInfoWhereInput[]
     NOT?: BasicInfoWhereInput | BasicInfoWhereInput[]
     fullName?: StringFilter<"BasicInfo"> | string
-    Institute?: StringNullableFilter<"BasicInfo"> | string | null
-    major?: StringNullableFilter<"BasicInfo"> | string | null
     location?: StringNullableFilter<"BasicInfo"> | string | null
     user?: XOR<UserScalarRelationFilter, UserWhereInput>
   }, "id" | "userId">
@@ -17334,8 +19844,6 @@ export namespace Prisma {
     id?: SortOrder
     userId?: SortOrder
     fullName?: SortOrder
-    Institute?: SortOrderInput | SortOrder
-    major?: SortOrderInput | SortOrder
     location?: SortOrderInput | SortOrder
     _count?: BasicInfoCountOrderByAggregateInput
     _avg?: BasicInfoAvgOrderByAggregateInput
@@ -17351,8 +19859,6 @@ export namespace Prisma {
     id?: IntWithAggregatesFilter<"BasicInfo"> | number
     userId?: IntWithAggregatesFilter<"BasicInfo"> | number
     fullName?: StringWithAggregatesFilter<"BasicInfo"> | string
-    Institute?: StringNullableWithAggregatesFilter<"BasicInfo"> | string | null
-    major?: StringNullableWithAggregatesFilter<"BasicInfo"> | string | null
     location?: StringNullableWithAggregatesFilter<"BasicInfo"> | string | null
   }
 
@@ -17973,6 +20479,135 @@ export namespace Prisma {
     participantBId?: IntWithAggregatesFilter<"Connection"> | number
   }
 
+  export type AcademicWhereInput = {
+    AND?: AcademicWhereInput | AcademicWhereInput[]
+    OR?: AcademicWhereInput[]
+    NOT?: AcademicWhereInput | AcademicWhereInput[]
+    id?: IntFilter<"Academic"> | number
+    userId?: IntFilter<"Academic"> | number
+    institute?: StringFilter<"Academic"> | string
+    degree?: StringFilter<"Academic"> | string
+    startYear?: IntFilter<"Academic"> | number
+    endYear?: IntNullableFilter<"Academic"> | number | null
+    user?: XOR<UserScalarRelationFilter, UserWhereInput>
+  }
+
+  export type AcademicOrderByWithRelationInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    institute?: SortOrder
+    degree?: SortOrder
+    startYear?: SortOrder
+    endYear?: SortOrderInput | SortOrder
+    user?: UserOrderByWithRelationInput
+  }
+
+  export type AcademicWhereUniqueInput = Prisma.AtLeast<{
+    id?: number
+    userId?: number
+    AND?: AcademicWhereInput | AcademicWhereInput[]
+    OR?: AcademicWhereInput[]
+    NOT?: AcademicWhereInput | AcademicWhereInput[]
+    institute?: StringFilter<"Academic"> | string
+    degree?: StringFilter<"Academic"> | string
+    startYear?: IntFilter<"Academic"> | number
+    endYear?: IntNullableFilter<"Academic"> | number | null
+    user?: XOR<UserScalarRelationFilter, UserWhereInput>
+  }, "id" | "userId">
+
+  export type AcademicOrderByWithAggregationInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    institute?: SortOrder
+    degree?: SortOrder
+    startYear?: SortOrder
+    endYear?: SortOrderInput | SortOrder
+    _count?: AcademicCountOrderByAggregateInput
+    _avg?: AcademicAvgOrderByAggregateInput
+    _max?: AcademicMaxOrderByAggregateInput
+    _min?: AcademicMinOrderByAggregateInput
+    _sum?: AcademicSumOrderByAggregateInput
+  }
+
+  export type AcademicScalarWhereWithAggregatesInput = {
+    AND?: AcademicScalarWhereWithAggregatesInput | AcademicScalarWhereWithAggregatesInput[]
+    OR?: AcademicScalarWhereWithAggregatesInput[]
+    NOT?: AcademicScalarWhereWithAggregatesInput | AcademicScalarWhereWithAggregatesInput[]
+    id?: IntWithAggregatesFilter<"Academic"> | number
+    userId?: IntWithAggregatesFilter<"Academic"> | number
+    institute?: StringWithAggregatesFilter<"Academic"> | string
+    degree?: StringWithAggregatesFilter<"Academic"> | string
+    startYear?: IntWithAggregatesFilter<"Academic"> | number
+    endYear?: IntNullableWithAggregatesFilter<"Academic"> | number | null
+  }
+
+  export type ExperienceWhereInput = {
+    AND?: ExperienceWhereInput | ExperienceWhereInput[]
+    OR?: ExperienceWhereInput[]
+    NOT?: ExperienceWhereInput | ExperienceWhereInput[]
+    id?: IntFilter<"Experience"> | number
+    userId?: IntFilter<"Experience"> | number
+    title?: StringFilter<"Experience"> | string
+    company?: StringFilter<"Experience"> | string
+    jobDescription?: StringNullableFilter<"Experience"> | string | null
+    startDate?: DateTimeFilter<"Experience"> | Date | string
+    endDate?: DateTimeNullableFilter<"Experience"> | Date | string | null
+    user?: XOR<UserScalarRelationFilter, UserWhereInput>
+  }
+
+  export type ExperienceOrderByWithRelationInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    title?: SortOrder
+    company?: SortOrder
+    jobDescription?: SortOrderInput | SortOrder
+    startDate?: SortOrder
+    endDate?: SortOrderInput | SortOrder
+    user?: UserOrderByWithRelationInput
+  }
+
+  export type ExperienceWhereUniqueInput = Prisma.AtLeast<{
+    id?: number
+    userId?: number
+    AND?: ExperienceWhereInput | ExperienceWhereInput[]
+    OR?: ExperienceWhereInput[]
+    NOT?: ExperienceWhereInput | ExperienceWhereInput[]
+    title?: StringFilter<"Experience"> | string
+    company?: StringFilter<"Experience"> | string
+    jobDescription?: StringNullableFilter<"Experience"> | string | null
+    startDate?: DateTimeFilter<"Experience"> | Date | string
+    endDate?: DateTimeNullableFilter<"Experience"> | Date | string | null
+    user?: XOR<UserScalarRelationFilter, UserWhereInput>
+  }, "id" | "userId">
+
+  export type ExperienceOrderByWithAggregationInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    title?: SortOrder
+    company?: SortOrder
+    jobDescription?: SortOrderInput | SortOrder
+    startDate?: SortOrder
+    endDate?: SortOrderInput | SortOrder
+    _count?: ExperienceCountOrderByAggregateInput
+    _avg?: ExperienceAvgOrderByAggregateInput
+    _max?: ExperienceMaxOrderByAggregateInput
+    _min?: ExperienceMinOrderByAggregateInput
+    _sum?: ExperienceSumOrderByAggregateInput
+  }
+
+  export type ExperienceScalarWhereWithAggregatesInput = {
+    AND?: ExperienceScalarWhereWithAggregatesInput | ExperienceScalarWhereWithAggregatesInput[]
+    OR?: ExperienceScalarWhereWithAggregatesInput[]
+    NOT?: ExperienceScalarWhereWithAggregatesInput | ExperienceScalarWhereWithAggregatesInput[]
+    id?: IntWithAggregatesFilter<"Experience"> | number
+    userId?: IntWithAggregatesFilter<"Experience"> | number
+    title?: StringWithAggregatesFilter<"Experience"> | string
+    company?: StringWithAggregatesFilter<"Experience"> | string
+    jobDescription?: StringNullableWithAggregatesFilter<"Experience"> | string | null
+    startDate?: DateTimeWithAggregatesFilter<"Experience"> | Date | string
+    endDate?: DateTimeNullableWithAggregatesFilter<"Experience"> | Date | string | null
+  }
+
   export type UserCreateInput = {
     email: string
     createdAt?: Date | string
@@ -17984,6 +20619,8 @@ export namespace Prisma {
     basicInfo?: BasicInfoCreateNestedOneWithoutUserInput
     bioSummary?: BioSummaryCreateNestedOneWithoutUserInput
     collaboration?: CollaborationCreateNestedOneWithoutUserInput
+    academics?: AcademicCreateNestedManyWithoutUserInput
+    experience?: ExperienceCreateNestedManyWithoutUserInput
     ParticipantA?: ConnectionCreateNestedManyWithoutParticipantAInput
     ParticipantB?: ConnectionCreateNestedManyWithoutParticipantBInput
     incomingConnections?: IncomingConnectionCreateNestedManyWithoutReceiverInput
@@ -18009,6 +20646,8 @@ export namespace Prisma {
     basicInfo?: BasicInfoUncheckedCreateNestedOneWithoutUserInput
     bioSummary?: BioSummaryUncheckedCreateNestedOneWithoutUserInput
     collaboration?: CollaborationUncheckedCreateNestedOneWithoutUserInput
+    academics?: AcademicUncheckedCreateNestedManyWithoutUserInput
+    experience?: ExperienceUncheckedCreateNestedManyWithoutUserInput
     ParticipantA?: ConnectionUncheckedCreateNestedManyWithoutParticipantAInput
     ParticipantB?: ConnectionUncheckedCreateNestedManyWithoutParticipantBInput
     incomingConnections?: IncomingConnectionUncheckedCreateNestedManyWithoutReceiverInput
@@ -18033,6 +20672,8 @@ export namespace Prisma {
     basicInfo?: BasicInfoUpdateOneWithoutUserNestedInput
     bioSummary?: BioSummaryUpdateOneWithoutUserNestedInput
     collaboration?: CollaborationUpdateOneWithoutUserNestedInput
+    academics?: AcademicUpdateManyWithoutUserNestedInput
+    experience?: ExperienceUpdateManyWithoutUserNestedInput
     ParticipantA?: ConnectionUpdateManyWithoutParticipantANestedInput
     ParticipantB?: ConnectionUpdateManyWithoutParticipantBNestedInput
     incomingConnections?: IncomingConnectionUpdateManyWithoutReceiverNestedInput
@@ -18058,6 +20699,8 @@ export namespace Prisma {
     basicInfo?: BasicInfoUncheckedUpdateOneWithoutUserNestedInput
     bioSummary?: BioSummaryUncheckedUpdateOneWithoutUserNestedInput
     collaboration?: CollaborationUncheckedUpdateOneWithoutUserNestedInput
+    academics?: AcademicUncheckedUpdateManyWithoutUserNestedInput
+    experience?: ExperienceUncheckedUpdateManyWithoutUserNestedInput
     ParticipantA?: ConnectionUncheckedUpdateManyWithoutParticipantANestedInput
     ParticipantB?: ConnectionUncheckedUpdateManyWithoutParticipantBNestedInput
     incomingConnections?: IncomingConnectionUncheckedUpdateManyWithoutReceiverNestedInput
@@ -18105,8 +20748,6 @@ export namespace Prisma {
 
   export type BasicInfoCreateInput = {
     fullName: string
-    Institute?: string | null
-    major?: string | null
     location?: string | null
     user: UserCreateNestedOneWithoutBasicInfoInput
   }
@@ -18115,15 +20756,11 @@ export namespace Prisma {
     id?: number
     userId: number
     fullName: string
-    Institute?: string | null
-    major?: string | null
     location?: string | null
   }
 
   export type BasicInfoUpdateInput = {
     fullName?: StringFieldUpdateOperationsInput | string
-    Institute?: NullableStringFieldUpdateOperationsInput | string | null
-    major?: NullableStringFieldUpdateOperationsInput | string | null
     location?: NullableStringFieldUpdateOperationsInput | string | null
     user?: UserUpdateOneRequiredWithoutBasicInfoNestedInput
   }
@@ -18132,8 +20769,6 @@ export namespace Prisma {
     id?: IntFieldUpdateOperationsInput | number
     userId?: IntFieldUpdateOperationsInput | number
     fullName?: StringFieldUpdateOperationsInput | string
-    Institute?: NullableStringFieldUpdateOperationsInput | string | null
-    major?: NullableStringFieldUpdateOperationsInput | string | null
     location?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
@@ -18141,15 +20776,11 @@ export namespace Prisma {
     id?: number
     userId: number
     fullName: string
-    Institute?: string | null
-    major?: string | null
     location?: string | null
   }
 
   export type BasicInfoUpdateManyMutationInput = {
     fullName?: StringFieldUpdateOperationsInput | string
-    Institute?: NullableStringFieldUpdateOperationsInput | string | null
-    major?: NullableStringFieldUpdateOperationsInput | string | null
     location?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
@@ -18157,8 +20788,6 @@ export namespace Prisma {
     id?: IntFieldUpdateOperationsInput | number
     userId?: IntFieldUpdateOperationsInput | number
     fullName?: StringFieldUpdateOperationsInput | string
-    Institute?: NullableStringFieldUpdateOperationsInput | string | null
-    major?: NullableStringFieldUpdateOperationsInput | string | null
     location?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
@@ -18701,6 +21330,131 @@ export namespace Prisma {
     participantBId?: IntFieldUpdateOperationsInput | number
   }
 
+  export type AcademicCreateInput = {
+    institute: string
+    degree: string
+    startYear: number
+    endYear?: number | null
+    user: UserCreateNestedOneWithoutAcademicsInput
+  }
+
+  export type AcademicUncheckedCreateInput = {
+    id?: number
+    userId: number
+    institute: string
+    degree: string
+    startYear: number
+    endYear?: number | null
+  }
+
+  export type AcademicUpdateInput = {
+    institute?: StringFieldUpdateOperationsInput | string
+    degree?: StringFieldUpdateOperationsInput | string
+    startYear?: IntFieldUpdateOperationsInput | number
+    endYear?: NullableIntFieldUpdateOperationsInput | number | null
+    user?: UserUpdateOneRequiredWithoutAcademicsNestedInput
+  }
+
+  export type AcademicUncheckedUpdateInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    userId?: IntFieldUpdateOperationsInput | number
+    institute?: StringFieldUpdateOperationsInput | string
+    degree?: StringFieldUpdateOperationsInput | string
+    startYear?: IntFieldUpdateOperationsInput | number
+    endYear?: NullableIntFieldUpdateOperationsInput | number | null
+  }
+
+  export type AcademicCreateManyInput = {
+    id?: number
+    userId: number
+    institute: string
+    degree: string
+    startYear: number
+    endYear?: number | null
+  }
+
+  export type AcademicUpdateManyMutationInput = {
+    institute?: StringFieldUpdateOperationsInput | string
+    degree?: StringFieldUpdateOperationsInput | string
+    startYear?: IntFieldUpdateOperationsInput | number
+    endYear?: NullableIntFieldUpdateOperationsInput | number | null
+  }
+
+  export type AcademicUncheckedUpdateManyInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    userId?: IntFieldUpdateOperationsInput | number
+    institute?: StringFieldUpdateOperationsInput | string
+    degree?: StringFieldUpdateOperationsInput | string
+    startYear?: IntFieldUpdateOperationsInput | number
+    endYear?: NullableIntFieldUpdateOperationsInput | number | null
+  }
+
+  export type ExperienceCreateInput = {
+    title: string
+    company: string
+    jobDescription?: string | null
+    startDate: Date | string
+    endDate?: Date | string | null
+    user: UserCreateNestedOneWithoutExperienceInput
+  }
+
+  export type ExperienceUncheckedCreateInput = {
+    id?: number
+    userId: number
+    title: string
+    company: string
+    jobDescription?: string | null
+    startDate: Date | string
+    endDate?: Date | string | null
+  }
+
+  export type ExperienceUpdateInput = {
+    title?: StringFieldUpdateOperationsInput | string
+    company?: StringFieldUpdateOperationsInput | string
+    jobDescription?: NullableStringFieldUpdateOperationsInput | string | null
+    startDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    endDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    user?: UserUpdateOneRequiredWithoutExperienceNestedInput
+  }
+
+  export type ExperienceUncheckedUpdateInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    userId?: IntFieldUpdateOperationsInput | number
+    title?: StringFieldUpdateOperationsInput | string
+    company?: StringFieldUpdateOperationsInput | string
+    jobDescription?: NullableStringFieldUpdateOperationsInput | string | null
+    startDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    endDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  }
+
+  export type ExperienceCreateManyInput = {
+    id?: number
+    userId: number
+    title: string
+    company: string
+    jobDescription?: string | null
+    startDate: Date | string
+    endDate?: Date | string | null
+  }
+
+  export type ExperienceUpdateManyMutationInput = {
+    title?: StringFieldUpdateOperationsInput | string
+    company?: StringFieldUpdateOperationsInput | string
+    jobDescription?: NullableStringFieldUpdateOperationsInput | string | null
+    startDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    endDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  }
+
+  export type ExperienceUncheckedUpdateManyInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    userId?: IntFieldUpdateOperationsInput | number
+    title?: StringFieldUpdateOperationsInput | string
+    company?: StringFieldUpdateOperationsInput | string
+    jobDescription?: NullableStringFieldUpdateOperationsInput | string | null
+    startDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    endDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  }
+
   export type IntFilter<$PrismaModel = never> = {
     equals?: number | IntFieldRefInput<$PrismaModel>
     in?: number[] | ListIntFieldRefInput<$PrismaModel>
@@ -18791,6 +21545,18 @@ export namespace Prisma {
     isNot?: CollaborationWhereInput | null
   }
 
+  export type AcademicListRelationFilter = {
+    every?: AcademicWhereInput
+    some?: AcademicWhereInput
+    none?: AcademicWhereInput
+  }
+
+  export type ExperienceListRelationFilter = {
+    every?: ExperienceWhereInput
+    some?: ExperienceWhereInput
+    none?: ExperienceWhereInput
+  }
+
   export type ConnectionListRelationFilter = {
     every?: ConnectionWhereInput
     some?: ConnectionWhereInput
@@ -18839,6 +21605,14 @@ export namespace Prisma {
   export type SortOrderInput = {
     sort: SortOrder
     nulls?: NullsOrder
+  }
+
+  export type AcademicOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type ExperienceOrderByRelationAggregateInput = {
+    _count?: SortOrder
   }
 
   export type ConnectionOrderByRelationAggregateInput = {
@@ -19009,8 +21783,6 @@ export namespace Prisma {
     id?: SortOrder
     userId?: SortOrder
     fullName?: SortOrder
-    Institute?: SortOrder
-    major?: SortOrder
     location?: SortOrder
   }
 
@@ -19023,8 +21795,6 @@ export namespace Prisma {
     id?: SortOrder
     userId?: SortOrder
     fullName?: SortOrder
-    Institute?: SortOrder
-    major?: SortOrder
     location?: SortOrder
   }
 
@@ -19032,8 +21802,6 @@ export namespace Prisma {
     id?: SortOrder
     userId?: SortOrder
     fullName?: SortOrder
-    Institute?: SortOrder
-    major?: SortOrder
     location?: SortOrder
   }
 
@@ -19488,6 +22256,114 @@ export namespace Prisma {
     participantBId?: SortOrder
   }
 
+  export type IntNullableFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel> | null
+    in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntNullableFilter<$PrismaModel> | number | null
+  }
+
+  export type AcademicCountOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    institute?: SortOrder
+    degree?: SortOrder
+    startYear?: SortOrder
+    endYear?: SortOrder
+  }
+
+  export type AcademicAvgOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    startYear?: SortOrder
+    endYear?: SortOrder
+  }
+
+  export type AcademicMaxOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    institute?: SortOrder
+    degree?: SortOrder
+    startYear?: SortOrder
+    endYear?: SortOrder
+  }
+
+  export type AcademicMinOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    institute?: SortOrder
+    degree?: SortOrder
+    startYear?: SortOrder
+    endYear?: SortOrder
+  }
+
+  export type AcademicSumOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    startYear?: SortOrder
+    endYear?: SortOrder
+  }
+
+  export type IntNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel> | null
+    in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntNullableWithAggregatesFilter<$PrismaModel> | number | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _avg?: NestedFloatNullableFilter<$PrismaModel>
+    _sum?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedIntNullableFilter<$PrismaModel>
+    _max?: NestedIntNullableFilter<$PrismaModel>
+  }
+
+  export type ExperienceCountOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    title?: SortOrder
+    company?: SortOrder
+    jobDescription?: SortOrder
+    startDate?: SortOrder
+    endDate?: SortOrder
+  }
+
+  export type ExperienceAvgOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+  }
+
+  export type ExperienceMaxOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    title?: SortOrder
+    company?: SortOrder
+    jobDescription?: SortOrder
+    startDate?: SortOrder
+    endDate?: SortOrder
+  }
+
+  export type ExperienceMinOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    title?: SortOrder
+    company?: SortOrder
+    jobDescription?: SortOrder
+    startDate?: SortOrder
+    endDate?: SortOrder
+  }
+
+  export type ExperienceSumOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+  }
+
   export type BasicInfoCreateNestedOneWithoutUserInput = {
     create?: XOR<BasicInfoCreateWithoutUserInput, BasicInfoUncheckedCreateWithoutUserInput>
     connectOrCreate?: BasicInfoCreateOrConnectWithoutUserInput
@@ -19504,6 +22380,20 @@ export namespace Prisma {
     create?: XOR<CollaborationCreateWithoutUserInput, CollaborationUncheckedCreateWithoutUserInput>
     connectOrCreate?: CollaborationCreateOrConnectWithoutUserInput
     connect?: CollaborationWhereUniqueInput
+  }
+
+  export type AcademicCreateNestedManyWithoutUserInput = {
+    create?: XOR<AcademicCreateWithoutUserInput, AcademicUncheckedCreateWithoutUserInput> | AcademicCreateWithoutUserInput[] | AcademicUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: AcademicCreateOrConnectWithoutUserInput | AcademicCreateOrConnectWithoutUserInput[]
+    createMany?: AcademicCreateManyUserInputEnvelope
+    connect?: AcademicWhereUniqueInput | AcademicWhereUniqueInput[]
+  }
+
+  export type ExperienceCreateNestedManyWithoutUserInput = {
+    create?: XOR<ExperienceCreateWithoutUserInput, ExperienceUncheckedCreateWithoutUserInput> | ExperienceCreateWithoutUserInput[] | ExperienceUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: ExperienceCreateOrConnectWithoutUserInput | ExperienceCreateOrConnectWithoutUserInput[]
+    createMany?: ExperienceCreateManyUserInputEnvelope
+    connect?: ExperienceWhereUniqueInput | ExperienceWhereUniqueInput[]
   }
 
   export type ConnectionCreateNestedManyWithoutParticipantAInput = {
@@ -19596,6 +22486,20 @@ export namespace Prisma {
     create?: XOR<CollaborationCreateWithoutUserInput, CollaborationUncheckedCreateWithoutUserInput>
     connectOrCreate?: CollaborationCreateOrConnectWithoutUserInput
     connect?: CollaborationWhereUniqueInput
+  }
+
+  export type AcademicUncheckedCreateNestedManyWithoutUserInput = {
+    create?: XOR<AcademicCreateWithoutUserInput, AcademicUncheckedCreateWithoutUserInput> | AcademicCreateWithoutUserInput[] | AcademicUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: AcademicCreateOrConnectWithoutUserInput | AcademicCreateOrConnectWithoutUserInput[]
+    createMany?: AcademicCreateManyUserInputEnvelope
+    connect?: AcademicWhereUniqueInput | AcademicWhereUniqueInput[]
+  }
+
+  export type ExperienceUncheckedCreateNestedManyWithoutUserInput = {
+    create?: XOR<ExperienceCreateWithoutUserInput, ExperienceUncheckedCreateWithoutUserInput> | ExperienceCreateWithoutUserInput[] | ExperienceUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: ExperienceCreateOrConnectWithoutUserInput | ExperienceCreateOrConnectWithoutUserInput[]
+    createMany?: ExperienceCreateManyUserInputEnvelope
+    connect?: ExperienceWhereUniqueInput | ExperienceWhereUniqueInput[]
   }
 
   export type ConnectionUncheckedCreateNestedManyWithoutParticipantAInput = {
@@ -19724,6 +22628,34 @@ export namespace Prisma {
     delete?: CollaborationWhereInput | boolean
     connect?: CollaborationWhereUniqueInput
     update?: XOR<XOR<CollaborationUpdateToOneWithWhereWithoutUserInput, CollaborationUpdateWithoutUserInput>, CollaborationUncheckedUpdateWithoutUserInput>
+  }
+
+  export type AcademicUpdateManyWithoutUserNestedInput = {
+    create?: XOR<AcademicCreateWithoutUserInput, AcademicUncheckedCreateWithoutUserInput> | AcademicCreateWithoutUserInput[] | AcademicUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: AcademicCreateOrConnectWithoutUserInput | AcademicCreateOrConnectWithoutUserInput[]
+    upsert?: AcademicUpsertWithWhereUniqueWithoutUserInput | AcademicUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: AcademicCreateManyUserInputEnvelope
+    set?: AcademicWhereUniqueInput | AcademicWhereUniqueInput[]
+    disconnect?: AcademicWhereUniqueInput | AcademicWhereUniqueInput[]
+    delete?: AcademicWhereUniqueInput | AcademicWhereUniqueInput[]
+    connect?: AcademicWhereUniqueInput | AcademicWhereUniqueInput[]
+    update?: AcademicUpdateWithWhereUniqueWithoutUserInput | AcademicUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: AcademicUpdateManyWithWhereWithoutUserInput | AcademicUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: AcademicScalarWhereInput | AcademicScalarWhereInput[]
+  }
+
+  export type ExperienceUpdateManyWithoutUserNestedInput = {
+    create?: XOR<ExperienceCreateWithoutUserInput, ExperienceUncheckedCreateWithoutUserInput> | ExperienceCreateWithoutUserInput[] | ExperienceUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: ExperienceCreateOrConnectWithoutUserInput | ExperienceCreateOrConnectWithoutUserInput[]
+    upsert?: ExperienceUpsertWithWhereUniqueWithoutUserInput | ExperienceUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: ExperienceCreateManyUserInputEnvelope
+    set?: ExperienceWhereUniqueInput | ExperienceWhereUniqueInput[]
+    disconnect?: ExperienceWhereUniqueInput | ExperienceWhereUniqueInput[]
+    delete?: ExperienceWhereUniqueInput | ExperienceWhereUniqueInput[]
+    connect?: ExperienceWhereUniqueInput | ExperienceWhereUniqueInput[]
+    update?: ExperienceUpdateWithWhereUniqueWithoutUserInput | ExperienceUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: ExperienceUpdateManyWithWhereWithoutUserInput | ExperienceUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: ExperienceScalarWhereInput | ExperienceScalarWhereInput[]
   }
 
   export type ConnectionUpdateManyWithoutParticipantANestedInput = {
@@ -19904,6 +22836,34 @@ export namespace Prisma {
     delete?: CollaborationWhereInput | boolean
     connect?: CollaborationWhereUniqueInput
     update?: XOR<XOR<CollaborationUpdateToOneWithWhereWithoutUserInput, CollaborationUpdateWithoutUserInput>, CollaborationUncheckedUpdateWithoutUserInput>
+  }
+
+  export type AcademicUncheckedUpdateManyWithoutUserNestedInput = {
+    create?: XOR<AcademicCreateWithoutUserInput, AcademicUncheckedCreateWithoutUserInput> | AcademicCreateWithoutUserInput[] | AcademicUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: AcademicCreateOrConnectWithoutUserInput | AcademicCreateOrConnectWithoutUserInput[]
+    upsert?: AcademicUpsertWithWhereUniqueWithoutUserInput | AcademicUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: AcademicCreateManyUserInputEnvelope
+    set?: AcademicWhereUniqueInput | AcademicWhereUniqueInput[]
+    disconnect?: AcademicWhereUniqueInput | AcademicWhereUniqueInput[]
+    delete?: AcademicWhereUniqueInput | AcademicWhereUniqueInput[]
+    connect?: AcademicWhereUniqueInput | AcademicWhereUniqueInput[]
+    update?: AcademicUpdateWithWhereUniqueWithoutUserInput | AcademicUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: AcademicUpdateManyWithWhereWithoutUserInput | AcademicUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: AcademicScalarWhereInput | AcademicScalarWhereInput[]
+  }
+
+  export type ExperienceUncheckedUpdateManyWithoutUserNestedInput = {
+    create?: XOR<ExperienceCreateWithoutUserInput, ExperienceUncheckedCreateWithoutUserInput> | ExperienceCreateWithoutUserInput[] | ExperienceUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: ExperienceCreateOrConnectWithoutUserInput | ExperienceCreateOrConnectWithoutUserInput[]
+    upsert?: ExperienceUpsertWithWhereUniqueWithoutUserInput | ExperienceUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: ExperienceCreateManyUserInputEnvelope
+    set?: ExperienceWhereUniqueInput | ExperienceWhereUniqueInput[]
+    disconnect?: ExperienceWhereUniqueInput | ExperienceWhereUniqueInput[]
+    delete?: ExperienceWhereUniqueInput | ExperienceWhereUniqueInput[]
+    connect?: ExperienceWhereUniqueInput | ExperienceWhereUniqueInput[]
+    update?: ExperienceUpdateWithWhereUniqueWithoutUserInput | ExperienceUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: ExperienceUpdateManyWithWhereWithoutUserInput | ExperienceUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: ExperienceScalarWhereInput | ExperienceScalarWhereInput[]
   }
 
   export type ConnectionUncheckedUpdateManyWithoutParticipantANestedInput = {
@@ -20330,6 +23290,42 @@ export namespace Prisma {
     update?: XOR<XOR<UserUpdateToOneWithWhereWithoutParticipantBInput, UserUpdateWithoutParticipantBInput>, UserUncheckedUpdateWithoutParticipantBInput>
   }
 
+  export type UserCreateNestedOneWithoutAcademicsInput = {
+    create?: XOR<UserCreateWithoutAcademicsInput, UserUncheckedCreateWithoutAcademicsInput>
+    connectOrCreate?: UserCreateOrConnectWithoutAcademicsInput
+    connect?: UserWhereUniqueInput
+  }
+
+  export type NullableIntFieldUpdateOperationsInput = {
+    set?: number | null
+    increment?: number
+    decrement?: number
+    multiply?: number
+    divide?: number
+  }
+
+  export type UserUpdateOneRequiredWithoutAcademicsNestedInput = {
+    create?: XOR<UserCreateWithoutAcademicsInput, UserUncheckedCreateWithoutAcademicsInput>
+    connectOrCreate?: UserCreateOrConnectWithoutAcademicsInput
+    upsert?: UserUpsertWithoutAcademicsInput
+    connect?: UserWhereUniqueInput
+    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutAcademicsInput, UserUpdateWithoutAcademicsInput>, UserUncheckedUpdateWithoutAcademicsInput>
+  }
+
+  export type UserCreateNestedOneWithoutExperienceInput = {
+    create?: XOR<UserCreateWithoutExperienceInput, UserUncheckedCreateWithoutExperienceInput>
+    connectOrCreate?: UserCreateOrConnectWithoutExperienceInput
+    connect?: UserWhereUniqueInput
+  }
+
+  export type UserUpdateOneRequiredWithoutExperienceNestedInput = {
+    create?: XOR<UserCreateWithoutExperienceInput, UserUncheckedCreateWithoutExperienceInput>
+    connectOrCreate?: UserCreateOrConnectWithoutExperienceInput
+    upsert?: UserUpsertWithoutExperienceInput
+    connect?: UserWhereUniqueInput
+    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutExperienceInput, UserUpdateWithoutExperienceInput>, UserUncheckedUpdateWithoutExperienceInput>
+  }
+
   export type NestedIntFilter<$PrismaModel = never> = {
     equals?: number | IntFieldRefInput<$PrismaModel>
     in?: number[] | ListIntFieldRefInput<$PrismaModel>
@@ -20568,18 +23564,41 @@ export namespace Prisma {
     _max?: NestedEnumPostTypeFilter<$PrismaModel>
   }
 
+  export type NestedIntNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel> | null
+    in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntNullableWithAggregatesFilter<$PrismaModel> | number | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _avg?: NestedFloatNullableFilter<$PrismaModel>
+    _sum?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedIntNullableFilter<$PrismaModel>
+    _max?: NestedIntNullableFilter<$PrismaModel>
+  }
+
+  export type NestedFloatNullableFilter<$PrismaModel = never> = {
+    equals?: number | FloatFieldRefInput<$PrismaModel> | null
+    in?: number[] | ListFloatFieldRefInput<$PrismaModel> | null
+    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel> | null
+    lt?: number | FloatFieldRefInput<$PrismaModel>
+    lte?: number | FloatFieldRefInput<$PrismaModel>
+    gt?: number | FloatFieldRefInput<$PrismaModel>
+    gte?: number | FloatFieldRefInput<$PrismaModel>
+    not?: NestedFloatNullableFilter<$PrismaModel> | number | null
+  }
+
   export type BasicInfoCreateWithoutUserInput = {
     fullName: string
-    Institute?: string | null
-    major?: string | null
     location?: string | null
   }
 
   export type BasicInfoUncheckedCreateWithoutUserInput = {
     id?: number
     fullName: string
-    Institute?: string | null
-    major?: string | null
     location?: string | null
   }
 
@@ -20618,6 +23637,58 @@ export namespace Prisma {
   export type CollaborationCreateOrConnectWithoutUserInput = {
     where: CollaborationWhereUniqueInput
     create: XOR<CollaborationCreateWithoutUserInput, CollaborationUncheckedCreateWithoutUserInput>
+  }
+
+  export type AcademicCreateWithoutUserInput = {
+    institute: string
+    degree: string
+    startYear: number
+    endYear?: number | null
+  }
+
+  export type AcademicUncheckedCreateWithoutUserInput = {
+    id?: number
+    institute: string
+    degree: string
+    startYear: number
+    endYear?: number | null
+  }
+
+  export type AcademicCreateOrConnectWithoutUserInput = {
+    where: AcademicWhereUniqueInput
+    create: XOR<AcademicCreateWithoutUserInput, AcademicUncheckedCreateWithoutUserInput>
+  }
+
+  export type AcademicCreateManyUserInputEnvelope = {
+    data: AcademicCreateManyUserInput | AcademicCreateManyUserInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type ExperienceCreateWithoutUserInput = {
+    title: string
+    company: string
+    jobDescription?: string | null
+    startDate: Date | string
+    endDate?: Date | string | null
+  }
+
+  export type ExperienceUncheckedCreateWithoutUserInput = {
+    id?: number
+    title: string
+    company: string
+    jobDescription?: string | null
+    startDate: Date | string
+    endDate?: Date | string | null
+  }
+
+  export type ExperienceCreateOrConnectWithoutUserInput = {
+    where: ExperienceWhereUniqueInput
+    create: XOR<ExperienceCreateWithoutUserInput, ExperienceUncheckedCreateWithoutUserInput>
+  }
+
+  export type ExperienceCreateManyUserInputEnvelope = {
+    data: ExperienceCreateManyUserInput | ExperienceCreateManyUserInput[]
+    skipDuplicates?: boolean
   }
 
   export type ConnectionCreateWithoutParticipantAInput = {
@@ -20867,16 +23938,12 @@ export namespace Prisma {
 
   export type BasicInfoUpdateWithoutUserInput = {
     fullName?: StringFieldUpdateOperationsInput | string
-    Institute?: NullableStringFieldUpdateOperationsInput | string | null
-    major?: NullableStringFieldUpdateOperationsInput | string | null
     location?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type BasicInfoUncheckedUpdateWithoutUserInput = {
     id?: IntFieldUpdateOperationsInput | number
     fullName?: StringFieldUpdateOperationsInput | string
-    Institute?: NullableStringFieldUpdateOperationsInput | string | null
-    major?: NullableStringFieldUpdateOperationsInput | string | null
     location?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
@@ -20922,6 +23989,63 @@ export namespace Prisma {
     id?: IntFieldUpdateOperationsInput | number
     openToCollaboration?: NullableBoolFieldUpdateOperationsInput | boolean | null
     ideaInterests?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type AcademicUpsertWithWhereUniqueWithoutUserInput = {
+    where: AcademicWhereUniqueInput
+    update: XOR<AcademicUpdateWithoutUserInput, AcademicUncheckedUpdateWithoutUserInput>
+    create: XOR<AcademicCreateWithoutUserInput, AcademicUncheckedCreateWithoutUserInput>
+  }
+
+  export type AcademicUpdateWithWhereUniqueWithoutUserInput = {
+    where: AcademicWhereUniqueInput
+    data: XOR<AcademicUpdateWithoutUserInput, AcademicUncheckedUpdateWithoutUserInput>
+  }
+
+  export type AcademicUpdateManyWithWhereWithoutUserInput = {
+    where: AcademicScalarWhereInput
+    data: XOR<AcademicUpdateManyMutationInput, AcademicUncheckedUpdateManyWithoutUserInput>
+  }
+
+  export type AcademicScalarWhereInput = {
+    AND?: AcademicScalarWhereInput | AcademicScalarWhereInput[]
+    OR?: AcademicScalarWhereInput[]
+    NOT?: AcademicScalarWhereInput | AcademicScalarWhereInput[]
+    id?: IntFilter<"Academic"> | number
+    userId?: IntFilter<"Academic"> | number
+    institute?: StringFilter<"Academic"> | string
+    degree?: StringFilter<"Academic"> | string
+    startYear?: IntFilter<"Academic"> | number
+    endYear?: IntNullableFilter<"Academic"> | number | null
+  }
+
+  export type ExperienceUpsertWithWhereUniqueWithoutUserInput = {
+    where: ExperienceWhereUniqueInput
+    update: XOR<ExperienceUpdateWithoutUserInput, ExperienceUncheckedUpdateWithoutUserInput>
+    create: XOR<ExperienceCreateWithoutUserInput, ExperienceUncheckedCreateWithoutUserInput>
+  }
+
+  export type ExperienceUpdateWithWhereUniqueWithoutUserInput = {
+    where: ExperienceWhereUniqueInput
+    data: XOR<ExperienceUpdateWithoutUserInput, ExperienceUncheckedUpdateWithoutUserInput>
+  }
+
+  export type ExperienceUpdateManyWithWhereWithoutUserInput = {
+    where: ExperienceScalarWhereInput
+    data: XOR<ExperienceUpdateManyMutationInput, ExperienceUncheckedUpdateManyWithoutUserInput>
+  }
+
+  export type ExperienceScalarWhereInput = {
+    AND?: ExperienceScalarWhereInput | ExperienceScalarWhereInput[]
+    OR?: ExperienceScalarWhereInput[]
+    NOT?: ExperienceScalarWhereInput | ExperienceScalarWhereInput[]
+    id?: IntFilter<"Experience"> | number
+    userId?: IntFilter<"Experience"> | number
+    title?: StringFilter<"Experience"> | string
+    company?: StringFilter<"Experience"> | string
+    jobDescription?: StringNullableFilter<"Experience"> | string | null
+    startDate?: DateTimeFilter<"Experience"> | Date | string
+    endDate?: DateTimeNullableFilter<"Experience"> | Date | string | null
   }
 
   export type ConnectionUpsertWithWhereUniqueWithoutParticipantAInput = {
@@ -21189,6 +24313,8 @@ export namespace Prisma {
     role?: $Enums.Role
     bioSummary?: BioSummaryCreateNestedOneWithoutUserInput
     collaboration?: CollaborationCreateNestedOneWithoutUserInput
+    academics?: AcademicCreateNestedManyWithoutUserInput
+    experience?: ExperienceCreateNestedManyWithoutUserInput
     ParticipantA?: ConnectionCreateNestedManyWithoutParticipantAInput
     ParticipantB?: ConnectionCreateNestedManyWithoutParticipantBInput
     incomingConnections?: IncomingConnectionCreateNestedManyWithoutReceiverInput
@@ -21213,6 +24339,8 @@ export namespace Prisma {
     role?: $Enums.Role
     bioSummary?: BioSummaryUncheckedCreateNestedOneWithoutUserInput
     collaboration?: CollaborationUncheckedCreateNestedOneWithoutUserInput
+    academics?: AcademicUncheckedCreateNestedManyWithoutUserInput
+    experience?: ExperienceUncheckedCreateNestedManyWithoutUserInput
     ParticipantA?: ConnectionUncheckedCreateNestedManyWithoutParticipantAInput
     ParticipantB?: ConnectionUncheckedCreateNestedManyWithoutParticipantBInput
     incomingConnections?: IncomingConnectionUncheckedCreateNestedManyWithoutReceiverInput
@@ -21252,6 +24380,8 @@ export namespace Prisma {
     role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
     bioSummary?: BioSummaryUpdateOneWithoutUserNestedInput
     collaboration?: CollaborationUpdateOneWithoutUserNestedInput
+    academics?: AcademicUpdateManyWithoutUserNestedInput
+    experience?: ExperienceUpdateManyWithoutUserNestedInput
     ParticipantA?: ConnectionUpdateManyWithoutParticipantANestedInput
     ParticipantB?: ConnectionUpdateManyWithoutParticipantBNestedInput
     incomingConnections?: IncomingConnectionUpdateManyWithoutReceiverNestedInput
@@ -21276,6 +24406,8 @@ export namespace Prisma {
     role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
     bioSummary?: BioSummaryUncheckedUpdateOneWithoutUserNestedInput
     collaboration?: CollaborationUncheckedUpdateOneWithoutUserNestedInput
+    academics?: AcademicUncheckedUpdateManyWithoutUserNestedInput
+    experience?: ExperienceUncheckedUpdateManyWithoutUserNestedInput
     ParticipantA?: ConnectionUncheckedUpdateManyWithoutParticipantANestedInput
     ParticipantB?: ConnectionUncheckedUpdateManyWithoutParticipantBNestedInput
     incomingConnections?: IncomingConnectionUncheckedUpdateManyWithoutReceiverNestedInput
@@ -21300,6 +24432,8 @@ export namespace Prisma {
     basicInfo?: BasicInfoCreateNestedOneWithoutUserInput
     bioSummary?: BioSummaryCreateNestedOneWithoutUserInput
     collaboration?: CollaborationCreateNestedOneWithoutUserInput
+    academics?: AcademicCreateNestedManyWithoutUserInput
+    experience?: ExperienceCreateNestedManyWithoutUserInput
     ParticipantA?: ConnectionCreateNestedManyWithoutParticipantAInput
     ParticipantB?: ConnectionCreateNestedManyWithoutParticipantBInput
     incomingConnections?: IncomingConnectionCreateNestedManyWithoutReceiverInput
@@ -21324,6 +24458,8 @@ export namespace Prisma {
     basicInfo?: BasicInfoUncheckedCreateNestedOneWithoutUserInput
     bioSummary?: BioSummaryUncheckedCreateNestedOneWithoutUserInput
     collaboration?: CollaborationUncheckedCreateNestedOneWithoutUserInput
+    academics?: AcademicUncheckedCreateNestedManyWithoutUserInput
+    experience?: ExperienceUncheckedCreateNestedManyWithoutUserInput
     ParticipantA?: ConnectionUncheckedCreateNestedManyWithoutParticipantAInput
     ParticipantB?: ConnectionUncheckedCreateNestedManyWithoutParticipantBInput
     incomingConnections?: IncomingConnectionUncheckedCreateNestedManyWithoutReceiverInput
@@ -21363,6 +24499,8 @@ export namespace Prisma {
     basicInfo?: BasicInfoUpdateOneWithoutUserNestedInput
     bioSummary?: BioSummaryUpdateOneWithoutUserNestedInput
     collaboration?: CollaborationUpdateOneWithoutUserNestedInput
+    academics?: AcademicUpdateManyWithoutUserNestedInput
+    experience?: ExperienceUpdateManyWithoutUserNestedInput
     ParticipantA?: ConnectionUpdateManyWithoutParticipantANestedInput
     ParticipantB?: ConnectionUpdateManyWithoutParticipantBNestedInput
     incomingConnections?: IncomingConnectionUpdateManyWithoutReceiverNestedInput
@@ -21387,6 +24525,8 @@ export namespace Prisma {
     basicInfo?: BasicInfoUncheckedUpdateOneWithoutUserNestedInput
     bioSummary?: BioSummaryUncheckedUpdateOneWithoutUserNestedInput
     collaboration?: CollaborationUncheckedUpdateOneWithoutUserNestedInput
+    academics?: AcademicUncheckedUpdateManyWithoutUserNestedInput
+    experience?: ExperienceUncheckedUpdateManyWithoutUserNestedInput
     ParticipantA?: ConnectionUncheckedUpdateManyWithoutParticipantANestedInput
     ParticipantB?: ConnectionUncheckedUpdateManyWithoutParticipantBNestedInput
     incomingConnections?: IncomingConnectionUncheckedUpdateManyWithoutReceiverNestedInput
@@ -21409,6 +24549,8 @@ export namespace Prisma {
     role?: $Enums.Role
     basicInfo?: BasicInfoCreateNestedOneWithoutUserInput
     collaboration?: CollaborationCreateNestedOneWithoutUserInput
+    academics?: AcademicCreateNestedManyWithoutUserInput
+    experience?: ExperienceCreateNestedManyWithoutUserInput
     ParticipantA?: ConnectionCreateNestedManyWithoutParticipantAInput
     ParticipantB?: ConnectionCreateNestedManyWithoutParticipantBInput
     incomingConnections?: IncomingConnectionCreateNestedManyWithoutReceiverInput
@@ -21433,6 +24575,8 @@ export namespace Prisma {
     role?: $Enums.Role
     basicInfo?: BasicInfoUncheckedCreateNestedOneWithoutUserInput
     collaboration?: CollaborationUncheckedCreateNestedOneWithoutUserInput
+    academics?: AcademicUncheckedCreateNestedManyWithoutUserInput
+    experience?: ExperienceUncheckedCreateNestedManyWithoutUserInput
     ParticipantA?: ConnectionUncheckedCreateNestedManyWithoutParticipantAInput
     ParticipantB?: ConnectionUncheckedCreateNestedManyWithoutParticipantBInput
     incomingConnections?: IncomingConnectionUncheckedCreateNestedManyWithoutReceiverInput
@@ -21472,6 +24616,8 @@ export namespace Prisma {
     role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
     basicInfo?: BasicInfoUpdateOneWithoutUserNestedInput
     collaboration?: CollaborationUpdateOneWithoutUserNestedInput
+    academics?: AcademicUpdateManyWithoutUserNestedInput
+    experience?: ExperienceUpdateManyWithoutUserNestedInput
     ParticipantA?: ConnectionUpdateManyWithoutParticipantANestedInput
     ParticipantB?: ConnectionUpdateManyWithoutParticipantBNestedInput
     incomingConnections?: IncomingConnectionUpdateManyWithoutReceiverNestedInput
@@ -21496,6 +24642,8 @@ export namespace Prisma {
     role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
     basicInfo?: BasicInfoUncheckedUpdateOneWithoutUserNestedInput
     collaboration?: CollaborationUncheckedUpdateOneWithoutUserNestedInput
+    academics?: AcademicUncheckedUpdateManyWithoutUserNestedInput
+    experience?: ExperienceUncheckedUpdateManyWithoutUserNestedInput
     ParticipantA?: ConnectionUncheckedUpdateManyWithoutParticipantANestedInput
     ParticipantB?: ConnectionUncheckedUpdateManyWithoutParticipantBNestedInput
     incomingConnections?: IncomingConnectionUncheckedUpdateManyWithoutReceiverNestedInput
@@ -21520,6 +24668,8 @@ export namespace Prisma {
     basicInfo?: BasicInfoCreateNestedOneWithoutUserInput
     bioSummary?: BioSummaryCreateNestedOneWithoutUserInput
     collaboration?: CollaborationCreateNestedOneWithoutUserInput
+    academics?: AcademicCreateNestedManyWithoutUserInput
+    experience?: ExperienceCreateNestedManyWithoutUserInput
     ParticipantA?: ConnectionCreateNestedManyWithoutParticipantAInput
     ParticipantB?: ConnectionCreateNestedManyWithoutParticipantBInput
     incomingConnections?: IncomingConnectionCreateNestedManyWithoutReceiverInput
@@ -21544,6 +24694,8 @@ export namespace Prisma {
     basicInfo?: BasicInfoUncheckedCreateNestedOneWithoutUserInput
     bioSummary?: BioSummaryUncheckedCreateNestedOneWithoutUserInput
     collaboration?: CollaborationUncheckedCreateNestedOneWithoutUserInput
+    academics?: AcademicUncheckedCreateNestedManyWithoutUserInput
+    experience?: ExperienceUncheckedCreateNestedManyWithoutUserInput
     ParticipantA?: ConnectionUncheckedCreateNestedManyWithoutParticipantAInput
     ParticipantB?: ConnectionUncheckedCreateNestedManyWithoutParticipantBInput
     incomingConnections?: IncomingConnectionUncheckedCreateNestedManyWithoutReceiverInput
@@ -21583,6 +24735,8 @@ export namespace Prisma {
     basicInfo?: BasicInfoUpdateOneWithoutUserNestedInput
     bioSummary?: BioSummaryUpdateOneWithoutUserNestedInput
     collaboration?: CollaborationUpdateOneWithoutUserNestedInput
+    academics?: AcademicUpdateManyWithoutUserNestedInput
+    experience?: ExperienceUpdateManyWithoutUserNestedInput
     ParticipantA?: ConnectionUpdateManyWithoutParticipantANestedInput
     ParticipantB?: ConnectionUpdateManyWithoutParticipantBNestedInput
     incomingConnections?: IncomingConnectionUpdateManyWithoutReceiverNestedInput
@@ -21607,6 +24761,8 @@ export namespace Prisma {
     basicInfo?: BasicInfoUncheckedUpdateOneWithoutUserNestedInput
     bioSummary?: BioSummaryUncheckedUpdateOneWithoutUserNestedInput
     collaboration?: CollaborationUncheckedUpdateOneWithoutUserNestedInput
+    academics?: AcademicUncheckedUpdateManyWithoutUserNestedInput
+    experience?: ExperienceUncheckedUpdateManyWithoutUserNestedInput
     ParticipantA?: ConnectionUncheckedUpdateManyWithoutParticipantANestedInput
     ParticipantB?: ConnectionUncheckedUpdateManyWithoutParticipantBNestedInput
     incomingConnections?: IncomingConnectionUncheckedUpdateManyWithoutReceiverNestedInput
@@ -21630,6 +24786,8 @@ export namespace Prisma {
     basicInfo?: BasicInfoCreateNestedOneWithoutUserInput
     bioSummary?: BioSummaryCreateNestedOneWithoutUserInput
     collaboration?: CollaborationCreateNestedOneWithoutUserInput
+    academics?: AcademicCreateNestedManyWithoutUserInput
+    experience?: ExperienceCreateNestedManyWithoutUserInput
     ParticipantA?: ConnectionCreateNestedManyWithoutParticipantAInput
     ParticipantB?: ConnectionCreateNestedManyWithoutParticipantBInput
     incomingConnections?: IncomingConnectionCreateNestedManyWithoutReceiverInput
@@ -21654,6 +24812,8 @@ export namespace Prisma {
     basicInfo?: BasicInfoUncheckedCreateNestedOneWithoutUserInput
     bioSummary?: BioSummaryUncheckedCreateNestedOneWithoutUserInput
     collaboration?: CollaborationUncheckedCreateNestedOneWithoutUserInput
+    academics?: AcademicUncheckedCreateNestedManyWithoutUserInput
+    experience?: ExperienceUncheckedCreateNestedManyWithoutUserInput
     ParticipantA?: ConnectionUncheckedCreateNestedManyWithoutParticipantAInput
     ParticipantB?: ConnectionUncheckedCreateNestedManyWithoutParticipantBInput
     incomingConnections?: IncomingConnectionUncheckedCreateNestedManyWithoutReceiverInput
@@ -21693,6 +24853,8 @@ export namespace Prisma {
     basicInfo?: BasicInfoUpdateOneWithoutUserNestedInput
     bioSummary?: BioSummaryUpdateOneWithoutUserNestedInput
     collaboration?: CollaborationUpdateOneWithoutUserNestedInput
+    academics?: AcademicUpdateManyWithoutUserNestedInput
+    experience?: ExperienceUpdateManyWithoutUserNestedInput
     ParticipantA?: ConnectionUpdateManyWithoutParticipantANestedInput
     ParticipantB?: ConnectionUpdateManyWithoutParticipantBNestedInput
     incomingConnections?: IncomingConnectionUpdateManyWithoutReceiverNestedInput
@@ -21717,6 +24879,8 @@ export namespace Prisma {
     basicInfo?: BasicInfoUncheckedUpdateOneWithoutUserNestedInput
     bioSummary?: BioSummaryUncheckedUpdateOneWithoutUserNestedInput
     collaboration?: CollaborationUncheckedUpdateOneWithoutUserNestedInput
+    academics?: AcademicUncheckedUpdateManyWithoutUserNestedInput
+    experience?: ExperienceUncheckedUpdateManyWithoutUserNestedInput
     ParticipantA?: ConnectionUncheckedUpdateManyWithoutParticipantANestedInput
     ParticipantB?: ConnectionUncheckedUpdateManyWithoutParticipantBNestedInput
     incomingConnections?: IncomingConnectionUncheckedUpdateManyWithoutReceiverNestedInput
@@ -21739,6 +24903,8 @@ export namespace Prisma {
     role?: $Enums.Role
     basicInfo?: BasicInfoCreateNestedOneWithoutUserInput
     bioSummary?: BioSummaryCreateNestedOneWithoutUserInput
+    academics?: AcademicCreateNestedManyWithoutUserInput
+    experience?: ExperienceCreateNestedManyWithoutUserInput
     ParticipantA?: ConnectionCreateNestedManyWithoutParticipantAInput
     ParticipantB?: ConnectionCreateNestedManyWithoutParticipantBInput
     incomingConnections?: IncomingConnectionCreateNestedManyWithoutReceiverInput
@@ -21763,6 +24929,8 @@ export namespace Prisma {
     role?: $Enums.Role
     basicInfo?: BasicInfoUncheckedCreateNestedOneWithoutUserInput
     bioSummary?: BioSummaryUncheckedCreateNestedOneWithoutUserInput
+    academics?: AcademicUncheckedCreateNestedManyWithoutUserInput
+    experience?: ExperienceUncheckedCreateNestedManyWithoutUserInput
     ParticipantA?: ConnectionUncheckedCreateNestedManyWithoutParticipantAInput
     ParticipantB?: ConnectionUncheckedCreateNestedManyWithoutParticipantBInput
     incomingConnections?: IncomingConnectionUncheckedCreateNestedManyWithoutReceiverInput
@@ -21802,6 +24970,8 @@ export namespace Prisma {
     role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
     basicInfo?: BasicInfoUpdateOneWithoutUserNestedInput
     bioSummary?: BioSummaryUpdateOneWithoutUserNestedInput
+    academics?: AcademicUpdateManyWithoutUserNestedInput
+    experience?: ExperienceUpdateManyWithoutUserNestedInput
     ParticipantA?: ConnectionUpdateManyWithoutParticipantANestedInput
     ParticipantB?: ConnectionUpdateManyWithoutParticipantBNestedInput
     incomingConnections?: IncomingConnectionUpdateManyWithoutReceiverNestedInput
@@ -21826,6 +24996,8 @@ export namespace Prisma {
     role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
     basicInfo?: BasicInfoUncheckedUpdateOneWithoutUserNestedInput
     bioSummary?: BioSummaryUncheckedUpdateOneWithoutUserNestedInput
+    academics?: AcademicUncheckedUpdateManyWithoutUserNestedInput
+    experience?: ExperienceUncheckedUpdateManyWithoutUserNestedInput
     ParticipantA?: ConnectionUncheckedUpdateManyWithoutParticipantANestedInput
     ParticipantB?: ConnectionUncheckedUpdateManyWithoutParticipantBNestedInput
     incomingConnections?: IncomingConnectionUncheckedUpdateManyWithoutReceiverNestedInput
@@ -21850,6 +25022,8 @@ export namespace Prisma {
     basicInfo?: BasicInfoCreateNestedOneWithoutUserInput
     bioSummary?: BioSummaryCreateNestedOneWithoutUserInput
     collaboration?: CollaborationCreateNestedOneWithoutUserInput
+    academics?: AcademicCreateNestedManyWithoutUserInput
+    experience?: ExperienceCreateNestedManyWithoutUserInput
     ParticipantA?: ConnectionCreateNestedManyWithoutParticipantAInput
     ParticipantB?: ConnectionCreateNestedManyWithoutParticipantBInput
     incomingConnections?: IncomingConnectionCreateNestedManyWithoutReceiverInput
@@ -21874,6 +25048,8 @@ export namespace Prisma {
     basicInfo?: BasicInfoUncheckedCreateNestedOneWithoutUserInput
     bioSummary?: BioSummaryUncheckedCreateNestedOneWithoutUserInput
     collaboration?: CollaborationUncheckedCreateNestedOneWithoutUserInput
+    academics?: AcademicUncheckedCreateNestedManyWithoutUserInput
+    experience?: ExperienceUncheckedCreateNestedManyWithoutUserInput
     ParticipantA?: ConnectionUncheckedCreateNestedManyWithoutParticipantAInput
     ParticipantB?: ConnectionUncheckedCreateNestedManyWithoutParticipantBInput
     incomingConnections?: IncomingConnectionUncheckedCreateNestedManyWithoutReceiverInput
@@ -21913,6 +25089,8 @@ export namespace Prisma {
     basicInfo?: BasicInfoUpdateOneWithoutUserNestedInput
     bioSummary?: BioSummaryUpdateOneWithoutUserNestedInput
     collaboration?: CollaborationUpdateOneWithoutUserNestedInput
+    academics?: AcademicUpdateManyWithoutUserNestedInput
+    experience?: ExperienceUpdateManyWithoutUserNestedInput
     ParticipantA?: ConnectionUpdateManyWithoutParticipantANestedInput
     ParticipantB?: ConnectionUpdateManyWithoutParticipantBNestedInput
     incomingConnections?: IncomingConnectionUpdateManyWithoutReceiverNestedInput
@@ -21937,6 +25115,8 @@ export namespace Prisma {
     basicInfo?: BasicInfoUncheckedUpdateOneWithoutUserNestedInput
     bioSummary?: BioSummaryUncheckedUpdateOneWithoutUserNestedInput
     collaboration?: CollaborationUncheckedUpdateOneWithoutUserNestedInput
+    academics?: AcademicUncheckedUpdateManyWithoutUserNestedInput
+    experience?: ExperienceUncheckedUpdateManyWithoutUserNestedInput
     ParticipantA?: ConnectionUncheckedUpdateManyWithoutParticipantANestedInput
     ParticipantB?: ConnectionUncheckedUpdateManyWithoutParticipantBNestedInput
     incomingConnections?: IncomingConnectionUncheckedUpdateManyWithoutReceiverNestedInput
@@ -21978,6 +25158,8 @@ export namespace Prisma {
     basicInfo?: BasicInfoCreateNestedOneWithoutUserInput
     bioSummary?: BioSummaryCreateNestedOneWithoutUserInput
     collaboration?: CollaborationCreateNestedOneWithoutUserInput
+    academics?: AcademicCreateNestedManyWithoutUserInput
+    experience?: ExperienceCreateNestedManyWithoutUserInput
     ParticipantA?: ConnectionCreateNestedManyWithoutParticipantAInput
     ParticipantB?: ConnectionCreateNestedManyWithoutParticipantBInput
     incomingConnections?: IncomingConnectionCreateNestedManyWithoutReceiverInput
@@ -22002,6 +25184,8 @@ export namespace Prisma {
     basicInfo?: BasicInfoUncheckedCreateNestedOneWithoutUserInput
     bioSummary?: BioSummaryUncheckedCreateNestedOneWithoutUserInput
     collaboration?: CollaborationUncheckedCreateNestedOneWithoutUserInput
+    academics?: AcademicUncheckedCreateNestedManyWithoutUserInput
+    experience?: ExperienceUncheckedCreateNestedManyWithoutUserInput
     ParticipantA?: ConnectionUncheckedCreateNestedManyWithoutParticipantAInput
     ParticipantB?: ConnectionUncheckedCreateNestedManyWithoutParticipantBInput
     incomingConnections?: IncomingConnectionUncheckedCreateNestedManyWithoutReceiverInput
@@ -22065,6 +25249,8 @@ export namespace Prisma {
     basicInfo?: BasicInfoUpdateOneWithoutUserNestedInput
     bioSummary?: BioSummaryUpdateOneWithoutUserNestedInput
     collaboration?: CollaborationUpdateOneWithoutUserNestedInput
+    academics?: AcademicUpdateManyWithoutUserNestedInput
+    experience?: ExperienceUpdateManyWithoutUserNestedInput
     ParticipantA?: ConnectionUpdateManyWithoutParticipantANestedInput
     ParticipantB?: ConnectionUpdateManyWithoutParticipantBNestedInput
     incomingConnections?: IncomingConnectionUpdateManyWithoutReceiverNestedInput
@@ -22089,6 +25275,8 @@ export namespace Prisma {
     basicInfo?: BasicInfoUncheckedUpdateOneWithoutUserNestedInput
     bioSummary?: BioSummaryUncheckedUpdateOneWithoutUserNestedInput
     collaboration?: CollaborationUncheckedUpdateOneWithoutUserNestedInput
+    academics?: AcademicUncheckedUpdateManyWithoutUserNestedInput
+    experience?: ExperienceUncheckedUpdateManyWithoutUserNestedInput
     ParticipantA?: ConnectionUncheckedUpdateManyWithoutParticipantANestedInput
     ParticipantB?: ConnectionUncheckedUpdateManyWithoutParticipantBNestedInput
     incomingConnections?: IncomingConnectionUncheckedUpdateManyWithoutReceiverNestedInput
@@ -22162,6 +25350,8 @@ export namespace Prisma {
     basicInfo?: BasicInfoCreateNestedOneWithoutUserInput
     bioSummary?: BioSummaryCreateNestedOneWithoutUserInput
     collaboration?: CollaborationCreateNestedOneWithoutUserInput
+    academics?: AcademicCreateNestedManyWithoutUserInput
+    experience?: ExperienceCreateNestedManyWithoutUserInput
     ParticipantA?: ConnectionCreateNestedManyWithoutParticipantAInput
     ParticipantB?: ConnectionCreateNestedManyWithoutParticipantBInput
     sentIncomingConnections?: IncomingConnectionCreateNestedManyWithoutSenderInput
@@ -22186,6 +25376,8 @@ export namespace Prisma {
     basicInfo?: BasicInfoUncheckedCreateNestedOneWithoutUserInput
     bioSummary?: BioSummaryUncheckedCreateNestedOneWithoutUserInput
     collaboration?: CollaborationUncheckedCreateNestedOneWithoutUserInput
+    academics?: AcademicUncheckedCreateNestedManyWithoutUserInput
+    experience?: ExperienceUncheckedCreateNestedManyWithoutUserInput
     ParticipantA?: ConnectionUncheckedCreateNestedManyWithoutParticipantAInput
     ParticipantB?: ConnectionUncheckedCreateNestedManyWithoutParticipantBInput
     sentIncomingConnections?: IncomingConnectionUncheckedCreateNestedManyWithoutSenderInput
@@ -22214,6 +25406,8 @@ export namespace Prisma {
     basicInfo?: BasicInfoCreateNestedOneWithoutUserInput
     bioSummary?: BioSummaryCreateNestedOneWithoutUserInput
     collaboration?: CollaborationCreateNestedOneWithoutUserInput
+    academics?: AcademicCreateNestedManyWithoutUserInput
+    experience?: ExperienceCreateNestedManyWithoutUserInput
     ParticipantA?: ConnectionCreateNestedManyWithoutParticipantAInput
     ParticipantB?: ConnectionCreateNestedManyWithoutParticipantBInput
     incomingConnections?: IncomingConnectionCreateNestedManyWithoutReceiverInput
@@ -22238,6 +25432,8 @@ export namespace Prisma {
     basicInfo?: BasicInfoUncheckedCreateNestedOneWithoutUserInput
     bioSummary?: BioSummaryUncheckedCreateNestedOneWithoutUserInput
     collaboration?: CollaborationUncheckedCreateNestedOneWithoutUserInput
+    academics?: AcademicUncheckedCreateNestedManyWithoutUserInput
+    experience?: ExperienceUncheckedCreateNestedManyWithoutUserInput
     ParticipantA?: ConnectionUncheckedCreateNestedManyWithoutParticipantAInput
     ParticipantB?: ConnectionUncheckedCreateNestedManyWithoutParticipantBInput
     incomingConnections?: IncomingConnectionUncheckedCreateNestedManyWithoutReceiverInput
@@ -22277,6 +25473,8 @@ export namespace Prisma {
     basicInfo?: BasicInfoUpdateOneWithoutUserNestedInput
     bioSummary?: BioSummaryUpdateOneWithoutUserNestedInput
     collaboration?: CollaborationUpdateOneWithoutUserNestedInput
+    academics?: AcademicUpdateManyWithoutUserNestedInput
+    experience?: ExperienceUpdateManyWithoutUserNestedInput
     ParticipantA?: ConnectionUpdateManyWithoutParticipantANestedInput
     ParticipantB?: ConnectionUpdateManyWithoutParticipantBNestedInput
     sentIncomingConnections?: IncomingConnectionUpdateManyWithoutSenderNestedInput
@@ -22301,6 +25499,8 @@ export namespace Prisma {
     basicInfo?: BasicInfoUncheckedUpdateOneWithoutUserNestedInput
     bioSummary?: BioSummaryUncheckedUpdateOneWithoutUserNestedInput
     collaboration?: CollaborationUncheckedUpdateOneWithoutUserNestedInput
+    academics?: AcademicUncheckedUpdateManyWithoutUserNestedInput
+    experience?: ExperienceUncheckedUpdateManyWithoutUserNestedInput
     ParticipantA?: ConnectionUncheckedUpdateManyWithoutParticipantANestedInput
     ParticipantB?: ConnectionUncheckedUpdateManyWithoutParticipantBNestedInput
     sentIncomingConnections?: IncomingConnectionUncheckedUpdateManyWithoutSenderNestedInput
@@ -22335,6 +25535,8 @@ export namespace Prisma {
     basicInfo?: BasicInfoUpdateOneWithoutUserNestedInput
     bioSummary?: BioSummaryUpdateOneWithoutUserNestedInput
     collaboration?: CollaborationUpdateOneWithoutUserNestedInput
+    academics?: AcademicUpdateManyWithoutUserNestedInput
+    experience?: ExperienceUpdateManyWithoutUserNestedInput
     ParticipantA?: ConnectionUpdateManyWithoutParticipantANestedInput
     ParticipantB?: ConnectionUpdateManyWithoutParticipantBNestedInput
     incomingConnections?: IncomingConnectionUpdateManyWithoutReceiverNestedInput
@@ -22359,6 +25561,8 @@ export namespace Prisma {
     basicInfo?: BasicInfoUncheckedUpdateOneWithoutUserNestedInput
     bioSummary?: BioSummaryUncheckedUpdateOneWithoutUserNestedInput
     collaboration?: CollaborationUncheckedUpdateOneWithoutUserNestedInput
+    academics?: AcademicUncheckedUpdateManyWithoutUserNestedInput
+    experience?: ExperienceUncheckedUpdateManyWithoutUserNestedInput
     ParticipantA?: ConnectionUncheckedUpdateManyWithoutParticipantANestedInput
     ParticipantB?: ConnectionUncheckedUpdateManyWithoutParticipantBNestedInput
     incomingConnections?: IncomingConnectionUncheckedUpdateManyWithoutReceiverNestedInput
@@ -22382,6 +25586,8 @@ export namespace Prisma {
     basicInfo?: BasicInfoCreateNestedOneWithoutUserInput
     bioSummary?: BioSummaryCreateNestedOneWithoutUserInput
     collaboration?: CollaborationCreateNestedOneWithoutUserInput
+    academics?: AcademicCreateNestedManyWithoutUserInput
+    experience?: ExperienceCreateNestedManyWithoutUserInput
     ParticipantA?: ConnectionCreateNestedManyWithoutParticipantAInput
     ParticipantB?: ConnectionCreateNestedManyWithoutParticipantBInput
     incomingConnections?: IncomingConnectionCreateNestedManyWithoutReceiverInput
@@ -22406,6 +25612,8 @@ export namespace Prisma {
     basicInfo?: BasicInfoUncheckedCreateNestedOneWithoutUserInput
     bioSummary?: BioSummaryUncheckedCreateNestedOneWithoutUserInput
     collaboration?: CollaborationUncheckedCreateNestedOneWithoutUserInput
+    academics?: AcademicUncheckedCreateNestedManyWithoutUserInput
+    experience?: ExperienceUncheckedCreateNestedManyWithoutUserInput
     ParticipantA?: ConnectionUncheckedCreateNestedManyWithoutParticipantAInput
     ParticipantB?: ConnectionUncheckedCreateNestedManyWithoutParticipantBInput
     incomingConnections?: IncomingConnectionUncheckedCreateNestedManyWithoutReceiverInput
@@ -22434,6 +25642,8 @@ export namespace Prisma {
     basicInfo?: BasicInfoCreateNestedOneWithoutUserInput
     bioSummary?: BioSummaryCreateNestedOneWithoutUserInput
     collaboration?: CollaborationCreateNestedOneWithoutUserInput
+    academics?: AcademicCreateNestedManyWithoutUserInput
+    experience?: ExperienceCreateNestedManyWithoutUserInput
     ParticipantA?: ConnectionCreateNestedManyWithoutParticipantAInput
     ParticipantB?: ConnectionCreateNestedManyWithoutParticipantBInput
     incomingConnections?: IncomingConnectionCreateNestedManyWithoutReceiverInput
@@ -22458,6 +25668,8 @@ export namespace Prisma {
     basicInfo?: BasicInfoUncheckedCreateNestedOneWithoutUserInput
     bioSummary?: BioSummaryUncheckedCreateNestedOneWithoutUserInput
     collaboration?: CollaborationUncheckedCreateNestedOneWithoutUserInput
+    academics?: AcademicUncheckedCreateNestedManyWithoutUserInput
+    experience?: ExperienceUncheckedCreateNestedManyWithoutUserInput
     ParticipantA?: ConnectionUncheckedCreateNestedManyWithoutParticipantAInput
     ParticipantB?: ConnectionUncheckedCreateNestedManyWithoutParticipantBInput
     incomingConnections?: IncomingConnectionUncheckedCreateNestedManyWithoutReceiverInput
@@ -22497,6 +25709,8 @@ export namespace Prisma {
     basicInfo?: BasicInfoUpdateOneWithoutUserNestedInput
     bioSummary?: BioSummaryUpdateOneWithoutUserNestedInput
     collaboration?: CollaborationUpdateOneWithoutUserNestedInput
+    academics?: AcademicUpdateManyWithoutUserNestedInput
+    experience?: ExperienceUpdateManyWithoutUserNestedInput
     ParticipantA?: ConnectionUpdateManyWithoutParticipantANestedInput
     ParticipantB?: ConnectionUpdateManyWithoutParticipantBNestedInput
     incomingConnections?: IncomingConnectionUpdateManyWithoutReceiverNestedInput
@@ -22521,6 +25735,8 @@ export namespace Prisma {
     basicInfo?: BasicInfoUncheckedUpdateOneWithoutUserNestedInput
     bioSummary?: BioSummaryUncheckedUpdateOneWithoutUserNestedInput
     collaboration?: CollaborationUncheckedUpdateOneWithoutUserNestedInput
+    academics?: AcademicUncheckedUpdateManyWithoutUserNestedInput
+    experience?: ExperienceUncheckedUpdateManyWithoutUserNestedInput
     ParticipantA?: ConnectionUncheckedUpdateManyWithoutParticipantANestedInput
     ParticipantB?: ConnectionUncheckedUpdateManyWithoutParticipantBNestedInput
     incomingConnections?: IncomingConnectionUncheckedUpdateManyWithoutReceiverNestedInput
@@ -22555,6 +25771,8 @@ export namespace Prisma {
     basicInfo?: BasicInfoUpdateOneWithoutUserNestedInput
     bioSummary?: BioSummaryUpdateOneWithoutUserNestedInput
     collaboration?: CollaborationUpdateOneWithoutUserNestedInput
+    academics?: AcademicUpdateManyWithoutUserNestedInput
+    experience?: ExperienceUpdateManyWithoutUserNestedInput
     ParticipantA?: ConnectionUpdateManyWithoutParticipantANestedInput
     ParticipantB?: ConnectionUpdateManyWithoutParticipantBNestedInput
     incomingConnections?: IncomingConnectionUpdateManyWithoutReceiverNestedInput
@@ -22579,6 +25797,8 @@ export namespace Prisma {
     basicInfo?: BasicInfoUncheckedUpdateOneWithoutUserNestedInput
     bioSummary?: BioSummaryUncheckedUpdateOneWithoutUserNestedInput
     collaboration?: CollaborationUncheckedUpdateOneWithoutUserNestedInput
+    academics?: AcademicUncheckedUpdateManyWithoutUserNestedInput
+    experience?: ExperienceUncheckedUpdateManyWithoutUserNestedInput
     ParticipantA?: ConnectionUncheckedUpdateManyWithoutParticipantANestedInput
     ParticipantB?: ConnectionUncheckedUpdateManyWithoutParticipantBNestedInput
     incomingConnections?: IncomingConnectionUncheckedUpdateManyWithoutReceiverNestedInput
@@ -22602,6 +25822,8 @@ export namespace Prisma {
     basicInfo?: BasicInfoCreateNestedOneWithoutUserInput
     bioSummary?: BioSummaryCreateNestedOneWithoutUserInput
     collaboration?: CollaborationCreateNestedOneWithoutUserInput
+    academics?: AcademicCreateNestedManyWithoutUserInput
+    experience?: ExperienceCreateNestedManyWithoutUserInput
     ParticipantB?: ConnectionCreateNestedManyWithoutParticipantBInput
     incomingConnections?: IncomingConnectionCreateNestedManyWithoutReceiverInput
     sentIncomingConnections?: IncomingConnectionCreateNestedManyWithoutSenderInput
@@ -22626,6 +25848,8 @@ export namespace Prisma {
     basicInfo?: BasicInfoUncheckedCreateNestedOneWithoutUserInput
     bioSummary?: BioSummaryUncheckedCreateNestedOneWithoutUserInput
     collaboration?: CollaborationUncheckedCreateNestedOneWithoutUserInput
+    academics?: AcademicUncheckedCreateNestedManyWithoutUserInput
+    experience?: ExperienceUncheckedCreateNestedManyWithoutUserInput
     ParticipantB?: ConnectionUncheckedCreateNestedManyWithoutParticipantBInput
     incomingConnections?: IncomingConnectionUncheckedCreateNestedManyWithoutReceiverInput
     sentIncomingConnections?: IncomingConnectionUncheckedCreateNestedManyWithoutSenderInput
@@ -22654,6 +25878,8 @@ export namespace Prisma {
     basicInfo?: BasicInfoCreateNestedOneWithoutUserInput
     bioSummary?: BioSummaryCreateNestedOneWithoutUserInput
     collaboration?: CollaborationCreateNestedOneWithoutUserInput
+    academics?: AcademicCreateNestedManyWithoutUserInput
+    experience?: ExperienceCreateNestedManyWithoutUserInput
     ParticipantA?: ConnectionCreateNestedManyWithoutParticipantAInput
     incomingConnections?: IncomingConnectionCreateNestedManyWithoutReceiverInput
     sentIncomingConnections?: IncomingConnectionCreateNestedManyWithoutSenderInput
@@ -22678,6 +25904,8 @@ export namespace Prisma {
     basicInfo?: BasicInfoUncheckedCreateNestedOneWithoutUserInput
     bioSummary?: BioSummaryUncheckedCreateNestedOneWithoutUserInput
     collaboration?: CollaborationUncheckedCreateNestedOneWithoutUserInput
+    academics?: AcademicUncheckedCreateNestedManyWithoutUserInput
+    experience?: ExperienceUncheckedCreateNestedManyWithoutUserInput
     ParticipantA?: ConnectionUncheckedCreateNestedManyWithoutParticipantAInput
     incomingConnections?: IncomingConnectionUncheckedCreateNestedManyWithoutReceiverInput
     sentIncomingConnections?: IncomingConnectionUncheckedCreateNestedManyWithoutSenderInput
@@ -22717,6 +25945,8 @@ export namespace Prisma {
     basicInfo?: BasicInfoUpdateOneWithoutUserNestedInput
     bioSummary?: BioSummaryUpdateOneWithoutUserNestedInput
     collaboration?: CollaborationUpdateOneWithoutUserNestedInput
+    academics?: AcademicUpdateManyWithoutUserNestedInput
+    experience?: ExperienceUpdateManyWithoutUserNestedInput
     ParticipantB?: ConnectionUpdateManyWithoutParticipantBNestedInput
     incomingConnections?: IncomingConnectionUpdateManyWithoutReceiverNestedInput
     sentIncomingConnections?: IncomingConnectionUpdateManyWithoutSenderNestedInput
@@ -22741,6 +25971,8 @@ export namespace Prisma {
     basicInfo?: BasicInfoUncheckedUpdateOneWithoutUserNestedInput
     bioSummary?: BioSummaryUncheckedUpdateOneWithoutUserNestedInput
     collaboration?: CollaborationUncheckedUpdateOneWithoutUserNestedInput
+    academics?: AcademicUncheckedUpdateManyWithoutUserNestedInput
+    experience?: ExperienceUncheckedUpdateManyWithoutUserNestedInput
     ParticipantB?: ConnectionUncheckedUpdateManyWithoutParticipantBNestedInput
     incomingConnections?: IncomingConnectionUncheckedUpdateManyWithoutReceiverNestedInput
     sentIncomingConnections?: IncomingConnectionUncheckedUpdateManyWithoutSenderNestedInput
@@ -22775,6 +26007,8 @@ export namespace Prisma {
     basicInfo?: BasicInfoUpdateOneWithoutUserNestedInput
     bioSummary?: BioSummaryUpdateOneWithoutUserNestedInput
     collaboration?: CollaborationUpdateOneWithoutUserNestedInput
+    academics?: AcademicUpdateManyWithoutUserNestedInput
+    experience?: ExperienceUpdateManyWithoutUserNestedInput
     ParticipantA?: ConnectionUpdateManyWithoutParticipantANestedInput
     incomingConnections?: IncomingConnectionUpdateManyWithoutReceiverNestedInput
     sentIncomingConnections?: IncomingConnectionUpdateManyWithoutSenderNestedInput
@@ -22799,6 +26033,8 @@ export namespace Prisma {
     basicInfo?: BasicInfoUncheckedUpdateOneWithoutUserNestedInput
     bioSummary?: BioSummaryUncheckedUpdateOneWithoutUserNestedInput
     collaboration?: CollaborationUncheckedUpdateOneWithoutUserNestedInput
+    academics?: AcademicUncheckedUpdateManyWithoutUserNestedInput
+    experience?: ExperienceUncheckedUpdateManyWithoutUserNestedInput
     ParticipantA?: ConnectionUncheckedUpdateManyWithoutParticipantANestedInput
     incomingConnections?: IncomingConnectionUncheckedUpdateManyWithoutReceiverNestedInput
     sentIncomingConnections?: IncomingConnectionUncheckedUpdateManyWithoutSenderNestedInput
@@ -22809,6 +26045,259 @@ export namespace Prisma {
     showcase?: ShowcaseUncheckedUpdateOneWithoutUserNestedInput
     technicalProfile?: TechnicalProfileUncheckedUpdateOneWithoutUserNestedInput
     visuals?: VisualsUncheckedUpdateOneWithoutUserNestedInput
+  }
+
+  export type UserCreateWithoutAcademicsInput = {
+    email: string
+    createdAt?: Date | string
+    isEmailVerified?: boolean
+    otp?: string | null
+    otpExpiry?: Date | string | null
+    password: string
+    role?: $Enums.Role
+    basicInfo?: BasicInfoCreateNestedOneWithoutUserInput
+    bioSummary?: BioSummaryCreateNestedOneWithoutUserInput
+    collaboration?: CollaborationCreateNestedOneWithoutUserInput
+    experience?: ExperienceCreateNestedManyWithoutUserInput
+    ParticipantA?: ConnectionCreateNestedManyWithoutParticipantAInput
+    ParticipantB?: ConnectionCreateNestedManyWithoutParticipantBInput
+    incomingConnections?: IncomingConnectionCreateNestedManyWithoutReceiverInput
+    sentIncomingConnections?: IncomingConnectionCreateNestedManyWithoutSenderInput
+    ReceiveoutgoingConnections?: OutgoingConnectionCreateNestedManyWithoutSenderInput
+    outgoingConnections?: OutgoingConnectionCreateNestedManyWithoutReceiverInput
+    posts?: PostCreateNestedManyWithoutUserInput
+    projects?: ProjectCreateNestedManyWithoutUserInput
+    showcase?: ShowcaseCreateNestedOneWithoutUserInput
+    technicalProfile?: TechnicalProfileCreateNestedOneWithoutUserInput
+    visuals?: VisualsCreateNestedOneWithoutUserInput
+  }
+
+  export type UserUncheckedCreateWithoutAcademicsInput = {
+    id?: number
+    email: string
+    createdAt?: Date | string
+    isEmailVerified?: boolean
+    otp?: string | null
+    otpExpiry?: Date | string | null
+    password: string
+    role?: $Enums.Role
+    basicInfo?: BasicInfoUncheckedCreateNestedOneWithoutUserInput
+    bioSummary?: BioSummaryUncheckedCreateNestedOneWithoutUserInput
+    collaboration?: CollaborationUncheckedCreateNestedOneWithoutUserInput
+    experience?: ExperienceUncheckedCreateNestedManyWithoutUserInput
+    ParticipantA?: ConnectionUncheckedCreateNestedManyWithoutParticipantAInput
+    ParticipantB?: ConnectionUncheckedCreateNestedManyWithoutParticipantBInput
+    incomingConnections?: IncomingConnectionUncheckedCreateNestedManyWithoutReceiverInput
+    sentIncomingConnections?: IncomingConnectionUncheckedCreateNestedManyWithoutSenderInput
+    ReceiveoutgoingConnections?: OutgoingConnectionUncheckedCreateNestedManyWithoutSenderInput
+    outgoingConnections?: OutgoingConnectionUncheckedCreateNestedManyWithoutReceiverInput
+    posts?: PostUncheckedCreateNestedManyWithoutUserInput
+    projects?: ProjectUncheckedCreateNestedManyWithoutUserInput
+    showcase?: ShowcaseUncheckedCreateNestedOneWithoutUserInput
+    technicalProfile?: TechnicalProfileUncheckedCreateNestedOneWithoutUserInput
+    visuals?: VisualsUncheckedCreateNestedOneWithoutUserInput
+  }
+
+  export type UserCreateOrConnectWithoutAcademicsInput = {
+    where: UserWhereUniqueInput
+    create: XOR<UserCreateWithoutAcademicsInput, UserUncheckedCreateWithoutAcademicsInput>
+  }
+
+  export type UserUpsertWithoutAcademicsInput = {
+    update: XOR<UserUpdateWithoutAcademicsInput, UserUncheckedUpdateWithoutAcademicsInput>
+    create: XOR<UserCreateWithoutAcademicsInput, UserUncheckedCreateWithoutAcademicsInput>
+    where?: UserWhereInput
+  }
+
+  export type UserUpdateToOneWithWhereWithoutAcademicsInput = {
+    where?: UserWhereInput
+    data: XOR<UserUpdateWithoutAcademicsInput, UserUncheckedUpdateWithoutAcademicsInput>
+  }
+
+  export type UserUpdateWithoutAcademicsInput = {
+    email?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    isEmailVerified?: BoolFieldUpdateOperationsInput | boolean
+    otp?: NullableStringFieldUpdateOperationsInput | string | null
+    otpExpiry?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    password?: StringFieldUpdateOperationsInput | string
+    role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
+    basicInfo?: BasicInfoUpdateOneWithoutUserNestedInput
+    bioSummary?: BioSummaryUpdateOneWithoutUserNestedInput
+    collaboration?: CollaborationUpdateOneWithoutUserNestedInput
+    experience?: ExperienceUpdateManyWithoutUserNestedInput
+    ParticipantA?: ConnectionUpdateManyWithoutParticipantANestedInput
+    ParticipantB?: ConnectionUpdateManyWithoutParticipantBNestedInput
+    incomingConnections?: IncomingConnectionUpdateManyWithoutReceiverNestedInput
+    sentIncomingConnections?: IncomingConnectionUpdateManyWithoutSenderNestedInput
+    ReceiveoutgoingConnections?: OutgoingConnectionUpdateManyWithoutSenderNestedInput
+    outgoingConnections?: OutgoingConnectionUpdateManyWithoutReceiverNestedInput
+    posts?: PostUpdateManyWithoutUserNestedInput
+    projects?: ProjectUpdateManyWithoutUserNestedInput
+    showcase?: ShowcaseUpdateOneWithoutUserNestedInput
+    technicalProfile?: TechnicalProfileUpdateOneWithoutUserNestedInput
+    visuals?: VisualsUpdateOneWithoutUserNestedInput
+  }
+
+  export type UserUncheckedUpdateWithoutAcademicsInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    email?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    isEmailVerified?: BoolFieldUpdateOperationsInput | boolean
+    otp?: NullableStringFieldUpdateOperationsInput | string | null
+    otpExpiry?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    password?: StringFieldUpdateOperationsInput | string
+    role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
+    basicInfo?: BasicInfoUncheckedUpdateOneWithoutUserNestedInput
+    bioSummary?: BioSummaryUncheckedUpdateOneWithoutUserNestedInput
+    collaboration?: CollaborationUncheckedUpdateOneWithoutUserNestedInput
+    experience?: ExperienceUncheckedUpdateManyWithoutUserNestedInput
+    ParticipantA?: ConnectionUncheckedUpdateManyWithoutParticipantANestedInput
+    ParticipantB?: ConnectionUncheckedUpdateManyWithoutParticipantBNestedInput
+    incomingConnections?: IncomingConnectionUncheckedUpdateManyWithoutReceiverNestedInput
+    sentIncomingConnections?: IncomingConnectionUncheckedUpdateManyWithoutSenderNestedInput
+    ReceiveoutgoingConnections?: OutgoingConnectionUncheckedUpdateManyWithoutSenderNestedInput
+    outgoingConnections?: OutgoingConnectionUncheckedUpdateManyWithoutReceiverNestedInput
+    posts?: PostUncheckedUpdateManyWithoutUserNestedInput
+    projects?: ProjectUncheckedUpdateManyWithoutUserNestedInput
+    showcase?: ShowcaseUncheckedUpdateOneWithoutUserNestedInput
+    technicalProfile?: TechnicalProfileUncheckedUpdateOneWithoutUserNestedInput
+    visuals?: VisualsUncheckedUpdateOneWithoutUserNestedInput
+  }
+
+  export type UserCreateWithoutExperienceInput = {
+    email: string
+    createdAt?: Date | string
+    isEmailVerified?: boolean
+    otp?: string | null
+    otpExpiry?: Date | string | null
+    password: string
+    role?: $Enums.Role
+    basicInfo?: BasicInfoCreateNestedOneWithoutUserInput
+    bioSummary?: BioSummaryCreateNestedOneWithoutUserInput
+    collaboration?: CollaborationCreateNestedOneWithoutUserInput
+    academics?: AcademicCreateNestedManyWithoutUserInput
+    ParticipantA?: ConnectionCreateNestedManyWithoutParticipantAInput
+    ParticipantB?: ConnectionCreateNestedManyWithoutParticipantBInput
+    incomingConnections?: IncomingConnectionCreateNestedManyWithoutReceiverInput
+    sentIncomingConnections?: IncomingConnectionCreateNestedManyWithoutSenderInput
+    ReceiveoutgoingConnections?: OutgoingConnectionCreateNestedManyWithoutSenderInput
+    outgoingConnections?: OutgoingConnectionCreateNestedManyWithoutReceiverInput
+    posts?: PostCreateNestedManyWithoutUserInput
+    projects?: ProjectCreateNestedManyWithoutUserInput
+    showcase?: ShowcaseCreateNestedOneWithoutUserInput
+    technicalProfile?: TechnicalProfileCreateNestedOneWithoutUserInput
+    visuals?: VisualsCreateNestedOneWithoutUserInput
+  }
+
+  export type UserUncheckedCreateWithoutExperienceInput = {
+    id?: number
+    email: string
+    createdAt?: Date | string
+    isEmailVerified?: boolean
+    otp?: string | null
+    otpExpiry?: Date | string | null
+    password: string
+    role?: $Enums.Role
+    basicInfo?: BasicInfoUncheckedCreateNestedOneWithoutUserInput
+    bioSummary?: BioSummaryUncheckedCreateNestedOneWithoutUserInput
+    collaboration?: CollaborationUncheckedCreateNestedOneWithoutUserInput
+    academics?: AcademicUncheckedCreateNestedManyWithoutUserInput
+    ParticipantA?: ConnectionUncheckedCreateNestedManyWithoutParticipantAInput
+    ParticipantB?: ConnectionUncheckedCreateNestedManyWithoutParticipantBInput
+    incomingConnections?: IncomingConnectionUncheckedCreateNestedManyWithoutReceiverInput
+    sentIncomingConnections?: IncomingConnectionUncheckedCreateNestedManyWithoutSenderInput
+    ReceiveoutgoingConnections?: OutgoingConnectionUncheckedCreateNestedManyWithoutSenderInput
+    outgoingConnections?: OutgoingConnectionUncheckedCreateNestedManyWithoutReceiverInput
+    posts?: PostUncheckedCreateNestedManyWithoutUserInput
+    projects?: ProjectUncheckedCreateNestedManyWithoutUserInput
+    showcase?: ShowcaseUncheckedCreateNestedOneWithoutUserInput
+    technicalProfile?: TechnicalProfileUncheckedCreateNestedOneWithoutUserInput
+    visuals?: VisualsUncheckedCreateNestedOneWithoutUserInput
+  }
+
+  export type UserCreateOrConnectWithoutExperienceInput = {
+    where: UserWhereUniqueInput
+    create: XOR<UserCreateWithoutExperienceInput, UserUncheckedCreateWithoutExperienceInput>
+  }
+
+  export type UserUpsertWithoutExperienceInput = {
+    update: XOR<UserUpdateWithoutExperienceInput, UserUncheckedUpdateWithoutExperienceInput>
+    create: XOR<UserCreateWithoutExperienceInput, UserUncheckedCreateWithoutExperienceInput>
+    where?: UserWhereInput
+  }
+
+  export type UserUpdateToOneWithWhereWithoutExperienceInput = {
+    where?: UserWhereInput
+    data: XOR<UserUpdateWithoutExperienceInput, UserUncheckedUpdateWithoutExperienceInput>
+  }
+
+  export type UserUpdateWithoutExperienceInput = {
+    email?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    isEmailVerified?: BoolFieldUpdateOperationsInput | boolean
+    otp?: NullableStringFieldUpdateOperationsInput | string | null
+    otpExpiry?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    password?: StringFieldUpdateOperationsInput | string
+    role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
+    basicInfo?: BasicInfoUpdateOneWithoutUserNestedInput
+    bioSummary?: BioSummaryUpdateOneWithoutUserNestedInput
+    collaboration?: CollaborationUpdateOneWithoutUserNestedInput
+    academics?: AcademicUpdateManyWithoutUserNestedInput
+    ParticipantA?: ConnectionUpdateManyWithoutParticipantANestedInput
+    ParticipantB?: ConnectionUpdateManyWithoutParticipantBNestedInput
+    incomingConnections?: IncomingConnectionUpdateManyWithoutReceiverNestedInput
+    sentIncomingConnections?: IncomingConnectionUpdateManyWithoutSenderNestedInput
+    ReceiveoutgoingConnections?: OutgoingConnectionUpdateManyWithoutSenderNestedInput
+    outgoingConnections?: OutgoingConnectionUpdateManyWithoutReceiverNestedInput
+    posts?: PostUpdateManyWithoutUserNestedInput
+    projects?: ProjectUpdateManyWithoutUserNestedInput
+    showcase?: ShowcaseUpdateOneWithoutUserNestedInput
+    technicalProfile?: TechnicalProfileUpdateOneWithoutUserNestedInput
+    visuals?: VisualsUpdateOneWithoutUserNestedInput
+  }
+
+  export type UserUncheckedUpdateWithoutExperienceInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    email?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    isEmailVerified?: BoolFieldUpdateOperationsInput | boolean
+    otp?: NullableStringFieldUpdateOperationsInput | string | null
+    otpExpiry?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    password?: StringFieldUpdateOperationsInput | string
+    role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
+    basicInfo?: BasicInfoUncheckedUpdateOneWithoutUserNestedInput
+    bioSummary?: BioSummaryUncheckedUpdateOneWithoutUserNestedInput
+    collaboration?: CollaborationUncheckedUpdateOneWithoutUserNestedInput
+    academics?: AcademicUncheckedUpdateManyWithoutUserNestedInput
+    ParticipantA?: ConnectionUncheckedUpdateManyWithoutParticipantANestedInput
+    ParticipantB?: ConnectionUncheckedUpdateManyWithoutParticipantBNestedInput
+    incomingConnections?: IncomingConnectionUncheckedUpdateManyWithoutReceiverNestedInput
+    sentIncomingConnections?: IncomingConnectionUncheckedUpdateManyWithoutSenderNestedInput
+    ReceiveoutgoingConnections?: OutgoingConnectionUncheckedUpdateManyWithoutSenderNestedInput
+    outgoingConnections?: OutgoingConnectionUncheckedUpdateManyWithoutReceiverNestedInput
+    posts?: PostUncheckedUpdateManyWithoutUserNestedInput
+    projects?: ProjectUncheckedUpdateManyWithoutUserNestedInput
+    showcase?: ShowcaseUncheckedUpdateOneWithoutUserNestedInput
+    technicalProfile?: TechnicalProfileUncheckedUpdateOneWithoutUserNestedInput
+    visuals?: VisualsUncheckedUpdateOneWithoutUserNestedInput
+  }
+
+  export type AcademicCreateManyUserInput = {
+    id?: number
+    institute: string
+    degree: string
+    startYear: number
+    endYear?: number | null
+  }
+
+  export type ExperienceCreateManyUserInput = {
+    id?: number
+    title: string
+    company: string
+    jobDescription?: string | null
+    startDate: Date | string
+    endDate?: Date | string | null
   }
 
   export type ConnectionCreateManyParticipantAInput = {
@@ -22862,6 +26351,55 @@ export namespace Prisma {
     link?: string | null
     techUsed?: ProjectCreatetechUsedInput | string[]
     status?: $Enums.ProjectStatus
+  }
+
+  export type AcademicUpdateWithoutUserInput = {
+    institute?: StringFieldUpdateOperationsInput | string
+    degree?: StringFieldUpdateOperationsInput | string
+    startYear?: IntFieldUpdateOperationsInput | number
+    endYear?: NullableIntFieldUpdateOperationsInput | number | null
+  }
+
+  export type AcademicUncheckedUpdateWithoutUserInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    institute?: StringFieldUpdateOperationsInput | string
+    degree?: StringFieldUpdateOperationsInput | string
+    startYear?: IntFieldUpdateOperationsInput | number
+    endYear?: NullableIntFieldUpdateOperationsInput | number | null
+  }
+
+  export type AcademicUncheckedUpdateManyWithoutUserInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    institute?: StringFieldUpdateOperationsInput | string
+    degree?: StringFieldUpdateOperationsInput | string
+    startYear?: IntFieldUpdateOperationsInput | number
+    endYear?: NullableIntFieldUpdateOperationsInput | number | null
+  }
+
+  export type ExperienceUpdateWithoutUserInput = {
+    title?: StringFieldUpdateOperationsInput | string
+    company?: StringFieldUpdateOperationsInput | string
+    jobDescription?: NullableStringFieldUpdateOperationsInput | string | null
+    startDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    endDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  }
+
+  export type ExperienceUncheckedUpdateWithoutUserInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    title?: StringFieldUpdateOperationsInput | string
+    company?: StringFieldUpdateOperationsInput | string
+    jobDescription?: NullableStringFieldUpdateOperationsInput | string | null
+    startDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    endDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  }
+
+  export type ExperienceUncheckedUpdateManyWithoutUserInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    title?: StringFieldUpdateOperationsInput | string
+    company?: StringFieldUpdateOperationsInput | string
+    jobDescription?: NullableStringFieldUpdateOperationsInput | string | null
+    startDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    endDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   }
 
   export type ConnectionUpdateWithoutParticipantAInput = {

@@ -1,5 +1,6 @@
 import { Router } from 'express';
 import verifyToken from '../../../middlewares/authenticateToken.js';
+import { checkRole } from '../../../middlewares/roleMiddleware.js';
 import {
     createExperience,
     getExperiences,
@@ -12,16 +13,16 @@ const router = Router();
 // All routes are protected and require authentication
 router.use(verifyToken);
 
-// Create basic info
-router.post('/', createExperience);
+// Create experience - only users can create their own experiences
+router.post('/', checkRole(['USER', 'ADMIN']), createExperience);
 
-// Get basic info
-router.get('/', getExperiences);
+// Get experiences - both users and admins can view
+router.get('/', checkRole(['USER', 'ADMIN']), getExperiences);
 
-// Update basic info
-router.put('/:id', updateExperience);
+// Update experience - only users can update their own experiences
+router.put('/:id', checkRole(['USER', 'ADMIN']), updateExperience);
 
-// Delete basic info
-router.delete('/:id', deleteExperience);
+// Delete experience - only users can delete their own experiences
+router.delete('/:id', checkRole(['USER', 'ADMIN']), deleteExperience);
 
 export default router;
