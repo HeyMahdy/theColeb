@@ -35,14 +35,17 @@ const corsOptions = {
       'http://localhost:5173',
       'http://localhost:3000',
       'http://192.168.0.106:8080',
-       'http://192.168.0.102:3000',
-       'http://192.168.0.104:8080',
-       'http://192.168.0.102:8080'
+      'http://192.168.0.102:3000',
+      'http://192.168.0.104:8080',
+      'http://192.168.0.102:8080',
+      'http://localhost:8080',
+      'http://192.168.0.100:8080'
     ];
 
     if (!origin) return callback(null, true); // Allow requests with no origin
 
     if (allowedOrigins.indexOf(origin) === -1) {
+      console.warn('CORS denied for origin:', origin);
       const msg = 'The CORS policy for this site does not allow access from the specified Origin.';
       return callback(new Error(msg), false);
     }
