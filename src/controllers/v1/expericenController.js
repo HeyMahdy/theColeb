@@ -1,4 +1,6 @@
 import { PrismaClient } from '../../../generated/prisma/client/index.js';
+import { withAccelerate } from '@prisma/extension-accelerate';
+
 const prisma = new PrismaClient().$extends(withAccelerate());
 
 export const createExperience = async (req, res) => {
