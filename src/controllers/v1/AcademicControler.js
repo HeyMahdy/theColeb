@@ -2,9 +2,7 @@
 import { PrismaClient } from '../../../generated/prisma/client/index.js';
 
 
-const prisma = new PrismaClient().$extends(
-  withOptimize({ apiKey: process.env.OPTIMIZE_API_KEY })
-);
+const prisma = new PrismaClient()
 
 
 export const createAcademics = async (req, res) => {
