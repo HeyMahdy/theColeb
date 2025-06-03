@@ -35,12 +35,12 @@ exports.Prisma = Prisma
 exports.$Enums = {}
 
 /**
- * Prisma Client JS version: 6.7.0
- * Query Engine version: 3cff47a7f5d65c3ea74883f1d736e41d68ce91ed
+ * Prisma Client JS version: 6.8.2
+ * Query Engine version: 2060c79ba17c6bb9f5823312b6f6b7f4a845738e
  */
 Prisma.prismaVersion = {
-  client: "6.7.0",
-  engine: "3cff47a7f5d65c3ea74883f1d736e41d68ce91ed"
+  client: "6.8.2",
+  engine: "2060c79ba17c6bb9f5823312b6f6b7f4a845738e"
 }
 
 Prisma.PrismaClientKnownRequestError = PrismaClientKnownRequestError;
@@ -306,23 +306,24 @@ const config = {
     "schemaEnvPath": "../../../.env"
   },
   "relativePath": "../../../prisma",
-  "clientVersion": "6.7.0",
-  "engineVersion": "3cff47a7f5d65c3ea74883f1d736e41d68ce91ed",
+  "clientVersion": "6.8.2",
+  "engineVersion": "2060c79ba17c6bb9f5823312b6f6b7f4a845738e",
   "datasourceNames": [
     "db"
   ],
   "activeProvider": "postgresql",
+  "postinstall": false,
   "inlineDatasources": {
     "db": {
       "url": {
         "fromEnvVar": "DATABASE_URL",
-        "value": "postgresql://mydb_owner:npg_JQhVPSECFf92@ep-old-frog-a4emhl6y-pooler.us-east-1.aws.neon.tech/mydb?sslmode=require"
+        "value": null
       }
     }
   },
   "inlineSchema": "generator client {\n  provider        = \"prisma-client-js\"\n  output          = \"../generated/prisma/client\"\n  previewFeatures = [\"relationJoins\"]\n  binaryTargets   = [\"native\", \"windows\"]\n}\n\ndatasource db {\n  provider = \"postgresql\"\n  url      = env(\"DATABASE_URL\")\n}\n\nmodel User {\n  id                         Int                  @id @default(autoincrement())\n  email                      String               @unique @db.VarChar(255)\n  createdAt                  DateTime             @default(now())\n  isEmailVerified            Boolean              @default(false)\n  otp                        String?              @db.VarChar(6)\n  otpExpiry                  DateTime?\n  password                   String               @db.VarChar(255)\n  role                       Role                 @default(USER)\n  basicInfo                  BasicInfo?\n  bioSummary                 BioSummary?\n  collaboration              Collaboration?\n  academics                  Academic[]           @relation(\"Academic\")\n  experience                 Experience[]         @relation(\"Experience\")\n  ParticipantA               Connection[]         @relation(\"ConnectionParticipantA\")\n  ParticipantB               Connection[]         @relation(\"ConnectionParticipantB\")\n  incomingConnections        IncomingConnection[] @relation(\"ReceivedConnections\")\n  sentIncomingConnections    IncomingConnection[] @relation(\"SentIncomingConnections\")\n  ReceiveoutgoingConnections OutgoingConnection[] @relation(\"ReceiveoutgoingConnections\")\n  outgoingConnections        OutgoingConnection[] @relation(\"SentConnections\")\n  posts                      Post[]\n  projects                   Project[]\n  showcase                   Showcase?\n  technicalProfile           TechnicalProfile?\n  visuals                    Visuals?\n\n  @@map(\"users\")\n}\n\nmodel BasicInfo {\n  id       Int     @id @default(autoincrement())\n  userId   Int     @unique\n  fullName String  @db.VarChar(100)\n  location String?\n  user     User    @relation(fields: [userId], references: [id])\n\n  @@map(\"basic_info\")\n}\n\nmodel TechnicalProfile {\n  id              Int      @id @default(autoincrement())\n  userId          Int      @unique\n  experienceLevel String?  @db.VarChar(50)\n  skills          String[]\n  user            User     @relation(fields: [userId], references: [id])\n\n  @@map(\"technical_profile\")\n}\n\nmodel BioSummary {\n  id       Int     @id @default(autoincrement())\n  userId   Int     @unique\n  shortBio String? @db.VarChar(500)\n  tagline  String? @db.VarChar(255)\n  user     User    @relation(fields: [userId], references: [id])\n\n  @@map(\"bio_summary\")\n}\n\nmodel Showcase {\n  id        Int     @id @default(autoincrement())\n  userId    Int     @unique\n  github    String? @db.VarChar(100)\n  portfolio String? @db.VarChar(255)\n  linkedin  String? @db.VarChar(100)\n  email     String? @db.VarChar(100)\n  whatsapp  String? @db.VarChar(100)\n  user      User    @relation(fields: [userId], references: [id])\n\n  @@map(\"showcase\")\n}\n\nmodel Project {\n  id          Int           @id @default(autoincrement())\n  userId      Int\n  name        String        @db.VarChar(100)\n  description String?\n  link        String?       @db.VarChar(255)\n  techUsed    String[]\n  status      ProjectStatus @default(finished)\n  user        User          @relation(fields: [userId], references: [id])\n\n  @@map(\"projects\")\n}\n\nmodel Collaboration {\n  id                  Int      @id @default(autoincrement())\n  userId              Int      @unique\n  openToCollaboration Boolean?\n  ideaInterests       String?\n  user                User     @relation(fields: [userId], references: [id])\n\n  @@map(\"collaboration\")\n}\n\nmodel Visuals {\n  id             Int     @id @default(autoincrement())\n  userId         Int     @unique\n  profilePicture String? @db.VarChar(255)\n  coverImage     String? @db.VarChar(255)\n  user           User    @relation(fields: [userId], references: [id])\n\n  @@map(\"visuals\")\n}\n\nmodel Post {\n  id          Int              @id @default(autoincrement())\n  userId      Int\n  title       String           @db.VarChar(255)\n  description String?\n  createdAt   DateTime         @default(now())\n  type        PostType         @default(COFOUNDER_NEEDED)\n  interested  InterestedList[]\n  user        User             @relation(fields: [userId], references: [id])\n\n  @@map(\"post\")\n}\n\nmodel InterestedList {\n  id     Int  @id @default(autoincrement())\n  postId Int\n  post   Post @relation(fields: [postId], references: [id])\n\n  @@map(\"interested_list\")\n}\n\nmodel IncomingConnection {\n  id          Int      @id @default(autoincrement())\n  senderId    Int\n  requestedAt DateTime @default(now())\n  receiverId  Int\n  receiver    User     @relation(\"ReceivedConnections\", fields: [receiverId], references: [id])\n  sender      User     @relation(\"SentIncomingConnections\", fields: [senderId], references: [id])\n\n  @@unique([senderId, receiverId])\n  @@map(\"incoming_connection\")\n}\n\nmodel OutgoingConnection {\n  id          Int      @id @default(autoincrement())\n  receiverId  Int\n  requestedAt DateTime @default(now())\n  senderId    Int\n  sender      User     @relation(\"ReceiveoutgoingConnections\", fields: [receiverId], references: [id])\n  receiver    User     @relation(\"SentConnections\", fields: [senderId], references: [id])\n\n  @@unique([senderId, receiverId])\n  @@map(\"outgoing_connection\")\n}\n\nmodel Connection {\n  id             Int      @id @default(autoincrement())\n  connectedAt    DateTime @default(now())\n  participantAId Int\n  participantBId Int\n  participantA   User     @relation(\"ConnectionParticipantA\", fields: [participantAId], references: [id])\n  participantB   User     @relation(\"ConnectionParticipantB\", fields: [participantBId], references: [id])\n\n  @@unique([participantAId, participantBId])\n  @@map(\"connections\")\n}\n\nmodel Academic {\n  id        Int    @id @default(autoincrement())\n  userId    Int    @unique\n  user      User   @relation(\"Academic\", fields: [userId], references: [id])\n  institute String\n  degree    String\n  startYear Int\n  endYear   Int?\n}\n\nmodel Experience {\n  id             Int       @id @default(autoincrement())\n  userId         Int       @unique\n  user           User      @relation(\"Experience\", fields: [userId], references: [id])\n  title          String\n  company        String\n  jobDescription String?\n  startDate      DateTime\n  endDate        DateTime?\n}\n\nenum PostType {\n  IDEA\n  MVP\n  COFOUNDER_NEEDED\n  OTHER\n  MEETUP\n}\n\nenum Role {\n  USER\n  ADMIN\n}\n\nenum ProjectStatus {\n  running\n  finished\n  incomplete\n}\n",
   "inlineSchemaHash": "3a4d422ad1df3cad1313fd382de4ec55682ddde1d5485aac7c304c258a0194ad",
-  "copyEngine": true
+  "copyEngine": false
 }
 config.dirname = '/'
 
