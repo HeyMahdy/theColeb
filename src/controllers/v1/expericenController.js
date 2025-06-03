@@ -50,7 +50,8 @@ export const getExperiences = async (req, res) => {
             where: { userId },
             orderBy: {
                 startDate: 'desc'
-            }
+            },
+            cacheStrategy: { swr: 60, ttl: 60 }
         });
 
         return res.status(200).json({
