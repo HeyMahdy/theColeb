@@ -3,7 +3,7 @@ import { check, sleep } from 'k6';
 
 // Configuration
 const BASE_URL = 'https://thecoleb.onrender.com/collab/v1/exp';
-const TOKEN = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImVtYWlsIjoiYTUiLCJpYXQiOjE3NDg5MzMyNjIsImV4cCI6MTc0OTAxOTY2Mn0.B793mwHhE6kCmN_a2VtUmzWU3I4tW57WwjH-Ntmeoc8';
+const TOKEN = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImVtYWlsIjoiYTUiLCJpYXQiOjE3NDkwMjU1MzcsImV4cCI6MTc0OTExMTkzN30.PzBDFnRbfo5MiXUtLrCjJ2DAuVnORXI--l7kfyCUk5g';
 
 // Test data - matching Prisma schema
 const testExperience = {
