@@ -6,9 +6,8 @@ generator client {
 }
 
 datasource db {
-  provider  = "postgresql"
-  url       = env("DATABASE_URL")
-  directUrl = env("DIRECT_URL")
+  provider = "postgresql"
+  url      = env("DIRECT_URL")
 }
 
 model User {
@@ -192,6 +191,8 @@ model Experience {
   jobDescription String?
   startDate      DateTime
   endDate        DateTime?
+
+  @@index(fields: [userId])
 }
 
 enum PostType {

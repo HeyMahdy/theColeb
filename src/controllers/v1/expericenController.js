@@ -1,7 +1,7 @@
 import { PrismaClient } from '../../../generated/prisma/client/index.js';
-import { withAccelerate } from '@prisma/extension-accelerate';
 
-const prisma = new PrismaClient().$extends(withAccelerate());
+
+const prisma = new PrismaClient()
 
 export const createExperience = async (req, res) => {
     try {
@@ -50,8 +50,7 @@ export const getExperiences = async (req, res) => {
             where: { userId },
             orderBy: {
                 startDate: 'desc'
-            },
-            cacheStrategy: { swr: 60, ttl: 60 }
+            }
         });
 
         return res.status(200).json({
