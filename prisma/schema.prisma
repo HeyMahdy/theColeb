@@ -191,6 +191,7 @@ model Experience {
   jobDescription String?
   startDate   DateTime
   endDate     DateTime?
+  @@index(fields: [userId])
 }
 
 enum PostType {
