@@ -1,6 +1,6 @@
 import crypto from 'crypto';
 import { PrismaClient } from '../../generated/prisma/client/index.js';
-
+import { sendMail } from './mail.js';
 const prisma = new PrismaClient();
 
 class OTPService {
@@ -21,8 +21,7 @@ class OTPService {
       },
     });
 
-      console.log("OTP saved for user:", userId);  
-
+    console.log("OTP saved for user:", userId);  
   }
 
   static async verifyotp(userId, otp) {
@@ -37,7 +36,7 @@ class OTPService {
     }
 
     // Check if OTP matches and is not expired
-    const isOTPValid = (user.otp == otp) && (new Date() < user.otpExpiry);
+    const isOTPValid = (user.otp === otp) && (new Date() < user.otpExpiry);
 
     if (isOTPValid) {
       // Clear OTP and mark email as verified
@@ -52,16 +51,21 @@ class OTPService {
     }
     console.log("the user ", user);
 
-
     return isOTPValid;
   }
 
   static async sendOTP(email, otp) {
-    // Just console log the OTP instead of sending email
-    console.log('----------------------------------------');
-    console.log(`OTP for ${email}: ${otp}`);
-    console.log('----------------------------------------');
-    return true;
+    try {
+      await sendMail(
+        email,
+        "Email Verification OTP",
+        otp
+      );
+      return true;
+    } catch (error) {
+      console.error('Error sending OTP:', error);
+      throw error;
+    }
   }
 }
 
