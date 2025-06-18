@@ -37,6 +37,7 @@ model User {
   technicalProfile           TechnicalProfile?
   visuals                    Visuals?
 
+
   @@map("users")
 }
 
@@ -123,6 +124,7 @@ model Post {
   description String?
   createdAt   DateTime         @default(now())
   type        PostType         @default(COFOUNDER_NEEDED)
+  like         Like?            
   interested  InterestedList[]
   user        User             @relation(fields: [userId], references: [id])
 
@@ -133,6 +135,7 @@ model InterestedList {
   id     Int  @id @default(autoincrement())
   postId Int
   post   Post @relation(fields: [postId], references: [id])
+  userId  Int @unique
 
   @@map("interested_list")
 }
@@ -212,4 +215,13 @@ enum ProjectStatus {
   finished
   incomplete
   
+}
+
+model Like {
+  id      Int     @id @default(autoincrement())
+  userId  Int
+  post    Post    @relation(fields: [postId], references: [id])
+  postId  Int     @unique
+
+  @@unique([userId, postId]) // Prevent duplicate likes
 }

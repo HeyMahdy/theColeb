@@ -1,5 +1,8 @@
 import express, { json } from 'express';
 import cors from 'cors';
+import morgan from 'morgan';
+import logger from './logger.js';
+import { errorHandler } from './middlewares/errorHandler.js';
 
 // Correct paths based on your folder structure
 import bioRouter from './routes/v1/userRoute/bio.js';
@@ -21,11 +24,11 @@ import academicsrouter from './routes/v1/userRoute/academics.js'
 const app = express();
 
 // Add request logging middleware
-app.use((req, res, next) => {
-  console.log(`${req.method} ${req.url}`);
-  console.log('Headers:', req.headers);
-  next();
-});
+app.use(morgan('combined', {
+  stream: {
+    write: (message) => logger.info(message.trim())
+  }
+}));
 
 // CORS configuration
 const corsOptions = {
@@ -91,6 +94,8 @@ app.use((err, req, res, next) => {
     message: err.message
   });
 });
+
+app.use(errorHandler); 
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {

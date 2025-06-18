@@ -1,11 +1,12 @@
 
 import { PrismaClient } from '../../../generated/prisma/client/index.js';
+import { asyncHandler } from '../../utils/asyncHandler.js';
 
 
 const prisma = new PrismaClient()
 
 
-export const createAcademics = async (req, res) => {
+export const createAcademics = asyncHandler(async (req, res) => {
     try {
         const userId = req.user.userId;
         const { institute, degree, startYear, endYear } = req.body;
@@ -40,7 +41,7 @@ export const createAcademics = async (req, res) => {
             error: error.message
         });
     }
-};
+});
 
 export const getAcademics = async (req, res) => {
     try {
