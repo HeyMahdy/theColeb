@@ -3,6 +3,8 @@ import cors from 'cors';
 import morgan from 'morgan';
 import logger from './logger.js';
 import { errorHandler } from './middlewares/errorHandler.js';
+import { swaggerUi, swaggerSpec } from './config/swagger.js';
+
 
 // Correct paths based on your folder structure
 import bioRouter from './routes/v1/userRoute/bio.js';
@@ -67,6 +69,7 @@ app.use(cors(corsOptions));
 
 // Parse JSON bodies
 app.use(json());
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
 // Main routes
 app.use('/collab/v1/bio', bioRouter);

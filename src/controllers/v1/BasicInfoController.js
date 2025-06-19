@@ -5,7 +5,7 @@ const prisma = new PrismaClient();
 export const createBasicInfo = async (req, res) => {
     try {
         const userId = req.user.userId;
-        const { fullName, Institute, major, location } = req.body;
+        const { fullName, location } = req.body;
 
         // Check if basic info already exists for the user
         const existingInfo = await prisma.basicInfo.findUnique({
@@ -23,8 +23,6 @@ export const createBasicInfo = async (req, res) => {
             data: {
                 userId,
                 fullName,
-                Institute,
-                major,
                 location
             }
         });
@@ -69,8 +67,6 @@ export const getBasicInfo = async (req, res) => {
                 success: true,
                 data: {
                     fullName: '',
-                    Institute: '',
-                    major: '',
                     location: ''
                 }
             });
