@@ -31,6 +31,7 @@ model User {
   sentIncomingConnections    IncomingConnection[] @relation("SentIncomingConnections")
   ReceiveoutgoingConnections OutgoingConnection[] @relation("ReceiveoutgoingConnections")
   outgoingConnections        OutgoingConnection[] @relation("SentConnections")
+  interested                 Interested[]
   posts                      Post[]
   projects                   Project[]
   showcase                   Showcase?
@@ -40,6 +41,7 @@ model User {
 
   @@map("users")
 }
+
 
 model BasicInfo {
   id        Int     @id @default(autoincrement())
@@ -123,19 +125,20 @@ model Post {
   title       String           @db.VarChar(255)
   description String?
   createdAt   DateTime         @default(now())
-  type        PostType         @default(COFOUNDER_NEEDED)
-  like         Like?            
-  interested  InterestedList[]
+  type        PostType         @default(COFOUNDER_NEEDED)     
+  count        Int     
+  interested  Interested[]
   user        User             @relation(fields: [userId], references: [id])
 
   @@map("post")
 }
 
-model InterestedList {
+model Interested {
   id     Int  @id @default(autoincrement())
   postId Int
   post   Post @relation(fields: [postId], references: [id])
-  userId  Int @unique
+  user    User   @relation(fields: [userId],references: [id])
+  userId  Int 
 
   @@map("interested_list")
 }
@@ -215,13 +218,4 @@ enum ProjectStatus {
   finished
   incomplete
   
-}
-
-model Like {
-  id      Int     @id @default(autoincrement())
-  userId  Int
-  post    Post    @relation(fields: [postId], references: [id])
-  postId  Int     @unique
-
-  @@unique([userId, postId]) // Prevent duplicate likes
 }

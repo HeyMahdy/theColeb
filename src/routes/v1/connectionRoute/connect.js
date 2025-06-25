@@ -8,6 +8,7 @@ import {
     deleteConnection,
     rejectReq
 } from '../../../controllers/v1/ReqConnnection.js';
+import { asyncHandler } from '../../../utils/asyncHandler.js';
 
 const router = Router();
 
@@ -15,22 +16,22 @@ const router = Router();
 router.use(verifyToken);
 
 // POST: Send a connection request
-router.post('/request', sendRquest);
+router.post('/request', asyncHandler(sendRquest));
 
 // GET: List incoming connection requests
-router.get('/incoming', getRequestList);
+router.get('/incoming', asyncHandler(getRequestList));
 
 // GET: List outgoing/sent connection requests
-router.get('/outgoing', getSendRequestList);
+router.get('/outgoing', asyncHandler(getSendRequestList));
 
 // POST: Accept a connection request
-router.post('/accept', acceptReq);
+router.post('/accept', asyncHandler(acceptReq));
 
 // DELETE: Remove a connection
-router.post('/decline',deleteConnection);
+router.post('/decline',asyncHandler(deleteConnection));
 
 // DELETE: Remove a connection
-router.post('/reject',rejectReq)
+router.post('/reject',asyncHandler(rejectReq));
 
 
 export default router;
