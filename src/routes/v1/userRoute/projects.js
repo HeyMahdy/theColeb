@@ -43,9 +43,9 @@ import {
 
 /**
  * @swagger
- * /projects:
+ * /collab/v1/showcase:
  *   post:
- *     summary: Create a project
+ *     summary: Create a new project
  *     tags: [Project]
  *     security:
  *       - bearerAuth: []
@@ -57,69 +57,74 @@ import {
  *             $ref: '#/components/schemas/Project'
  *     responses:
  *       201:
- *         description: Project created
+ *         description: Project successfully created
  *         content:
  *           application/json:
  *             schema:
  *               $ref: '#/components/schemas/Project'
-
+ * 
  *   get:
- *     summary: Get all projects for the authenticated user
+ *     summary: Retrieve all projects of the authenticated user
  *     tags: [Project]
  *     security:
  *       - bearerAuth: []
  *     responses:
  *       200:
- *         description: List of projects
+ *         description: A list of user's projects
  *         content:
  *           application/json:
  *             schema:
  *               type: array
  *               items:
  *                 $ref: '#/components/schemas/Project'
+ */
 
- * /projects/{id}:
+/**
+ * @swagger
+ * /collab/v1/showcase/{projectId}:
  *   put:
- *     summary: Update a project by ID
+ *     summary: Update an existing project by its ID
  *     tags: [Project]
  *     security:
  *       - bearerAuth: []
  *     parameters:
  *       - in: path
- *         name: id
+ *         name: projectId
  *         required: true
  *         schema:
  *           type: integer
- *         description: Project ID
+ *         description: ID of the project to update
  *     requestBody:
+ *       required: true
  *       content:
  *         application/json:
  *           schema:
  *             $ref: '#/components/schemas/Project'
  *     responses:
  *       200:
- *         description: Project updated
+ *         description: Project successfully updated
  *         content:
  *           application/json:
  *             schema:
  *               $ref: '#/components/schemas/Project'
 
  *   delete:
- *     summary: Delete a project by ID
+ *     summary: Delete a project by its ID
  *     tags: [Project]
  *     security:
  *       - bearerAuth: []
  *     parameters:
  *       - in: path
- *         name: id
+ *         name: projectId
  *         required: true
  *         schema:
  *           type: integer
- *         description: Project ID
+ *         description: ID of the project to delete
  *     responses:
  *       200:
- *         description: Project deleted
+ *         description: Project successfully deleted
  */
+
 
 const router = Router();
 

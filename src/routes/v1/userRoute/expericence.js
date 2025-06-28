@@ -42,7 +42,7 @@ import {
  */
 /**
  * @swagger
- * /experiences:
+ *  /collab/v1/exp/:
  *   post:
  *     summary: Create a new experience
  *     tags: [Experience]
@@ -92,7 +92,7 @@ import {
  */
 /**
  * @swagger
- * /experiences:
+ *  /collab/v1/exp/:
  *   get:
  *     summary: Get all experiences for the authenticated user
  *     tags: [Experience]
@@ -112,7 +112,7 @@ import {
  */
 /**
  * @swagger
- * /experiences/{id}:
+ *  /collab/v1/exp/{id}:
  *   put:
  *     summary: Update an experience by ID
  *     tags: [Experience]
@@ -161,7 +161,7 @@ import {
  */
 /**
  * @swagger
- * /experiences/{id}:
+ *  /collab/v1/exp/{id}:
  *   delete:
  *     summary: Delete an experience by ID
  *     tags: [Experience]

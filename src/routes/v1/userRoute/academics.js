@@ -37,7 +37,7 @@ import {
 
 /**
  * @swagger
- * /academics:
+ *  /collab/v1/academics/:
  *   post:
  *     summary: Create a new Academic record
  *     tags: [Academics]
@@ -83,7 +83,7 @@ import {
 
 /**
  * @swagger
- * /academics:
+ *  /collab/v1/academics/:
  *   get:
  *     summary: Get all Academic records for the authenticated user
  *     tags: [Academics]
@@ -104,7 +104,7 @@ import {
 
 /**
  * @swagger
- * /academics/{id}:
+ *  /collab/v1/academics/{id}:
  *   put:
  *     summary: Update an existing Academic record by ID
  *     tags: [Academics]
@@ -155,7 +155,7 @@ import {
 
 /**
  * @swagger
- * /academics/{id}:
+ *  /collab/v1/academics/{id}:
  *   delete:
  *     summary: Delete an Academic record by ID
  *     tags: [Academics]

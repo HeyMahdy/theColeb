@@ -26,7 +26,7 @@ import {createBasicInfo,getBasicInfo,updateBasicInfo,deleteBasicInfo} from '../.
 
 /**
  * @swagger
- * /basic-info:
+ * /collab/v1/info:
  *   post:
  *     summary: Create basic info
  *     tags: [BasicInfo]
@@ -45,7 +45,11 @@ import {createBasicInfo,getBasicInfo,updateBasicInfo,deleteBasicInfo} from '../.
  *           application/json:
  *             schema:
  *               $ref: '#/components/schemas/BasicInfo'
+ */
 
+/**
+ * @swagger
+ * /collab/v1/info:
  *   get:
  *     summary: Get basic info for authenticated user
  *     tags: [BasicInfo]
@@ -58,20 +62,18 @@ import {createBasicInfo,getBasicInfo,updateBasicInfo,deleteBasicInfo} from '../.
  *           application/json:
  *             schema:
  *               $ref: '#/components/schemas/BasicInfo'
+ *       404:
+ *         description: Info not found
+ */
 
- * /basic-info/{id}:
+/**
+ * @swagger
+ * /collab/v1/info:
  *   put:
  *     summary: Update basic info
  *     tags: [BasicInfo]
  *     security:
  *       - bearerAuth: []
- *     parameters:
- *       - in: path
- *         name: id
- *         required: true
- *         schema:
- *           type: integer
- *         description: BasicInfo ID
  *     requestBody:
  *       content:
  *         application/json:
@@ -80,23 +82,23 @@ import {createBasicInfo,getBasicInfo,updateBasicInfo,deleteBasicInfo} from '../.
  *     responses:
  *       200:
  *         description: Basic info updated
+ */
 
+/**
+ * @swagger
+ * /collab/v1/info:
  *   delete:
  *     summary: Delete basic info
  *     tags: [BasicInfo]
  *     security:
  *       - bearerAuth: []
- *     parameters:
- *       - in: path
- *         name: id
- *         required: true
- *         schema:
- *           type: integer
- *         description: BasicInfo ID
  *     responses:
  *       200:
  *         description: Basic info deleted
+ *       404:
+ *         description: Info not found
  */
+
 
 const router = Router();
 

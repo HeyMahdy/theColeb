@@ -200,9 +200,10 @@ exports.Prisma.PostScalarFieldEnum = {
   type: 'type'
 };
 
-exports.Prisma.InterestedListScalarFieldEnum = {
+exports.Prisma.InterestedScalarFieldEnum = {
   id: 'id',
-  postId: 'postId'
+  postId: 'postId',
+  userId: 'userId'
 };
 
 exports.Prisma.IncomingConnectionScalarFieldEnum = {
@@ -288,7 +289,7 @@ exports.Prisma.ModelName = {
   Collaboration: 'Collaboration',
   Visuals: 'Visuals',
   Post: 'Post',
-  InterestedList: 'InterestedList',
+  Interested: 'Interested',
   IncomingConnection: 'IncomingConnection',
   OutgoingConnection: 'OutgoingConnection',
   Connection: 'Connection',

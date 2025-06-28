@@ -126,7 +126,6 @@ model Post {
   description String?
   createdAt   DateTime         @default(now())
   type        PostType         @default(COFOUNDER_NEEDED)     
-  count        Int     
   interested  Interested[]
   user        User             @relation(fields: [userId], references: [id])
 

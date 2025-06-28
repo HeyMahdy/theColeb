@@ -31,7 +31,7 @@ import {
 
 /**
  * @swagger
- * /collaboration:
+ * /collab/v1/collab/:
  *   post:
  *     summary: Create a collaboration profile
  *     tags: [Collaboration]
@@ -50,7 +50,11 @@ import {
  *           application/json:
  *             schema:
  *               $ref: '#/components/schemas/Collaboration'
+ */
 
+/**
+ * @swagger
+ * /collab/v1/collab/:
  *   get:
  *     summary: Get your collaboration profile
  *     tags: [Collaboration]
@@ -63,20 +67,18 @@ import {
  *           application/json:
  *             schema:
  *               $ref: '#/components/schemas/Collaboration'
+ *       404:
+ *         description: Collaboration profile not found
+ */
 
- * /collaboration/{id}:
+/**
+ * @swagger
+ * /collab/v1/collab/:
  *   put:
- *     summary: Update collaboration profile
+ *     summary: Update your collaboration profile
  *     tags: [Collaboration]
  *     security:
  *       - bearerAuth: []
- *     parameters:
- *       - in: path
- *         name: id
- *         required: true
- *         schema:
- *           type: integer
- *         description: Collaboration ID
  *     requestBody:
  *       content:
  *         application/json:
@@ -85,22 +87,21 @@ import {
  *     responses:
  *       200:
  *         description: Collaboration profile updated
+ */
 
+/**
+ * @swagger
+ * /collab/v1/collab/:
  *   delete:
- *     summary: Delete collaboration profile
+ *     summary: Delete your collaboration profile
  *     tags: [Collaboration]
  *     security:
  *       - bearerAuth: []
- *     parameters:
- *       - in: path
- *         name: id
- *         required: true
- *         schema:
- *           type: integer
- *         description: Collaboration ID
  *     responses:
  *       200:
  *         description: Collaboration profile deleted
+ *       404:
+ *         description: Profile not found
  */
 
 const router = Router();

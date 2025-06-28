@@ -31,7 +31,7 @@ import {
  */
 /**
  * @swagger
- * /technical-profile:
+ * /collab/v1/tech/:
  *   post:
  *     summary: Create a technical profile
  *     tags: [TechnicalProfile]
@@ -69,7 +69,7 @@ import {
  */
 /**
  * @swagger
- * /technical-profile:
+ * /collab/v1/tech/:
  *   get:
  *     summary: Get the technical profile of the authenticated user
  *     tags: [TechnicalProfile]
@@ -89,7 +89,7 @@ import {
  */
 /**
  * @swagger
- * /technical-profile/{id}:
+ * /collab/v1/tech/{id}:
  *   put:
  *     summary: Update a technical profile by ID
  *     tags: [TechnicalProfile]
@@ -131,7 +131,7 @@ import {
  */
 /**
  * @swagger
- * /technical-profile/{id}:
+ * /collab/v1/tech/{id}:
  *   delete:
  *     summary: Delete a technical profile by ID
  *     tags: [TechnicalProfile]
