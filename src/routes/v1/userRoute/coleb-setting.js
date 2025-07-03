@@ -110,15 +110,15 @@ const router = Router();
 router.use(verifyToken);
 
 // Get collaboration settings for the authenticated user
-router.get('/', getUserColeb);
+router.get('/', asyncHandler(getUserColeb));
 
 // Create collaboration settings for the authenticated user
-router.post('/', createUserColeb);
+router.post('/', asyncHandler(createUserColeb));
 
 // Update collaboration settings for the authenticated user
-router.put('/', updateUserColeb);
+router.put('/', asyncHandler(updateUserColeb));
 
 // Delete collaboration settings for the authenticated user
-router.delete('/', deleteUserColeb);
+router.delete('/', asyncHandler(deleteUserColeb));
 
 export default router;

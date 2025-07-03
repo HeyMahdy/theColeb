@@ -43,7 +43,7 @@ import {
 
 /**
  * @swagger
- * /showcase:
+ * /collab/v1/showcase/:
  *   post:
  *     summary: Create a showcase
  *     tags: [Showcase]
@@ -76,7 +76,7 @@ import {
  *             schema:
  *               $ref: '#/components/schemas/Showcase'
 
- * /showcase/{id}:
+ * /collab/v1/showcase/{id}:
  *   put:
  *     summary: Update showcase
  *     tags: [Showcase]

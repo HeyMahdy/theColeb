@@ -6,6 +6,7 @@ import {
     updateTechProfile,
     deleteTechProfile
 } from '../../../controllers/v1/techProfileController.js';
+import { asyncHandler } from '../../../utils/asyncHandler.js';
 /**
  * @swagger
  * components:

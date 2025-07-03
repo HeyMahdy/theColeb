@@ -6,7 +6,7 @@ import {
     updateAcademics,
     deleteAcademics
 } from '../../../controllers/v1/AcademicControler.js'
-
+import { asyncHandler } from '../../../utils/asyncHandler.js';
 /**
  * @swagger
  * components:
@@ -184,15 +184,15 @@ const router = Router();
 router.use(verifyToken);
 
 // Create basic info
-router.post('/', createAcademics);
+router.post('/', asyncHandler(createAcademics));
 
 // Get basic info
-router.get('/', getAcademics);
+router.get('/', asyncHandler(getAcademics));
 
 // Update basic info
-router.put('/:id', updateAcademics);
+router.put('/:id', asyncHandler(updateAcademics));
 
 // Delete basic info
-router.delete('/:id', deleteAcademics);
+router.delete('/:id', asyncHandler(deleteAcademics));
 
 export default router;

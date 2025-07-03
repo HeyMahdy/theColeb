@@ -2,6 +2,7 @@ import { Router } from 'express';
 import logger from '../../../logger.js';
 import verifyToken from '../../../middlewares/authenticateToken.js';
 import * as bioController from '../../../controllers/v1/bioController.js';
+import { asyncHandler } from '../../../utils/asyncHandler.js';
 /**
  * @swagger
  * components:
@@ -135,15 +136,15 @@ const router = Router();
 router.use(verifyToken);
 
 // Create bio
-router.post('/', bioController.createUserBio);
+router.post('/', asyncHandler(bioController.createUserBio));
 
 // Get bio
-router.get('/', bioController.getUserBio);
+router.get('/', asyncHandler(bioController.getUserBio));
 
 // Update bio
-router.put('/',bioController.updateUserBio);
+router.put('/',asyncHandler(bioController.updateUserBio));
 
 // Delete bio
-router.delete('/',bioController.deleteUserBio);
+router.delete('/',asyncHandler(bioController.deleteUserBio));
 
 export default router;

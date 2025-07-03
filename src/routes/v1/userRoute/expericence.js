@@ -7,6 +7,7 @@ import {
     updateExperience,
     deleteExperience
 } from '../../../controllers/v1/expericenController.js'
+import { asyncHandler } from '../../../utils/asyncHandler.js';
 /**
  * @swagger
  * components:
@@ -189,15 +190,15 @@ const router = Router();
 router.use(verifyToken);
 
 // Create experience - only users can create their own experiences
-router.post('/', checkRole(['USER', 'ADMIN']), createExperience);
+router.post('/', checkRole(['USER', 'ADMIN']), asyncHandler(createExperience));
 
 // Get experiences - both users and admins can view
-router.get('/', checkRole(['USER', 'ADMIN']), getExperiences);
+router.get('/', checkRole(['USER', 'ADMIN']), asyncHandler(getExperiences));
 
 // Update experience - only users can update their own experiences
-router.put('/:id', checkRole(['USER', 'ADMIN']), updateExperience);
+router.put('/:id', checkRole(['USER', 'ADMIN']), asyncHandler(updateExperience));
 
 // Delete experience - only users can delete their own experiences
-router.delete('/:id', checkRole(['USER', 'ADMIN']), deleteExperience);
+router.delete('/:id', checkRole(['USER', 'ADMIN']), asyncHandler(deleteExperience));
 
 export default router;
