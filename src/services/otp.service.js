@@ -21,7 +21,12 @@ class OTPService {
       },
     });
 
-    console.log("OTP saved for user:", userId);  
+    console.log("OTP saved for user:", userId);
+    
+    
+
+
+    
   }
 
   static async verifyotp(userId, otp) {
