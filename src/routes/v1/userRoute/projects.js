@@ -6,6 +6,7 @@ import {
     updateUserProject,
     deleteUserProject
 } from '../../../controllers/v1/projectsController.js';
+import { asyncHandler } from '../../../utils/asyncHandler.js';
 /**
  * @swagger
  * components:
@@ -132,15 +133,15 @@ const router = Router();
 router.use(verifyToken);
 
 // Get all projects for the authenticated user
-router.get('/', getUserProjects);
+router.get('/', asyncHandler(getUserProjects));
 
 // Create a new project
-router.post('/', createUserProject);
+router.post('/', asyncHandler(createUserProject));
 
 // Update a project
-router.put('/:projectId', updateUserProject);
+router.put('/:projectId', asyncHandler(updateUserProject));
 
 // Delete a project
-router.delete('/:projectId', deleteUserProject);
+router.delete('/:projectId', asyncHandler(deleteUserProject));
 
 export default router;

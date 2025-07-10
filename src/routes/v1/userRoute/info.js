@@ -2,6 +2,7 @@ import { Router } from 'express';
 import logger from '../../../logger.js';
 import verifyToken from '../../../middlewares/authenticateToken.js';
 import {createBasicInfo,getBasicInfo,updateBasicInfo,deleteBasicInfo} from '../../../controllers/v1/BasicInfoController.js';
+import { asyncHandler } from '../../../utils/asyncHandler.js';
 /**
  * @swagger
  * components:
@@ -106,15 +107,15 @@ const router = Router();
 router.use(verifyToken);
 
 // Create basic info
-router.post('/', createBasicInfo);
+router.post('/', asyncHandler(createBasicInfo));
 
 // Get basic info
-router.get('/', getBasicInfo);
+router.get('/', asyncHandler(getBasicInfo));
 
 // Update basic info
-router.put('/', updateBasicInfo);
+router.put('/', asyncHandler(updateBasicInfo));
 
 // Delete basic info
-router.delete('/', deleteBasicInfo);
+router.delete('/', asyncHandler(deleteBasicInfo));
 
 export default router;

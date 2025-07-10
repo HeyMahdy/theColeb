@@ -156,19 +156,19 @@ import { asyncHandler } from '../../../utils/asyncHandler.js';
 
 const router = Router();
 
-// Apply authentication middleware to all routes
+// Apply authentication middleware to all routes and do nothing
 router.use(verifyToken);
 
 // GET: Get tech profile for the authenticated user
-router.get('/', getTechProfile);
+router.get('/', asyncHandler(getTechProfile));
 
 // POST: Create tech profile for the authenticated user
-router.post('/', createTechProfile);
+router.post('/', asyncHandler(createTechProfile));
 
 // PUT: Update tech profile for the authenticated user
-router.put('/', updateTechProfile);
+router.put('/', asyncHandler(updateTechProfile));
 
 // DELETE: Delete tech profile for the authenticated user
-router.delete('/', deleteTechProfile);
+router.delete('/', asyncHandler(deleteTechProfile));
 
 export default router;

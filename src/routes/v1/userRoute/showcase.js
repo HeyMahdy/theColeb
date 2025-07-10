@@ -6,6 +6,7 @@ import {
     updateUserShowcase,
     deleteUserShowcase
 } from '../../../controllers/v1/showcaseController.js';
+import { asyncHandler } from '../../../utils/asyncHandler.js';
 /**
  * @swagger
  * components:
@@ -125,15 +126,15 @@ const router = Router();
 router.use(verifyToken);
 
 // Get showcase for the authenticated user
-router.get('/', getUserShowcase);
+router.get('/', asyncHandler(getUserShowcase));
 
 // Create showcase for the authenticated user
-router.post('/', createUserShowcase);
+router.post('/', asyncHandler(createUserShowcase));
 
 // Update showcase for the authenticated user
-router.put('/', updateUserShowcase);
+router.put('/', asyncHandler(updateUserShowcase));
 
 // Delete showcase for the authenticated user
-router.delete('/', deleteUserShowcase);
+router.delete('/', asyncHandler(deleteUserShowcase));
 
 export default router;
