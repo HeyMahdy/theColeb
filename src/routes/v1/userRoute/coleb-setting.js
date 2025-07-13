@@ -6,6 +6,7 @@ import {
     updateUserColeb,
     deleteUserColeb
 } from '../../../controllers/v1/collaborationController.js';
+import { asyncHandler } from '../../../utils/asyncHandler.js';
 /**
  * @swagger
  * components:
