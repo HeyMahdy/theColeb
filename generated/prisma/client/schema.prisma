@@ -33,6 +33,7 @@ model User {
   interested                 Interested[]
   posts                      Post[]
   projects                   Project[]
+  comments                   Comment[]
   showcase                   Showcase?
   technicalProfile           TechnicalProfile?
   visuals                    Visuals?
@@ -125,6 +126,7 @@ model Post {
   type        PostType     @default(COFOUNDER_NEEDED)
   interested  Interested[]
   user        User         @relation(fields: [userId], references: [id])
+  comments    Comment[]
 
   @@map("post")
 }
@@ -196,6 +198,16 @@ model Experience {
   endDate        DateTime?
 
   @@index(fields: [userId])
+}
+
+model Comment {
+  id        Int      @id @default(autoincrement())
+  postId    Int
+  userId    Int
+  content   String
+  createdAt DateTime @default(now())
+  post      Post     @relation(fields: [postId], references: [id])
+  user      User     @relation(fields: [userId], references: [id])
 }
 
 enum PostType {

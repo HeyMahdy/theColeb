@@ -246,6 +246,14 @@ exports.Prisma.ExperienceScalarFieldEnum = {
   endDate: 'endDate'
 };
 
+exports.Prisma.CommentScalarFieldEnum = {
+  id: 'id',
+  postId: 'postId',
+  userId: 'userId',
+  content: 'content',
+  createdAt: 'createdAt'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -294,7 +302,8 @@ exports.Prisma.ModelName = {
   OutgoingConnection: 'OutgoingConnection',
   Connection: 'Connection',
   Academic: 'Academic',
-  Experience: 'Experience'
+  Experience: 'Experience',
+  Comment: 'Comment'
 };
 
 /**

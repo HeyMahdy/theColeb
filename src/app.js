@@ -21,6 +21,8 @@ import filterRoute from './routes/v1/postfeed/feed.js'
 import postrouter from './routes/v1/postRoute/post.js';
 import exprouter  from './routes/v1/userRoute/expericence.js'
 import academicsrouter from './routes/v1/userRoute/academics.js'
+import commentRouter from './routes/v1/postRoute/comment.js';
+
 
 const app = express();
 
@@ -43,7 +45,8 @@ const corsOptions = {
       'http://192.168.0.104:8080',
       'http://192.168.0.102:8080',
       'http://localhost:8080',
-      'http://192.168.0.100:8080'
+      'http://192.168.0.100:8080',
+      'https://thecoleb.onrender.com'
     ];
 
     if (!origin) return callback(null, true); // Allow requests with no origin
@@ -85,18 +88,12 @@ app.use('/collab/v1/filter', filterRoute);
 app.use('/collab/v1/posts', postrouter);
 app.use('/collab/v1/exp',exprouter);
 app.use('/collab/v1/academics',academicsrouter);
+app.use('/collab/v1/comment',commentRouter);
 
 // Error handling middleware (should be last)
-app.use((err, req, res, next) => {
-  console.error('Error:', err);
-  console.error('Stack:', err.stack);
-  res.status(500).json({
-    error: 'Internal Server Error',
-    message: err.message
-  });
-});
+app.use(errorHandler);
 
-app.use(errorHandler); 
+
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {

@@ -183,6 +183,7 @@ const router = Router();
 // All routes are protected and require authentication
 router.use(verifyToken);
 
+
 // Create basic info
 router.post('/', asyncHandler(createAcademics));
 
