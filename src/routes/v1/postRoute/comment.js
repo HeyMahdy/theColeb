@@ -165,6 +165,6 @@ router.use(verifyToken);
 router.post('/:postId/comments', asyncHandler(addComment));
 router.get('/:postId/comments', asyncHandler(getComments));
 router.delete('/comments/:commentId', asyncHandler(deleteComment));
-router.post('/posts/:postId/comments/:commentId/reply', asyncHandler(replyComment));
+//router.post('/posts/:postId/comments/:commentId/reply', asyncHandler(replyComment));
 
 export default router;
