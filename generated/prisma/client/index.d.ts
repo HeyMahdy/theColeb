@@ -2291,6 +2291,7 @@ export namespace Prisma {
     posts: number
     projects: number
     comments: number
+    showcase: number
   }
 
   export type UserCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -2306,6 +2307,7 @@ export namespace Prisma {
     posts?: boolean | UserCountOutputTypeCountPostsArgs
     projects?: boolean | UserCountOutputTypeCountProjectsArgs
     comments?: boolean | UserCountOutputTypeCountCommentsArgs
+    showcase?: boolean | UserCountOutputTypeCountShowcaseArgs
   }
 
   // Custom InputTypes
@@ -2403,6 +2405,13 @@ export namespace Prisma {
     where?: CommentWhereInput
   }
 
+  /**
+   * UserCountOutputType without action
+   */
+  export type UserCountOutputTypeCountShowcaseArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ShowcaseWhereInput
+  }
+
 
   /**
    * Count Type PostCountOutputType
@@ -2440,6 +2449,37 @@ export namespace Prisma {
    * PostCountOutputType without action
    */
   export type PostCountOutputTypeCountCommentsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: CommentWhereInput
+  }
+
+
+  /**
+   * Count Type CommentCountOutputType
+   */
+
+  export type CommentCountOutputType = {
+    children: number
+  }
+
+  export type CommentCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    children?: boolean | CommentCountOutputTypeCountChildrenArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * CommentCountOutputType without action
+   */
+  export type CommentCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CommentCountOutputType
+     */
+    select?: CommentCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * CommentCountOutputType without action
+   */
+  export type CommentCountOutputTypeCountChildrenArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: CommentWhereInput
   }
 
@@ -2767,7 +2807,7 @@ export namespace Prisma {
       posts: Prisma.$PostPayload<ExtArgs>[]
       projects: Prisma.$ProjectPayload<ExtArgs>[]
       comments: Prisma.$CommentPayload<ExtArgs>[]
-      showcase: Prisma.$ShowcasePayload<ExtArgs> | null
+      showcase: Prisma.$ShowcasePayload<ExtArgs>[]
       technicalProfile: Prisma.$TechnicalProfilePayload<ExtArgs> | null
       visuals: Prisma.$VisualsPayload<ExtArgs> | null
     }
@@ -3189,7 +3229,7 @@ export namespace Prisma {
     posts<T extends User$postsArgs<ExtArgs> = {}>(args?: Subset<T, User$postsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PostPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     projects<T extends User$projectsArgs<ExtArgs> = {}>(args?: Subset<T, User$projectsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ProjectPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     comments<T extends User$commentsArgs<ExtArgs> = {}>(args?: Subset<T, User$commentsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CommentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-    showcase<T extends User$showcaseArgs<ExtArgs> = {}>(args?: Subset<T, User$showcaseArgs<ExtArgs>>): Prisma__ShowcaseClient<$Result.GetResult<Prisma.$ShowcasePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    showcase<T extends User$showcaseArgs<ExtArgs> = {}>(args?: Subset<T, User$showcaseArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ShowcasePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     technicalProfile<T extends User$technicalProfileArgs<ExtArgs> = {}>(args?: Subset<T, User$technicalProfileArgs<ExtArgs>>): Prisma__TechnicalProfileClient<$Result.GetResult<Prisma.$TechnicalProfilePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     visuals<T extends User$visualsArgs<ExtArgs> = {}>(args?: Subset<T, User$visualsArgs<ExtArgs>>): Prisma__VisualsClient<$Result.GetResult<Prisma.$VisualsPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     /**
@@ -3987,6 +4027,11 @@ export namespace Prisma {
      */
     include?: ShowcaseInclude<ExtArgs> | null
     where?: ShowcaseWhereInput
+    orderBy?: ShowcaseOrderByWithRelationInput | ShowcaseOrderByWithRelationInput[]
+    cursor?: ShowcaseWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: ShowcaseScalarFieldEnum | ShowcaseScalarFieldEnum[]
   }
 
   /**
@@ -19612,12 +19657,14 @@ export namespace Prisma {
     id: number | null
     postId: number | null
     userId: number | null
+    parentId: number | null
   }
 
   export type CommentSumAggregateOutputType = {
     id: number | null
     postId: number | null
     userId: number | null
+    parentId: number | null
   }
 
   export type CommentMinAggregateOutputType = {
@@ -19626,6 +19673,7 @@ export namespace Prisma {
     userId: number | null
     content: string | null
     createdAt: Date | null
+    parentId: number | null
   }
 
   export type CommentMaxAggregateOutputType = {
@@ -19634,6 +19682,7 @@ export namespace Prisma {
     userId: number | null
     content: string | null
     createdAt: Date | null
+    parentId: number | null
   }
 
   export type CommentCountAggregateOutputType = {
@@ -19642,6 +19691,7 @@ export namespace Prisma {
     userId: number
     content: number
     createdAt: number
+    parentId: number
     _all: number
   }
 
@@ -19650,12 +19700,14 @@ export namespace Prisma {
     id?: true
     postId?: true
     userId?: true
+    parentId?: true
   }
 
   export type CommentSumAggregateInputType = {
     id?: true
     postId?: true
     userId?: true
+    parentId?: true
   }
 
   export type CommentMinAggregateInputType = {
@@ -19664,6 +19716,7 @@ export namespace Prisma {
     userId?: true
     content?: true
     createdAt?: true
+    parentId?: true
   }
 
   export type CommentMaxAggregateInputType = {
@@ -19672,6 +19725,7 @@ export namespace Prisma {
     userId?: true
     content?: true
     createdAt?: true
+    parentId?: true
   }
 
   export type CommentCountAggregateInputType = {
@@ -19680,6 +19734,7 @@ export namespace Prisma {
     userId?: true
     content?: true
     createdAt?: true
+    parentId?: true
     _all?: true
   }
 
@@ -19775,6 +19830,7 @@ export namespace Prisma {
     userId: number
     content: string
     createdAt: Date
+    parentId: number
     _count: CommentCountAggregateOutputType | null
     _avg: CommentAvgAggregateOutputType | null
     _sum: CommentSumAggregateOutputType | null
@@ -19802,8 +19858,12 @@ export namespace Prisma {
     userId?: boolean
     content?: boolean
     createdAt?: boolean
+    parentId?: boolean
     post?: boolean | PostDefaultArgs<ExtArgs>
     user?: boolean | UserDefaultArgs<ExtArgs>
+    parent?: boolean | Comment$parentArgs<ExtArgs>
+    children?: boolean | Comment$childrenArgs<ExtArgs>
+    _count?: boolean | CommentCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["comment"]>
 
   export type CommentSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -19812,8 +19872,10 @@ export namespace Prisma {
     userId?: boolean
     content?: boolean
     createdAt?: boolean
+    parentId?: boolean
     post?: boolean | PostDefaultArgs<ExtArgs>
     user?: boolean | UserDefaultArgs<ExtArgs>
+    parent?: boolean | Comment$parentArgs<ExtArgs>
   }, ExtArgs["result"]["comment"]>
 
   export type CommentSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -19822,8 +19884,10 @@ export namespace Prisma {
     userId?: boolean
     content?: boolean
     createdAt?: boolean
+    parentId?: boolean
     post?: boolean | PostDefaultArgs<ExtArgs>
     user?: boolean | UserDefaultArgs<ExtArgs>
+    parent?: boolean | Comment$parentArgs<ExtArgs>
   }, ExtArgs["result"]["comment"]>
 
   export type CommentSelectScalar = {
@@ -19832,20 +19896,26 @@ export namespace Prisma {
     userId?: boolean
     content?: boolean
     createdAt?: boolean
+    parentId?: boolean
   }
 
-  export type CommentOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "postId" | "userId" | "content" | "createdAt", ExtArgs["result"]["comment"]>
+  export type CommentOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "postId" | "userId" | "content" | "createdAt" | "parentId", ExtArgs["result"]["comment"]>
   export type CommentInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     post?: boolean | PostDefaultArgs<ExtArgs>
     user?: boolean | UserDefaultArgs<ExtArgs>
+    parent?: boolean | Comment$parentArgs<ExtArgs>
+    children?: boolean | Comment$childrenArgs<ExtArgs>
+    _count?: boolean | CommentCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type CommentIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     post?: boolean | PostDefaultArgs<ExtArgs>
     user?: boolean | UserDefaultArgs<ExtArgs>
+    parent?: boolean | Comment$parentArgs<ExtArgs>
   }
   export type CommentIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     post?: boolean | PostDefaultArgs<ExtArgs>
     user?: boolean | UserDefaultArgs<ExtArgs>
+    parent?: boolean | Comment$parentArgs<ExtArgs>
   }
 
   export type $CommentPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -19853,6 +19923,8 @@ export namespace Prisma {
     objects: {
       post: Prisma.$PostPayload<ExtArgs>
       user: Prisma.$UserPayload<ExtArgs>
+      parent: Prisma.$CommentPayload<ExtArgs> | null
+      children: Prisma.$CommentPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: number
@@ -19860,6 +19932,7 @@ export namespace Prisma {
       userId: number
       content: string
       createdAt: Date
+      parentId: number
     }, ExtArgs["result"]["comment"]>
     composites: {}
   }
@@ -20256,6 +20329,8 @@ export namespace Prisma {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     post<T extends PostDefaultArgs<ExtArgs> = {}>(args?: Subset<T, PostDefaultArgs<ExtArgs>>): Prisma__PostClient<$Result.GetResult<Prisma.$PostPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     user<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    parent<T extends Comment$parentArgs<ExtArgs> = {}>(args?: Subset<T, Comment$parentArgs<ExtArgs>>): Prisma__CommentClient<$Result.GetResult<Prisma.$CommentPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    children<T extends Comment$childrenArgs<ExtArgs> = {}>(args?: Subset<T, Comment$childrenArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CommentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -20290,6 +20365,7 @@ export namespace Prisma {
     readonly userId: FieldRef<"Comment", 'Int'>
     readonly content: FieldRef<"Comment", 'String'>
     readonly createdAt: FieldRef<"Comment", 'DateTime'>
+    readonly parentId: FieldRef<"Comment", 'Int'>
   }
     
 
@@ -20695,6 +20771,49 @@ export namespace Prisma {
   }
 
   /**
+   * Comment.parent
+   */
+  export type Comment$parentArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Comment
+     */
+    select?: CommentSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Comment
+     */
+    omit?: CommentOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CommentInclude<ExtArgs> | null
+    where?: CommentWhereInput
+  }
+
+  /**
+   * Comment.children
+   */
+  export type Comment$childrenArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Comment
+     */
+    select?: CommentSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Comment
+     */
+    omit?: CommentOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CommentInclude<ExtArgs> | null
+    where?: CommentWhereInput
+    orderBy?: CommentOrderByWithRelationInput | CommentOrderByWithRelationInput[]
+    cursor?: CommentWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: CommentScalarFieldEnum | CommentScalarFieldEnum[]
+  }
+
+  /**
    * Comment without action
    */
   export type CommentDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -20906,7 +21025,8 @@ export namespace Prisma {
     postId: 'postId',
     userId: 'userId',
     content: 'content',
-    createdAt: 'createdAt'
+    createdAt: 'createdAt',
+    parentId: 'parentId'
   };
 
   export type CommentScalarFieldEnum = (typeof CommentScalarFieldEnum)[keyof typeof CommentScalarFieldEnum]
@@ -21076,7 +21196,7 @@ export namespace Prisma {
     posts?: PostListRelationFilter
     projects?: ProjectListRelationFilter
     comments?: CommentListRelationFilter
-    showcase?: XOR<ShowcaseNullableScalarRelationFilter, ShowcaseWhereInput> | null
+    showcase?: ShowcaseListRelationFilter
     technicalProfile?: XOR<TechnicalProfileNullableScalarRelationFilter, TechnicalProfileWhereInput> | null
     visuals?: XOR<VisualsNullableScalarRelationFilter, VisualsWhereInput> | null
   }
@@ -21105,7 +21225,7 @@ export namespace Prisma {
     posts?: PostOrderByRelationAggregateInput
     projects?: ProjectOrderByRelationAggregateInput
     comments?: CommentOrderByRelationAggregateInput
-    showcase?: ShowcaseOrderByWithRelationInput
+    showcase?: ShowcaseOrderByRelationAggregateInput
     technicalProfile?: TechnicalProfileOrderByWithRelationInput
     visuals?: VisualsOrderByWithRelationInput
   }
@@ -21137,7 +21257,7 @@ export namespace Prisma {
     posts?: PostListRelationFilter
     projects?: ProjectListRelationFilter
     comments?: CommentListRelationFilter
-    showcase?: XOR<ShowcaseNullableScalarRelationFilter, ShowcaseWhereInput> | null
+    showcase?: ShowcaseListRelationFilter
     technicalProfile?: XOR<TechnicalProfileNullableScalarRelationFilter, TechnicalProfileWhereInput> | null
     visuals?: XOR<VisualsNullableScalarRelationFilter, VisualsWhereInput> | null
   }, "id" | "email">
@@ -21355,17 +21475,17 @@ export namespace Prisma {
 
   export type ShowcaseWhereUniqueInput = Prisma.AtLeast<{
     id?: number
-    userId?: number
     AND?: ShowcaseWhereInput | ShowcaseWhereInput[]
     OR?: ShowcaseWhereInput[]
     NOT?: ShowcaseWhereInput | ShowcaseWhereInput[]
+    userId?: IntFilter<"Showcase"> | number
     github?: StringNullableFilter<"Showcase"> | string | null
     portfolio?: StringNullableFilter<"Showcase"> | string | null
     linkedin?: StringNullableFilter<"Showcase"> | string | null
     email?: StringNullableFilter<"Showcase"> | string | null
     whatsapp?: StringNullableFilter<"Showcase"> | string | null
     user?: XOR<UserScalarRelationFilter, UserWhereInput>
-  }, "id" | "userId">
+  }, "id">
 
   export type ShowcaseOrderByWithAggregationInput = {
     id?: SortOrder
@@ -21877,16 +21997,16 @@ export namespace Prisma {
 
   export type AcademicWhereUniqueInput = Prisma.AtLeast<{
     id?: number
-    userId?: number
     AND?: AcademicWhereInput | AcademicWhereInput[]
     OR?: AcademicWhereInput[]
     NOT?: AcademicWhereInput | AcademicWhereInput[]
+    userId?: IntFilter<"Academic"> | number
     institute?: StringFilter<"Academic"> | string
     degree?: StringFilter<"Academic"> | string
     startYear?: IntFilter<"Academic"> | number
     endYear?: IntNullableFilter<"Academic"> | number | null
     user?: XOR<UserScalarRelationFilter, UserWhereInput>
-  }, "id" | "userId">
+  }, "id">
 
   export type AcademicOrderByWithAggregationInput = {
     id?: SortOrder
@@ -21941,17 +22061,17 @@ export namespace Prisma {
 
   export type ExperienceWhereUniqueInput = Prisma.AtLeast<{
     id?: number
-    userId?: number
     AND?: ExperienceWhereInput | ExperienceWhereInput[]
     OR?: ExperienceWhereInput[]
     NOT?: ExperienceWhereInput | ExperienceWhereInput[]
+    userId?: IntFilter<"Experience"> | number
     title?: StringFilter<"Experience"> | string
     company?: StringFilter<"Experience"> | string
     jobDescription?: StringNullableFilter<"Experience"> | string | null
     startDate?: DateTimeFilter<"Experience"> | Date | string
     endDate?: DateTimeNullableFilter<"Experience"> | Date | string | null
     user?: XOR<UserScalarRelationFilter, UserWhereInput>
-  }, "id" | "userId">
+  }, "id">
 
   export type ExperienceOrderByWithAggregationInput = {
     id?: SortOrder
@@ -21990,8 +22110,11 @@ export namespace Prisma {
     userId?: IntFilter<"Comment"> | number
     content?: StringFilter<"Comment"> | string
     createdAt?: DateTimeFilter<"Comment"> | Date | string
+    parentId?: IntFilter<"Comment"> | number
     post?: XOR<PostScalarRelationFilter, PostWhereInput>
     user?: XOR<UserScalarRelationFilter, UserWhereInput>
+    parent?: XOR<CommentNullableScalarRelationFilter, CommentWhereInput> | null
+    children?: CommentListRelationFilter
   }
 
   export type CommentOrderByWithRelationInput = {
@@ -22000,8 +22123,11 @@ export namespace Prisma {
     userId?: SortOrder
     content?: SortOrder
     createdAt?: SortOrder
+    parentId?: SortOrder
     post?: PostOrderByWithRelationInput
     user?: UserOrderByWithRelationInput
+    parent?: CommentOrderByWithRelationInput
+    children?: CommentOrderByRelationAggregateInput
   }
 
   export type CommentWhereUniqueInput = Prisma.AtLeast<{
@@ -22013,8 +22139,11 @@ export namespace Prisma {
     userId?: IntFilter<"Comment"> | number
     content?: StringFilter<"Comment"> | string
     createdAt?: DateTimeFilter<"Comment"> | Date | string
+    parentId?: IntFilter<"Comment"> | number
     post?: XOR<PostScalarRelationFilter, PostWhereInput>
     user?: XOR<UserScalarRelationFilter, UserWhereInput>
+    parent?: XOR<CommentNullableScalarRelationFilter, CommentWhereInput> | null
+    children?: CommentListRelationFilter
   }, "id">
 
   export type CommentOrderByWithAggregationInput = {
@@ -22023,6 +22152,7 @@ export namespace Prisma {
     userId?: SortOrder
     content?: SortOrder
     createdAt?: SortOrder
+    parentId?: SortOrder
     _count?: CommentCountOrderByAggregateInput
     _avg?: CommentAvgOrderByAggregateInput
     _max?: CommentMaxOrderByAggregateInput
@@ -22039,6 +22169,7 @@ export namespace Prisma {
     userId?: IntWithAggregatesFilter<"Comment"> | number
     content?: StringWithAggregatesFilter<"Comment"> | string
     createdAt?: DateTimeWithAggregatesFilter<"Comment"> | Date | string
+    parentId?: IntWithAggregatesFilter<"Comment"> | number
   }
 
   export type UserCreateInput = {
@@ -22064,7 +22195,7 @@ export namespace Prisma {
     posts?: PostCreateNestedManyWithoutUserInput
     projects?: ProjectCreateNestedManyWithoutUserInput
     comments?: CommentCreateNestedManyWithoutUserInput
-    showcase?: ShowcaseCreateNestedOneWithoutUserInput
+    showcase?: ShowcaseCreateNestedManyWithoutUserInput
     technicalProfile?: TechnicalProfileCreateNestedOneWithoutUserInput
     visuals?: VisualsCreateNestedOneWithoutUserInput
   }
@@ -22093,7 +22224,7 @@ export namespace Prisma {
     posts?: PostUncheckedCreateNestedManyWithoutUserInput
     projects?: ProjectUncheckedCreateNestedManyWithoutUserInput
     comments?: CommentUncheckedCreateNestedManyWithoutUserInput
-    showcase?: ShowcaseUncheckedCreateNestedOneWithoutUserInput
+    showcase?: ShowcaseUncheckedCreateNestedManyWithoutUserInput
     technicalProfile?: TechnicalProfileUncheckedCreateNestedOneWithoutUserInput
     visuals?: VisualsUncheckedCreateNestedOneWithoutUserInput
   }
@@ -22121,7 +22252,7 @@ export namespace Prisma {
     posts?: PostUpdateManyWithoutUserNestedInput
     projects?: ProjectUpdateManyWithoutUserNestedInput
     comments?: CommentUpdateManyWithoutUserNestedInput
-    showcase?: ShowcaseUpdateOneWithoutUserNestedInput
+    showcase?: ShowcaseUpdateManyWithoutUserNestedInput
     technicalProfile?: TechnicalProfileUpdateOneWithoutUserNestedInput
     visuals?: VisualsUpdateOneWithoutUserNestedInput
   }
@@ -22150,7 +22281,7 @@ export namespace Prisma {
     posts?: PostUncheckedUpdateManyWithoutUserNestedInput
     projects?: ProjectUncheckedUpdateManyWithoutUserNestedInput
     comments?: CommentUncheckedUpdateManyWithoutUserNestedInput
-    showcase?: ShowcaseUncheckedUpdateOneWithoutUserNestedInput
+    showcase?: ShowcaseUncheckedUpdateManyWithoutUserNestedInput
     technicalProfile?: TechnicalProfileUncheckedUpdateOneWithoutUserNestedInput
     visuals?: VisualsUncheckedUpdateOneWithoutUserNestedInput
   }
@@ -22911,6 +23042,8 @@ export namespace Prisma {
     createdAt?: Date | string
     post: PostCreateNestedOneWithoutCommentsInput
     user: UserCreateNestedOneWithoutCommentsInput
+    parent?: CommentCreateNestedOneWithoutChildrenInput
+    children?: CommentCreateNestedManyWithoutParentInput
   }
 
   export type CommentUncheckedCreateInput = {
@@ -22919,6 +23052,8 @@ export namespace Prisma {
     userId: number
     content: string
     createdAt?: Date | string
+    parentId: number
+    children?: CommentUncheckedCreateNestedManyWithoutParentInput
   }
 
   export type CommentUpdateInput = {
@@ -22926,6 +23061,8 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     post?: PostUpdateOneRequiredWithoutCommentsNestedInput
     user?: UserUpdateOneRequiredWithoutCommentsNestedInput
+    parent?: CommentUpdateOneWithoutChildrenNestedInput
+    children?: CommentUpdateManyWithoutParentNestedInput
   }
 
   export type CommentUncheckedUpdateInput = {
@@ -22934,6 +23071,8 @@ export namespace Prisma {
     userId?: IntFieldUpdateOperationsInput | number
     content?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    parentId?: IntFieldUpdateOperationsInput | number
+    children?: CommentUncheckedUpdateManyWithoutParentNestedInput
   }
 
   export type CommentCreateManyInput = {
@@ -22942,6 +23081,7 @@ export namespace Prisma {
     userId: number
     content: string
     createdAt?: Date | string
+    parentId: number
   }
 
   export type CommentUpdateManyMutationInput = {
@@ -22955,6 +23095,7 @@ export namespace Prisma {
     userId?: IntFieldUpdateOperationsInput | number
     content?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    parentId?: IntFieldUpdateOperationsInput | number
   }
 
   export type IntFilter<$PrismaModel = never> = {
@@ -23101,9 +23242,10 @@ export namespace Prisma {
     none?: CommentWhereInput
   }
 
-  export type ShowcaseNullableScalarRelationFilter = {
-    is?: ShowcaseWhereInput | null
-    isNot?: ShowcaseWhereInput | null
+  export type ShowcaseListRelationFilter = {
+    every?: ShowcaseWhereInput
+    some?: ShowcaseWhereInput
+    none?: ShowcaseWhereInput
   }
 
   export type TechnicalProfileNullableScalarRelationFilter = {
@@ -23154,6 +23296,10 @@ export namespace Prisma {
   }
 
   export type CommentOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type ShowcaseOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
@@ -23881,18 +24027,25 @@ export namespace Prisma {
     userId?: SortOrder
   }
 
+  export type CommentNullableScalarRelationFilter = {
+    is?: CommentWhereInput | null
+    isNot?: CommentWhereInput | null
+  }
+
   export type CommentCountOrderByAggregateInput = {
     id?: SortOrder
     postId?: SortOrder
     userId?: SortOrder
     content?: SortOrder
     createdAt?: SortOrder
+    parentId?: SortOrder
   }
 
   export type CommentAvgOrderByAggregateInput = {
     id?: SortOrder
     postId?: SortOrder
     userId?: SortOrder
+    parentId?: SortOrder
   }
 
   export type CommentMaxOrderByAggregateInput = {
@@ -23901,6 +24054,7 @@ export namespace Prisma {
     userId?: SortOrder
     content?: SortOrder
     createdAt?: SortOrder
+    parentId?: SortOrder
   }
 
   export type CommentMinOrderByAggregateInput = {
@@ -23909,12 +24063,14 @@ export namespace Prisma {
     userId?: SortOrder
     content?: SortOrder
     createdAt?: SortOrder
+    parentId?: SortOrder
   }
 
   export type CommentSumOrderByAggregateInput = {
     id?: SortOrder
     postId?: SortOrder
     userId?: SortOrder
+    parentId?: SortOrder
   }
 
   export type BasicInfoCreateNestedOneWithoutUserInput = {
@@ -24019,10 +24175,11 @@ export namespace Prisma {
     connect?: CommentWhereUniqueInput | CommentWhereUniqueInput[]
   }
 
-  export type ShowcaseCreateNestedOneWithoutUserInput = {
-    create?: XOR<ShowcaseCreateWithoutUserInput, ShowcaseUncheckedCreateWithoutUserInput>
-    connectOrCreate?: ShowcaseCreateOrConnectWithoutUserInput
-    connect?: ShowcaseWhereUniqueInput
+  export type ShowcaseCreateNestedManyWithoutUserInput = {
+    create?: XOR<ShowcaseCreateWithoutUserInput, ShowcaseUncheckedCreateWithoutUserInput> | ShowcaseCreateWithoutUserInput[] | ShowcaseUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: ShowcaseCreateOrConnectWithoutUserInput | ShowcaseCreateOrConnectWithoutUserInput[]
+    createMany?: ShowcaseCreateManyUserInputEnvelope
+    connect?: ShowcaseWhereUniqueInput | ShowcaseWhereUniqueInput[]
   }
 
   export type TechnicalProfileCreateNestedOneWithoutUserInput = {
@@ -24139,10 +24296,11 @@ export namespace Prisma {
     connect?: CommentWhereUniqueInput | CommentWhereUniqueInput[]
   }
 
-  export type ShowcaseUncheckedCreateNestedOneWithoutUserInput = {
-    create?: XOR<ShowcaseCreateWithoutUserInput, ShowcaseUncheckedCreateWithoutUserInput>
-    connectOrCreate?: ShowcaseCreateOrConnectWithoutUserInput
-    connect?: ShowcaseWhereUniqueInput
+  export type ShowcaseUncheckedCreateNestedManyWithoutUserInput = {
+    create?: XOR<ShowcaseCreateWithoutUserInput, ShowcaseUncheckedCreateWithoutUserInput> | ShowcaseCreateWithoutUserInput[] | ShowcaseUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: ShowcaseCreateOrConnectWithoutUserInput | ShowcaseCreateOrConnectWithoutUserInput[]
+    createMany?: ShowcaseCreateManyUserInputEnvelope
+    connect?: ShowcaseWhereUniqueInput | ShowcaseWhereUniqueInput[]
   }
 
   export type TechnicalProfileUncheckedCreateNestedOneWithoutUserInput = {
@@ -24379,14 +24537,18 @@ export namespace Prisma {
     deleteMany?: CommentScalarWhereInput | CommentScalarWhereInput[]
   }
 
-  export type ShowcaseUpdateOneWithoutUserNestedInput = {
-    create?: XOR<ShowcaseCreateWithoutUserInput, ShowcaseUncheckedCreateWithoutUserInput>
-    connectOrCreate?: ShowcaseCreateOrConnectWithoutUserInput
-    upsert?: ShowcaseUpsertWithoutUserInput
-    disconnect?: ShowcaseWhereInput | boolean
-    delete?: ShowcaseWhereInput | boolean
-    connect?: ShowcaseWhereUniqueInput
-    update?: XOR<XOR<ShowcaseUpdateToOneWithWhereWithoutUserInput, ShowcaseUpdateWithoutUserInput>, ShowcaseUncheckedUpdateWithoutUserInput>
+  export type ShowcaseUpdateManyWithoutUserNestedInput = {
+    create?: XOR<ShowcaseCreateWithoutUserInput, ShowcaseUncheckedCreateWithoutUserInput> | ShowcaseCreateWithoutUserInput[] | ShowcaseUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: ShowcaseCreateOrConnectWithoutUserInput | ShowcaseCreateOrConnectWithoutUserInput[]
+    upsert?: ShowcaseUpsertWithWhereUniqueWithoutUserInput | ShowcaseUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: ShowcaseCreateManyUserInputEnvelope
+    set?: ShowcaseWhereUniqueInput | ShowcaseWhereUniqueInput[]
+    disconnect?: ShowcaseWhereUniqueInput | ShowcaseWhereUniqueInput[]
+    delete?: ShowcaseWhereUniqueInput | ShowcaseWhereUniqueInput[]
+    connect?: ShowcaseWhereUniqueInput | ShowcaseWhereUniqueInput[]
+    update?: ShowcaseUpdateWithWhereUniqueWithoutUserInput | ShowcaseUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: ShowcaseUpdateManyWithWhereWithoutUserInput | ShowcaseUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: ShowcaseScalarWhereInput | ShowcaseScalarWhereInput[]
   }
 
   export type TechnicalProfileUpdateOneWithoutUserNestedInput = {
@@ -24615,14 +24777,18 @@ export namespace Prisma {
     deleteMany?: CommentScalarWhereInput | CommentScalarWhereInput[]
   }
 
-  export type ShowcaseUncheckedUpdateOneWithoutUserNestedInput = {
-    create?: XOR<ShowcaseCreateWithoutUserInput, ShowcaseUncheckedCreateWithoutUserInput>
-    connectOrCreate?: ShowcaseCreateOrConnectWithoutUserInput
-    upsert?: ShowcaseUpsertWithoutUserInput
-    disconnect?: ShowcaseWhereInput | boolean
-    delete?: ShowcaseWhereInput | boolean
-    connect?: ShowcaseWhereUniqueInput
-    update?: XOR<XOR<ShowcaseUpdateToOneWithWhereWithoutUserInput, ShowcaseUpdateWithoutUserInput>, ShowcaseUncheckedUpdateWithoutUserInput>
+  export type ShowcaseUncheckedUpdateManyWithoutUserNestedInput = {
+    create?: XOR<ShowcaseCreateWithoutUserInput, ShowcaseUncheckedCreateWithoutUserInput> | ShowcaseCreateWithoutUserInput[] | ShowcaseUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: ShowcaseCreateOrConnectWithoutUserInput | ShowcaseCreateOrConnectWithoutUserInput[]
+    upsert?: ShowcaseUpsertWithWhereUniqueWithoutUserInput | ShowcaseUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: ShowcaseCreateManyUserInputEnvelope
+    set?: ShowcaseWhereUniqueInput | ShowcaseWhereUniqueInput[]
+    disconnect?: ShowcaseWhereUniqueInput | ShowcaseWhereUniqueInput[]
+    delete?: ShowcaseWhereUniqueInput | ShowcaseWhereUniqueInput[]
+    connect?: ShowcaseWhereUniqueInput | ShowcaseWhereUniqueInput[]
+    update?: ShowcaseUpdateWithWhereUniqueWithoutUserInput | ShowcaseUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: ShowcaseUpdateManyWithWhereWithoutUserInput | ShowcaseUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: ShowcaseScalarWhereInput | ShowcaseScalarWhereInput[]
   }
 
   export type TechnicalProfileUncheckedUpdateOneWithoutUserNestedInput = {
@@ -25031,6 +25197,26 @@ export namespace Prisma {
     connect?: UserWhereUniqueInput
   }
 
+  export type CommentCreateNestedOneWithoutChildrenInput = {
+    create?: XOR<CommentCreateWithoutChildrenInput, CommentUncheckedCreateWithoutChildrenInput>
+    connectOrCreate?: CommentCreateOrConnectWithoutChildrenInput
+    connect?: CommentWhereUniqueInput
+  }
+
+  export type CommentCreateNestedManyWithoutParentInput = {
+    create?: XOR<CommentCreateWithoutParentInput, CommentUncheckedCreateWithoutParentInput> | CommentCreateWithoutParentInput[] | CommentUncheckedCreateWithoutParentInput[]
+    connectOrCreate?: CommentCreateOrConnectWithoutParentInput | CommentCreateOrConnectWithoutParentInput[]
+    createMany?: CommentCreateManyParentInputEnvelope
+    connect?: CommentWhereUniqueInput | CommentWhereUniqueInput[]
+  }
+
+  export type CommentUncheckedCreateNestedManyWithoutParentInput = {
+    create?: XOR<CommentCreateWithoutParentInput, CommentUncheckedCreateWithoutParentInput> | CommentCreateWithoutParentInput[] | CommentUncheckedCreateWithoutParentInput[]
+    connectOrCreate?: CommentCreateOrConnectWithoutParentInput | CommentCreateOrConnectWithoutParentInput[]
+    createMany?: CommentCreateManyParentInputEnvelope
+    connect?: CommentWhereUniqueInput | CommentWhereUniqueInput[]
+  }
+
   export type PostUpdateOneRequiredWithoutCommentsNestedInput = {
     create?: XOR<PostCreateWithoutCommentsInput, PostUncheckedCreateWithoutCommentsInput>
     connectOrCreate?: PostCreateOrConnectWithoutCommentsInput
@@ -25045,6 +25231,44 @@ export namespace Prisma {
     upsert?: UserUpsertWithoutCommentsInput
     connect?: UserWhereUniqueInput
     update?: XOR<XOR<UserUpdateToOneWithWhereWithoutCommentsInput, UserUpdateWithoutCommentsInput>, UserUncheckedUpdateWithoutCommentsInput>
+  }
+
+  export type CommentUpdateOneWithoutChildrenNestedInput = {
+    create?: XOR<CommentCreateWithoutChildrenInput, CommentUncheckedCreateWithoutChildrenInput>
+    connectOrCreate?: CommentCreateOrConnectWithoutChildrenInput
+    upsert?: CommentUpsertWithoutChildrenInput
+    disconnect?: CommentWhereInput | boolean
+    delete?: CommentWhereInput | boolean
+    connect?: CommentWhereUniqueInput
+    update?: XOR<XOR<CommentUpdateToOneWithWhereWithoutChildrenInput, CommentUpdateWithoutChildrenInput>, CommentUncheckedUpdateWithoutChildrenInput>
+  }
+
+  export type CommentUpdateManyWithoutParentNestedInput = {
+    create?: XOR<CommentCreateWithoutParentInput, CommentUncheckedCreateWithoutParentInput> | CommentCreateWithoutParentInput[] | CommentUncheckedCreateWithoutParentInput[]
+    connectOrCreate?: CommentCreateOrConnectWithoutParentInput | CommentCreateOrConnectWithoutParentInput[]
+    upsert?: CommentUpsertWithWhereUniqueWithoutParentInput | CommentUpsertWithWhereUniqueWithoutParentInput[]
+    createMany?: CommentCreateManyParentInputEnvelope
+    set?: CommentWhereUniqueInput | CommentWhereUniqueInput[]
+    disconnect?: CommentWhereUniqueInput | CommentWhereUniqueInput[]
+    delete?: CommentWhereUniqueInput | CommentWhereUniqueInput[]
+    connect?: CommentWhereUniqueInput | CommentWhereUniqueInput[]
+    update?: CommentUpdateWithWhereUniqueWithoutParentInput | CommentUpdateWithWhereUniqueWithoutParentInput[]
+    updateMany?: CommentUpdateManyWithWhereWithoutParentInput | CommentUpdateManyWithWhereWithoutParentInput[]
+    deleteMany?: CommentScalarWhereInput | CommentScalarWhereInput[]
+  }
+
+  export type CommentUncheckedUpdateManyWithoutParentNestedInput = {
+    create?: XOR<CommentCreateWithoutParentInput, CommentUncheckedCreateWithoutParentInput> | CommentCreateWithoutParentInput[] | CommentUncheckedCreateWithoutParentInput[]
+    connectOrCreate?: CommentCreateOrConnectWithoutParentInput | CommentCreateOrConnectWithoutParentInput[]
+    upsert?: CommentUpsertWithWhereUniqueWithoutParentInput | CommentUpsertWithWhereUniqueWithoutParentInput[]
+    createMany?: CommentCreateManyParentInputEnvelope
+    set?: CommentWhereUniqueInput | CommentWhereUniqueInput[]
+    disconnect?: CommentWhereUniqueInput | CommentWhereUniqueInput[]
+    delete?: CommentWhereUniqueInput | CommentWhereUniqueInput[]
+    connect?: CommentWhereUniqueInput | CommentWhereUniqueInput[]
+    update?: CommentUpdateWithWhereUniqueWithoutParentInput | CommentUpdateWithWhereUniqueWithoutParentInput[]
+    updateMany?: CommentUpdateManyWithWhereWithoutParentInput | CommentUpdateManyWithWhereWithoutParentInput[]
+    deleteMany?: CommentScalarWhereInput | CommentScalarWhereInput[]
   }
 
   export type NestedIntFilter<$PrismaModel = never> = {
@@ -25617,6 +25841,8 @@ export namespace Prisma {
     content: string
     createdAt?: Date | string
     post: PostCreateNestedOneWithoutCommentsInput
+    parent?: CommentCreateNestedOneWithoutChildrenInput
+    children?: CommentCreateNestedManyWithoutParentInput
   }
 
   export type CommentUncheckedCreateWithoutUserInput = {
@@ -25624,6 +25850,8 @@ export namespace Prisma {
     postId: number
     content: string
     createdAt?: Date | string
+    parentId: number
+    children?: CommentUncheckedCreateNestedManyWithoutParentInput
   }
 
   export type CommentCreateOrConnectWithoutUserInput = {
@@ -25656,6 +25884,11 @@ export namespace Prisma {
   export type ShowcaseCreateOrConnectWithoutUserInput = {
     where: ShowcaseWhereUniqueInput
     create: XOR<ShowcaseCreateWithoutUserInput, ShowcaseUncheckedCreateWithoutUserInput>
+  }
+
+  export type ShowcaseCreateManyUserInputEnvelope = {
+    data: ShowcaseCreateManyUserInput | ShowcaseCreateManyUserInput[]
+    skipDuplicates?: boolean
   }
 
   export type TechnicalProfileCreateWithoutUserInput = {
@@ -26046,34 +26279,36 @@ export namespace Prisma {
     userId?: IntFilter<"Comment"> | number
     content?: StringFilter<"Comment"> | string
     createdAt?: DateTimeFilter<"Comment"> | Date | string
+    parentId?: IntFilter<"Comment"> | number
   }
 
-  export type ShowcaseUpsertWithoutUserInput = {
+  export type ShowcaseUpsertWithWhereUniqueWithoutUserInput = {
+    where: ShowcaseWhereUniqueInput
     update: XOR<ShowcaseUpdateWithoutUserInput, ShowcaseUncheckedUpdateWithoutUserInput>
     create: XOR<ShowcaseCreateWithoutUserInput, ShowcaseUncheckedCreateWithoutUserInput>
-    where?: ShowcaseWhereInput
   }
 
-  export type ShowcaseUpdateToOneWithWhereWithoutUserInput = {
-    where?: ShowcaseWhereInput
+  export type ShowcaseUpdateWithWhereUniqueWithoutUserInput = {
+    where: ShowcaseWhereUniqueInput
     data: XOR<ShowcaseUpdateWithoutUserInput, ShowcaseUncheckedUpdateWithoutUserInput>
   }
 
-  export type ShowcaseUpdateWithoutUserInput = {
-    github?: NullableStringFieldUpdateOperationsInput | string | null
-    portfolio?: NullableStringFieldUpdateOperationsInput | string | null
-    linkedin?: NullableStringFieldUpdateOperationsInput | string | null
-    email?: NullableStringFieldUpdateOperationsInput | string | null
-    whatsapp?: NullableStringFieldUpdateOperationsInput | string | null
+  export type ShowcaseUpdateManyWithWhereWithoutUserInput = {
+    where: ShowcaseScalarWhereInput
+    data: XOR<ShowcaseUpdateManyMutationInput, ShowcaseUncheckedUpdateManyWithoutUserInput>
   }
 
-  export type ShowcaseUncheckedUpdateWithoutUserInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    github?: NullableStringFieldUpdateOperationsInput | string | null
-    portfolio?: NullableStringFieldUpdateOperationsInput | string | null
-    linkedin?: NullableStringFieldUpdateOperationsInput | string | null
-    email?: NullableStringFieldUpdateOperationsInput | string | null
-    whatsapp?: NullableStringFieldUpdateOperationsInput | string | null
+  export type ShowcaseScalarWhereInput = {
+    AND?: ShowcaseScalarWhereInput | ShowcaseScalarWhereInput[]
+    OR?: ShowcaseScalarWhereInput[]
+    NOT?: ShowcaseScalarWhereInput | ShowcaseScalarWhereInput[]
+    id?: IntFilter<"Showcase"> | number
+    userId?: IntFilter<"Showcase"> | number
+    github?: StringNullableFilter<"Showcase"> | string | null
+    portfolio?: StringNullableFilter<"Showcase"> | string | null
+    linkedin?: StringNullableFilter<"Showcase"> | string | null
+    email?: StringNullableFilter<"Showcase"> | string | null
+    whatsapp?: StringNullableFilter<"Showcase"> | string | null
   }
 
   export type TechnicalProfileUpsertWithoutUserInput = {
@@ -26142,7 +26377,7 @@ export namespace Prisma {
     posts?: PostCreateNestedManyWithoutUserInput
     projects?: ProjectCreateNestedManyWithoutUserInput
     comments?: CommentCreateNestedManyWithoutUserInput
-    showcase?: ShowcaseCreateNestedOneWithoutUserInput
+    showcase?: ShowcaseCreateNestedManyWithoutUserInput
     technicalProfile?: TechnicalProfileCreateNestedOneWithoutUserInput
     visuals?: VisualsCreateNestedOneWithoutUserInput
   }
@@ -26170,7 +26405,7 @@ export namespace Prisma {
     posts?: PostUncheckedCreateNestedManyWithoutUserInput
     projects?: ProjectUncheckedCreateNestedManyWithoutUserInput
     comments?: CommentUncheckedCreateNestedManyWithoutUserInput
-    showcase?: ShowcaseUncheckedCreateNestedOneWithoutUserInput
+    showcase?: ShowcaseUncheckedCreateNestedManyWithoutUserInput
     technicalProfile?: TechnicalProfileUncheckedCreateNestedOneWithoutUserInput
     visuals?: VisualsUncheckedCreateNestedOneWithoutUserInput
   }
@@ -26213,7 +26448,7 @@ export namespace Prisma {
     posts?: PostUpdateManyWithoutUserNestedInput
     projects?: ProjectUpdateManyWithoutUserNestedInput
     comments?: CommentUpdateManyWithoutUserNestedInput
-    showcase?: ShowcaseUpdateOneWithoutUserNestedInput
+    showcase?: ShowcaseUpdateManyWithoutUserNestedInput
     technicalProfile?: TechnicalProfileUpdateOneWithoutUserNestedInput
     visuals?: VisualsUpdateOneWithoutUserNestedInput
   }
@@ -26241,7 +26476,7 @@ export namespace Prisma {
     posts?: PostUncheckedUpdateManyWithoutUserNestedInput
     projects?: ProjectUncheckedUpdateManyWithoutUserNestedInput
     comments?: CommentUncheckedUpdateManyWithoutUserNestedInput
-    showcase?: ShowcaseUncheckedUpdateOneWithoutUserNestedInput
+    showcase?: ShowcaseUncheckedUpdateManyWithoutUserNestedInput
     technicalProfile?: TechnicalProfileUncheckedUpdateOneWithoutUserNestedInput
     visuals?: VisualsUncheckedUpdateOneWithoutUserNestedInput
   }
@@ -26269,7 +26504,7 @@ export namespace Prisma {
     posts?: PostCreateNestedManyWithoutUserInput
     projects?: ProjectCreateNestedManyWithoutUserInput
     comments?: CommentCreateNestedManyWithoutUserInput
-    showcase?: ShowcaseCreateNestedOneWithoutUserInput
+    showcase?: ShowcaseCreateNestedManyWithoutUserInput
     visuals?: VisualsCreateNestedOneWithoutUserInput
   }
 
@@ -26297,7 +26532,7 @@ export namespace Prisma {
     posts?: PostUncheckedCreateNestedManyWithoutUserInput
     projects?: ProjectUncheckedCreateNestedManyWithoutUserInput
     comments?: CommentUncheckedCreateNestedManyWithoutUserInput
-    showcase?: ShowcaseUncheckedCreateNestedOneWithoutUserInput
+    showcase?: ShowcaseUncheckedCreateNestedManyWithoutUserInput
     visuals?: VisualsUncheckedCreateNestedOneWithoutUserInput
   }
 
@@ -26340,7 +26575,7 @@ export namespace Prisma {
     posts?: PostUpdateManyWithoutUserNestedInput
     projects?: ProjectUpdateManyWithoutUserNestedInput
     comments?: CommentUpdateManyWithoutUserNestedInput
-    showcase?: ShowcaseUpdateOneWithoutUserNestedInput
+    showcase?: ShowcaseUpdateManyWithoutUserNestedInput
     visuals?: VisualsUpdateOneWithoutUserNestedInput
   }
 
@@ -26368,7 +26603,7 @@ export namespace Prisma {
     posts?: PostUncheckedUpdateManyWithoutUserNestedInput
     projects?: ProjectUncheckedUpdateManyWithoutUserNestedInput
     comments?: CommentUncheckedUpdateManyWithoutUserNestedInput
-    showcase?: ShowcaseUncheckedUpdateOneWithoutUserNestedInput
+    showcase?: ShowcaseUncheckedUpdateManyWithoutUserNestedInput
     visuals?: VisualsUncheckedUpdateOneWithoutUserNestedInput
   }
 
@@ -26394,7 +26629,7 @@ export namespace Prisma {
     posts?: PostCreateNestedManyWithoutUserInput
     projects?: ProjectCreateNestedManyWithoutUserInput
     comments?: CommentCreateNestedManyWithoutUserInput
-    showcase?: ShowcaseCreateNestedOneWithoutUserInput
+    showcase?: ShowcaseCreateNestedManyWithoutUserInput
     technicalProfile?: TechnicalProfileCreateNestedOneWithoutUserInput
     visuals?: VisualsCreateNestedOneWithoutUserInput
   }
@@ -26422,7 +26657,7 @@ export namespace Prisma {
     posts?: PostUncheckedCreateNestedManyWithoutUserInput
     projects?: ProjectUncheckedCreateNestedManyWithoutUserInput
     comments?: CommentUncheckedCreateNestedManyWithoutUserInput
-    showcase?: ShowcaseUncheckedCreateNestedOneWithoutUserInput
+    showcase?: ShowcaseUncheckedCreateNestedManyWithoutUserInput
     technicalProfile?: TechnicalProfileUncheckedCreateNestedOneWithoutUserInput
     visuals?: VisualsUncheckedCreateNestedOneWithoutUserInput
   }
@@ -26465,7 +26700,7 @@ export namespace Prisma {
     posts?: PostUpdateManyWithoutUserNestedInput
     projects?: ProjectUpdateManyWithoutUserNestedInput
     comments?: CommentUpdateManyWithoutUserNestedInput
-    showcase?: ShowcaseUpdateOneWithoutUserNestedInput
+    showcase?: ShowcaseUpdateManyWithoutUserNestedInput
     technicalProfile?: TechnicalProfileUpdateOneWithoutUserNestedInput
     visuals?: VisualsUpdateOneWithoutUserNestedInput
   }
@@ -26493,7 +26728,7 @@ export namespace Prisma {
     posts?: PostUncheckedUpdateManyWithoutUserNestedInput
     projects?: ProjectUncheckedUpdateManyWithoutUserNestedInput
     comments?: CommentUncheckedUpdateManyWithoutUserNestedInput
-    showcase?: ShowcaseUncheckedUpdateOneWithoutUserNestedInput
+    showcase?: ShowcaseUncheckedUpdateManyWithoutUserNestedInput
     technicalProfile?: TechnicalProfileUncheckedUpdateOneWithoutUserNestedInput
     visuals?: VisualsUncheckedUpdateOneWithoutUserNestedInput
   }
@@ -26646,7 +26881,7 @@ export namespace Prisma {
     interested?: InterestedCreateNestedManyWithoutUserInput
     posts?: PostCreateNestedManyWithoutUserInput
     comments?: CommentCreateNestedManyWithoutUserInput
-    showcase?: ShowcaseCreateNestedOneWithoutUserInput
+    showcase?: ShowcaseCreateNestedManyWithoutUserInput
     technicalProfile?: TechnicalProfileCreateNestedOneWithoutUserInput
     visuals?: VisualsCreateNestedOneWithoutUserInput
   }
@@ -26674,7 +26909,7 @@ export namespace Prisma {
     interested?: InterestedUncheckedCreateNestedManyWithoutUserInput
     posts?: PostUncheckedCreateNestedManyWithoutUserInput
     comments?: CommentUncheckedCreateNestedManyWithoutUserInput
-    showcase?: ShowcaseUncheckedCreateNestedOneWithoutUserInput
+    showcase?: ShowcaseUncheckedCreateNestedManyWithoutUserInput
     technicalProfile?: TechnicalProfileUncheckedCreateNestedOneWithoutUserInput
     visuals?: VisualsUncheckedCreateNestedOneWithoutUserInput
   }
@@ -26717,7 +26952,7 @@ export namespace Prisma {
     interested?: InterestedUpdateManyWithoutUserNestedInput
     posts?: PostUpdateManyWithoutUserNestedInput
     comments?: CommentUpdateManyWithoutUserNestedInput
-    showcase?: ShowcaseUpdateOneWithoutUserNestedInput
+    showcase?: ShowcaseUpdateManyWithoutUserNestedInput
     technicalProfile?: TechnicalProfileUpdateOneWithoutUserNestedInput
     visuals?: VisualsUpdateOneWithoutUserNestedInput
   }
@@ -26745,7 +26980,7 @@ export namespace Prisma {
     interested?: InterestedUncheckedUpdateManyWithoutUserNestedInput
     posts?: PostUncheckedUpdateManyWithoutUserNestedInput
     comments?: CommentUncheckedUpdateManyWithoutUserNestedInput
-    showcase?: ShowcaseUncheckedUpdateOneWithoutUserNestedInput
+    showcase?: ShowcaseUncheckedUpdateManyWithoutUserNestedInput
     technicalProfile?: TechnicalProfileUncheckedUpdateOneWithoutUserNestedInput
     visuals?: VisualsUncheckedUpdateOneWithoutUserNestedInput
   }
@@ -26772,7 +27007,7 @@ export namespace Prisma {
     posts?: PostCreateNestedManyWithoutUserInput
     projects?: ProjectCreateNestedManyWithoutUserInput
     comments?: CommentCreateNestedManyWithoutUserInput
-    showcase?: ShowcaseCreateNestedOneWithoutUserInput
+    showcase?: ShowcaseCreateNestedManyWithoutUserInput
     technicalProfile?: TechnicalProfileCreateNestedOneWithoutUserInput
     visuals?: VisualsCreateNestedOneWithoutUserInput
   }
@@ -26800,7 +27035,7 @@ export namespace Prisma {
     posts?: PostUncheckedCreateNestedManyWithoutUserInput
     projects?: ProjectUncheckedCreateNestedManyWithoutUserInput
     comments?: CommentUncheckedCreateNestedManyWithoutUserInput
-    showcase?: ShowcaseUncheckedCreateNestedOneWithoutUserInput
+    showcase?: ShowcaseUncheckedCreateNestedManyWithoutUserInput
     technicalProfile?: TechnicalProfileUncheckedCreateNestedOneWithoutUserInput
     visuals?: VisualsUncheckedCreateNestedOneWithoutUserInput
   }
@@ -26843,7 +27078,7 @@ export namespace Prisma {
     posts?: PostUpdateManyWithoutUserNestedInput
     projects?: ProjectUpdateManyWithoutUserNestedInput
     comments?: CommentUpdateManyWithoutUserNestedInput
-    showcase?: ShowcaseUpdateOneWithoutUserNestedInput
+    showcase?: ShowcaseUpdateManyWithoutUserNestedInput
     technicalProfile?: TechnicalProfileUpdateOneWithoutUserNestedInput
     visuals?: VisualsUpdateOneWithoutUserNestedInput
   }
@@ -26871,7 +27106,7 @@ export namespace Prisma {
     posts?: PostUncheckedUpdateManyWithoutUserNestedInput
     projects?: ProjectUncheckedUpdateManyWithoutUserNestedInput
     comments?: CommentUncheckedUpdateManyWithoutUserNestedInput
-    showcase?: ShowcaseUncheckedUpdateOneWithoutUserNestedInput
+    showcase?: ShowcaseUncheckedUpdateManyWithoutUserNestedInput
     technicalProfile?: TechnicalProfileUncheckedUpdateOneWithoutUserNestedInput
     visuals?: VisualsUncheckedUpdateOneWithoutUserNestedInput
   }
@@ -26899,7 +27134,7 @@ export namespace Prisma {
     posts?: PostCreateNestedManyWithoutUserInput
     projects?: ProjectCreateNestedManyWithoutUserInput
     comments?: CommentCreateNestedManyWithoutUserInput
-    showcase?: ShowcaseCreateNestedOneWithoutUserInput
+    showcase?: ShowcaseCreateNestedManyWithoutUserInput
     technicalProfile?: TechnicalProfileCreateNestedOneWithoutUserInput
   }
 
@@ -26927,7 +27162,7 @@ export namespace Prisma {
     posts?: PostUncheckedCreateNestedManyWithoutUserInput
     projects?: ProjectUncheckedCreateNestedManyWithoutUserInput
     comments?: CommentUncheckedCreateNestedManyWithoutUserInput
-    showcase?: ShowcaseUncheckedCreateNestedOneWithoutUserInput
+    showcase?: ShowcaseUncheckedCreateNestedManyWithoutUserInput
     technicalProfile?: TechnicalProfileUncheckedCreateNestedOneWithoutUserInput
   }
 
@@ -26970,7 +27205,7 @@ export namespace Prisma {
     posts?: PostUpdateManyWithoutUserNestedInput
     projects?: ProjectUpdateManyWithoutUserNestedInput
     comments?: CommentUpdateManyWithoutUserNestedInput
-    showcase?: ShowcaseUpdateOneWithoutUserNestedInput
+    showcase?: ShowcaseUpdateManyWithoutUserNestedInput
     technicalProfile?: TechnicalProfileUpdateOneWithoutUserNestedInput
   }
 
@@ -26998,7 +27233,7 @@ export namespace Prisma {
     posts?: PostUncheckedUpdateManyWithoutUserNestedInput
     projects?: ProjectUncheckedUpdateManyWithoutUserNestedInput
     comments?: CommentUncheckedUpdateManyWithoutUserNestedInput
-    showcase?: ShowcaseUncheckedUpdateOneWithoutUserNestedInput
+    showcase?: ShowcaseUncheckedUpdateManyWithoutUserNestedInput
     technicalProfile?: TechnicalProfileUncheckedUpdateOneWithoutUserNestedInput
   }
 
@@ -27043,7 +27278,7 @@ export namespace Prisma {
     interested?: InterestedCreateNestedManyWithoutUserInput
     projects?: ProjectCreateNestedManyWithoutUserInput
     comments?: CommentCreateNestedManyWithoutUserInput
-    showcase?: ShowcaseCreateNestedOneWithoutUserInput
+    showcase?: ShowcaseCreateNestedManyWithoutUserInput
     technicalProfile?: TechnicalProfileCreateNestedOneWithoutUserInput
     visuals?: VisualsCreateNestedOneWithoutUserInput
   }
@@ -27071,7 +27306,7 @@ export namespace Prisma {
     interested?: InterestedUncheckedCreateNestedManyWithoutUserInput
     projects?: ProjectUncheckedCreateNestedManyWithoutUserInput
     comments?: CommentUncheckedCreateNestedManyWithoutUserInput
-    showcase?: ShowcaseUncheckedCreateNestedOneWithoutUserInput
+    showcase?: ShowcaseUncheckedCreateNestedManyWithoutUserInput
     technicalProfile?: TechnicalProfileUncheckedCreateNestedOneWithoutUserInput
     visuals?: VisualsUncheckedCreateNestedOneWithoutUserInput
   }
@@ -27085,6 +27320,8 @@ export namespace Prisma {
     content: string
     createdAt?: Date | string
     user: UserCreateNestedOneWithoutCommentsInput
+    parent?: CommentCreateNestedOneWithoutChildrenInput
+    children?: CommentCreateNestedManyWithoutParentInput
   }
 
   export type CommentUncheckedCreateWithoutPostInput = {
@@ -27092,6 +27329,8 @@ export namespace Prisma {
     userId: number
     content: string
     createdAt?: Date | string
+    parentId: number
+    children?: CommentUncheckedCreateNestedManyWithoutParentInput
   }
 
   export type CommentCreateOrConnectWithoutPostInput = {
@@ -27153,7 +27392,7 @@ export namespace Prisma {
     interested?: InterestedUpdateManyWithoutUserNestedInput
     projects?: ProjectUpdateManyWithoutUserNestedInput
     comments?: CommentUpdateManyWithoutUserNestedInput
-    showcase?: ShowcaseUpdateOneWithoutUserNestedInput
+    showcase?: ShowcaseUpdateManyWithoutUserNestedInput
     technicalProfile?: TechnicalProfileUpdateOneWithoutUserNestedInput
     visuals?: VisualsUpdateOneWithoutUserNestedInput
   }
@@ -27181,7 +27420,7 @@ export namespace Prisma {
     interested?: InterestedUncheckedUpdateManyWithoutUserNestedInput
     projects?: ProjectUncheckedUpdateManyWithoutUserNestedInput
     comments?: CommentUncheckedUpdateManyWithoutUserNestedInput
-    showcase?: ShowcaseUncheckedUpdateOneWithoutUserNestedInput
+    showcase?: ShowcaseUncheckedUpdateManyWithoutUserNestedInput
     technicalProfile?: TechnicalProfileUncheckedUpdateOneWithoutUserNestedInput
     visuals?: VisualsUncheckedUpdateOneWithoutUserNestedInput
   }
@@ -27248,7 +27487,7 @@ export namespace Prisma {
     posts?: PostCreateNestedManyWithoutUserInput
     projects?: ProjectCreateNestedManyWithoutUserInput
     comments?: CommentCreateNestedManyWithoutUserInput
-    showcase?: ShowcaseCreateNestedOneWithoutUserInput
+    showcase?: ShowcaseCreateNestedManyWithoutUserInput
     technicalProfile?: TechnicalProfileCreateNestedOneWithoutUserInput
     visuals?: VisualsCreateNestedOneWithoutUserInput
   }
@@ -27276,7 +27515,7 @@ export namespace Prisma {
     posts?: PostUncheckedCreateNestedManyWithoutUserInput
     projects?: ProjectUncheckedCreateNestedManyWithoutUserInput
     comments?: CommentUncheckedCreateNestedManyWithoutUserInput
-    showcase?: ShowcaseUncheckedCreateNestedOneWithoutUserInput
+    showcase?: ShowcaseUncheckedCreateNestedManyWithoutUserInput
     technicalProfile?: TechnicalProfileUncheckedCreateNestedOneWithoutUserInput
     visuals?: VisualsUncheckedCreateNestedOneWithoutUserInput
   }
@@ -27349,7 +27588,7 @@ export namespace Prisma {
     posts?: PostUpdateManyWithoutUserNestedInput
     projects?: ProjectUpdateManyWithoutUserNestedInput
     comments?: CommentUpdateManyWithoutUserNestedInput
-    showcase?: ShowcaseUpdateOneWithoutUserNestedInput
+    showcase?: ShowcaseUpdateManyWithoutUserNestedInput
     technicalProfile?: TechnicalProfileUpdateOneWithoutUserNestedInput
     visuals?: VisualsUpdateOneWithoutUserNestedInput
   }
@@ -27377,7 +27616,7 @@ export namespace Prisma {
     posts?: PostUncheckedUpdateManyWithoutUserNestedInput
     projects?: ProjectUncheckedUpdateManyWithoutUserNestedInput
     comments?: CommentUncheckedUpdateManyWithoutUserNestedInput
-    showcase?: ShowcaseUncheckedUpdateOneWithoutUserNestedInput
+    showcase?: ShowcaseUncheckedUpdateManyWithoutUserNestedInput
     technicalProfile?: TechnicalProfileUncheckedUpdateOneWithoutUserNestedInput
     visuals?: VisualsUncheckedUpdateOneWithoutUserNestedInput
   }
@@ -27404,7 +27643,7 @@ export namespace Prisma {
     posts?: PostCreateNestedManyWithoutUserInput
     projects?: ProjectCreateNestedManyWithoutUserInput
     comments?: CommentCreateNestedManyWithoutUserInput
-    showcase?: ShowcaseCreateNestedOneWithoutUserInput
+    showcase?: ShowcaseCreateNestedManyWithoutUserInput
     technicalProfile?: TechnicalProfileCreateNestedOneWithoutUserInput
     visuals?: VisualsCreateNestedOneWithoutUserInput
   }
@@ -27432,7 +27671,7 @@ export namespace Prisma {
     posts?: PostUncheckedCreateNestedManyWithoutUserInput
     projects?: ProjectUncheckedCreateNestedManyWithoutUserInput
     comments?: CommentUncheckedCreateNestedManyWithoutUserInput
-    showcase?: ShowcaseUncheckedCreateNestedOneWithoutUserInput
+    showcase?: ShowcaseUncheckedCreateNestedManyWithoutUserInput
     technicalProfile?: TechnicalProfileUncheckedCreateNestedOneWithoutUserInput
     visuals?: VisualsUncheckedCreateNestedOneWithoutUserInput
   }
@@ -27464,7 +27703,7 @@ export namespace Prisma {
     posts?: PostCreateNestedManyWithoutUserInput
     projects?: ProjectCreateNestedManyWithoutUserInput
     comments?: CommentCreateNestedManyWithoutUserInput
-    showcase?: ShowcaseCreateNestedOneWithoutUserInput
+    showcase?: ShowcaseCreateNestedManyWithoutUserInput
     technicalProfile?: TechnicalProfileCreateNestedOneWithoutUserInput
     visuals?: VisualsCreateNestedOneWithoutUserInput
   }
@@ -27492,7 +27731,7 @@ export namespace Prisma {
     posts?: PostUncheckedCreateNestedManyWithoutUserInput
     projects?: ProjectUncheckedCreateNestedManyWithoutUserInput
     comments?: CommentUncheckedCreateNestedManyWithoutUserInput
-    showcase?: ShowcaseUncheckedCreateNestedOneWithoutUserInput
+    showcase?: ShowcaseUncheckedCreateNestedManyWithoutUserInput
     technicalProfile?: TechnicalProfileUncheckedCreateNestedOneWithoutUserInput
     visuals?: VisualsUncheckedCreateNestedOneWithoutUserInput
   }
@@ -27535,7 +27774,7 @@ export namespace Prisma {
     posts?: PostUpdateManyWithoutUserNestedInput
     projects?: ProjectUpdateManyWithoutUserNestedInput
     comments?: CommentUpdateManyWithoutUserNestedInput
-    showcase?: ShowcaseUpdateOneWithoutUserNestedInput
+    showcase?: ShowcaseUpdateManyWithoutUserNestedInput
     technicalProfile?: TechnicalProfileUpdateOneWithoutUserNestedInput
     visuals?: VisualsUpdateOneWithoutUserNestedInput
   }
@@ -27563,7 +27802,7 @@ export namespace Prisma {
     posts?: PostUncheckedUpdateManyWithoutUserNestedInput
     projects?: ProjectUncheckedUpdateManyWithoutUserNestedInput
     comments?: CommentUncheckedUpdateManyWithoutUserNestedInput
-    showcase?: ShowcaseUncheckedUpdateOneWithoutUserNestedInput
+    showcase?: ShowcaseUncheckedUpdateManyWithoutUserNestedInput
     technicalProfile?: TechnicalProfileUncheckedUpdateOneWithoutUserNestedInput
     visuals?: VisualsUncheckedUpdateOneWithoutUserNestedInput
   }
@@ -27601,7 +27840,7 @@ export namespace Prisma {
     posts?: PostUpdateManyWithoutUserNestedInput
     projects?: ProjectUpdateManyWithoutUserNestedInput
     comments?: CommentUpdateManyWithoutUserNestedInput
-    showcase?: ShowcaseUpdateOneWithoutUserNestedInput
+    showcase?: ShowcaseUpdateManyWithoutUserNestedInput
     technicalProfile?: TechnicalProfileUpdateOneWithoutUserNestedInput
     visuals?: VisualsUpdateOneWithoutUserNestedInput
   }
@@ -27629,7 +27868,7 @@ export namespace Prisma {
     posts?: PostUncheckedUpdateManyWithoutUserNestedInput
     projects?: ProjectUncheckedUpdateManyWithoutUserNestedInput
     comments?: CommentUncheckedUpdateManyWithoutUserNestedInput
-    showcase?: ShowcaseUncheckedUpdateOneWithoutUserNestedInput
+    showcase?: ShowcaseUncheckedUpdateManyWithoutUserNestedInput
     technicalProfile?: TechnicalProfileUncheckedUpdateOneWithoutUserNestedInput
     visuals?: VisualsUncheckedUpdateOneWithoutUserNestedInput
   }
@@ -27656,7 +27895,7 @@ export namespace Prisma {
     posts?: PostCreateNestedManyWithoutUserInput
     projects?: ProjectCreateNestedManyWithoutUserInput
     comments?: CommentCreateNestedManyWithoutUserInput
-    showcase?: ShowcaseCreateNestedOneWithoutUserInput
+    showcase?: ShowcaseCreateNestedManyWithoutUserInput
     technicalProfile?: TechnicalProfileCreateNestedOneWithoutUserInput
     visuals?: VisualsCreateNestedOneWithoutUserInput
   }
@@ -27684,7 +27923,7 @@ export namespace Prisma {
     posts?: PostUncheckedCreateNestedManyWithoutUserInput
     projects?: ProjectUncheckedCreateNestedManyWithoutUserInput
     comments?: CommentUncheckedCreateNestedManyWithoutUserInput
-    showcase?: ShowcaseUncheckedCreateNestedOneWithoutUserInput
+    showcase?: ShowcaseUncheckedCreateNestedManyWithoutUserInput
     technicalProfile?: TechnicalProfileUncheckedCreateNestedOneWithoutUserInput
     visuals?: VisualsUncheckedCreateNestedOneWithoutUserInput
   }
@@ -27716,7 +27955,7 @@ export namespace Prisma {
     posts?: PostCreateNestedManyWithoutUserInput
     projects?: ProjectCreateNestedManyWithoutUserInput
     comments?: CommentCreateNestedManyWithoutUserInput
-    showcase?: ShowcaseCreateNestedOneWithoutUserInput
+    showcase?: ShowcaseCreateNestedManyWithoutUserInput
     technicalProfile?: TechnicalProfileCreateNestedOneWithoutUserInput
     visuals?: VisualsCreateNestedOneWithoutUserInput
   }
@@ -27744,7 +27983,7 @@ export namespace Prisma {
     posts?: PostUncheckedCreateNestedManyWithoutUserInput
     projects?: ProjectUncheckedCreateNestedManyWithoutUserInput
     comments?: CommentUncheckedCreateNestedManyWithoutUserInput
-    showcase?: ShowcaseUncheckedCreateNestedOneWithoutUserInput
+    showcase?: ShowcaseUncheckedCreateNestedManyWithoutUserInput
     technicalProfile?: TechnicalProfileUncheckedCreateNestedOneWithoutUserInput
     visuals?: VisualsUncheckedCreateNestedOneWithoutUserInput
   }
@@ -27787,7 +28026,7 @@ export namespace Prisma {
     posts?: PostUpdateManyWithoutUserNestedInput
     projects?: ProjectUpdateManyWithoutUserNestedInput
     comments?: CommentUpdateManyWithoutUserNestedInput
-    showcase?: ShowcaseUpdateOneWithoutUserNestedInput
+    showcase?: ShowcaseUpdateManyWithoutUserNestedInput
     technicalProfile?: TechnicalProfileUpdateOneWithoutUserNestedInput
     visuals?: VisualsUpdateOneWithoutUserNestedInput
   }
@@ -27815,7 +28054,7 @@ export namespace Prisma {
     posts?: PostUncheckedUpdateManyWithoutUserNestedInput
     projects?: ProjectUncheckedUpdateManyWithoutUserNestedInput
     comments?: CommentUncheckedUpdateManyWithoutUserNestedInput
-    showcase?: ShowcaseUncheckedUpdateOneWithoutUserNestedInput
+    showcase?: ShowcaseUncheckedUpdateManyWithoutUserNestedInput
     technicalProfile?: TechnicalProfileUncheckedUpdateOneWithoutUserNestedInput
     visuals?: VisualsUncheckedUpdateOneWithoutUserNestedInput
   }
@@ -27853,7 +28092,7 @@ export namespace Prisma {
     posts?: PostUpdateManyWithoutUserNestedInput
     projects?: ProjectUpdateManyWithoutUserNestedInput
     comments?: CommentUpdateManyWithoutUserNestedInput
-    showcase?: ShowcaseUpdateOneWithoutUserNestedInput
+    showcase?: ShowcaseUpdateManyWithoutUserNestedInput
     technicalProfile?: TechnicalProfileUpdateOneWithoutUserNestedInput
     visuals?: VisualsUpdateOneWithoutUserNestedInput
   }
@@ -27881,7 +28120,7 @@ export namespace Prisma {
     posts?: PostUncheckedUpdateManyWithoutUserNestedInput
     projects?: ProjectUncheckedUpdateManyWithoutUserNestedInput
     comments?: CommentUncheckedUpdateManyWithoutUserNestedInput
-    showcase?: ShowcaseUncheckedUpdateOneWithoutUserNestedInput
+    showcase?: ShowcaseUncheckedUpdateManyWithoutUserNestedInput
     technicalProfile?: TechnicalProfileUncheckedUpdateOneWithoutUserNestedInput
     visuals?: VisualsUncheckedUpdateOneWithoutUserNestedInput
   }
@@ -27908,7 +28147,7 @@ export namespace Prisma {
     posts?: PostCreateNestedManyWithoutUserInput
     projects?: ProjectCreateNestedManyWithoutUserInput
     comments?: CommentCreateNestedManyWithoutUserInput
-    showcase?: ShowcaseCreateNestedOneWithoutUserInput
+    showcase?: ShowcaseCreateNestedManyWithoutUserInput
     technicalProfile?: TechnicalProfileCreateNestedOneWithoutUserInput
     visuals?: VisualsCreateNestedOneWithoutUserInput
   }
@@ -27936,7 +28175,7 @@ export namespace Prisma {
     posts?: PostUncheckedCreateNestedManyWithoutUserInput
     projects?: ProjectUncheckedCreateNestedManyWithoutUserInput
     comments?: CommentUncheckedCreateNestedManyWithoutUserInput
-    showcase?: ShowcaseUncheckedCreateNestedOneWithoutUserInput
+    showcase?: ShowcaseUncheckedCreateNestedManyWithoutUserInput
     technicalProfile?: TechnicalProfileUncheckedCreateNestedOneWithoutUserInput
     visuals?: VisualsUncheckedCreateNestedOneWithoutUserInput
   }
@@ -27968,7 +28207,7 @@ export namespace Prisma {
     posts?: PostCreateNestedManyWithoutUserInput
     projects?: ProjectCreateNestedManyWithoutUserInput
     comments?: CommentCreateNestedManyWithoutUserInput
-    showcase?: ShowcaseCreateNestedOneWithoutUserInput
+    showcase?: ShowcaseCreateNestedManyWithoutUserInput
     technicalProfile?: TechnicalProfileCreateNestedOneWithoutUserInput
     visuals?: VisualsCreateNestedOneWithoutUserInput
   }
@@ -27996,7 +28235,7 @@ export namespace Prisma {
     posts?: PostUncheckedCreateNestedManyWithoutUserInput
     projects?: ProjectUncheckedCreateNestedManyWithoutUserInput
     comments?: CommentUncheckedCreateNestedManyWithoutUserInput
-    showcase?: ShowcaseUncheckedCreateNestedOneWithoutUserInput
+    showcase?: ShowcaseUncheckedCreateNestedManyWithoutUserInput
     technicalProfile?: TechnicalProfileUncheckedCreateNestedOneWithoutUserInput
     visuals?: VisualsUncheckedCreateNestedOneWithoutUserInput
   }
@@ -28039,7 +28278,7 @@ export namespace Prisma {
     posts?: PostUpdateManyWithoutUserNestedInput
     projects?: ProjectUpdateManyWithoutUserNestedInput
     comments?: CommentUpdateManyWithoutUserNestedInput
-    showcase?: ShowcaseUpdateOneWithoutUserNestedInput
+    showcase?: ShowcaseUpdateManyWithoutUserNestedInput
     technicalProfile?: TechnicalProfileUpdateOneWithoutUserNestedInput
     visuals?: VisualsUpdateOneWithoutUserNestedInput
   }
@@ -28067,7 +28306,7 @@ export namespace Prisma {
     posts?: PostUncheckedUpdateManyWithoutUserNestedInput
     projects?: ProjectUncheckedUpdateManyWithoutUserNestedInput
     comments?: CommentUncheckedUpdateManyWithoutUserNestedInput
-    showcase?: ShowcaseUncheckedUpdateOneWithoutUserNestedInput
+    showcase?: ShowcaseUncheckedUpdateManyWithoutUserNestedInput
     technicalProfile?: TechnicalProfileUncheckedUpdateOneWithoutUserNestedInput
     visuals?: VisualsUncheckedUpdateOneWithoutUserNestedInput
   }
@@ -28105,7 +28344,7 @@ export namespace Prisma {
     posts?: PostUpdateManyWithoutUserNestedInput
     projects?: ProjectUpdateManyWithoutUserNestedInput
     comments?: CommentUpdateManyWithoutUserNestedInput
-    showcase?: ShowcaseUpdateOneWithoutUserNestedInput
+    showcase?: ShowcaseUpdateManyWithoutUserNestedInput
     technicalProfile?: TechnicalProfileUpdateOneWithoutUserNestedInput
     visuals?: VisualsUpdateOneWithoutUserNestedInput
   }
@@ -28133,7 +28372,7 @@ export namespace Prisma {
     posts?: PostUncheckedUpdateManyWithoutUserNestedInput
     projects?: ProjectUncheckedUpdateManyWithoutUserNestedInput
     comments?: CommentUncheckedUpdateManyWithoutUserNestedInput
-    showcase?: ShowcaseUncheckedUpdateOneWithoutUserNestedInput
+    showcase?: ShowcaseUncheckedUpdateManyWithoutUserNestedInput
     technicalProfile?: TechnicalProfileUncheckedUpdateOneWithoutUserNestedInput
     visuals?: VisualsUncheckedUpdateOneWithoutUserNestedInput
   }
@@ -28160,7 +28399,7 @@ export namespace Prisma {
     posts?: PostCreateNestedManyWithoutUserInput
     projects?: ProjectCreateNestedManyWithoutUserInput
     comments?: CommentCreateNestedManyWithoutUserInput
-    showcase?: ShowcaseCreateNestedOneWithoutUserInput
+    showcase?: ShowcaseCreateNestedManyWithoutUserInput
     technicalProfile?: TechnicalProfileCreateNestedOneWithoutUserInput
     visuals?: VisualsCreateNestedOneWithoutUserInput
   }
@@ -28188,7 +28427,7 @@ export namespace Prisma {
     posts?: PostUncheckedCreateNestedManyWithoutUserInput
     projects?: ProjectUncheckedCreateNestedManyWithoutUserInput
     comments?: CommentUncheckedCreateNestedManyWithoutUserInput
-    showcase?: ShowcaseUncheckedCreateNestedOneWithoutUserInput
+    showcase?: ShowcaseUncheckedCreateNestedManyWithoutUserInput
     technicalProfile?: TechnicalProfileUncheckedCreateNestedOneWithoutUserInput
     visuals?: VisualsUncheckedCreateNestedOneWithoutUserInput
   }
@@ -28231,7 +28470,7 @@ export namespace Prisma {
     posts?: PostUpdateManyWithoutUserNestedInput
     projects?: ProjectUpdateManyWithoutUserNestedInput
     comments?: CommentUpdateManyWithoutUserNestedInput
-    showcase?: ShowcaseUpdateOneWithoutUserNestedInput
+    showcase?: ShowcaseUpdateManyWithoutUserNestedInput
     technicalProfile?: TechnicalProfileUpdateOneWithoutUserNestedInput
     visuals?: VisualsUpdateOneWithoutUserNestedInput
   }
@@ -28259,7 +28498,7 @@ export namespace Prisma {
     posts?: PostUncheckedUpdateManyWithoutUserNestedInput
     projects?: ProjectUncheckedUpdateManyWithoutUserNestedInput
     comments?: CommentUncheckedUpdateManyWithoutUserNestedInput
-    showcase?: ShowcaseUncheckedUpdateOneWithoutUserNestedInput
+    showcase?: ShowcaseUncheckedUpdateManyWithoutUserNestedInput
     technicalProfile?: TechnicalProfileUncheckedUpdateOneWithoutUserNestedInput
     visuals?: VisualsUncheckedUpdateOneWithoutUserNestedInput
   }
@@ -28286,7 +28525,7 @@ export namespace Prisma {
     posts?: PostCreateNestedManyWithoutUserInput
     projects?: ProjectCreateNestedManyWithoutUserInput
     comments?: CommentCreateNestedManyWithoutUserInput
-    showcase?: ShowcaseCreateNestedOneWithoutUserInput
+    showcase?: ShowcaseCreateNestedManyWithoutUserInput
     technicalProfile?: TechnicalProfileCreateNestedOneWithoutUserInput
     visuals?: VisualsCreateNestedOneWithoutUserInput
   }
@@ -28314,7 +28553,7 @@ export namespace Prisma {
     posts?: PostUncheckedCreateNestedManyWithoutUserInput
     projects?: ProjectUncheckedCreateNestedManyWithoutUserInput
     comments?: CommentUncheckedCreateNestedManyWithoutUserInput
-    showcase?: ShowcaseUncheckedCreateNestedOneWithoutUserInput
+    showcase?: ShowcaseUncheckedCreateNestedManyWithoutUserInput
     technicalProfile?: TechnicalProfileUncheckedCreateNestedOneWithoutUserInput
     visuals?: VisualsUncheckedCreateNestedOneWithoutUserInput
   }
@@ -28357,7 +28596,7 @@ export namespace Prisma {
     posts?: PostUpdateManyWithoutUserNestedInput
     projects?: ProjectUpdateManyWithoutUserNestedInput
     comments?: CommentUpdateManyWithoutUserNestedInput
-    showcase?: ShowcaseUpdateOneWithoutUserNestedInput
+    showcase?: ShowcaseUpdateManyWithoutUserNestedInput
     technicalProfile?: TechnicalProfileUpdateOneWithoutUserNestedInput
     visuals?: VisualsUpdateOneWithoutUserNestedInput
   }
@@ -28385,7 +28624,7 @@ export namespace Prisma {
     posts?: PostUncheckedUpdateManyWithoutUserNestedInput
     projects?: ProjectUncheckedUpdateManyWithoutUserNestedInput
     comments?: CommentUncheckedUpdateManyWithoutUserNestedInput
-    showcase?: ShowcaseUncheckedUpdateOneWithoutUserNestedInput
+    showcase?: ShowcaseUncheckedUpdateManyWithoutUserNestedInput
     technicalProfile?: TechnicalProfileUncheckedUpdateOneWithoutUserNestedInput
     visuals?: VisualsUncheckedUpdateOneWithoutUserNestedInput
   }
@@ -28436,7 +28675,7 @@ export namespace Prisma {
     interested?: InterestedCreateNestedManyWithoutUserInput
     posts?: PostCreateNestedManyWithoutUserInput
     projects?: ProjectCreateNestedManyWithoutUserInput
-    showcase?: ShowcaseCreateNestedOneWithoutUserInput
+    showcase?: ShowcaseCreateNestedManyWithoutUserInput
     technicalProfile?: TechnicalProfileCreateNestedOneWithoutUserInput
     visuals?: VisualsCreateNestedOneWithoutUserInput
   }
@@ -28464,7 +28703,7 @@ export namespace Prisma {
     interested?: InterestedUncheckedCreateNestedManyWithoutUserInput
     posts?: PostUncheckedCreateNestedManyWithoutUserInput
     projects?: ProjectUncheckedCreateNestedManyWithoutUserInput
-    showcase?: ShowcaseUncheckedCreateNestedOneWithoutUserInput
+    showcase?: ShowcaseUncheckedCreateNestedManyWithoutUserInput
     technicalProfile?: TechnicalProfileUncheckedCreateNestedOneWithoutUserInput
     visuals?: VisualsUncheckedCreateNestedOneWithoutUserInput
   }
@@ -28472,6 +28711,55 @@ export namespace Prisma {
   export type UserCreateOrConnectWithoutCommentsInput = {
     where: UserWhereUniqueInput
     create: XOR<UserCreateWithoutCommentsInput, UserUncheckedCreateWithoutCommentsInput>
+  }
+
+  export type CommentCreateWithoutChildrenInput = {
+    content: string
+    createdAt?: Date | string
+    post: PostCreateNestedOneWithoutCommentsInput
+    user: UserCreateNestedOneWithoutCommentsInput
+    parent?: CommentCreateNestedOneWithoutChildrenInput
+  }
+
+  export type CommentUncheckedCreateWithoutChildrenInput = {
+    id?: number
+    postId: number
+    userId: number
+    content: string
+    createdAt?: Date | string
+    parentId: number
+  }
+
+  export type CommentCreateOrConnectWithoutChildrenInput = {
+    where: CommentWhereUniqueInput
+    create: XOR<CommentCreateWithoutChildrenInput, CommentUncheckedCreateWithoutChildrenInput>
+  }
+
+  export type CommentCreateWithoutParentInput = {
+    content: string
+    createdAt?: Date | string
+    post: PostCreateNestedOneWithoutCommentsInput
+    user: UserCreateNestedOneWithoutCommentsInput
+    children?: CommentCreateNestedManyWithoutParentInput
+  }
+
+  export type CommentUncheckedCreateWithoutParentInput = {
+    id?: number
+    postId: number
+    userId: number
+    content: string
+    createdAt?: Date | string
+    children?: CommentUncheckedCreateNestedManyWithoutParentInput
+  }
+
+  export type CommentCreateOrConnectWithoutParentInput = {
+    where: CommentWhereUniqueInput
+    create: XOR<CommentCreateWithoutParentInput, CommentUncheckedCreateWithoutParentInput>
+  }
+
+  export type CommentCreateManyParentInputEnvelope = {
+    data: CommentCreateManyParentInput | CommentCreateManyParentInput[]
+    skipDuplicates?: boolean
   }
 
   export type PostUpsertWithoutCommentsInput = {
@@ -28537,7 +28825,7 @@ export namespace Prisma {
     interested?: InterestedUpdateManyWithoutUserNestedInput
     posts?: PostUpdateManyWithoutUserNestedInput
     projects?: ProjectUpdateManyWithoutUserNestedInput
-    showcase?: ShowcaseUpdateOneWithoutUserNestedInput
+    showcase?: ShowcaseUpdateManyWithoutUserNestedInput
     technicalProfile?: TechnicalProfileUpdateOneWithoutUserNestedInput
     visuals?: VisualsUpdateOneWithoutUserNestedInput
   }
@@ -28565,9 +28853,53 @@ export namespace Prisma {
     interested?: InterestedUncheckedUpdateManyWithoutUserNestedInput
     posts?: PostUncheckedUpdateManyWithoutUserNestedInput
     projects?: ProjectUncheckedUpdateManyWithoutUserNestedInput
-    showcase?: ShowcaseUncheckedUpdateOneWithoutUserNestedInput
+    showcase?: ShowcaseUncheckedUpdateManyWithoutUserNestedInput
     technicalProfile?: TechnicalProfileUncheckedUpdateOneWithoutUserNestedInput
     visuals?: VisualsUncheckedUpdateOneWithoutUserNestedInput
+  }
+
+  export type CommentUpsertWithoutChildrenInput = {
+    update: XOR<CommentUpdateWithoutChildrenInput, CommentUncheckedUpdateWithoutChildrenInput>
+    create: XOR<CommentCreateWithoutChildrenInput, CommentUncheckedCreateWithoutChildrenInput>
+    where?: CommentWhereInput
+  }
+
+  export type CommentUpdateToOneWithWhereWithoutChildrenInput = {
+    where?: CommentWhereInput
+    data: XOR<CommentUpdateWithoutChildrenInput, CommentUncheckedUpdateWithoutChildrenInput>
+  }
+
+  export type CommentUpdateWithoutChildrenInput = {
+    content?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    post?: PostUpdateOneRequiredWithoutCommentsNestedInput
+    user?: UserUpdateOneRequiredWithoutCommentsNestedInput
+    parent?: CommentUpdateOneWithoutChildrenNestedInput
+  }
+
+  export type CommentUncheckedUpdateWithoutChildrenInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    postId?: IntFieldUpdateOperationsInput | number
+    userId?: IntFieldUpdateOperationsInput | number
+    content?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    parentId?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type CommentUpsertWithWhereUniqueWithoutParentInput = {
+    where: CommentWhereUniqueInput
+    update: XOR<CommentUpdateWithoutParentInput, CommentUncheckedUpdateWithoutParentInput>
+    create: XOR<CommentCreateWithoutParentInput, CommentUncheckedCreateWithoutParentInput>
+  }
+
+  export type CommentUpdateWithWhereUniqueWithoutParentInput = {
+    where: CommentWhereUniqueInput
+    data: XOR<CommentUpdateWithoutParentInput, CommentUncheckedUpdateWithoutParentInput>
+  }
+
+  export type CommentUpdateManyWithWhereWithoutParentInput = {
+    where: CommentScalarWhereInput
+    data: XOR<CommentUpdateManyMutationInput, CommentUncheckedUpdateManyWithoutParentInput>
   }
 
   export type AcademicCreateManyUserInput = {
@@ -28650,6 +28982,16 @@ export namespace Prisma {
     postId: number
     content: string
     createdAt?: Date | string
+    parentId: number
+  }
+
+  export type ShowcaseCreateManyUserInput = {
+    id?: number
+    github?: string | null
+    portfolio?: string | null
+    linkedin?: string | null
+    email?: string | null
+    whatsapp?: string | null
   }
 
   export type AcademicUpdateWithoutUserInput = {
@@ -28874,6 +29216,8 @@ export namespace Prisma {
     content?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     post?: PostUpdateOneRequiredWithoutCommentsNestedInput
+    parent?: CommentUpdateOneWithoutChildrenNestedInput
+    children?: CommentUpdateManyWithoutParentNestedInput
   }
 
   export type CommentUncheckedUpdateWithoutUserInput = {
@@ -28881,6 +29225,8 @@ export namespace Prisma {
     postId?: IntFieldUpdateOperationsInput | number
     content?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    parentId?: IntFieldUpdateOperationsInput | number
+    children?: CommentUncheckedUpdateManyWithoutParentNestedInput
   }
 
   export type CommentUncheckedUpdateManyWithoutUserInput = {
@@ -28888,6 +29234,33 @@ export namespace Prisma {
     postId?: IntFieldUpdateOperationsInput | number
     content?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    parentId?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type ShowcaseUpdateWithoutUserInput = {
+    github?: NullableStringFieldUpdateOperationsInput | string | null
+    portfolio?: NullableStringFieldUpdateOperationsInput | string | null
+    linkedin?: NullableStringFieldUpdateOperationsInput | string | null
+    email?: NullableStringFieldUpdateOperationsInput | string | null
+    whatsapp?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type ShowcaseUncheckedUpdateWithoutUserInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    github?: NullableStringFieldUpdateOperationsInput | string | null
+    portfolio?: NullableStringFieldUpdateOperationsInput | string | null
+    linkedin?: NullableStringFieldUpdateOperationsInput | string | null
+    email?: NullableStringFieldUpdateOperationsInput | string | null
+    whatsapp?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type ShowcaseUncheckedUpdateManyWithoutUserInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    github?: NullableStringFieldUpdateOperationsInput | string | null
+    portfolio?: NullableStringFieldUpdateOperationsInput | string | null
+    linkedin?: NullableStringFieldUpdateOperationsInput | string | null
+    email?: NullableStringFieldUpdateOperationsInput | string | null
+    whatsapp?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type InterestedCreateManyPostInput = {
@@ -28900,6 +29273,7 @@ export namespace Prisma {
     userId: number
     content: string
     createdAt?: Date | string
+    parentId: number
   }
 
   export type InterestedUpdateWithoutPostInput = {
@@ -28920,6 +29294,8 @@ export namespace Prisma {
     content?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     user?: UserUpdateOneRequiredWithoutCommentsNestedInput
+    parent?: CommentUpdateOneWithoutChildrenNestedInput
+    children?: CommentUpdateManyWithoutParentNestedInput
   }
 
   export type CommentUncheckedUpdateWithoutPostInput = {
@@ -28927,10 +29303,46 @@ export namespace Prisma {
     userId?: IntFieldUpdateOperationsInput | number
     content?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    parentId?: IntFieldUpdateOperationsInput | number
+    children?: CommentUncheckedUpdateManyWithoutParentNestedInput
   }
 
   export type CommentUncheckedUpdateManyWithoutPostInput = {
     id?: IntFieldUpdateOperationsInput | number
+    userId?: IntFieldUpdateOperationsInput | number
+    content?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    parentId?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type CommentCreateManyParentInput = {
+    id?: number
+    postId: number
+    userId: number
+    content: string
+    createdAt?: Date | string
+  }
+
+  export type CommentUpdateWithoutParentInput = {
+    content?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    post?: PostUpdateOneRequiredWithoutCommentsNestedInput
+    user?: UserUpdateOneRequiredWithoutCommentsNestedInput
+    children?: CommentUpdateManyWithoutParentNestedInput
+  }
+
+  export type CommentUncheckedUpdateWithoutParentInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    postId?: IntFieldUpdateOperationsInput | number
+    userId?: IntFieldUpdateOperationsInput | number
+    content?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    children?: CommentUncheckedUpdateManyWithoutParentNestedInput
+  }
+
+  export type CommentUncheckedUpdateManyWithoutParentInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    postId?: IntFieldUpdateOperationsInput | number
     userId?: IntFieldUpdateOperationsInput | number
     content?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string

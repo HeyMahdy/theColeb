@@ -34,7 +34,7 @@ model User {
   posts                      Post[]
   projects                   Project[]
   comments                   Comment[]
-  showcase                   Showcase?
+  showcase                   Showcase[]
   technicalProfile           TechnicalProfile?
   visuals                    Visuals?
 
@@ -73,7 +73,7 @@ model BioSummary {
 
 model Showcase {
   id        Int     @id @default(autoincrement())
-  userId    Int     @unique
+  userId    Int
   github    String? @db.VarChar(100)
   portfolio String? @db.VarChar(255)
   linkedin  String? @db.VarChar(100)
@@ -179,7 +179,7 @@ model Connection {
 
 model Academic {
   id        Int    @id @default(autoincrement())
-  userId    Int    @unique
+  userId    Int
   user      User   @relation("Academic", fields: [userId], references: [id])
   institute String
   degree    String
@@ -189,7 +189,7 @@ model Academic {
 
 model Experience {
   id             Int       @id @default(autoincrement())
-  userId         Int       @unique
+  userId         Int
   user           User      @relation("Experience", fields: [userId], references: [id])
   title          String
   company        String
@@ -208,6 +208,11 @@ model Comment {
   createdAt DateTime @default(now())
   post      Post     @relation(fields: [postId], references: [id])
   user      User     @relation(fields: [userId], references: [id])
+
+  parent   Comment? @relation("CommentToComment", fields: [parentId], references: [id])
+  parentId Int
+
+  children Comment[] @relation("CommentToComment")
 }
 
 enum PostType {
