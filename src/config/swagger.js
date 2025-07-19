@@ -13,7 +13,7 @@ const options = {
     },
     servers: [
       {
-        url: 'https://thecoleb.onrender.com',
+        url: 'https://thecoleb.onrender.com'
       },
     ],
     components: {

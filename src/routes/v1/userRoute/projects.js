@@ -44,7 +44,7 @@ import { asyncHandler } from '../../../utils/asyncHandler.js';
 
 /**
  * @swagger
- * /collab/v1/showcase:
+ * /collab/v1/project:
  *   post:
  *     summary: Create a new project
  *     tags: [Project]
@@ -82,7 +82,7 @@ import { asyncHandler } from '../../../utils/asyncHandler.js';
 
 /**
  * @swagger
- * /collab/v1/showcase/{projectId}:
+ * /collab/v1/project/{projectId}:
  *   put:
  *     summary: Update an existing project by its ID
  *     tags: [Project]

@@ -5,7 +5,7 @@ export const getUserShowcase = async (req, res) => {
     try {
         const userId = req.user.userId; // From JWT token
 
-        const showcase = await prisma.showcase.findUnique({
+        const showcase = await prisma.showcase.findMany({
             where: { userId }
         });
 
