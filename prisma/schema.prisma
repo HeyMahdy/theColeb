@@ -35,7 +35,7 @@ model User {
   posts                      Post[]
   projects                   Project[]
   comments                   Comment[]
-  showcase                   Showcase?
+  showcase                   Showcase[]
   technicalProfile           TechnicalProfile?
   visuals                    Visuals?
 
@@ -76,13 +76,14 @@ model BioSummary {
 
 model Showcase {
   id        Int     @id @default(autoincrement())
-  userId    Int     @unique
+  userId    Int     
   github    String? @db.VarChar(100)
   portfolio String? @db.VarChar(255)
   linkedin  String? @db.VarChar(100)
   email     String? @db.VarChar(100)
   whatsapp  String? @db.VarChar(100)
   user      User    @relation(fields: [userId], references: [id])
+  
 
   @@map("showcase")
 }
@@ -181,7 +182,7 @@ model Connection {
 }
 model Academic {
   id         Int    @id @default(autoincrement())
-  userId     Int     @unique
+  userId     Int     
   user       User   @relation("Academic",fields: [userId], references: [id])
   institute  String
   degree     String
@@ -191,7 +192,7 @@ model Academic {
 
 model Experience {
   id          Int      @id @default(autoincrement())
-  userId      Int      @unique
+  userId      Int      
   user        User     @relation("Experience",fields: [userId], references: [id])
   title       String
   company     String
