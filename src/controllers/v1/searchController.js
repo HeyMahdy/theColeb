@@ -1,45 +1,117 @@
-import { PrismaClient, Prisma } from '../../../generated/prisma/client/index.js';
+import { PrismaClient } from '../../../generated/prisma/client/index.js';
 const prisma = new PrismaClient();
 
-
-
 export const filterUsers = async (req, res) => {
+  try {
+    const userId = req.user?.userId;
+    const {
+      location,
+      skillArray = [],
+      institute,
+      degree,
+      company,
+      jobDescription
+    } = req.query;
 
-  const userId = req.user.userId
-  const { location, skills, institute, degree, company, jobDescription } = req.query;
+    const orConditions = [];
 
-
-  let filterConditions = [];
-
-  if (location) {
-    filterConditions.push({ location: { contains: location, mode: 'insensitive' } });
-  }
-  if (skillArray.length > 0) {
-    filterConditions.push({ skills: { hasSome: skillArray } });
-  }
-  if (institute) {
-    filterConditions.push({ education: { some: { institute: { contains: institute, mode: 'insensitive' } } } });
-  }
-  if (degree) {
-    filterConditions.push({ education: { some: { degree: { contains: degree, mode: 'insensitive' } } } });
-  }
-  if (company) {
-    filterConditions.push({ experience: { some: { company: { contains: company, mode: 'insensitive' } } } });
-  }
-  if (jobDescription) {
-    filterConditions.push({ experience: { some: { jobDescription: { contains: jobDescription, mode: 'insensitive' } } } });
-  }
-
-  const filtered = await prisma.user.findMany({
-    where: {
-      AND: filterConditions
+    if (location) {
+      orConditions.push({
+        basicInfo: {
+          location: {
+            contains: location,
+            mode: 'insensitive'
+          }
+        }
+      });
     }
-  });
 
-     return res.status(200).json({
-            message: "this is the output",
-            filterConditions
-        });
+    if (skillArray.length > 0) {
+      const skillsArray =
+        typeof skillArray === 'string' ? [skillArray] : skillArray;
+      orConditions.push({
+        technicalProfile: {
+          skills: {
+            hasSome: skillsArray
+          }
+        }
+      });
+    }
 
+    if (institute) {
+      orConditions.push({
+        academics: {
+          some: {
+            institute: {
+              contains: institute,
+              mode: 'insensitive'
+            }
+          }
+        }
+      });
+    }
 
-}
+    if (degree) {
+      orConditions.push({
+        academics: {
+          some: {
+            degree: {
+              contains: degree,
+              mode: 'insensitive'
+            }
+          }
+        }
+      });
+    }
+
+    if (company) {
+      orConditions.push({
+        experience: {
+          some: {
+            company: {
+              contains: company,
+              mode: 'insensitive'
+            }
+          }
+        }
+      });
+    }
+
+    if (jobDescription) {
+      orConditions.push({
+        experience: {
+          some: {
+            jobDescription: {
+              contains: jobDescription,
+              mode: 'insensitive'
+            }
+          }
+        }
+      });
+    }
+
+    const filtered = await prisma.user.findMany({
+      where: orConditions.length > 0 ? { OR: orConditions } : {},
+      include: {
+        basicInfo: true,
+        technicalProfile: true,
+        academics: true,
+        experience: true,
+        visuals: true
+      }
+    });
+
+    return res.status(200).json({
+      success: true,
+      message: 'Filtered user list',
+      users: filtered
+    });
+  } catch (error) {
+    console.error(error);
+    return res.status(500).json({
+      success: false,
+      message: 'Internal server error',
+      error: error.message
+    });
+  }
+};

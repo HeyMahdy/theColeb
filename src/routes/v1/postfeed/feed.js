@@ -14,7 +14,7 @@ import { asyncHandler } from '../../../utils/asyncHandler.js';
 
 /**
  * @swagger
- * /users/filter:
+ * /collab/v1/filter/filter:
  *   get:
  *     summary: Filter users based on query parameters
  *     tags: [Users]
