@@ -1,6 +1,6 @@
 import { Router } from 'express';
 import verifyToken from '../../../middlewares/authenticateToken.js';
-import { addComment, getComments, deleteComment } from '../../../controllers/v1/commentController.js';
+import { addComment, getComments, deleteComment,replyComment } from '../../../controllers/v1/commentController.js';
 import { asyncHandler } from '../../../utils/asyncHandler.js';
 
 /**
@@ -159,12 +159,68 @@ import { asyncHandler } from '../../../utils/asyncHandler.js';
  *       500:
  *         description: Failed to delete comment
  */
+/**
+ * @swagger
+ * /collab/v1/posts/{postId}/comments/{commentId}/reply:
+ *   post:
+ *     summary: Reply to a comment on a post
+ *     tags: [Comments]
+ *     security:
+ *       - bearerAuth: []
+ *     parameters:
+ *       - in: path
+ *         name: postId
+ *         required: true
+ *         schema:
+ *           type: integer
+ *         description: ID of the post the comment belongs to
+ *       - in: path
+ *         name: commentId
+ *         required: true
+ *         schema:
+ *           type: integer
+ *         description: ID of the comment to reply to
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             required:
+ *               - content
+ *             properties:
+ *               content:
+ *                 type: string
+ *                 example: "Thanks for your feedback!"
+ *     responses:
+ *       201:
+ *         description: Reply added successfully
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 success:
+ *                   type: boolean
+ *                   example: true
+ *                 data:
+ *                   $ref: '#/components/schemas/Comment'
+ *       400:
+ *         description: Content is required
+ *       401:
+ *         description: Unauthorized
+ *       404:
+ *         description: Original comment not found
+ *       500:
+ *         description: Failed to add reply
+ */
+
 
 const router = Router({ mergeParams: true });
 router.use(verifyToken);
 router.post('/:postId/comments', asyncHandler(addComment));
 router.get('/:postId/comments', asyncHandler(getComments));
 router.delete('/comments/:commentId', asyncHandler(deleteComment));
-//router.post('/posts/:postId/comments/:commentId/reply', asyncHandler(replyComment));
+router.post('/posts/:postId/comments/:commentId/reply', asyncHandler(replyComment));
 
 export default router;
