@@ -22,7 +22,7 @@ import postrouter from './routes/v1/postRoute/post.js';
 import exprouter  from './routes/v1/userRoute/expericence.js'
 import academicsrouter from './routes/v1/userRoute/academics.js'
 import commentRouter from './routes/v1/postRoute/comment.js';
-
+import searchRouter from './routes/v1/postfeed/feed.js'
 
 const app = express();
 
@@ -89,6 +89,7 @@ app.use('/collab/v1/posts', postrouter);
 app.use('/collab/v1/exp',exprouter);
 app.use('/collab/v1/academics',academicsrouter);
 app.use('/collab/v1/comment',commentRouter);
+app.use('/collab/v1/filter',searchRouter)
 
 // Error handling middleware (should be last)
 app.use(errorHandler);
